@@ -1,34 +1,51 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Green Like Nature - Vegan Recipe App
 
-First, run the development server:
+Questa é una web App per il completamento del Corso React di Start2Impact, sviluppata con Next.js, React.js, JavaScript, CSS, HTML, Framer-Motion per le animazioni...
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Progetto: React - Food
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Traccia:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Dopo aver studiato e aver praticato passo dopo passo attraverso tutorial, è importante creare un proprio progetto per praticare realmente.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Vegetarian recipe website  
+Il sito web che creerai è ideato per i vegetariani. Infatti dentro il sito l’utente avrà la possibilità di cercare esclusivamente ricette vegetariane attraverso l’API di spoonacular.
 
-## Learn More
+(API: https://spoonacular.com/food-api/docs )[Link]
 
-To learn more about Next.js, take a look at the following resources:
+Ecco cosa dovrà includere il sito:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Barra di ricerca che permetta di cercare tutte le ricette vegetariane.
+Ogni ricetta cercata dovrà mostrare almeno titolo e immagine di copertina.
+Cliccare su una ricetta porterà ad una pagina dedicata, dove verranno mostrate ulteriori informazioni.
+UI e UX semplice e facile da usare.
+Struttura dell’app organizzata e comprensibile.
+Design responsive.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Bonus: Utilizza queste tecnologie
+Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alcune delle tecnologie che hai studiato.
 
-## Deploy on Vercel
+[ ] React Router --> Sostituito con il Rounting di Next
+[ ] Axios --> Da Applicare
+[ ] React Hooks --> Da Applicare dividendo i Component in refactor
+[ ] Redux o Context API --> Context API da creare al momento del collegamento tra backend e frontend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Aggiunto inoltre:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[ ] Struttura Rounting Next.js basata su directory app come da più recente implementazione
+
+[ ] Feature costo prodotti ortofrutticoli
+
+[ ] Feature Stagionalità
+
+[x] Struttura backend per utilizzo dati per individuazione stagionalità prodotti e costo degli stessi
+
+### Da aggiungere:
+
+[ ] Nuova Home come da progetto
+
+[ ] Loading Animation - decidere se usare freamer-motion come altre animazioni o altra library
+
+[ ] Da risolvere: icone frutta verdura per piatti nuova Home o foto miniatura?

@@ -4,7 +4,7 @@ const actualDate = `${setZero(now.getDate())}/${setZero(
 	now.getMonth() + 1
 )}/${now.getFullYear()}`;
 const pastDate = `${setZero(now.getDate())}/${setZero(now.getMonth() + 1)}/${
-	now.getFullYear() - 2
+	now.getFullYear() - 1
 }`;
 
 function setZero(num) {
@@ -30,6 +30,8 @@ const completeUrl = process.env.TEMPURL;
 // Comporre Url usando Date reali
 
 async function getData() {
+	// const res = await fetch(process.env.TEMPURL, { next: { revalidate: 86400 } });
+	// const json = await res.json();
 	const res = await fetch(process.env.TEMPURL, { next: { revalidate: 86400 } });
 	const json = await res.json();
 
@@ -105,6 +107,14 @@ async function getData() {
 					secondYearDataByVariety.map((item) => item.price)
 				);
 
+				const maxWeek = Math.max(
+					...secondYearDataByVariety.map((item) => item.weekNumber)
+				);
+
+				const lastData = secondYearDataByVariety.filter(
+					(item) => item.weekNumber === maxWeek
+				);
+
 				return {
 					[variety]: {
 						// [firstYear]: [
@@ -131,7 +141,7 @@ async function getData() {
 						),
 						// }
 						// ],
-						last_data: secondYearDataByVariety[0]
+						last_data: lastData
 					}
 				};
 			})
@@ -226,16 +236,281 @@ async function getData() {
 			endSeasonData: endSeasonData
 		};
 	}
-	console.log(data);
 	return data;
+}
+
+async function seasonalFrtAndVgt(arr, date) {
+	const frtAndVgt = arr.map((item) => {
+		const product = Object.keys(item);
+		// console.log(Object.values(item));
+		return item[product].map((variety) => {
+			const varietyName = Object.keys(variety);
+			const varietyAbbr = varietyName[0].toString().split("-")[0];
+			const productName = `${product
+				.toString()
+				.slice(0, 1)
+				.toUpperCase()}${product.toString().slice(1)}`;
+
+			const varietyLabel =
+				`${varietyName}` === `${productName}: All types and varieties`
+					? `${productName}`
+					: `${productName} - ${varietyAbbr}`;
+
+			// MODIFICARE QUI PRIMA DELLA PRODUCTION, USARE now E NON DATE FISSE
+
+			if (!variety[varietyName]["2022_seasonality"]) {
+				variety[varietyName]["2022_seasonality"] =
+					variety[varietyName]["2023_seasonality"];
+				// Condizione creata per eventuali nuove categorie di dati per prodotto,
+				// con ovvia mancanza nell'anno precedente
+			}
+
+			const firstYearBeginDate =
+				variety[varietyName]["2022_seasonality"].beginSeason;
+
+			const firstYearEndDate =
+				variety[varietyName]["2022_seasonality"].endSeason;
+
+			const secondYearBeginDate =
+				variety[varietyName]["2023_seasonality"].beginSeason;
+
+			const secondYearEndDate =
+				variety[varietyName]["2023_seasonality"].endSeason;
+
+			// console.log(firstYearBeginDate.toLocale)
+
+			function calculateTimestamps(stringDate) {
+				const dateArray = stringDate.split("/");
+				const date = new Date();
+				date.setDate(dateArray[0]);
+				date.setMonth(Number(dateArray[1]) - 1);
+				if (dateArray[2] === "2022") {
+					date.setYear(Number(dateArray[2]) + 1);
+				} else if (dateArray[2] === "2023") {
+					date.setYear(Number(dateArray[2]));
+				}
+				return Number(date.getTime());
+			}
+
+			function calculateRanges() {
+				const firstYearBeginTimestamp = calculateTimestamps(firstYearBeginDate);
+				const firstYearEndTimestamp = calculateTimestamps(firstYearEndDate);
+				const secondYearBeginTimestamp =
+					calculateTimestamps(secondYearBeginDate);
+				const secondYearEndTimestamp = calculateTimestamps(secondYearEndDate);
+
+				const zeroDate = Math.min(
+					firstYearBeginTimestamp,
+					secondYearBeginTimestamp
+				);
+
+				if (
+					zeroDate === firstYearBeginTimestamp &&
+					secondYearBeginTimestamp < firstYearEndTimestamp &&
+					secondYearEndTimestamp > firstYearEndTimestamp
+				) {
+					return {
+						up: {
+							from: zeroDate,
+							to: secondYearBeginTimestamp
+						},
+						top: {
+							from: secondYearBeginTimestamp,
+							to: firstYearEndTimestamp
+						},
+						down: {
+							from: firstYearEndTimestamp,
+							to: secondYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === firstYearBeginTimestamp &&
+					secondYearBeginTimestamp < firstYearEndTimestamp &&
+					firstYearEndTimestamp > secondYearEndTimestamp
+				) {
+					return {
+						up: {
+							from: zeroDate,
+							to: secondYearBeginTimestamp
+						},
+						top: {
+							from: secondYearBeginTimestamp,
+							to: secondYearEndTimestamp
+						},
+						down: {
+							from: secondYearEndTimestamp,
+							to: firstYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === firstYearBeginTimestamp &&
+					zeroDate === secondYearBeginTimestamp &&
+					firstYearEndTimestamp > secondYearEndTimestamp
+				) {
+					return {
+						top: {
+							from: firstYearBeginTimestamp,
+							to: secondYearEndTimestamp
+						},
+						down: {
+							from: secondYearEndTimestamp,
+							to: firstYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === firstYearBeginTimestamp &&
+					zeroDate === secondYearBeginTimestamp &&
+					firstYearEndTimestamp < secondYearEndTimestamp
+				) {
+					return {
+						top: {
+							from: firstYearBeginTimestamp,
+							to: secondYearEndTimestamp
+						},
+						down: {
+							from: firstYearEndTimestamp,
+							to: secondYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === firstYearBeginTimestamp &&
+					firstYearEndTimestamp < secondYearBeginTimestamp &&
+					firstYearEndTimestamp < secondYearEndTimestamp
+				) {
+					return {
+						up: {
+							from: firstYearBeginTimestamp,
+							to: firstYearEndTimestamp
+						},
+						down: {
+							from: secondYearBeginTimestamp,
+							to: secondYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === secondYearBeginTimestamp &&
+					firstYearBeginTimestamp < secondYearEndTimestamp &&
+					secondYearEndTimestamp < firstYearEndTimestamp
+				) {
+					return {
+						up: {
+							from: zeroDate,
+							to: firstYearBeginTimestamp
+						},
+						top: {
+							from: firstYearBeginTimestamp,
+							to: secondYearEndTimestamp
+						},
+						down: {
+							from: secondYearEndTimestamp,
+							to: firstYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === secondYearBeginTimestamp &&
+					firstYearBeginTimestamp < secondYearEndTimestamp &&
+					firstYearEndTimestamp < secondYearEndTimestamp
+				) {
+					return {
+						up: {
+							from: zeroDate,
+							to: firstYearBeginTimestamp
+						},
+						top: {
+							from: firstYearBeginTimestamp,
+							to: firstYearEndTimestamp
+						},
+						down: {
+							from: firstYearEndTimestamp,
+							to: secondYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === secondYearBeginTimestamp &&
+					secondYearEndTimestamp < firstYearBeginTimestamp &&
+					secondYearEndTimestamp < firstYearEndTimestamp
+				) {
+					return {
+						up: {
+							from: secondYearBeginTimestamp,
+							to: secondYearEndTimestamp
+						},
+						down: {
+							from: firstYearBeginTimestamp,
+							to: firstYearEndTimestamp
+						}
+					};
+				} else if (
+					zeroDate === secondYearBeginTimestamp &&
+					secondYearEndTimestamp < firstYearBeginTimestamp &&
+					secondYearEndTimestamp > firstYearEndTimestamp &&
+					secondYearBeginTimestamp < firstYearBeginTimestamp
+				) {
+					return {
+						up: {
+							from: secondYearBeginTimestamp,
+							to: secondYearEndTimestamp
+						},
+						down: {
+							from: firstYearBeginTimestamp,
+							to: firstYearEndTimestamp
+						}
+					};
+				} else {
+					// Da eliminare dopo vari controlli, così sembra tutto funzionante
+					// e restituisce risultati soddisfacenti
+					return {
+						eq: "limit-case"
+					};
+				}
+			}
+			return {
+				[varietyLabel]: {
+					seasonality: calculateRanges()
+				}
+			};
+		});
+	});
+
+	const today = date.getTime();
+
+	// Calcolare qui frutti e verdure di stagione ora
+
+	function calculateActualFrtAndVgt(data, timestamp) {
+		const actualFrtAndVgt = [];
+		data.map((prod) => {
+			return prod.map((variety) => {
+				const varietyName = Object.keys(variety)[0];
+				const varietyData = variety[varietyName].seasonality;
+				Object.entries(varietyData).map((elem) => {
+					if (timestamp >= elem[1].from && timestamp <= elem[1].to) {
+						actualFrtAndVgt.push({
+							product: varietyName.split(" - ")[0],
+							variety: varietyName.split(" - ")[1] || "All",
+							seasonal: true,
+							phase: elem[0]
+						});
+					} else {
+						return;
+					}
+				});
+			});
+		});
+		return actualFrtAndVgt;
+	}
+
+	return calculateActualFrtAndVgt(frtAndVgt, today);
 }
 
 export default async function List() {
 	const data = await getData();
+	const test = await seasonalFrtAndVgt(data, now);
+	console.log(test);
+
 	return (
 		<ul>
-			{data.map((elem) => {
-				return <p>{Object.keys(elem)}</p>;
+			{test.map((elem) => {
+				return <p>{elem.product}</p>;
 			})}
 		</ul>
 	);
