@@ -1,38 +1,7 @@
-const now = new Date();
-
-const actualDate = `${setZero(now.getDate())}/${setZero(
-	now.getMonth() + 1
-)}/${now.getFullYear()}`;
-const pastDate = `${setZero(now.getDate())}/${setZero(now.getMonth() + 1)}/${
-	now.getFullYear() - 1
-}`;
-
-function setZero(num) {
-	if (num < 10) {
-		return `0${num}`;
-	} else {
-		return `${num}`;
-	}
-}
-
-// Nota: Nel prossimo aggiornamento l'Url coprirà un periodo di due anni completi
-// precendenti alla data odierna, restituendo così dei risultati più precisi.
-// E' stata necessaria questa scelta a causa di una evidente parzialità dei
-// dati forniti prima del 2022. In assenza di altri dati open source disponibili
-// ho deciso di usare i dati dell'anno corrente 2023 nonostante ancora
-// evidentemente incompleti. Tuttavia nella maggior parte dei casi i risultati rispecchiano
-// l'effettiva stagionalità dei prodotti ortofrutticoli e quindi possono essere utilizzati
-// in un progetto di studio.
-
-const baseUrl = process.env.BASEURL;
-const completeUrl = process.env.TEMPURL;
-
-// Comporre Url usando Date reali
-
-async function getData() {
-	// Aggiornare con Axios
-	const res = await fetch(process.env.TEMPURL, { next: { revalidate: 86400 } });
-	const json = await res.json();
+function getData(datas) {
+	// const res = await fetch(process.env.TEMPURL, { next: { revalidate: 86400 } });
+	// const json = await res.json();
+	const json = datas;
 
 	const newSet = new Set();
 	for (let item of json) {
@@ -238,10 +207,9 @@ async function getData() {
 	return data;
 }
 
-async function seasonalFrtAndVgt(arr, date) {
+function seasonalFrtAndVgt(arr, date) {
 	const frtAndVgt = arr.map((item) => {
 		const product = Object.keys(item);
-		// console.log(Object.values(item));
 		return item[product].map((variety) => {
 			const varietyName = Object.keys(variety);
 			const varietyAbbr = varietyName[0].toString().split("-")[0];
@@ -255,14 +223,9 @@ async function seasonalFrtAndVgt(arr, date) {
 					? `${productName}`
 					: `${productName} - ${varietyAbbr}`;
 
-			// MODIFICARE QUI PRIMA DELLA PRODUCTION, USARE now E NON DATE FISSE
-
-			if (!variety[varietyName]["2022_seasonality"]) {
-				variety[varietyName]["2022_seasonality"] =
-					variety[varietyName]["2023_seasonality"];
-				// Condizione creata per eventuali nuove categorie di dati per prodotto,
-				// con ovvia mancanza nell'anno precedente
-			}
+			// console.log(
+			// 	`${productName}: ${variety[varietyName]["2022_seasonality"].beginSeason} --> ${variety[varietyName]["2022_seasonality"].endSeason} | ${variety[varietyName]["2023_seasonality"].beginSeason} --> ${variety[varietyName]["2023_seasonality"].endSeason}`
+			// );
 
 			const firstYearBeginDate =
 				variety[varietyName]["2022_seasonality"].beginSeason;
@@ -297,6 +260,10 @@ async function seasonalFrtAndVgt(arr, date) {
 				const secondYearBeginTimestamp =
 					calculateTimestamps(secondYearBeginDate);
 				const secondYearEndTimestamp = calculateTimestamps(secondYearEndDate);
+
+				// console.log(
+				// 	`${firstYearBeginTimestamp} --> ${firstYearEndTimestamp} | ${secondYearBeginTimestamp} --> ${secondYearEndTimestamp}`
+				// );
 
 				const zeroDate = Math.min(
 					firstYearBeginTimestamp,
@@ -471,7 +438,7 @@ async function seasonalFrtAndVgt(arr, date) {
 		});
 	});
 
-	const today = date.getTime();
+	const today = now.getTime();
 
 	// Calcolare qui frutti e verdure di stagione ora
 
@@ -481,15 +448,26 @@ async function seasonalFrtAndVgt(arr, date) {
 			return prod.map((variety) => {
 				const varietyName = Object.keys(variety)[0];
 				const varietyData = variety[varietyName].seasonality;
+
+				// console.log(Object.entries(varietyData));
 				Object.entries(varietyData).map((elem) => {
+					// console.log(elem[0]);
+					// console.log("---");
+					// console.log(elem[1]);
+
 					if (timestamp >= elem[1].from && timestamp <= elem[1].to) {
 						actualFrtAndVgt.push({
 							product: varietyName.split(" - ")[0],
-							variety: varietyName.split(" - ")[1] || "All",
+							variety: varietyName.split(" - ")[1],
 							seasonal: true,
 							phase: elem[0]
 						});
 					} else {
+						// actualFrtAndVgt.push({
+						// 	product: prod,
+						// 	variety: varietyName,
+						// 	seasonal: false
+						// });
 						return;
 					}
 				});
@@ -501,16 +479,4 @@ async function seasonalFrtAndVgt(arr, date) {
 	return calculateActualFrtAndVgt(frtAndVgt, today);
 }
 
-export default async function List() {
-	const data = await getData();
-	const test = await seasonalFrtAndVgt(data, now);
-	// console.log(test);
-
-	return (
-		<ul>
-			{test.map((elem) => {
-				return <p>{elem.product}</p>;
-			})}
-		</ul>
-	);
-}
+const now = new Date();

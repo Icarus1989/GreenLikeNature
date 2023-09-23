@@ -1,0 +1,54 @@
+.navbar > ul {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	bottom: 0%;
+	width: 100vw;
+	height: 6%;
+	z-index: 1;
+}
+
+.navbar-button {
+	display: grid;
+	place-items: center;
+	position: relative;
+	width: 33.3vw;
+	height: 100%;
+	border-radius: 0%;
+	border: 0px;
+	background-color: transparent;
+	z-index: 10;
+}
+
+/* .navbar-button>a {
+
+} */
+
+.navbar-button:focus {
+	outline: none;
+	border-color: transparent;
+}
+
+.nav-icon {
+	color: rgba(2, 180, 2, 0.9);
+	font-weight: 700;
+	font-size: 26px;
+	padding: 0%;
+	margin: 0;
+	font-weight: 700;
+	z-index: 6;
+}
+
+.cursor-container {
+	width: 100vw;
+	height: 3px;
+	background-color: transparent;
+	position: fixed;
+	bottom: 0;
+}
+
+.cursor {
+	width: 33.3%;
+	height: 3px;
+	background-color: rgba(2, 180, 2, 0.9);
+}
