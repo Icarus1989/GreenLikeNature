@@ -3,11 +3,15 @@ import styles from "./page.module.css";
 import List from "./ServerComponent";
 import tempData from "../data.json";
 
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
 export default function Home() {
 	// Here
 	return (
 		<main className={styles.main}>
-			<h2>Hello Next.js!!!</h2>
+			{/* {children} */}
 			<List />
 		</main>
 	);
