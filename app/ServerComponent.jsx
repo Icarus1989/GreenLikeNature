@@ -29,7 +29,7 @@ const completeUrl = process.env.TEMPURL;
 
 // Comporre Url usando Date reali
 
-async function getData() {
+export async function getData() {
 	// Aggiornare con Axios
 	const res = await fetch(process.env.TEMPURL, { next: { revalidate: 86400 } });
 	const json = await res.json();
@@ -238,7 +238,7 @@ async function getData() {
 	return data;
 }
 
-async function seasonalFrtAndVgt(arr, date) {
+export async function seasonalFrtAndVgt(arr, date) {
 	const frtAndVgt = arr.map((item) => {
 		const product = Object.keys(item);
 		// console.log(Object.values(item));
@@ -495,22 +495,43 @@ async function seasonalFrtAndVgt(arr, date) {
 				});
 			});
 		});
+		console.log(actualFrtAndVgt);
 		return actualFrtAndVgt;
 	}
 
 	return calculateActualFrtAndVgt(frtAndVgt, today);
 }
 
-export default async function List() {
-	const data = await getData();
-	const test = await seasonalFrtAndVgt(data, now);
-	// console.log(test);
-
-	return (
-		<ul>
-			{test.map((elem) => {
-				return <p>{elem.product}</p>;
-			})}
-		</ul>
-	);
+export async function getSpoonData(frtAndVeg) {
+	const apiKey = "977944bb2264474782049f9e558b9143";
+	const intolerances = "one,two,three,from state?";
+	const strg =
+		"https://api.spoonacular.com/recipes/findByIngredients?ingredients=pears&number=10&apiKey=977944bb2264474782049f9e558b9143&includeNutrition=true";
+	const frtAndVegString = frtAndVeg.join(",");
+	const spoonUrl = `"https://api.spoonacular.com/recipes/findByIngredients?ingredients=${frtAndVegString}&diet=vegetarian&intolerances=${intolerances}&number=10&apiKey=${apiKey}&includeNutrition=true`;
+	try {
+		const spoonData = await fetch();
+		const json = await spoonData.json();
+		console.log(json);
+	} catch (error) {
+		console.log(error);
+	}
 }
+
+// export default async function List() {
+// 	const data = await getData();
+// 	const test = await seasonalFrtAndVgt(data, now);
+// 	console.log(test);
+
+// 	return (
+// 		<ul>
+// 			{test.map((elem) => {
+// 				return (
+// 					<p>
+// 						{elem.product} | variety: {elem.variety}
+// 					</p>
+// 				);
+// 			})}
+// 		</ul>
+// 	);
+// }

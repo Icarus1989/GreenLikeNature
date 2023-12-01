@@ -6,9 +6,9 @@ import { motion, useInView } from "framer-motion";
 const defaultVariations = {
 	hidden: {
 		opacity: 0.0,
-		color: "rgba(230, 230, 230, 1.0)"
+		color: "rgba(230, 230, 230, 0.0)"
 	},
-	visible: { opacity: 1.0, color: "rgba(8, 140, 0, 1.0)", delay: 0.1 },
+	visible: { opacity: 1.0, color: "rgba(2, 180, 2, 0.9)", delay: 0.1 },
 	exit: { opacity: 1.0, color: "rgba(2, 180, 2, 1.0)" }
 };
 

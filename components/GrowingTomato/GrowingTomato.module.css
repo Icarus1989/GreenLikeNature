@@ -1,0 +1,44 @@
+.animation-container {
+	width: 100%;
+	height: 15vh;
+	display: grid;
+	place-items: center;
+	border: 1px solid transparent;
+	margin-top: 0%;
+	margin-bottom: 4%;
+}
+
+.small-plant-svg {
+	transform: scale(90%, 90%) translate(-1%, 34%);
+	filter: brightness(1);
+	z-index: 2;
+}
+
+.small-plant-svg > g > path {
+	stroke-width: 1.5px;
+	stroke-linecap: round;
+}
+
+.tomato-svg {
+	position: absolute;
+	/* transform: scale(0.26, 0.26) translate(23%, 52%); */
+	z-index: 1;
+	/* filter: hue-rotate(30deg); */
+}
+
+/* .firstTomatoPath {
+	filter: hue-rotate(80deg);
+} */
+
+.tomato-svg > path {
+	stroke-width: 2px;
+}
+
+.end-leaves {
+	position: absolute;
+	/* transform: scale(0.23, 0.23) translate(130%, 23%); */
+	/* rotate: 30deg; */
+	/* transform: scale(0.23, 0.23) translate(90%, 50%) rotate(30deg); */
+	z-index: 2;
+	overflow: hidden;
+}

@@ -1,0 +1,4 @@
+.tomato-leaf-svg {
+	transform: scale(1.2, 1.2) translate(0%, 6%);
+	z-index: 4;
+}

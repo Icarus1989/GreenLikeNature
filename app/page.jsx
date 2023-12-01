@@ -1,18 +1,23 @@
-import Image from "next/image";
+import CarouselsContainer from "@/components/carouselContainer/CarouselsContainer";
+import { getData, seasonalFrtAndVgt } from "./ServerComponent";
+import newRecipes from "../spoonTempData/tempData.json";
 import styles from "./page.module.css";
-import List from "./ServerComponent";
-import tempData from "../data.json";
 
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-	// Here
+export default async function Home() {
+	const now = new Date();
+	const data = await getData();
+	const seasonalData = await seasonalFrtAndVgt(data, now);
+
+	// console.log(data);
 	return (
-		<main className={styles.main}>
+		<main className={styles["main-element"]}>
 			{/* {children} */}
-			<List />
+			<CarouselsContainer data={seasonalData} recipes={newRecipes} />
+			{/* <List /> */}
 		</main>
 	);
 }

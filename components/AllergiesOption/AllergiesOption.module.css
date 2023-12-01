@@ -1,0 +1,188 @@
+.allergies-fieldset {
+	display: grid;
+	place-items: center;
+	background-color: rgba(32, 32, 32, 0.74);
+	padding: 2%;
+	border-radius: 15px 15px 15px 0px;
+	border-left: 10px solid rgba(3, 64, 2, 0.95);
+	border-top: 3px solid rgba(123, 123, 123, 0.8);
+	border-right: 3px solid rgba(110, 110, 110, 0.75);
+	border-bottom: 3px solid rgba(98, 97, 93, 0.7);
+	margin: 2% 4% 4% 4%;
+}
+
+.allergies-legend {
+	display: grid;
+	place-items: center;
+	width: 25vw;
+	height: 9vh;
+	color: rgb(255, 255, 255);
+	text-shadow: 0px 1px 5px black;
+	font-size: 16px;
+	font-weight: 600;
+	margin-right: 2%;
+}
+
+.allergies-legend-precedent {
+	display: grid;
+	place-items: center;
+	width: 25vw;
+	height: 9vh;
+	color: rgb(255, 255, 255);
+	text-shadow: 0px 1px 5px black;
+	font-size: 16px;
+	font-weight: 600;
+	background: linear-gradient(
+		31deg,
+		rgba(2, 180, 2, 1) 10%,
+		rgba(2, 160, 2, 0.9) 20%,
+		rgba(23, 95, 55, 0.9) 38%,
+		rgba(4, 89, 4, 1) 40%,
+		rgb(3, 64, 2) 48.9%,
+		rgb(3, 64, 2) 51.1%,
+		rgba(4, 89, 4, 1) 60%,
+		rgba(23, 95, 55, 0.9) 62%,
+		rgba(1, 140, 1, 0.9) 80%,
+		rgba(2, 180, 2, 1) 90%
+	);
+
+	/* last --> */
+	/* padding-top: 8%;
+	padding-left: 16%;
+	padding-bottom: 8%;
+	padding-right: 14%; */
+	border-top: 4px solid rgba(3, 64, 2, 0.95);
+	border-right: 2px solid rgba(3, 64, 2, 0.9);
+	border-bottom: 2px solid rgba(3, 64, 2, 0.9);
+	border-left: 4px solid rgba(3, 64, 2, 0.95);
+	border-radius: 55% 100% / 10% 135%;
+	margin-right: 2%;
+	/* opacity: 0.9; */
+}
+
+.legend-svg {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	stroke-width: 2px;
+	stroke: rgba(230, 230, 230, 0.9);
+	z-index: 5;
+}
+
+.description {
+	color: rgba(230, 230, 230, 0.8);
+	font-size: 16px;
+	padding-left: 3%;
+	margin-top: 10%;
+	margin-bottom: 8%;
+}
+
+.add-allergens-label {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	width: 80%;
+	margin: 3% 2% 3% 4%;
+}
+
+.add-allergens-label > button {
+	width: 3.5em;
+	height: 3.5em;
+	display: grid;
+	place-items: center;
+	background-color: transparent;
+	border: 0px solid transparent;
+	border-radius: 50%;
+	transform: scale(1.2);
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+		rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+		rgba(0, 0, 0, 0.09) 0px 16px 8px;
+	/* padding: 1%; */
+	/* margin: 0; */
+}
+
+.add-allergens-label > button > svg {
+	background-color: rgba(23, 23, 23, 0.64);
+
+	width: 3.5em;
+	height: 3.5em;
+	fill: rgba(2, 180, 2, 0.8);
+	border: 3px solid rgba(101, 100, 100, 0.352);
+	border-radius: 50%;
+}
+
+.add-allergens-label > button > svg > path {
+	stroke: rgba(2, 180, 2, 1);
+	stroke-width: 1px;
+	/* transform: scale(1.4); */
+}
+
+.add-allergens-label > input {
+	font-size: 16px;
+	padding-left: 5%;
+	border: 1px solid rgb(133, 133, 133);
+	border-radius: 10px;
+}
+
+/* .add-allergens-label > input:active {
+	border: 1px solid rgb(133, 133, 133);
+} */
+
+.allergens-list {
+	width: 80%;
+	min-height: 10vh;
+	color: rgba(230, 230, 230, 0.8);
+	font-size: 16px;
+	padding-left: 4%;
+	margin: 6% 4% 4% 6%;
+	list-style: none;
+}
+
+.allergens-list > li {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 70%;
+	color: rgba(230, 230, 230, 0.95);
+	font-size: 16px;
+	font-weight: 600;
+	margin: 5% 5% 2% 12%;
+}
+
+.allergens-list > li > svg {
+	width: 28px;
+	height: 28px;
+}
+
+.donot_icon {
+	fill: red;
+	stroke-width: 5px;
+	stroke: rgba(230, 230, 230, 0.9);
+	/* stroke-width: 2px; */
+}
+
+.allergen-delete-btn {
+	width: 1.6rem;
+	height: 1.6rem;
+	background: transparent;
+	border: 1px solid transparent;
+}
+
+.trash_icon {
+	width: 100%;
+	height: 100%;
+	fill: rgb(119, 118, 118);
+	stroke: rgb(230, 230, 230);
+	stroke-width: 3px;
+}
+
+.allergens-empty {
+	margin: 5%;
+}
+
+/* .allergens-list > li > svg > path :last-of-type {
+	fill: red;
+} */

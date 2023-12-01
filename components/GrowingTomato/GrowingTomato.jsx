@@ -1,0 +1,309 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import anime from "animejs/lib/anime.es.js";
+import styles from "./GrowingTomato.module.css";
+
+import {
+	tomatoBeginPath,
+	tomatoEndPath,
+	leavesUpBeginPath,
+	leavesUpEndPath,
+	leavesDownBeginPath,
+	leavesDownEndPath,
+	endLeavesDown,
+	endLeavesUp,
+	plantLightBeginPath,
+	plantLightEndPath,
+	plantDarkBeginPath,
+	plantDarkEndPath
+} from "./svgPaths";
+
+export default function GrowingTomato({
+	id,
+	lightPerc,
+	growingPerc,
+	xPerc,
+	yPerc,
+	autoplay
+}) {
+	const [tomatoOpts, setTomatoOpts] = useState({
+		id: id,
+		lightPerc: lightPerc,
+		growingPerc: growingPerc,
+		xPerc: xPerc,
+		yPerc: yPerc,
+		animPlay: autoplay
+	});
+	const [animPlay, setAnimPlay] = useState(autoplay);
+
+	console.log(autoplay);
+
+	useEffect(() => {
+		// console.log(tomatoOpts.animPlay !== false);
+
+		const tomatoPathAnim = anime({
+			targets: `#firstTomatoPath${tomatoOpts.id}`,
+			d: [
+				{
+					value: tomatoBeginPath
+				},
+				{
+					value: tomatoEndPath
+				}
+			],
+			delay: 50,
+			filter: [
+				{ value: "hue-rotate(80deg)", delay: 0 },
+				{ value: "hue-rotate(0deg)", delay: 500 }
+			],
+			autoplay: false,
+			easing: "easeOutCubic",
+			duration: 2500,
+			loop: false
+		});
+
+		const leavesUpAnim = anime({
+			targets: `#leavesUp${tomatoOpts.id}`,
+			d: [
+				{
+					value: leavesUpBeginPath
+				},
+				{
+					value: leavesUpEndPath
+				}
+			],
+			fill: "#217D05",
+			delay: 0,
+			autoplay: false,
+			easing: "linear",
+			duration: 1800,
+			loop: false
+		});
+
+		const leavesDownAnim = anime({
+			targets: `#leavesDown${tomatoOpts.id}`,
+			d: [
+				{
+					value: leavesDownBeginPath
+				},
+				{
+					value: leavesDownEndPath
+				}
+			],
+			fill: "#045904",
+			delay: 0,
+			autoplay: false,
+			easing: "linear",
+			duration: 1800,
+			loop: false
+		});
+
+		const plantLightAnim = anime({
+			targets: `#plantLight${tomatoOpts.id}`,
+			d: [
+				{
+					value: plantLightBeginPath
+				},
+				{
+					value: plantLightEndPath
+				}
+			],
+			fill: "none",
+			autoplay: false,
+			easing: "linear",
+			duration: 2800,
+			loop: false,
+			easing: "spring(1.2, 80, 7, 0)"
+		});
+
+		const plantDarkAnim = anime({
+			targets: `#plantDark${tomatoOpts.id}`,
+			d: [
+				{
+					value: plantDarkBeginPath
+				},
+				{
+					value: plantDarkEndPath
+				}
+			],
+			fill: "none",
+			autoplay: false,
+			easing: "spring(1.2, 80, 7, 0)",
+			duration: 2800,
+			loop: false
+		});
+
+		const endLeavesAnim = anime({
+			targets: `#endLeaves${tomatoOpts.id}`,
+			rotate: "30deg",
+			translateX: "-30%",
+			translateY: "45%",
+			delay: 1300,
+			autoplay: false,
+			easing: "spring(1.3, 80, 7, 0)",
+			duration: 1800,
+			loop: false
+		});
+
+		const tomatoSvgAnim = anime({
+			targets: `#tomatoSvg${tomatoOpts.id}`,
+			translateY: ["0%", "+11%", "+7%"],
+			delay: 1000,
+			autoplay: false,
+			easing: "spring(2.5, 80, 7, 0)",
+			duration: 1200,
+			loop: false
+		});
+
+		if (tomatoOpts.animPlay !== false) {
+			tomatoSvgAnim.play();
+			tomatoPathAnim.play();
+			leavesUpAnim.play();
+			leavesDownAnim.play();
+			plantLightAnim.play();
+			plantDarkAnim.play();
+			endLeavesAnim.play();
+		}
+	}, [tomatoOpts.animPlay]);
+	return (
+		<div className={styles["animation-container"]}>
+			<svg
+				viewBox="0 0 200 100"
+				xmlns="http://www.w3.org/2000/svg"
+				className={styles["small-plant-svg"]}
+			>
+				<path
+					id={`plantLight${tomatoOpts.id}`}
+					style={{
+						fill: "none",
+						strokeWidth: "4px",
+						strokeLinecap: "round",
+						stroke: "rgba(2, 123, 2, 0.95)"
+					}}
+					d={plantLightBeginPath}
+				/>
+				<path
+					id={`plantDark${tomatoOpts.id}`}
+					style={{
+						fill: "none",
+						strokeWidth: "5px",
+						strokeLinecap: "round",
+						stroke: "rgba(3, 64, 2, 0.95)"
+					}}
+					d={plantDarkBeginPath}
+				/>
+			</svg>
+			<svg
+				viewBox="0 0 123 131"
+				xmlns="http://www.w3.org/2000/svg"
+				className={styles["tomato-svg"]}
+				id={`tomatoSvg${tomatoOpts.id}`}
+				style={{
+					transform: `scale(${tomatoOpts.growingPerc}, ${tomatoOpts.growingPerc}) translate(${tomatoOpts.xPerc}, ${tomatoOpts.yPerc})`
+				}}
+				// style={{ transform: "scale(0.23, 0.23) translate(23%, 52%)" }}
+			>
+				<path
+					id={`firstTomatoPath${tomatoOpts.id}`}
+					className={styles["firstTomatoPath"]}
+					fill={`url(#tomatoRedGradient${tomatoOpts.id})`}
+					style={{
+						stroke: "#BF0300",
+						strokeWidth: "1px",
+						filter: "hue-rotate(80deg)"
+					}}
+					d={tomatoBeginPath}
+				/>
+				<path
+					id={`leavesUp${tomatoOpts.id}`}
+					fill="#217D05"
+					style={{ stroke: "#154F03", strokeWidth: "1px" }}
+					d={leavesUpBeginPath}
+				/>
+				<path
+					id={`leavesDown${tomatoOpts.id}`}
+					fill="#217D05"
+					style={{ stroke: "#154F03", strokeWidth: "1px" }}
+					d={leavesDownBeginPath}
+				/>
+
+				<defs>
+					<radialGradient
+						fx={tomatoOpts.lightPerc}
+						fy="50%"
+						cx={tomatoOpts.lightPerc}
+						cy="50%"
+						id={`tomatoRedGradient${tomatoOpts.id}`}
+					>
+						<stop offset="2%" stopColor="#FDDED4" />
+						<stop offset="23%" stopColor="#F69566" />
+						<stop offset="50%" stopColor="#F63929" />
+						<stop offset="60%" stopColor="#E90F0E" />
+						<stop offset="80%" stopColor="#CC0300" />
+						<stop offset="95%" stopColor="#BF0300" />
+					</radialGradient>
+				</defs>
+				<defs>
+					<radialGradient
+						fx={tomatoOpts.lightPerc}
+						fy="50%"
+						cx={tomatoOpts.lightPerc}
+						cy="50%"
+						id="tomatoYellowGradient"
+					>
+						<stop offset="2%" stopColor="#FDDED4" />
+						<stop offset="23%" stopColor="#FFE236" />
+						<stop offset="50%" stopColor="#FFD235" />
+						<stop offset="60%" stopColor="#FFC12D" />
+						<stop offset="80%" stopColor="#FFAD1E" />
+						<stop offset="95%" stopColor="#FF980D" />
+					</radialGradient>
+				</defs>
+			</svg>
+
+			<svg
+				viewBox="0 0 26 28"
+				xmlns="http://www.w3.org/2000/svg"
+				id={`endLeaves${tomatoOpts.id}`}
+				className={styles["end-leaves"]}
+				style={{
+					transform: "scale(0.23, 0.23) translate(130%, 23%)"
+				}}
+			>
+				<path
+					fill="url(#leavesGradient)"
+					style={{ stroke: "rgba(3, 64, 2, 0.95)", strokeWidth: "0.5px" }}
+					d={endLeavesDown}
+				/>
+				<path
+					fill="url(#leavesGradient)"
+					style={{ stroke: "rgba(3, 64, 2, 0.95)", strokeWidth: "0.5px" }}
+					d={endLeavesUp}
+					transform="matrix(0.906308, -0.422618, 0.422618, 0.906308, -2.411201, 6.335988)"
+				/>
+				<defs>
+					<radialGradient
+						fx="-68%"
+						fy="170%"
+						cx="-68%"
+						cy="170%"
+						r="360%"
+						id="leavesGradient"
+					>
+						<stop offset="10%" stopColor="rgba(23, 230, 40, 1.0)" />
+						<stop offset="30%" stopColor="rgba(23, 230, 40, 1.0)" />
+						<stop offset="47%" stopColor="rgba(23, 95, 55, 1.0)" />
+						<stop offset="48%" stopColor="rgba(4, 89, 4, 1.0)" />
+						<stop offset="49.9%" stopColor="rgb(3, 64, 2)" />
+						<stop offset="50.1%" stopColor="rgb(3, 64, 2)" />
+						<stop offset="52%" stopColor="rgba(4, 89, 4, 1.0)" />
+						<stop offset="53%" stopColor="rgba(23, 95, 55, 1.0)" />
+						<stop offset="70%" stopColor="rgba(2, 180, 2, 1.0)" />
+						<stop offset="90%" stopColor="rgba(2, 180, 2, 1.0)" />
+					</radialGradient>
+				</defs>
+			</svg>
+		</div>
+	);
+}

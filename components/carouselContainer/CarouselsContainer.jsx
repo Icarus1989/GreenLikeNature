@@ -1,101 +1,45 @@
 "use client";
 
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import Image from "next/image";
 import styles from "./CarouselContainer.module.css";
-import { GoSearch, GoDotFill } from "react-icons/go";
 import {
 	motion,
 	useScroll,
 	useSpring,
 	useMotionValue,
 	useMotionValueEvent,
-	useTransform
+	useTransform,
+	transform
 } from "framer-motion";
 
-import Miniature from "../Miniature/Miniature";
-import RecipeSummary from "../RecipeSummary/RecipeSummary";
-// import Navbar from "../Navbar/Navbar";
-import { firstRecipeData } from "../../spoonTempData/singleRecipeData";
-import { secondRecipeData } from "../../spoonTempData/secondRecipeData";
-import { thirdRecipeData } from "../../spoonTempData/thirdRecipeData";
 import AnimatedText from "../AnimatedText/AnimatedText";
 import SearchBar from "../SearchBar/SearchBar";
-
-// const plateVariants = {
-// 	hidden: { rotateZ: 0 },
-// 	visible: {
-// 		rotateZ: (Math.PI / 4) * (180 / Math.PI) * (index - 2)
-// 	}
-// };
+import Flower from "../FlowerComponent/Flower";
 
 const pathVariants = {
 	hidden: {
 		pathLength: 0,
-		opacity: 0.0
+		opacity: 1.0
 	},
 	visible: {
-		stroke: "rgba(2, 180, 2, 0.9)",
+		stroke: "rgba(2, 180, 2, 0.8)",
+		strokeWidth: "0.8px",
 		pathLength: 1.1,
 		opacity: 1.0,
 		transition: {
-			duration: 5,
-			delay: 0.2
+			duration: 5
 		}
 	}
 };
 
 const netwrokError = null;
 
-export default function CarouselsContainer() {
-	const dataImages = [
-		"https://spoonacular.com/recipeImages/637187-556x370.jpg",
-		"https://spoonacular.com/recipeImages/715551-556x370.jpg",
-		"https://spoonacular.com/recipeImages/775585-556x370.jpg",
-		"https://spoonacular.com/recipeImages/716426-556x370.jpg",
-		"https://spoonacular.com/recipeImages/715381-556x370.jpg"
-	];
-
-	// const [isActive, setIsActive] = useState(0);
-
-	const recipes = [
-		{ title: "recipe 1", img: dataImages[0] },
-		{ title: "recipe 2", img: dataImages[1] },
-		{ title: "recipe 3", img: dataImages[2] },
-		{ title: "recipe 4", img: dataImages[3] },
-		{ title: "recipe 5", img: dataImages[4] },
-		{ title: "recipe 6", img: dataImages[4] },
-		{ title: "recipe 7", img: dataImages[4] },
-		{ title: "recipe 8", img: dataImages[4] }
-	];
+export default function CarouselsContainer({ recipes, data }) {
+	// console.log(data);
+	const [isActive, setIsActive] = useState(0);
 
 	const recipeRef = useRef(null);
-
-	const dataArray = [firstRecipeData, secondRecipeData, thirdRecipeData];
-
-	const recipesSumm = dataArray.map((data, index) => {
-		return (
-			<RecipeSummary
-				key={index}
-				data={data}
-				ref={(node) => {
-					const map = getMap();
-					if (node) {
-						map.set(index, node);
-					} else {
-						map.delete(index);
-					}
-				}}
-			/>
-		);
-	});
-
-	function getMap() {
-		if (!recipeRef.current) {
-			recipeRef.current = new Map();
-		}
-		return recipeRef.current;
-	}
-
 	const menuRef = useRef(null);
 	const internal = useRef(null);
 
@@ -118,6 +62,13 @@ export default function CarouselsContainer() {
 		// 11 * (Math.PI / 6)
 	];
 
+	function getMap() {
+		if (!recipeRef.current) {
+			recipeRef.current = new Map();
+		}
+		return recipeRef.current;
+	}
+
 	// Separare Components: SearchBar / carouselShow (rotating plates) /
 	// carouselModern(Old) / carouselClassic (List) / Header (Title + Logo) /
 	// ...
@@ -136,42 +87,41 @@ export default function CarouselsContainer() {
 	);
 
 	const rotateZ = useSpring(rotation, {
-		// min: 0,
-		// max: 800,
 		stiffness: 100,
 		damping: 10,
 		restDelta: 0.001
 	});
 
 	useEffect(() => {
-		// scrollRef.current.style.width = `${recipes.length * 4}00vw`;
 		const measuresContainer = menuRef.current.getBoundingClientRect();
 		const measuresInternal = internal.current.getBoundingClientRect();
-		// const angle = 0;
-		// const angleRad = angle * (Math.PI / 180);
 
 		const hypY =
 			(measuresContainer.height / 2 + measuresInternal.height / 2) / 2;
 		const hypX = (measuresContainer.width / 2 + measuresInternal.width / 2) / 2;
 
+		// function setNewIndex(value) {
+		// 	if (value === 0) {
+		// 		return 0;
+		// 	} else if (value > 0) {
+		// 		return -value - 1;
+		// 	}
+		// }
+
 		function placePlate(itemId, index) {
 			const map = getMap();
 			const node = map.get(itemId);
-			// console.log(node);
+
 			node.style.top =
-				hypY * Math.sin(theta[index]) -
+				hypY * Math.sin(theta[index] + Math.PI / 2) -
 				node.getBoundingClientRect().height / 2 +
 				measuresInternal.height / 2 +
 				"px";
 			node.style.left =
-				hypX * Math.cos(theta[index]) -
+				hypX * Math.cos(theta[index] + Math.PI / 2) -
 				node.getBoundingClientRect().width / 2 +
 				measuresInternal.width / 2 +
 				"px";
-			// if (index === 3) {
-			// 	node.style.display = "none";
-			// }
-			// node.style.transform = "rotateZ";
 		}
 
 		recipes.map((recipe, index) => {
@@ -179,100 +129,79 @@ export default function CarouselsContainer() {
 		});
 	}, []);
 
-	// const deg = () => {
-	// 	return () => rotateZ();
-	// };
-
-	// const rotation = useTransform(rotateZ, (latest) => latest * 360);
-
-	// useMotionValueEvent(rotateZ, "change", (current) => {
-	// 	rotateZ.set(current * 2);
-	// });
-
-	// console.log(deg());
-
-	// function callRotate(obj) {
-	// 	return obj.latest * 1000;
-	// }
-
-	// const latest = rotateZ.latest;
-	// console.log(deg);
-
 	return (
 		<>
 			<section
 				ref={sectionRef}
 				className={styles["container"]}
-				// onScroll={() => console.log(rotateZ)}
+				// onScroll={(event) => {
+				// 	// i
+				// 	console.log(event.target);
+				// }}
 				dir="ltr"
 			>
 				<ul
 					ref={scrollRef}
 					style={{ width: `${recipes.length}00vw` }}
 					className={styles["invisible-scroll"]}
-					dir="ltr"
+					dir="rtl"
 				>
-					{recipes.map((elem) => {
-						return (
-							<li key={elem.title} className={styles["invisible-element"]}></li>
-						);
+					{recipes.map((elem, index) => {
+						if (index === 0) {
+							return (
+								<li key={elem.title} className={styles["invisible-element"]}>
+									{/* <svg
+										version="1.2"
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										width="24"
+										height="24"
+										className={styles["arrow-right"]}
+									>
+										<path d="m19.3 12.2q0 0 0 0h-4.4l2.6 2.6q-1.1 1.1-2.5 1.7c-1.9 0.9-4.1 0.9-6.1 0.1-2-0.8-3.6-2.3-4.4-4.3-0.8-2-0.8-4.2-0.1-6.1m15.5 11v-5h-0.6c-0.4 1-1 1.9-1.8 2.6z" />
+									</svg> */}
+								</li>
+							);
+						} else if (index === recipes.length - 1) {
+							return (
+								<li key={elem.title} className={styles["invisible-element"]}>
+									{/* <svg
+										version="1.2"
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										width="24"
+										height="24"
+										className={styles["arrow-right"]}
+									>
+										<path d="m19.3 12.2q0 0 0 0h-4.4l2.6 2.6q-1.1 1.1-2.5 1.7c-1.9 0.9-4.1 0.9-6.1 0.1-2-0.8-3.6-2.3-4.4-4.3-0.8-2-0.8-4.2-0.1-6.1m15.5 11v-5h-0.6c-0.4 1-1 1.9-1.8 2.6z" />
+									</svg> */}
+								</li>
+							);
+						} else {
+							return (
+								<li key={elem.title} className={styles["invisible-element"]}>
+									{/* <label>{elem.title}</label> */}
+								</li>
+							);
+						}
+						// console.log(recipes[index + 2]);
 					})}
 				</ul>
 				<div className={styles["title-search-part"]}>
 					<div className={styles["title-container"]}>
-						<div className={styles["logo-container"]}>
-							<motion.svg
-								version="1.2"
-								viewBox="0 0 256 420"
-								width="256"
-								height="420"
-								className={styles["logo"]}
-							>
-								<motion.path
-									fill="none"
-									stroke="transparent"
-									strokeWidth="5px"
-									initial={{
-										pathLength: 0,
-										opacity: 0.0
-									}}
-									animate={{
-										stroke: "rgba(2, 180, 2, 0.9)",
-										pathLength: 1.1,
-										opacity: 1.0,
-										transition: {
-											duration: 4,
-											delay: 0.2
-										}
-									}}
-									// exit="exit"
-									d="m87.5 395.7h-13.1c-0.8 0-1.5-0.5-2-1.3-0.6-0.9-0.8-2-0.8-3.2 4.2-97.5 21.9-159 66.1-223.4-33.7 28.7-66.5 79.2-72.1 148.6-0.2 1.8-1 3.2-2.2 3.6-1.2 0.4-2.4-0.3-3-1.8-24.7-59.2-23.9-112.7 2.7-168.5 15.3-30.6 37.3-47.5 56.7-62.4 23.5-18.1 43.7-33.6 48.1-67.7 0.2-1.7 1.1-3 2.2-3.3 1.2-0.3 2.3 0.4 2.9 1.9 30.5 75.8 55.7 151.1 28.6 238.4-21.6 58-57.5 84.9-106.8 80-2.8 18.2-4.3 36.2-4.5 54.9 0 2.3-1.2 4.2-2.8 4.2zm-10.1-8.4h7.4c0.3-19.1 2-37.5 5.1-56.2 0.3-2 1.6-3.3 3-3.2 48.8 5.8 82.7-18.8 103.7-75.1 24.9-80.3 4.1-148.4-25-221.7-7.2 31.4-27.7 47.1-49.2 63.7-19.8 15.2-40.3 30.9-54.8 59.9-23.5 49.4-25.6 97-6.4 149 10-78.6 53.2-132.2 91.7-156.6 1.3-0.8 2.7-0.1 3.5 1.7 0.7 1.7 0.5 4-0.6 5.4-52.8 69.4-73.5 130.8-78.4 233.1z"
-								/>
-							</motion.svg>
-						</div>
 						<AnimatedText
 							text={`Green Like Nature`}
 							className={styles["title-general"]}
 						></AnimatedText>
 					</div>
-					<SearchBar />
+					<SearchBar position="absolute" />
 				</div>
-				{/* <select id="selector" className={styles["recipes-types-selector"]}>
-					<optgroup label="Categoria:">
-						{netwrokError ? (
-							<option disabled>Di Stagione</option>
-						) : (
-							<option>Di Stagione</option>
-						)}
-						<option>Salvate</option>
-						<option>Suggerite</option>
-					</optgroup>
-				</select> */}
 				<div className={styles["carousel-container"]}>
 					<div className={styles.dailyCarousel}>
 						<div className={styles["circular-container"]}>
 							<motion.div
 								ref={menuRef}
+								// animate={{ rotate: 90 }}
 								className={styles["circular-menu"]}
 								style={{
 									rotateZ: rotateZ
@@ -282,6 +211,7 @@ export default function CarouselsContainer() {
 									ref={internal}
 									className={styles["circular-border-internal"]}
 								>
+									<Flower />
 									<motion.ul
 										initial={{
 											opacity: 0.0
@@ -289,17 +219,17 @@ export default function CarouselsContainer() {
 										animate={{
 											opacity: 1.0,
 											transition: {
-												duration: 1,
-												staggerChildren: 0.5
+												duration: 0.5,
+												staggerChildren: 0.1
 											}
 										}}
 									>
 										{recipes.map((recipe, index) => {
 											return (
 												<motion.li
-													key={recipe.title}
+													key={recipe.id}
 													className={styles["plate-container"]}
-													id={index}
+													id={recipe.id}
 													ref={(node) => {
 														const map = getMap();
 														if (node) {
@@ -308,13 +238,39 @@ export default function CarouselsContainer() {
 															map.delete(recipe.title);
 														}
 													}}
+													initial={{ opacity: 0 }}
 													animate={{
-														rotateZ:
-															(Math.PI / 4) * (180 / Math.PI) * (index - 2),
+														rotateZ: (Math.PI / 4) * (180 / Math.PI) * index,
 														opacity: 1.0
 													}}
 												>
-													{index}
+													<div className={styles["plate-image-container"]}>
+														{/* Here */}
+														{/* <img
+															className={styles["plate-image"]}
+															src={recipe.image}
+															alt={recipe.title}
+														/> */}
+														<Image
+															className={styles["plate-image"]}
+															src={recipe.image}
+															alt={recipe.title}
+															width="321"
+															height="231"
+														/>
+														{/* <label>{index}</label> */}
+														{/* <label>{recipe.title}</label> */}
+														{/* <div
+															className={styles["plate-image"]}
+															style={{
+																background: `url(${recipe.image})`,
+																backgroundPosition: "center",
+																backgroundSize: "cover",
+																backgroundRepeat: "no-repeat",
+																borderRadius: "50%"
+															}}
+														></div> */}
+													</div>
 												</motion.li>
 											);
 										})}
@@ -325,16 +281,22 @@ export default function CarouselsContainer() {
 					</div>
 				</div>
 				<div className={styles["text-container"]}>
-					<label className={styles["recipe-title-label"]}>Titolo Ricetta</label>
-					<button className={styles["recipe-modal-btn"]}>Dettagli</button>
-					{/* <label htmlFor="selector" className={styles["selector-label"]}>
-						Seleziona Ricette:{" "}
-					</label> */}
+					<p className={styles["text-info"]}>
+						...oppure scegline una di stagione:
+					</p>
+					<h4 className={styles["recipe-title-label"]}>Titolo Ricetta</h4>
+					<button className={styles["modal-btn"]}>Dettagli</button>
 				</div>
 			</section>
 		</>
 	);
 }
+
+// function titleRecipeLabel(label) {
+// 	return (
+
+// 	)
+// }
 
 // export default function platesList() {
 

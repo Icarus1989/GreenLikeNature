@@ -1,0 +1,21 @@
+.plant-svg {
+	/* display: block; */
+	position: absolute;
+	top: 0px;
+	/* transform: scale(3, 14); */
+	stroke: azure;
+	stroke-width: 2px;
+	z-index: 10;
+	border: 1px solid white;
+	transform: scaleY(0.1);
+	overflow: hidden;
+}
+
+.plant-svg > path {
+	stroke: azure;
+	stroke-width: 1px;
+	fill: none;
+	/* transform: scale(3, 12); */
+}
+
+/* .path; */

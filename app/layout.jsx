@@ -1,4 +1,4 @@
-// import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 
 // "use-client";
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className={inter.className}>
 				{children}
-				{/* <Navbar /> */}
+				<Navbar />
 			</body>
 		</html>
 	);

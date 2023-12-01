@@ -5,13 +5,13 @@
 	height: 5vh;
 	position: absolute;
 	left: 10%;
-	bottom: 0%;
+	bottom: -23%;
 	/* Regolare left con JS */
 	justify-content: center;
 	align-items: center;
 	border: 1px solid #4e4d4d87;
 	border-radius: 50px;
-	margin-bottom: 5%;
+	/* margin-bottom: 5%; */
 	background: rgba(60, 60, 60, 0.8);
 	box-shadow: rgba(10, 10, 10, 0.17) 0px -23px 25px 0px inset,
 		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
