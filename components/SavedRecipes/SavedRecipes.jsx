@@ -5,7 +5,7 @@ import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
 import styles from "./SavedRecipes.module.css";
 import { GoX, GoBookmark } from "react-icons/go";
 
-export default function SavedRecipes({ onAction }) {
+export default function SavedRecipes({ onClick }) {
 	const [recipeList, setRecipeList] = useState([
 		{ name: "recipe_1", id: "recipe_1" },
 		{ name: "recipe_2", id: "recipe_2" },
@@ -43,7 +43,7 @@ export default function SavedRecipes({ onAction }) {
 	// }
 
 	return (
-		<div className={styles["saved-recipes-container"]}>
+		<div className={styles["saved-recipes-container"]} onClick={onClick}>
 			<fieldset className={styles["saved-recipes-fieldset"]}>
 				<legend className={styles["saved-recipes-legend"]}>
 					<TomatoLeaf />
@@ -80,7 +80,7 @@ export default function SavedRecipes({ onAction }) {
 							<button
 								className={styles["clear-recipes-list"]}
 								onClick={() => {
-									onAction();
+									// onClick();
 									return handleClear();
 								}}
 							>

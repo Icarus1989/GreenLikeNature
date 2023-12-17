@@ -21,19 +21,25 @@ export default function Profile() {
 		allergensOption: []
 	});
 
-	const [tempRecipes, setTempRecipes] = useState([
-		firstRecipeData,
-		secondRecipeData,
-		thirdRecipeData,
-		firstRecipeData,
-		secondRecipeData,
-		thirdRecipeData,
-		thirdRecipeData
-	]);
+	// const [tempRecipes, setTempRecipes] = useState([
+	// 	firstRecipeData,
+	// 	secondRecipeData,
+	// 	thirdRecipeData,
+	// 	firstRecipeData,
+	// 	secondRecipeData,
+	// 	thirdRecipeData,
+	// 	thirdRecipeData
+	// ]);
+
+	const [playState, setPlayState] = useState({
+		first: true,
+		second: false,
+		third: false
+	});
 
 	const [play, setPlay] = useState(false);
 
-	function handleClick() {
+	function handleClickSecond() {
 		console.log("click");
 		setPlay((prevValue) => {
 			return (prevValue = true);
@@ -79,9 +85,7 @@ export default function Profile() {
 				</Fragment>
 				<UserOption>
 					<Suspense fallback={<p>Loading saved recipes...</p>}>
-						<SavedRecipes
-							onAction={() => setPlay((prevValue) => (prevValue = true))}
-						/>
+						<SavedRecipes onClick={handleClickSecond} />
 					</Suspense>
 				</UserOption>
 			</Fragment>

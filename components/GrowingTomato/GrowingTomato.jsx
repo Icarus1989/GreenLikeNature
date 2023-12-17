@@ -27,23 +27,23 @@ export default function GrowingTomato({
 	yPerc,
 	autoplay
 }) {
-	const [tomatoOpts, setTomatoOpts] = useState({
-		id: id,
-		lightPerc: lightPerc,
-		growingPerc: growingPerc,
-		xPerc: xPerc,
-		yPerc: yPerc,
-		animPlay: autoplay
-	});
-	const [animPlay, setAnimPlay] = useState(autoplay);
+	// const [tomatoOpts, setTomatoOpts] = useState({
+	// 	id: id,
+	// 	lightPerc: lightPerc,
+	// 	growingPerc: growingPerc,
+	// 	xPerc: xPerc,
+	// 	yPerc: yPerc,
+	// 	animPlay: autoplay
+	// });
+	// const [animPlay, setAnimPlay] = useState(autoplay);
 
-	console.log(autoplay);
+	// console.log(autoplay);
 
 	useEffect(() => {
 		// console.log(tomatoOpts.animPlay !== false);
 
 		const tomatoPathAnim = anime({
-			targets: `#firstTomatoPath${tomatoOpts.id}`,
+			targets: `#firstTomatoPath${id}`,
 			d: [
 				{
 					value: tomatoBeginPath
@@ -64,7 +64,7 @@ export default function GrowingTomato({
 		});
 
 		const leavesUpAnim = anime({
-			targets: `#leavesUp${tomatoOpts.id}`,
+			targets: `#leavesUp${id}`,
 			d: [
 				{
 					value: leavesUpBeginPath
@@ -82,7 +82,7 @@ export default function GrowingTomato({
 		});
 
 		const leavesDownAnim = anime({
-			targets: `#leavesDown${tomatoOpts.id}`,
+			targets: `#leavesDown${id}`,
 			d: [
 				{
 					value: leavesDownBeginPath
@@ -100,7 +100,7 @@ export default function GrowingTomato({
 		});
 
 		const plantLightAnim = anime({
-			targets: `#plantLight${tomatoOpts.id}`,
+			targets: `#plantLight${id}`,
 			d: [
 				{
 					value: plantLightBeginPath
@@ -118,7 +118,7 @@ export default function GrowingTomato({
 		});
 
 		const plantDarkAnim = anime({
-			targets: `#plantDark${tomatoOpts.id}`,
+			targets: `#plantDark${id}`,
 			d: [
 				{
 					value: plantDarkBeginPath
@@ -135,7 +135,7 @@ export default function GrowingTomato({
 		});
 
 		const endLeavesAnim = anime({
-			targets: `#endLeaves${tomatoOpts.id}`,
+			targets: `#endLeaves${id}`,
 			rotate: "30deg",
 			translateX: "-30%",
 			translateY: "45%",
@@ -147,7 +147,7 @@ export default function GrowingTomato({
 		});
 
 		const tomatoSvgAnim = anime({
-			targets: `#tomatoSvg${tomatoOpts.id}`,
+			targets: `#tomatoSvg${id}`,
 			translateY: ["0%", "+11%", "+7%"],
 			delay: 1000,
 			autoplay: false,
@@ -156,7 +156,7 @@ export default function GrowingTomato({
 			loop: false
 		});
 
-		if (tomatoOpts.animPlay !== false) {
+		if (autoplay !== false) {
 			tomatoSvgAnim.play();
 			tomatoPathAnim.play();
 			leavesUpAnim.play();
@@ -165,7 +165,7 @@ export default function GrowingTomato({
 			plantDarkAnim.play();
 			endLeavesAnim.play();
 		}
-	}, [tomatoOpts.animPlay]);
+	}, [autoplay]);
 	return (
 		<div className={styles["animation-container"]}>
 			<svg
@@ -174,7 +174,7 @@ export default function GrowingTomato({
 				className={styles["small-plant-svg"]}
 			>
 				<path
-					id={`plantLight${tomatoOpts.id}`}
+					id={`plantLight${id}`}
 					style={{
 						fill: "none",
 						strokeWidth: "4px",
@@ -184,7 +184,7 @@ export default function GrowingTomato({
 					d={plantLightBeginPath}
 				/>
 				<path
-					id={`plantDark${tomatoOpts.id}`}
+					id={`plantDark${id}`}
 					style={{
 						fill: "none",
 						strokeWidth: "5px",
@@ -198,16 +198,16 @@ export default function GrowingTomato({
 				viewBox="0 0 123 131"
 				xmlns="http://www.w3.org/2000/svg"
 				className={styles["tomato-svg"]}
-				id={`tomatoSvg${tomatoOpts.id}`}
+				id={`tomatoSvg${id}`}
 				style={{
-					transform: `scale(${tomatoOpts.growingPerc}, ${tomatoOpts.growingPerc}) translate(${tomatoOpts.xPerc}, ${tomatoOpts.yPerc})`
+					transform: `scale(${growingPerc}, ${growingPerc}) translate(${xPerc}, ${yPerc})`
 				}}
 				// style={{ transform: "scale(0.23, 0.23) translate(23%, 52%)" }}
 			>
 				<path
-					id={`firstTomatoPath${tomatoOpts.id}`}
+					id={`firstTomatoPath${id}`}
 					className={styles["firstTomatoPath"]}
-					fill={`url(#tomatoRedGradient${tomatoOpts.id})`}
+					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
 						strokeWidth: "1px",
@@ -216,13 +216,13 @@ export default function GrowingTomato({
 					d={tomatoBeginPath}
 				/>
 				<path
-					id={`leavesUp${tomatoOpts.id}`}
+					id={`leavesUp${id}`}
 					fill="#217D05"
 					style={{ stroke: "#154F03", strokeWidth: "1px" }}
 					d={leavesUpBeginPath}
 				/>
 				<path
-					id={`leavesDown${tomatoOpts.id}`}
+					id={`leavesDown${id}`}
 					fill="#217D05"
 					style={{ stroke: "#154F03", strokeWidth: "1px" }}
 					d={leavesDownBeginPath}
@@ -230,11 +230,11 @@ export default function GrowingTomato({
 
 				<defs>
 					<radialGradient
-						fx={tomatoOpts.lightPerc}
+						fx={lightPerc}
 						fy="50%"
-						cx={tomatoOpts.lightPerc}
+						cx={lightPerc}
 						cy="50%"
-						id={`tomatoRedGradient${tomatoOpts.id}`}
+						id={`tomatoRedGradient${id}`}
 					>
 						<stop offset="2%" stopColor="#FDDED4" />
 						<stop offset="23%" stopColor="#F69566" />
@@ -246,9 +246,9 @@ export default function GrowingTomato({
 				</defs>
 				<defs>
 					<radialGradient
-						fx={tomatoOpts.lightPerc}
+						fx={lightPerc}
 						fy="50%"
-						cx={tomatoOpts.lightPerc}
+						cx={lightPerc}
 						cy="50%"
 						id="tomatoYellowGradient"
 					>
@@ -265,7 +265,7 @@ export default function GrowingTomato({
 			<svg
 				viewBox="0 0 26 28"
 				xmlns="http://www.w3.org/2000/svg"
-				id={`endLeaves${tomatoOpts.id}`}
+				id={`endLeaves${id}`}
 				className={styles["end-leaves"]}
 				style={{
 					transform: "scale(0.23, 0.23) translate(130%, 23%)"

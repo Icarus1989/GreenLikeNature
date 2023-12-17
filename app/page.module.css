@@ -232,5 +232,8 @@
 .main-element {
 	width: 100vw;
 	height: 100vh;
-	background-color: brown;
+	background-color: #232323;
+	user-select: none;
+	-webkit-user-select: none;
+	/* provare per bloccare long press  */
 }

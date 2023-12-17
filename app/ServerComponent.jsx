@@ -176,6 +176,7 @@ export async function getData() {
 
 		// levato il primo risultato più basso perché dall'osservazione risulta
 		// non in linea con il resto dei dati, capire se tenere ---->
+		// console.log(sortedPrices);
 		return sortedPrices.slice(1);
 	}
 
@@ -235,6 +236,7 @@ export async function getData() {
 			endSeasonData: endSeasonData
 		};
 	}
+	// console.log(data);
 	return data;
 }
 

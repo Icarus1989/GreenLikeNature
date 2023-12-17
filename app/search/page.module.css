@@ -19,21 +19,11 @@
 	width: 94vw;
 	height: 80vh;
 	position: relative;
-	display: flex;
+	/* display: flex;
 	place-items: center;
-	flex-direction: column;
-	background-color: #3f3f3f;
+	flex-direction: column; */
+	overflow-x: hidden;
+	background-color: #2d2d2d;
 	border: 1px solid transparent;
 	border-radius: 10px;
-}
-
-.anim-plant-container {
-	/* display:  */
-	width: 10vw;
-	height: 8vh;
-	position: absolute;
-	bottom: 0%;
-	left: 0%;
-	border: 2px solid red;
-	z-index: 200;
 }

@@ -4,6 +4,12 @@
 	width: 100vw;
 	height: auto;
 	background: #2d2d2d;
+	scrollbar-width: auto;
+	touch-action: auto;
+}
+
+.main-container::-webkit-scrollbar {
+	display: auto;
 }
 
 /* .main-container:nth-last-of-type(section) {

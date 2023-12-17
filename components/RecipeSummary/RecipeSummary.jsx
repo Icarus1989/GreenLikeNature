@@ -1,65 +1,55 @@
 "use client";
 
-import React, { useState, useEffect, forwardRef } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./RecipeSummary.module.css";
+import { GoBookmark, GoThumbsup } from "react-icons/go";
 import { firstRecipeData } from "@/spoonTempData/singleRecipeData";
 
-const RecipeSummary = forwardRef(({ data }, ref) => {
-	// console.log(data);
-	const { title, image, readyInMinutes } = data;
-
-	// console.log(title.split(/(?=[A-Z])/));
-
-	// const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=0911606a226b458f98c843dad909f409`;
-	// // console.log(url);
-
-	// // console.log(title.split(" "));
-	// const [data, setData] = useState([]);
-	// useEffect(() => {
-	// 	let ignore = false;
-
-	// 	async function fetchData(data) {
-	// 		try {
-	// 			const response = await fetch(url);
-	// 			const json = await response.json();
-	// 			console.log(json);
-	// 			if (!ignore) {
-	// 				setData(json);
-	// 			}
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	}
-	// 	fetchData(url);
-
-	// 	return () => {
-	// 		ignore = true;
-	// 	};
-	// }, []);
-
+export default function RecipeSummary({ title, image, ingredients, rating }) {
 	return (
-		<section className={styles.recipeSection}>
-			<div className={styles.circleContainer}></div>
-		</section>
+		<article
+			onClick={() => console.log("Go to single recipe")}
+			className={styles["summary-container"]}
+		>
+			<div className={styles["save-indicator-section"]}>
+				<button
+					className={styles["summary-save-btn"]}
+					onClick={(event) => {
+						event.stopPropagation();
+						return console.log("save click.");
+					}}
+				>
+					<GoBookmark />
+				</button>
+			</div>
+			<div className={styles["summary-data-section"]}>
+				<div className={styles["circular-image-section"]}>
+					<img src={image} className={styles["summary-image"]} />
+				</div>
+				<div className={styles["summary-rating"]}>
+					<GoThumbsup />
+					{rating}
+				</div>
+				<div className={styles["secondary-text-section"]}>
+					<p className={styles["summary-list-label"]}>Ingredienti:</p>
+					<ul className={styles["summary-ingredients-list"]}>
+						{ingredients.map((ingredient) => {
+							return (
+								<li key={ingredient.id} className={styles["list-ingredient"]}>
+									{ingredient.name.length > 23
+										? `${ingredient.name.slice(0, 22)}...`
+										: ingredient.name}
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			</div>
+			<div className={styles["primary-text-section"]}>
+				<h2 className={styles["summary-title"]}>
+					{title.length > 28 ? `${title.slice(0, 27)}...` : title}
+				</h2>
+			</div>
+		</article>
 	);
-
-	// return (
-	// 	<section className={styles.recipeSection} ref={ref}>
-	// 		<div className={styles.textSection}>
-	// 			<h4 className={styles.recipeTitle}>{title}</h4>
-	// 			<p className={styles.recipeDetails}>
-	// 				<span className={styles.recipeDifficult}>Pronto in</span>
-	// 				<span className={styles.recipeTime}> {readyInMinutes} min.</span>
-	// 			</p>
-	// 		</div>
-	// 		<div className={styles.recipeImageMask}></div>
-	// 		<img
-	// 			sizes="(max-width: 600px) 200px, 50vw"
-	// 			className={styles.recipeImage}
-	// 			src={image}
-	// 		/>
-	// 	</section>
-	// );
-});
-
-export default RecipeSummary;
+}

@@ -480,3 +480,384 @@ function seasonalFrtAndVgt(arr, date) {
 }
 
 const now = new Date();
+
+// Client side
+
+// const deg = useMotionValue(0);
+// const smoothEffect = useSpring(deg, {
+// 	stiffness: 100,
+// 	damping: 10,
+// 	restDelta: 0.001
+// });
+
+// const degVelocity = useVelocity(smoothEffect);
+
+// console.log(degVelocity);
+
+// const rotation = useTransform(degVelocity, [-3000, 0, 3000], [0, 360, 0], {
+// 	clamp: false
+// });
+// const angleVelocity = useTransform(xVelocity, [0, 1000], [0, 360], {
+// 	clamp: false
+// });
+// angle.set(
+// 	angle.get() + -Number(xVelocity.current.toFixed(3)) / (360 / Math.PI)
+// );
+
+// x.on("change", (latest) => {
+// 	return angle.set;
+// });
+
+// useEffect(() => {
+// 	return xVelocity.on("change", (latestVelocity) => {
+// 		// angle.set(angle.get() + Math.abs(latestVelocity).toFixed(2));
+// 		// console.log(angle);
+
+// 		// console.log("Velocity", Number(Math.abs(latestVelocity).toFixed(3)));
+// 		angle.set(
+// 			angle.get() + -Number(latestVelocity.toFixed(3)) / (360 / Math.PI)
+// 		);
+// 		// console.log(angle.current);
+// 		// if (angle.current >= 90) {
+// 		// 	dragRef.current.style.transform = "translateX(0px)";
+// 		// 	x.set(0);
+// 		// }
+// 	});
+// }, []);
+
+// if (
+// 	lastValue > sectionRef.current.clientWidth - 100 ||
+// 	lastValue < -sectionRef.current.clientWidth + 100
+// ) {
+// 	// x.set(0);
+// 	// console.log(menuRef.current.style.rotateZ);
+// 	const actualAngle = angle.get();
+// 	x.set(0);
+// 	// angle.set(actualAngle);
+// 	angle.set(
+// 		actualAngle + -Number(xVelocity.current.toFixed(3)) / (360 / Math.PI)
+// 	);
+// }
+// const dragControls = useDragControls();
+
+// function endDrag(event) {
+// 	dragControls.start(event, { dragSnapToOrigin: true });
+// }
+
+// const angularVelocity = useMotionValue(0);
+// const rotation =
+
+// const xAcceleration = useVelocity(xVelocity);
+
+// const xAcceleration = useTransform();
+
+// const rotateZ = useTransform(xVelocity, (latest) => latest + angle);
+
+// const rotation = useTransform(
+// 	xVelocity,
+// 	[0, 10000],
+// 	[0, 360],
+// 	{ clamp: false }
+// 	// [-100, 0, 100],
+// 	// (latest) => latest + angle
+// 	// (latest) => latest * (Math.PI / 4) * (180 / Math.PI) * (recipes.length - 1)
+// );
+
+// const rotation = useTransform(() => xSmooth.get() + angle.get());
+
+// console.log(rotation);
+// Prossimo test -> ricavare accelerezione o usare velocità
+// per sommare o moltiplicare con la value della rotation
+
+// In alternativa usare scostamento x per impostare una rotation
+
+// const rotateZ = useTransform(
+// 	rotation,
+// 	(latest) => latest * (Math.PI / 4) * (180 / Math.PI) * (recipes.length - 1)
+// );
+// console.log(xVelocity);
+
+// useEffect(() => {}, []);
+
+// ----->
+// AGGIORNAMENTO: integrare Velocity con useVelocity su
+// circular-container? utilizzare rotazione ottenuta con
+// whileTap sulla property rotate
+// <-----
+
+// console.log(rotateZ);
+// const labelRef = useRef(null);
+// console.log(labelRef.current);
+
+// useEffect(() => {
+// 	const initialRotation = rotateZ;
+// 	if (rotateZ !== initialRotation) {
+// 		console.log(rotateZ);
+// 	}
+// 	console.log(rotateZ);
+// }, [rotateZ]);
+// function setNewIndex(value) {
+// 	if (value === 0) {
+// 		return 0;
+// 	} else if (value > 0) {
+// 		return -value - 1;
+// 	}
+// }
+// useEffect(() => {
+
+// }, [])
+{
+	/* <ul
+					ref={scrollRef}
+					style={{ width: `${recipes.length}00vw` }}
+					className={styles["invisible-scroll"]}
+					dir="rtl"
+				>
+					{recipes.map((elem, index) => {
+						if (index === 0) {
+							return (
+								<li
+									key={elem.title}
+									className={styles["invisible-element"]}
+								></li>
+							);
+						} else if (index === recipes.length - 1) {
+							return (
+								<li
+									key={elem.title}
+									className={styles["invisible-element"]}
+								></li>
+							);
+						} else {
+							return (
+								<li
+									key={elem.title}
+									className={styles["invisible-element"]}
+								></li>
+);
+						}
+						// return (
+						// 	<li key={elem.title} className={styles["invisible-element"]}></li>
+						// );
+
+						// console.log(recipes[index + 2]);
+					})}
+				</ul> */
+}
+// onClick={console.log("click")}
+// onPanStart={(event, info) => {
+// 	console.log("start");
+
+// 	return console.log(info.point);
+// }}
+// onPanEnd={(event, info) => {
+// 	console.log("end");
+// 	return console.log(info.point);
+// }}
+// canc -->
+// whileTap={{ rotateZ: rotation }}
+// onPan={(event, info) => {
+// 	return console.log(info);
+// }}
+// onTapCancel={(event, info) => {
+// 	return console.log("Stop: " + info.point.x, info.point.y);
+// }}
+
+// ---> Funzionante x CarouselContainer
+// const { scrollXProgress } = useScroll({
+// 	container: sectionRef,
+// 	target: menuRef
+// });
+
+// const rotation = useTransform(
+// 	scrollXProgress,
+// 	(latest) => latest * (Math.PI / 4) * (180 / Math.PI) * (recipes.length - 1)
+// );
+
+// const rotateZ = useSpring(rotation, {
+// 	stiffness: 100,
+// 	damping: 10,
+// 	restDelta: 0.001
+// });
+
+// <--- Funzionante
+
+// if (angle.get() > 45 && angle.get < 45.5) {
+// 	console.log("");
+// 	xVelocity.set(xVelocity.get() - 0.2);
+// } else if (angle.get() > 90 && angle.get < 90.5) {
+// 	console.log("");
+// 	xVelocity.set(xVelocity.get() - 0.2);
+// } else if (angle.get() > 135 && angle.get < 135.5) {
+// 	console.log("");
+// 	xVelocity.set(xVelocity.get() - 0.2);
+// } else if (angle.get() > 180 && angle.get < 180.5) {
+// 	console.log("");
+// 	xVelocity.set(xVelocity.get() - 0.2);
+// }
+
+// function ranges(arr, minVel) {
+// 	for (let i = 0; i < arr.length; i++) {
+// 		if (vel <= minVel) {
+// 			if (deg.get() > arr[i] && deg.get() < arr[i] + 1) {
+// 				vel.set(0.3);
+// 				deg.set(arr[i]);
+// 				vel.set(0);
+// 			}
+// 		}
+// 	}
+// }
+
+// <-- Alt -->
+
+// function detLowerElem() {
+// 	// const low = Math.sin(angle) ?
+// }
+
+// if (lastAngle > 0 && lastAngle < theta[1] * (180 / Math.PI)) {
+// 	console.log("Elem 0");
+// } else if (
+// 	lastAngle > theta[1] * (180 / Math.PI) &&
+// 	lastAngle < theta[2] * (180 / Math.PI) &&
+// 	Math.round(angle.get()) % 45 === 0
+// ) {
+// 	console.log("Elem 1");
+// 	// x.set(x.get());
+// 	xVelocity.set(0);
+// 	angle.set(theta[1] * (180 / Math.PI));
+// 	setRecipeTitle((prevTitle) => {
+// 		console.log(prevTitle);
+// 		if (invertedRecipes[1].title !== prevTitle) {
+// 			return (prevTitle = invertedRecipes[1].title);
+// 		} else {
+// 			return prevTitle;
+// 		}
+// 	});
+// } else if (
+// 	lastAngle > theta[2] * (180 / Math.PI) &&
+// 	lastAngle < theta[3] * (180 / Math.PI) &&
+// 	Math.round(angle.get()) % 45 === 0
+// ) {
+// 	console.log("Elem 2");
+// 	x.set(x.get());
+// 	xVelocity.set(0);
+// 	angle.set(theta[2] * (180 / Math.PI));
+// 	setRecipeTitle((prevTitle) => {
+// 		console.log(prevTitle);
+// 		if (invertedRecipes[2].title !== prevTitle) {
+// 			return (prevTitle = invertedRecipes[2].title);
+// 		} else {
+// 			return prevTitle;
+// 		}
+// 	});
+// }
+
+// else if ()
+// else if (Math.round(angle.get()) === 0 || Math.round(lastAngle) === 0) {
+// 	angle.set(0);
+// }
+
+// theta.map((piSection, index) => {
+// 	// console.log(index);
+// 	if (
+// 		lastAngle >= 0 &&
+// 		// piSection >= minRadians &&
+// 		// piSection <= maxRadians
+// 		lastAngle >= theta[index] * (180 / Math.PI) &&
+// 		lastAngle < theta[index + 1] * (180 / Math.PI) &&
+// 		Math.round(angle.get()) % 22.5 === 0
+// 	) {
+// 		// console.log(Math.sin(piSection));
+// 		// console.log("plus");
+// 		// if (xVelocity.get() < 0.05) {
+// 		// 	angle.set(piSection * (180 / Math.PI));
+// 		// 	xVelocity.set(0);
+// 		// }
+// 		// -------------------------
+// 		// Funziona ma male --->
+// 		// setRecipeTitle((prevTitle) => {
+// 		// 	if (
+// 		// 		recipes[theta.length - index] !== undefined &&
+// 		// 		recipes[theta.length - index] !== prevTitle
+// 		// 	) {
+// 		// 		return recipes[theta.length - index].title;
+// 		// 	} else {
+// 		// 		return recipes[0].title;
+// 		// 	}
+// 		// });
+// 		// <--- Funziona ma male
+// 		// -------------------------
+// 		// console.log(invertedRecipes[index]);
+// 		// if (
+// 		// 	invertedRecipes[index] !== undefined
+// 		// 	// invertedRecipes[index].title !== prevTitle
+// 		// ) {
+// 		// x.set()
+// 		// HERE
+// 		// x.set(x.get());
+// 		// xVelocity.set(0);
+// 		// angle.set(theta[index] * (180 / Math.PI));
+// 		// setRecipeTitle((prevTitle) => {
+// 		// 	console.log(prevTitle);
+// 		// 	if (invertedRecipes[index].title !== prevTitle) {
+// 		// 		return invertedRecipes[index].title;
+// 		// 	} else {
+// 		// 		return prevTitle;
+// 		// 	}
+// 		// });
+// 		// HERE
+// 		// }
+// 		// });
+// 		// Da testare --->
+// 		// setRecipeData((prevData) => {
+// 		// 	if (
+// 		// 		recipes[theta.length - index] !== undefined &&
+// 		// 		recipes[theta.length - index] !== prevData.title
+// 		// 	) {
+// 		// 		return {
+// 		// 			...prevData,
+// 		// 			title: recipes[theta.length - index].title,
+// 		// 			index: index
+// 		// 		};
+// 		// 	} else {
+// 		// 		return { ...prevData };
+// 		// 	}
+// 		// });
+// 		// <--- Da testare
+// 	} else if (
+// 		lastAngle < 0 &&
+// 		piSection >= minRadians &&
+// 		piSection <= maxRadians
+// 	) {
+// 		// console.log(recipes[index] || recipes[0]);
+// 		// console.log("minus");
+// 		// if (xVelocity.get() < -0.05) {
+// 		// 	console.log("near");
+// 		// 	console.log(xVelocity.get());
+// 		// 	// xVelocity.set(0.05);
+// 		// 	angle.set(piSection * (180 / Math.PI));
+// 		// 	xVelocity.set(0);
+// 		// }
+// 		// setRecipeTitle((prevTitle) => {
+// 		// 	if (recipes[index] !== undefined && recipes[index] !== prevTitle) {
+// 		// 		return recipes[index].title;
+// 		// 	} else {
+// 		// 		return recipes[0].title;
+// 		// 	}
+// 		// });
+// 		// Da testare --->
+// 		// setRecipeData((prevData) => {
+// 		// 	if (
+// 		// 		recipes[theta.length - index] !== undefined &&
+// 		// 		recipes[theta.length - index] !== prevData.title
+// 		// 	) {
+// 		// 		return {
+// 		// 			...prevData,
+// 		// 			title: recipes[index].title,
+// 		// 			index: index
+// 		// 		};
+// 		// 	} else {
+// 		// 		return { ...prevData };
+// 		// 	}
+// 		// });
+// 		// <--- Da testare
