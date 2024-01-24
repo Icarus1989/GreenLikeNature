@@ -48,7 +48,10 @@ export default function Profile() {
 	}
 
 	return (
-		<main className={styles["main-container"]}>
+		<main
+			onContextMenu={(event) => event.preventDefault()}
+			className={styles["main-container"]}
+		>
 			<div className={styles["title-section"]}>
 				<h2 className={styles["title"]}>Tomato Settings</h2>
 				<p className={styles["description"]}>

@@ -11,7 +11,32 @@ export default function RecipeSummary({ title, image, ingredients, rating }) {
 			onClick={() => console.log("Go to single recipe")}
 			className={styles["summary-container"]}
 		>
-			<div className={styles["save-indicator-section"]}>
+			{/* <div className={styles["primary-text-section"]}> */}
+			<h2 className={styles["summary-title"]}>
+				{title.length > 42 ? `${title.slice(0, 40)}...` : title}
+			</h2>
+			{/* </div> */}
+			<div className={styles["circular-image-section"]}>
+				<img src={image} className={styles["summary-image"]} />
+				<svg viewBox="0 0 20 10" className={styles["recipe-image-container"]}>
+					{/* <circle cx="5" cy="5" r="4" fill="none" stroke="green" /> */}
+
+					<circle
+						cx="18%"
+						cy="50%"
+						r="60%"
+						fill="url(#myGradient)"
+						stroke="url(#myGradient)"
+					/>
+					<defs>
+						<linearGradient id="myGradient">
+							<stop offset="0%" stopColor="green" />
+							<stop offset="70%" stopColor="#232323" />
+						</linearGradient>
+					</defs>
+				</svg>
+			</div>
+			{/* <div className={styles["save-indicator-section"]}>
 				<button
 					className={styles["summary-save-btn"]}
 					onClick={(event) => {
@@ -21,15 +46,12 @@ export default function RecipeSummary({ title, image, ingredients, rating }) {
 				>
 					<GoBookmark />
 				</button>
-			</div>
+			</div> */}
 			<div className={styles["summary-data-section"]}>
-				<div className={styles["circular-image-section"]}>
-					<img src={image} className={styles["summary-image"]} />
-				</div>
-				<div className={styles["summary-rating"]}>
+				{/* <div className={styles["summary-rating"]}>
 					<GoThumbsup />
 					{rating}
-				</div>
+				</div> */}
 				<div className={styles["secondary-text-section"]}>
 					<p className={styles["summary-list-label"]}>Ingredienti:</p>
 					<ul className={styles["summary-ingredients-list"]}>
@@ -44,11 +66,6 @@ export default function RecipeSummary({ title, image, ingredients, rating }) {
 						})}
 					</ul>
 				</div>
-			</div>
-			<div className={styles["primary-text-section"]}>
-				<h2 className={styles["summary-title"]}>
-					{title.length > 28 ? `${title.slice(0, 27)}...` : title}
-				</h2>
 			</div>
 		</article>
 	);

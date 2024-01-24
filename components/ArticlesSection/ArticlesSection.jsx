@@ -9,7 +9,7 @@ export default function ArticlesSection({ recipes, name }) {
 	return (
 		<div className={styles["articles-section"]}>
 			<h3 className={styles["section-title"]}>
-				Suggerite di stagione | {name}
+				Suggerite con <span className={styles["seasonal-name"]}>{name}</span>
 			</h3>
 			{/* <ArticlesContainer recipes={recipes} /> */}
 			{/* {seasonalFrtAndVegFromContextOrRedux.map((elem) => {

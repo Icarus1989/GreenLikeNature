@@ -5,23 +5,35 @@
 	height: 5vh;
 	position: absolute;
 	left: 10%;
-	bottom: -23%;
+	bottom: 23%;
 	/* Regolare left con JS */
 	justify-content: center;
 	align-items: center;
-	border: 1px solid #4e4d4d87;
+	/* border: 3px solid #949494; */
+	border: 1px solid transparent;
 	border-radius: 50px;
+	/* Test --> */
+	/* box-shadow: 4px 4px 3px #949494, -4px 4px 3px #949494, -4px -4px 3px #949494,
+		4px -4px 3px #949494; */
+	/* <-- Test */
 	/* margin-bottom: 5%; */
-	background: rgba(60, 60, 60, 0.8);
-	box-shadow: rgba(10, 10, 10, 0.17) 0px -23px 25px 0px inset,
+	/* background: rgba(60, 60, 60, 0.8); */
+	/* box-shadow: rgba(10, 10, 10, 0.17) 0px -23px 25px 0px inset,
 		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
 		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
 		rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
-		rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-	z-index: 7;
+		rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; */
+	background: radial-gradient(
+		circle at 50% 52%,
+		#272727d9 52%,
+		#2f2e2e 55%,
+		transparent 86%
+	);
+	z-index: 26;
 }
 
-.inputBar {
+.input-bar {
+	position: relative;
 	width: 50vw;
 	height: 4vh;
 	font-size: 18px;
@@ -29,22 +41,30 @@
 	padding-right: 5%;
 	border: 1px solid transparent;
 	background-color: transparent;
+	z-index: 27;
 }
 
-.inputBar:focus {
+.input-bar:focus {
 	outline: none;
 	padding-left: 5%;
 	padding-right: 5%;
 	border: 1px solid transparent;
 }
 
-.inputBar:active {
+.input-bar:active {
 	border: 1px solid transparent;
 	box-shadow: 0px 0px 5px rgba(100, 100, 100, 0.7);
 }
 
-.inputBar::placeholder {
-	color: #aaaaaa;
+.input-bar::placeholder {
+	/* color: #aaaaaa; */
+	color: rgba(230, 230, 230, 0.74);
+	opacity: 0.9;
+}
+
+.input-bar::-webkit-input-placeholder {
+	color: rgba(230, 230, 230, 0.74);
+	opacity: 0.9;
 }
 
 .inputIcon {

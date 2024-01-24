@@ -9,7 +9,7 @@ export default function SearchLoading() {
 					display: "grid",
 					placeItems: "center",
 					width: "100vw",
-					height: "100vh",
+					height: "94dvh",
 					background: "#2d2d2d",
 					overflow: "hidden"
 				}}

@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 .container {
-	max-width: 100vw;
-	height: 94vh;
+	/* max-width: 100%; */
+	width: 100dvw;
+	height: 94dvh;
 	/* overflow: hidden; */
 	position: relative;
 	/* display: flex;
 	flex-direction: column; */
 	display: grid;
-	place-items: start;
+	place-items: start center;
 	/* font-family: Arial, Helvetica, sans-serif; */
 	background-color: #464646;
 	overflow-x: scroll;
@@ -18,7 +19,7 @@
 	scrollbar-width: none;
 }
 
-.invisible-scroll {
+/* .invisible-scroll {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr;
@@ -28,12 +29,12 @@
 	position: absolute;
 	top: 0%;
 	bottom: 0%;
-	height: 82vh;
+	height: 82dvh;
 	scroll-snap-type: x mandatory;
 	padding: 0;
 	margin: 0;
 	scrollbar-width: none;
-}
+} */
 
 .container::-webkit-scrollbar {
 	display: none;
@@ -41,8 +42,8 @@
 
 .invisible-div {
 	width: 700vw;
-	height: 67vh;
-	border: 1px solid pink;
+	height: 67dvh;
+	border: 1px solid transparent;
 	/* position: absolute; */
 	z-index: 24;
 	touch-action: none;
@@ -104,17 +105,17 @@
 	position: fixed;
 	top: 0%;
 	width: 100%;
-	height: 70vh;
+	height: 70dvh;
 	background-color: #eee;
 }
 
 .dailyCarousel {
 	width: 100vw;
-	height: 122vh;
+	height: 122dvh;
 	display: grid;
 	place-content: start center;
 	position: absolute;
-	top: -28vh;
+	top: -28dvh;
 	background-color: #2d2d2d;
 	/* background-image: url("https://www.transparenttextures.com/patterns/purty-wood.png"); */
 	overflow: hidden;
@@ -122,8 +123,8 @@
 
 .flowers-vase {
 	position: absolute;
-	width: 38vw;
-	height: 38vw;
+	width: 38dvw;
+	height: 38dvw;
 	border-radius: 50%;
 	border: 12px solid #743c0c;
 	background-color: #49362d;
@@ -233,8 +234,10 @@
 	width: 190vw;
 	height: 190vw;
 	border-radius: 50%;
-	background-color: #ffffffa6;
-	background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+	background-color: #000000;
+	/* background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png"); */
+	background-image: url("https://www.transparenttextures.com/patterns/retina-wood.png");
+
 	filter: brightness(1.3);
 	z-index: 23;
 
@@ -251,14 +254,19 @@
 	background-color: #191a1aba;
 	padding: 10px;
 	margin: 0;
-	border: 5px solid #2a2a2a;
+	border-top: 3px solid rgba(16, 70, 40, 0.95);
+	border-right: 2px solid rgba(18, 76, 44, 0.76);
+	border-left: 3px solid rgba(16, 70, 40, 0.95);
+	border-bottom: 2px solid rgba(16, 70, 40, 0.95);
 	/* 23px solid #3032345c */
 	/* rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
 		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
 		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, */
-	box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
-		rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
-		rgba(0, 0, 0, 0.09) 0px 32px 16px;
+	box-shadow: inset rgba(20, 200, 59, 0.423) 4px 3px 10px,
+		rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+		rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.15) 0px 16px 8px,
+		rgba(0, 0, 0, 0.147) 0px 32px 16px;
+	/* rgba(0, 0, 0, 0.505) -5px -5px 23px; */
 	z-index: 1;
 }
 
@@ -316,9 +324,9 @@
 	height: 65vw;
 	border-radius: 50%;
 	background-color: #343434;
-	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
-		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
-		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+	box-shadow: inset rgba(0, 0, 0, 0.17) 0px -23px 25px 0px,
+		inset rgba(0, 0, 0, 0.15) 0px -36px 30px 0px,
+		inset rgba(0, 0, 0, 0.1) 0px -79px 40px 0px, rgba(0, 0, 0, 0.06) 0px 2px 1px,
 		rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
 		rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 	z-index: 5;
@@ -331,16 +339,25 @@
 .title-search-part {
 	/* display: none; */
 
-	width: 100%;
-	height: 18vh;
+	width: 102dvw;
+	height: 29dvh;
+	/* height: 40vh; */
 	position: fixed;
-	z-index: 6;
-	background: linear-gradient(
+	z-index: 25;
+	/* background: linear-gradient(
 		to bottom,
 		#232323 23%,
 		#2a2a2aed 50% 60%,
 		#13131300 86% 100%
+	); */
+	background: radial-gradient(
+		circle at 50% 67%,
+		transparent 52%,
+		#2f2e2e 55%,
+		#333 80%
 	);
+	/* border-right: 1px solid black; */
+	/* border: 1px solid #333; */
 }
 
 .growing-leaf {
@@ -359,13 +376,19 @@
 .title-container {
 	display: grid;
 	place-items: center;
-	height: 12vh;
+	height: 12dvh;
 	z-index: 7;
+	background: linear-gradient(
+		to bottom,
+		#333333a3 23%,
+		#2f2e2eab 35% 69%,
+		#31313100 78% 100%
+	);
 }
 
 .logo-container {
 	width: 20vw;
-	height: 14vh;
+	height: 14dvh;
 	margin: 0% 2%;
 }
 
@@ -381,8 +404,8 @@
 	display: grid;
 	place-items: center;
 	color: rgb(2, 180, 2);
-	font-size: 52px;
-	font-weight: 500;
+	font-size: 48px;
+	font-weight: 200;
 	font-family: "Great Vibes", cursive;
 	text-align: center;
 	text-shadow: 3px 3px 10px #000000;
@@ -394,20 +417,16 @@
 
 .text-container {
 	position: fixed;
-	bottom: 11%;
-	width: 100vw;
-	height: 20vh;
+	bottom: 6dvh;
+	width: 100%;
+	height: 25dvh;
 	z-index: 10;
-
 	display: flex;
 	flex-direction: column;
 	place-items: center;
 	text-shadow: 0px 1px 5px black;
-
-	/* display: grid;
-	grid-template-columns: 1fr;
-	place-items: center;
-	grid-template-rows: 1fr 1fr; */
+	justify-content: space-between;
+	overflow: hidden;
 }
 
 .text-info {
@@ -420,7 +439,7 @@
 
 .modal-btn {
 	width: auto;
-	height: 5vh;
+	height: 5dvh;
 	color: rgb(223, 235, 223);
 	font-size: 18px;
 	font-weight: 500;
@@ -432,8 +451,8 @@
 	padding-bottom: 2%;
 	border: 2px solid rgb(2, 132, 2);
 	border-radius: 10px;
-	margin-top: 3%;
-	margin-bottom: 4%;
+	/* margin-top: 3%; */
+	margin-bottom: 8%;
 }
 
 .svgs-container {
@@ -454,24 +473,56 @@
 	margin-right: 10px;
 }
 
+.recipe-title-container {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 10dvh;
+	position: fixed;
+	bottom: 16dvh;
+	/* bottom: 8dvh; in Modal */
+	font-size: 1.3rem;
+
+	z-index: 13;
+}
+
 .recipe-title-label {
 	/* position: fixed;
 	bottom: 26%; */
 	/* flex: 2; */
-	grid-column-start: 1;
+	/* grid-column-start: 1;
 	grid-column-end: 4;
-	grid-row-start: 1;
+	grid-row-start: 1; */
+
 	/* grid-row-end: 2; */
+	/* border: 1px solid white;
+	padding: 2%; */
 	width: 90vw;
-	font-size: 1.4rem;
-	font-weight: 500;
+	width: auto;
+	font-size: 18px;
+	font-weight: 600;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	text-align: center;
+	text-transform: uppercase;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 3%;
-	margin-bottom: 4%;
+	/* margin-top: 3%;
+	margin-bottom: 4%; */
+}
+
+.recipe-title-modal {
+	border: 1px solid white;
+	padding: 2%;
+	width: auto;
+	font-size: 18px;
+	font-weight: 600;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .recipeSection {
@@ -543,7 +594,7 @@
 .favoriteCarousel {
 	display: none;
 
-	height: 40vh;
+	height: 40dvh;
 	padding-top: 10%;
 	position: fixed;
 	bottom: 0%;
@@ -576,8 +627,8 @@
 
 .dinnerMiniature {
 	display: inline-block;
-	width: 20vh;
-	height: 20vh;
+	width: 20dvh;
+	height: 20dvh;
 	/* border: 1px solid transparent; */
 	border-radius: 7%;
 	margin: 1% 3% 1% 3%;

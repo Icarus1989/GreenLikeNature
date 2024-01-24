@@ -1,0 +1,256 @@
+.single-recipe {
+	width: 100dvw;
+	height: 94dvh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* background: #2d2d2d; */
+	background: #232323;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding-top: 15%;
+}
+
+.undo-btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 5%;
+}
+
+.main-title {
+	width: 80%;
+	font-size: 1.4em;
+	/* text-align: center; */
+	/* padding: 1%;
+	margin: 1%; */
+
+	position: relative;
+	top: 10%;
+	z-index: 10;
+	text-align: center;
+	color: #f0f0f0f0;
+	background: #0003019b;
+	border: 1px solid white;
+	/* font-size: 16px; */
+	font-weight: 600;
+	padding: 2%;
+	/* margin-top: 4%; */
+}
+
+.info-container {
+}
+
+.first-info {
+	width: 100dvw;
+	height: 50dvw;
+
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	border: 1px solid white;
+	margin: 5% 1%;
+	color: #f0f0f0f0;
+	/* font-size: 16px; */
+	font-weight: 600;
+	padding: 2%;
+	/* margin-top: 4%; */
+	z-index: 5;
+}
+
+.image-container {
+	/* display: none; */
+
+	position: absolute;
+	top: -20dvh;
+	/* left: 0%; */
+	/* overflow: hidden; */
+	border: 1px solid white;
+	margin: 0%;
+	z-index: 0;
+}
+
+.image {
+	/* position: relative; */
+	width: 90dvw;
+	height: 90dvw;
+	margin: 0dvw 5dvw 0dvw 5dvw;
+	border-radius: 100%;
+
+	overflow: hidden;
+}
+
+.time {
+	/* text-transform: uppercase; */
+	position: relative;
+	width: 20dvw;
+	height: 5dvh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 2%;
+	background: #0003019b;
+	border: 1px solid white;
+	text-transform: uppercase;
+	z-index: 6;
+}
+
+.time > svg {
+	width: 1.4rem;
+	height: 1.4rem;
+}
+
+.time > span {
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0% 5% 0% 5%;
+}
+
+.servings {
+	position: relative;
+	width: 20dvw;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 2%;
+	height: 5dvh;
+	background: #0003019b;
+	border: 1px solid white;
+	text-transform: uppercase;
+	z-index: 6;
+}
+
+.servings > svg {
+	width: 1.4rem;
+	height: 1.4rem;
+}
+
+.servings > span {
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0% 5% 0% 5%;
+}
+
+.recipe-presentation {
+	width: 90dvw;
+	background: #2d2d2d;
+	padding: 2%;
+	margin: 3% 0% 3% 0%;
+}
+
+.total-ingrediets {
+	padding: 1% 10%;
+	margin: 5% 0% 5% 10%;
+}
+
+.ingredients {
+	width: 90dvw;
+	background: #2d2d2d;
+	padding: 2%;
+	margin: 3% 0% 3% 0%;
+}
+
+.ingredients-list {
+	padding: 3%;
+	margin: 5% 0% 5% 10%;
+}
+
+.ingredient {
+	margin: 2% 0% 2% 0%;
+}
+
+.recipe-summary {
+	padding: 2%;
+	margin: 5% 10% 5% 10%;
+}
+
+.instructions-container {
+	/* border: 1px solid white; */
+	padding: 2%;
+	/* margin: 5% 0% 0% 10%; */
+	width: 90dvw;
+	border-radius: 10px;
+	background: #2d2d2d;
+	padding: 2%;
+	margin: 3% 0% 3% 0%;
+}
+
+.instructions-container > ol {
+	padding: 2%;
+	margin: 5% 0% 0% 10%;
+}
+
+.instructions-container > ol > li {
+	margin: 2% 0% 2% 0%;
+}
+
+.section-title {
+	text-decoration-line: underline;
+	text-decoration-color: rgba(23, 140, 23, 0.9);
+	text-underline-offset: 0.5rem;
+	text-decoration-thickness: 4px;
+	padding: 1rem;
+	/* margin: 1.2rem; */
+}
+
+.instructions-list {
+	list-style: none;
+}
+
+.step {
+	margin: 10% 2% 5% 10%;
+}
+
+.step-title {
+	text-transform: uppercase;
+	margin: 5% 0%;
+}
+
+.step-text {
+	padding: 3%;
+}
+
+.step-ingredients {
+	padding: 3%;
+
+	/* margin: 3% 0% 3% 0%; */
+}
+
+.equipment {
+	padding: 3%;
+	/* margin: 5% 0% 5% 10%; */
+}
+
+.equipment-title {
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.equipment-list {
+	padding: 3%;
+	margin: 5% 0% 5% 10%;
+}
+
+.tool-elem {
+	padding: 2% 0%;
+}
+
+.tool-name {
+	color: rgba(203, 203, 203, 0.95);
+}
+
+.ingredients-title {
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.ingredient-name {
+	color: rgba(203, 203, 203, 0.95);
+	padding: 2% 0%;
+}
