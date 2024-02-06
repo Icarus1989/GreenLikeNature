@@ -861,3 +861,77 @@ const now = new Date();
 // 		// 	}
 // 		// });
 // 		// <--- Da testare
+
+if (
+	!goDown &&
+	scrollYProgress.get() * recipeRef.current.scrollHeight >
+		containerRef.current.offsetTop + btnsRef.current.offsetHeight
+) {
+	// btnsRef.current.style.position = "fixed";
+	// btnsRef.current.style.overflow = "hidden";
+	// knifeSvg.current.style.opacity = "0.0";
+	// forkSvg.current.style.opacity = "0.0";
+	// btnsRef.current.style.background = `linear-gradient(to top, transparent, rgba(45, 45, 45, 0.5) 15%, rgba(35, 35, 35, 0.953) 90%, rgb(45, 45, 45) 100%)`;
+	// knifeSvg.current.style.zIndex = "0";
+	// forkSvg.current.style.zIndex = "0";
+	// btnsRef.current.style.zIndex = "14";
+	// btnsRef.current.style.background = "#2d2d2db6";
+	setGoDown(true);
+	// recipeRef.current.style.paddingTop = "15dvh";
+} else if (
+	goDown &&
+	scrollYProgress.get() * recipeRef.current.scrollHeight <
+		containerRef.current.offsetTop + btnsRef.current.offsetHeight
+) {
+	// btnsRef.current.style.position = "relative";
+	// btnsRef.current.style.overflow = "visible";
+	// btnsRef.current.style.background = "transparent";
+	// knifeSvg.current.style.opacity = "1.0";
+	// forkSvg.current.style.opacity = "1.0";
+	// knifeSvg.current.style.zIndex = "9";
+	// forkSvg.current.style.zIndex = "8";
+
+	// btnsRef.current.style.overflowX = "hidden";
+	// btnsRef.current.style.zIndex = "10";
+	setGoDown(false);
+	// recipeRef.current.style.paddingTop = "0dvh";
+}
+
+// const limit = btnsRef.current.scrollHeight;
+
+// const limit = useMotionValue(0);
+
+// useEffect(() => {
+// 	limit.set(btnsRef.current.offsetHeight);
+// 	// return x.on("change", (lastValue) => {
+// 	// 	angle.set(
+// 	// 		angle.get() + -Number((xVelocity.current / (360 / Math.PI)).toFixed(3))
+// 	// 	);
+// 	// });
+// 	// return scrollYProgress.on("change", (latest) => {
+// 	// 	if (
+// 	// 		!goDown &&
+// 	// 		latest * recipeRef.current.scrollHeight > containerRef.current.offsetTop
+// 	// 	) {
+// 	// 		btnsRef.current.style.position = "fixed";
+// 	// 		setGoDown(true);
+// 	// 	} else if (
+// 	// 		goDown &&
+// 	// 		latest * recipeRef.current.scrollHeight < containerRef.current.offsetTop
+// 	// 	) {
+// 	// 		btnsRef.current.style.position = "relative";
+// 	// 		setGoDown(false);
+// 	// 	}
+// 	// });
+// }, []);
+
+// const correctIngr = prevRecState.ingredients[names.indexOf(ingrName)];
+// console.log(prevRecState.ingredients[correctIngr]);
+
+// const newIngr = prevRecState.ingredients.map((ingrObj, index) => {
+// 	if (Object.keys(ingrObj)[0] === ingrName) {
+// 		return { ...ingrObj, [ingrName]: value };
+// 	} else {
+// 		return ingrObj;
+// 	}
+// });

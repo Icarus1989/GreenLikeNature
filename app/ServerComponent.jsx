@@ -505,12 +505,32 @@ export async function seasonalFrtAndVgt(arr, date) {
 }
 
 export async function getSpoonData(frtAndVeg) {
-	const apiKey = "977944bb2264474782049f9e558b9143";
+	const apiKey = process.env.APIKEYSPOON;
 	const intolerances = "one,two,three,from state?";
+
+	const seasonalPresence = true;
+	const seasonalIngr = seasonalString();
+	const includeIngredients = seasonalPresence
+		? `&includeIngredients=${seasonalIngr}`
+		: "";
+
+	// const intolerancesPresence = true;
+	// IMPORTANTE --> CAPIRE come far leggere context o altri
+	// dati inseriti dall'utente al server component
+	// NOTA utile anche per ricerca ricette
+	const intolerancesListFromContext = ["apples", "eggs", "nuts"];
+	// const intolerancesStrg = intolerancesListFromContext.join(",");
+	const excludeIngredients =
+		intolerancesListFromContext.length > 0
+			? `&excludeIngredients=${intolerancesListFromContext.join(",")}`
+			: "";
+
+	const spoonUrl250124 = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian${excludeIngredients}&number=100&instructionsRequired=true${includeIngredients}&addRecipeInformation=true&apiKey=${apiKey}`;
+
 	const strg =
 		"https://api.spoonacular.com/recipes/findByIngredients?ingredients=pears&number=10&apiKey=977944bb2264474782049f9e558b9143&includeNutrition=true";
 	const frtAndVegString = frtAndVeg.join(",");
-	const spoonUrl = `"https://api.spoonacular.com/recipes/findByIngredients?ingredients=${frtAndVegString}&diet=vegetarian&intolerances=${intolerances}&number=10&apiKey=${apiKey}&includeNutrition=true`;
+	// const spoonUrl = `"https://api.spoonacular.com/recipes/findByIngredients?ingredients=${frtAndVegString}&diet=vegetarian&intolerances=${intolerances}&number=10&apiKey=${apiKey}&includeNutrition=true`;
 	try {
 		const spoonData = await fetch();
 		const json = await spoonData.json();
@@ -518,6 +538,12 @@ export async function getSpoonData(frtAndVeg) {
 	} catch (error) {
 		console.log(error);
 	}
+}
+
+async function seasonalString() {
+	const seasonalFruit = await seasonalFrtAndVgt(data, now);
+	const frtAndVegArr = seasonalFruit.map((elem) => elem.name);
+	return frtAndVegArr.join(",");
 }
 
 // export default async function List() {

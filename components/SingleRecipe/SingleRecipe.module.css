@@ -8,14 +8,201 @@
 	background: #232323;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	padding-top: 15%;
+	scroll-behavior: smooth;
+	/* padding-top: 15%; */
+}
+
+.ghost-container {
+	/* display: block; */
+	/* position: static; */
+	/* display: flex;
+	flex-direction: row; */
+	display: grid;
+	place-items: center;
+	width: 100%;
+	min-height: 33dvw;
+	/* background-color: #232323; */
+	/* border: 1px solid white; */
+}
+
+.btns-container {
+	position: relative;
+	top: 0%;
+	/* top: 20%; */
+	z-index: 10;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	height: 15dvh;
+	background: transparent;
+	/* overflow-x: hidden; */
+	overflow: visible;
+	/* background: linear-gradient(
+		to top,
+		transparent,
+		#2d2d2d30 23%,
+		#141414f3 95%,
+		#2d2d2d 100%
+	); */
+	background: transparent;
+	/* ---> */
+	/* background: linear-gradient(
+		to top,
+		transparent,
+		rgba(45, 45, 45, 0.5) 15%,
+		rgba(35, 35, 35, 0.953) 90%,
+		rgb(45, 45, 45) 100%
+	); */
+	/* box-shadow: -23dvw 15dvh 30px #2d2d2de1; */
+	/* filter: drop-shadow(0dvw 15dvh 30px #2d2d2de1); */
+	/* background: linear-gradient(to bottom, transparent 100%, #2d2d2de1 101%); */
+	/* background: linear-gradient(
+		to bottom,
+		transparent 1%,
+		#2d2d2de6 23%,
+		#2d2d2d 30%  */
+	/* #2d2d2d 85%,
+		#2d2d2de6 88%,
+		transparent 99% */
+	/* ); */
+	/* border: 1px solid red; */
+	/* box-shadow: 0dvw 6dvh 30px #2d2d2db6, inset 0dvw -2dvh 30px #2d2d2db6; */
+	transition: background 0.2s ease;
+	transition: overflow-y 0.5s ease;
+}
+
+.btns-container-down {
+	position: fixed;
+	top: 0%;
+	z-index: 10;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	height: 15dvh;
+	overflow: hidden;
+	/* background: transparent; */
+	/* ---> */
+	background: linear-gradient(
+		to top,
+		transparent,
+		rgba(45, 45, 45, 0.5) 15%,
+		rgba(35, 35, 35, 0.953) 90%,
+		rgb(45, 45, 45) 100%
+	);
+	transition: background 0.2s ease;
+	transition: overflow-y 0.5s ease;
 }
 
 .undo-btn {
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
-	margin: 5%;
+	width: 20dvw;
+	height: 100%;
+	background: transparent;
+	border: 0px solid transparent;
+
+	margin: 5dvw;
+	z-index: 11;
+	/* box-shadow: 17dvw 17dvh 70px #2d2d2df6, 17dvw 17dvh 60px #2d2d2df6; */
+}
+
+.fork-svg {
+	position: absolute;
+	width: 20dvw;
+	transform: rotateZ(-60deg) translateX(33dvw) translateY(-14dvw);
+	z-index: 9;
+	opacity: 1;
+	transition: opacity 0.5s ease;
+}
+
+.knife-svg {
+	position: absolute;
+	width: 20dvw;
+	transform: rotateZ(54deg) translateX(-62dvw) translateY(-23dvw);
+	z-index: 8;
+	opacity: 1;
+	transition: opacity 0.5s ease;
+}
+
+.fork-svg-down {
+	position: absolute;
+	width: 20dvw;
+	transform: rotateZ(-60deg) translateX(33dvw) translateY(-14dvw);
+	z-index: 9;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}
+
+.knife-svg-down {
+	position: absolute;
+	width: 20dvw;
+	transform: rotateZ(54deg) translateX(-62dvw) translateY(-23dvw);
+	z-index: 8;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}
+
+.green-sauce {
+	transform: scale(0.8) translateX(2dvw) translateY(14dvw);
+	/* transform: rotateZ(54deg) translateX(-62dvw) translateY(-23dvw); */
+}
+
+.save-btn {
+	position: relative;
+	/* top: 1%; */
+	right: 0;
+	width: 20dvw;
+	height: 100%;
+	background: transparent;
+	border: 0px solid transparent;
+	margin: 5dvw;
+	z-index: 13;
+	/* box-shadow: -23dvw 15dvh 30px #2d2d2de1; */
+	/* box-shadow: -17dvw 17dvh 70px #2d2d2df6, -17dvw 17dvh 60px #2d2d2df6; */
+}
+
+.undo-btn-icon {
+	position: relative;
+	fill: #efefef;
+	stroke: #232323;
+	stroke-width: 23px;
+	/* box-shadow: 0px 0px 2px; */
+	filter: drop-shadow(-1px 5px 3px black);
+	width: 1.8rem;
+	height: 1.8rem;
+	z-index: 13;
+}
+
+.save-btn-icon {
+	position: relative;
+	fill: transparent;
+	/* stroke: rgba(23, 180, 23, 0.9); */
+	stroke-width: 23px;
+	/* fill: rgb(234, 234, 234);
+	stroke: rgb(35, 35, 35); */
+	/* box-shadow: 0px 0px 2px; */
+	/* filter: drop-shadow(0px 0px 1px white); */
+	filter: drop-shadow(0px 0px 2px black);
+	width: 1.8rem;
+	height: 1.8rem;
+	z-index: 13;
+}
+
+/* for not active */
+
+.save-btn-icon-not-active-to-change {
+	position: relative;
+	fill: transparent;
+	stroke: #ffffff;
+	stroke-width: 23px;
+	/* box-shadow: 0px 0px 2px; */
+	filter: drop-shadow(0px 0px 3px black);
+	width: 1.8rem;
+	height: 1.8rem;
+	z-index: 13;
 }
 
 .main-title {
@@ -26,7 +213,7 @@
 	margin: 1%; */
 
 	position: relative;
-	top: 10%;
+	top: 17.5dvh;
 	z-index: 10;
 	text-align: center;
 	color: #f0f0f0f0;
@@ -39,6 +226,8 @@
 }
 
 .info-container {
+	width: 100dvw;
+	height: 50dvw;
 }
 
 .first-info {
@@ -49,42 +238,150 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	align-items: center;
-	border: 1px solid white;
-	margin: 5% 1%;
+	/* display: grid;
+	place-items: center; */
+	align-items: flex-end;
+	/* border: 1px solid white; */
+	margin: 5% 0%;
 	color: #f0f0f0f0;
 	/* font-size: 16px; */
 	font-weight: 600;
-	padding: 2%;
+	/* padding: 2%; */
 	/* margin-top: 4%; */
 	z-index: 5;
+}
+
+.images-part {
+	position: absolute;
+	/* top: 0%; */
+	top: -19dvh;
+
+	width: 100dvw;
+	height: 100dvw;
+	/* height: 100dvw; */
+	display: grid;
+	place-items: center;
+	filter: brightness(0.95);
+	opacity: 0.95;
+	margin-top: 15%;
 }
 
 .image-container {
 	/* display: none; */
 
+	display: grid;
+	place-items: center;
+	width: 75dvw;
+	height: 75dvw;
 	position: absolute;
-	top: -20dvh;
 	/* left: 0%; */
 	/* overflow: hidden; */
-	border: 1px solid white;
+	/* border: 1px solid blue; */
+	border-radius: 100%;
+	/* margin: 0dvw 0dvw 0dvw 0dvw; */
 	margin: 0%;
-	z-index: 0;
+
+	overflow: hidden;
+	z-index: 2;
 }
 
 .image {
-	/* position: relative; */
-	width: 90dvw;
-	height: 90dvw;
-	margin: 0dvw 5dvw 0dvw 5dvw;
-	border-radius: 100%;
+	position: relative;
+	width: auto;
+	height: auto;
+	/* margin: 0dvw 5dvw 0dvw 5dvw; */
+	margin: 0%;
+	/* border-radius: 100%; */
 
 	overflow: hidden;
+	z-index: 2;
+}
+
+.recipe-plate {
+	position: absolute;
+	/* left: 50%; */
+	/* left: 50%; */
+	/* display: grid;
+	place-items: center; */
+	width: 123dvw;
+	height: 123dvw;
+	/* background-color: #2d2d2d;
+	border: 20px solid #012408;
+	border-radius: 50%; */
+	overflow: visible;
+	z-index: 1;
+}
+
+.recipe-plate > circle {
+	/* width: 100dvw;
+	height: 100dvw; */
+	/* box-shadow: 0px 0px 14px #212121; */
+	/* position: relative; */
+	/* stroke: #2a2a2a; */
+	/* stroke: #012f01e9; */
+	stroke-width: 0.3px;
+	z-index: 10;
+	/* box-shadow: ; */
+	/* filter: ; */
+	/* box-shadow: 0px 0px 1px rgba(100, 100, 100, 0.75); */
+	filter: brightness(1.1) drop-shadow(0px 0px 1px rgba(100, 100, 100, 0.75))
+		contrast(1.23);
+	/* border: 3px solid black; */
+}
+
+.general-info {
+	/* position: relative;
+	top: 0%; */
+	width: 90dvw;
+	display: grid;
+	/* align-items: center;
+	justify-content: center;
+	align-content: center; */
+	/* background: #2d2d2df6; */
+	background: linear-gradient(
+		to bottom,
+		#2d2d2d30 1%,
+		#2d2d2d30 2%,
+		#2d2d2d63 4%,
+		#2d2d2da6 8%,
+		#2d2d2df3 15%,
+		#2d2d2d 23%
+	);
+	padding: 15% 2% 2% 2%;
+	/* padding: 2% 2% 2% 2%; */
+	border-radius: 10px;
+	margin: 3% 0% 3% 0%;
+	/* margin: 25% 0% 3% 0%; */
+	z-index: 15;
+	/* box-shadow: inset 0dvw -2dvh 20px #2d2d2ddb; */
+	/* box-shadow: 0px -2dvh 10px #2d2d2de1, 0px -5dvh 15px #2d2d2dcd; */
+}
+
+.text-container {
+	width: 80dvw;
+	height: 18dvh;
+	/* display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center; */
+	display: grid;
+	align-items: center;
+	justify-content: space-around;
+	align-content: center;
+	/* grid-template-columns: 1fr;
+	grid-template-rows: 0.5fr 0.5fr;
+	place-items: center; */
+	grid-template-areas: "time servings likes" "diet diet diet";
+	/* grid-template-rows: 0.33fr 0.33fr 0.33fr; */
+	/* place-items: center; */
+	padding: 3% 0% 3% 0%;
+	margin: 0% auto 0% auto;
 }
 
 .time {
 	/* text-transform: uppercase; */
-	position: relative;
+	/* position: relative; */
+	grid-area: time;
 	width: 20dvw;
 	height: 5dvh;
 	display: flex;
@@ -92,8 +389,10 @@
 	justify-content: center;
 	align-items: center;
 	padding: 2%;
-	background: #0003019b;
-	border: 1px solid white;
+	margin: 2% 10%;
+
+	/* background: #0003019b;
+	border: 1px solid white; */
 	text-transform: uppercase;
 	z-index: 6;
 }
@@ -111,7 +410,8 @@
 }
 
 .servings {
-	position: relative;
+	/* position: relative; */
+	grid-area: servings;
 	width: 20dvw;
 	display: flex;
 	flex-direction: row;
@@ -119,8 +419,10 @@
 	align-items: center;
 	padding: 2%;
 	height: 5dvh;
-	background: #0003019b;
-	border: 1px solid white;
+	/* background: #0003019b;
+	border: 1px solid white; */
+	margin: 2% 10%;
+
 	text-transform: uppercase;
 	z-index: 6;
 }
@@ -137,22 +439,97 @@
 	padding: 0% 5% 0% 5%;
 }
 
+.likes {
+	/* position: relative; */
+	grid-area: likes;
+	width: 20dvw;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 2%;
+	height: 5dvh;
+	margin: 2% 10%;
+
+	/* background: #0003019b;
+	border: 1px solid white; */
+	z-index: 6;
+}
+
+.likes > svg {
+	width: 1.4rem;
+	height: 1.4rem;
+}
+
+.likes > span {
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0% 5% 0% 5%;
+}
+
+.diet {
+	/* position: relative; */
+	grid-area: diet;
+	/* width: 70dvw; */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 2%;
+	height: 5dvh;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	z-index: 6;
+	/* text-decoration-line: underline;
+	text-decoration-color: rgba(23, 140, 23, 0.9);
+	text-underline-offset: 0.5rem;
+	text-decoration-thickness: 4px; */
+}
+
+.diet > svg {
+	width: 1.4rem;
+	height: 1.4rem;
+	fill: rgba(23, 180, 23, 0.9);
+}
+
+.diet > span {
+	height: 1.2rem;
+	color: rgba(23, 180, 23, 0.9);
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+
+	padding: 0% 5% 0% 5%;
+}
+
 .recipe-presentation {
+	position: relative;
 	width: 90dvw;
+	/* background: linear-gradient(
+		to bottom,
+		transparent 1%,
+		#2d2d2de6 12%,
+		#2d2d2d 15%
+	); */
 	background: #2d2d2d;
 	padding: 2%;
+	border-radius: 10px;
 	margin: 3% 0% 3% 0%;
+	z-index: 8;
 }
 
 .total-ingrediets {
+	list-style: none;
 	padding: 1% 10%;
-	margin: 5% 0% 5% 10%;
+	margin: 5% 0% 5% 0%;
 }
 
 .ingredients {
 	width: 90dvw;
 	background: #2d2d2d;
 	padding: 2%;
+	border-radius: 10px;
 	margin: 3% 0% 3% 0%;
 }
 
@@ -162,8 +539,100 @@
 }
 
 .ingredient {
-	margin: 2% 0% 2% 0%;
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #efefef;
+	margin: 4% 0% 4% 0%;
 }
+
+.ingredient-checkbox {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	display: grid;
+	place-items: center;
+	background: transparent;
+	width: 18px;
+	height: 18px;
+	color: white;
+	gap: 20px;
+	border: 1px solid grey;
+	border-radius: 4px;
+	margin-right: 5%;
+}
+
+.ingredient-checkbox:checked {
+	/* font-family: "Courier New", Courier, monospace; */
+	cursor: "\2713";
+	content: "\2713";
+	color: #fff;
+	font-size: 1.8rem;
+	font-weight: 200;
+	text-align: center;
+	background-color: transparent;
+	filter: drop-shadow(2px 2px 4px black);
+
+	/* border-color: red; */
+}
+
+/* .ingredient-checkbox:checked > i {
+	filter: drop-shadow(0px 0px 10px white);
+} */
+
+.ingredient-checkbox:checked::after {
+	/* position: absolute; */
+	position: relative;
+	top: -35%;
+	left: 0%;
+	content: "\2714";
+	/* cursor: "\2713"; */
+
+	color: rgba(23, 160, 23, 0.95);
+}
+
+/* input[type="checkbox" i] {
+	color: white;
+} */
+
+/* .ingredient-checkbox::after  {
+	content: ;
+} */
+
+/* input[type="checkbox"] {
+	display: none;
+} */
+
+.ingredient-checkbox[type="checkbox"] {
+	/* background: transparent; */
+	/* content: "\2713"; */
+	/* color: white; */
+	/* font-size: 20px; */
+	/* text-align: center; */
+}
+
+/* .ingredient-checkbox::after {
+	content: "\2713";
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	background-color: black;
+} */
+/* 
+.ingredient-checkbox::after {
+	background: transparent;
+}
+
+.ingredient-checkbox::after > i {
+	color: blue;
+} */
+
+/* .checkbox label:before {
+  border-radius: 3px;
+} */
 
 .recipe-summary {
 	padding: 2%;
@@ -208,8 +677,76 @@
 }
 
 .step-title {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: center;
 	text-transform: uppercase;
+	font-weight: 600;
 	margin: 5% 0%;
+}
+
+.step-checkbox {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	display: grid;
+	place-items: center;
+	background: transparent;
+	width: 20px;
+	height: 20px;
+	border: 1px solid rgb(150, 150, 150);
+	border-radius: 100%;
+	margin: 0% 10% 0% 0%;
+}
+
+.step-checkbox:checked {
+	/* cursor: "\2713"; */
+	display: grid;
+	place-items: center;
+	/* content: "\1f7e2"; */
+	/* color: #fff; */
+	/* font-size: 1.8rem; */
+	font-weight: 200;
+	text-align: center;
+	/* background-color: rgba(23, 140, 23, 0.9); */
+	/* background: transparent; */
+	background: radial-gradient(
+		circle at 50% 50%,
+		rgba(23, 180, 23, 0.95) 40%,
+		rgba(23, 160, 23, 0.95) 45%,
+		rgba(23, 120, 23, 0.95) 50%,
+		rgba(23, 23, 23, 0.95) 51%,
+		rgba(23, 23, 23, 0.95) 66%
+	);
+	border: 1px solid rgb(200, 200, 200);
+	filter: drop-shadow(1px 1px 2px black);
+
+	/* border-color: red; */
+}
+
+/* .ingredient-checkbox:checked > i {
+	filter: drop-shadow(0px 0px 10px white);
+} */
+
+.step-checkbox:checked::after {
+	/* position: absolute; */
+	/* position: relative;
+	top: -35%;
+	left: 0%; */
+	/* content: "\1f7e2"; */
+	/* background-color: rgba(23, 140, 23, 0.95); */
+	background: radial-gradient(
+		circle at 50% 50%,
+		rgba(23, 60, 23, 0.95) 10%,
+		rgba(23, 100, 23, 0.95) 50%,
+		rgba(23, 140, 23, 0.95) 60%
+	);
+	/* cursor: "\2713"; */
+
+	/* color: rgba(23, 140, 23, 0.95); */
 }
 
 .step-text {
@@ -253,4 +790,105 @@
 .ingredient-name {
 	color: rgba(203, 203, 203, 0.95);
 	padding: 2% 0%;
+}
+
+.controls-container {
+	width: 90dvw;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	background: #2d2d2d;
+	padding: 2%;
+	border-radius: 10px;
+	margin: 3% 0% 3% 0%;
+}
+
+.complete-btn {
+	/* display: grid;
+	place-items: center; */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 65dvw;
+	height: 15dvw;
+	color: rgba(218, 236, 219, 0.95);
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-shadow: 0px 2px 5px black;
+	background: radial-gradient(
+		circle at 0% 120%,
+		/* rgb(23, 95, 23) 1%,
+		rgb(23, 95, 23) 23%,
+		rgb(23, 120, 23) 33%,
+		rgb(23, 140, 23) 43%,
+		rgb(23, 160, 23) 53% */
+			rgb(23, 160, 23),
+		rgb(23, 140, 23) 23%,
+		rgb(23, 120, 23) 33%,
+		rgb(23, 100, 23) 53%,
+		rgb(15, 93, 15) 83%
+	);
+	border: 3px solid rgb(4, 56, 4);
+	border-radius: 15px;
+	margin: 3% 0% 3% 0%;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset;
+	filter: brightness(1.1);
+}
+
+.complete-btn > svg {
+	margin: 0% 5% 0% 5%;
+}
+
+.complete-btn:active {
+	color: rgba(80, 190, 80, 0.95);
+	border: 3px solid rgb(23, 100, 23);
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+		rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.complete-btn:disabled {
+	color: rgba(80, 190, 80, 0.95);
+	padding-left: 10%;
+	border: 3px solid rgb(23, 100, 23);
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+		rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.reset-btn {
+	display: grid;
+	place-items: center;
+	width: 15dvw;
+	height: 15dvw;
+	background: #414040de;
+	border: 3px solid #414040de;
+	border-radius: 15px;
+	margin: 3% 0% 3% 0%;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset;
+}
+
+.reset-btn:active {
+	background: #494848de;
+	border: 3px solid #232323dd;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+		rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.reset-btn:disabled {
+	background: #494848de;
+	border: 3px solid #232323dd;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset;
+}
+
+.reset-btn > svg {
+	width: 1.5rem;
+	height: 1.5rem;
 }
