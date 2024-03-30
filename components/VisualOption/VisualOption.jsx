@@ -1,19 +1,28 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { GoHome, GoBookmark } from "react-icons/go";
+import { useRef, useContext } from "react";
+import { GoHome } from "react-icons/go";
 import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
 import { motion } from "framer-motion";
+
+import {
+	GeneralContext,
+	GeneralDispatchContext
+} from "@/app/generalContext/GeneralContext";
+
 import styles from "./VisualOption.module.css";
 
 export default function VisualOption() {
 	const firstInputRef = useRef(null);
 	const secondInputRef = useRef(null);
 
-	const [homeSettings, setHomeSettings] = useState({
-		seasonal: true,
-		saved: false
-	});
+	const generalDispatch = useContext(GeneralDispatchContext);
+	const settings = useContext(GeneralContext);
+
+	const checkSeason =
+		settings["tomato-settings"]["recipes-type"] === "seasonal";
+
+	const checkSaved = settings["tomato-settings"]["recipes-type"] === "saved";
 
 	const pathVariants = {
 		hidden: {
@@ -59,6 +68,14 @@ export default function VisualOption() {
 		}
 	};
 
+	function handleChange(event) {
+		console.log(event.target.value);
+		generalDispatch({
+			type: "select_type",
+			value: event.target.value
+		});
+	}
+
 	return (
 		<form className={styles["options-form"]}>
 			<fieldset className={styles["visual-options-fieldset"]}>
@@ -73,7 +90,7 @@ export default function VisualOption() {
 					<label
 						htmlFor="radioInputSeason"
 						style={
-							homeSettings.seasonal
+							checkSeason
 								? { color: "rgba(230, 230, 230, 0.9)" }
 								: { color: "rgba(123, 123, 123, 0.9)" }
 						}
@@ -91,29 +108,27 @@ export default function VisualOption() {
 								strokeWidth="2px"
 								variants={pathVariants}
 								initial="hidden"
-								animate={homeSettings.seasonal ? "visible" : ""}
+								animate={checkSeason ? "visible" : ""}
 								exit="exit"
 								className={styles["leaf-path"]}
 								d="M12 10a6 6 0 0 0 -6 -6h-3v2a6 6 0 0 0 6 6h3"
 							/>
 							<motion.path
-								// pathLength="0"
 								stroke="rgba(230, 230, 230, 0.9)"
 								strokeWidth="2px"
 								variants={pathVariants}
 								initial="hidden"
-								animate={homeSettings.seasonal ? "visible" : ""}
+								animate={checkSeason ? "visible" : ""}
 								exit="exit"
 								className={styles["leaf-path"]}
 								d="M12 14a6 6 0 0 1 6 -6h3v1a6 6 0 0 1 -6 6h-3"
 							/>
 							<motion.path
-								// pathLength="0"
 								stroke="rgba(230, 230, 230, 0.9)"
 								strokeWidth="2px"
 								variants={pathVariants}
 								initial="hidden"
-								animate={homeSettings.seasonal ? "visible" : ""}
+								animate={checkSeason ? "visible" : ""}
 								exit="exit"
 								className={styles["leaf-path"]}
 								d="M12 20l0 -10"
@@ -128,66 +143,50 @@ export default function VisualOption() {
 							fill="none"
 						>
 							<motion.path
-								// pathLength="0"
 								stroke="rgba(230, 230, 230, 1.0)"
 								strokeWidth="2px"
 								variants={pathVariantsInverted}
-								initial={homeSettings.seasonal ? "" : "hidden"}
-								animate={homeSettings.seasonal ? "visible" : ""}
-								// exit="exit"
+								initial={checkSeason ? "" : "hidden"}
+								animate={checkSeason ? "visible" : ""}
 								className={styles["leaf-path"]}
 								d="M12 10a6 6 0 0 0 -6 -6h-3v2a6 6 0 0 0 6 6h3"
 							/>
 							<motion.path
-								// pathLength="0"
 								stroke="rgba(230, 230, 230, 1.0)"
 								strokeWidth="2px"
 								variants={pathVariantsInverted}
 								initial="hidden"
-								animate={homeSettings.seasonal ? "visible" : ""}
-								// exit="exit"
+								animate={checkSeason ? "visible" : ""}
 								className={styles["leaf-path"]}
 								d="M12 14a6 6 0 0 1 6 -6h3v1a6 6 0 0 1 -6 6h-3"
 							/>
 							<motion.path
-								// pathLength="0"
 								stroke="rgba(230, 230, 230, 1.0)"
 								strokeWidth="2px"
 								variants={pathVariantsInverted}
 								initial="hidden"
-								animate={homeSettings.seasonal ? "visible" : ""}
-								// exit="exit"
+								animate={checkSeason ? "visible" : ""}
 								className={styles["leaf-path"]}
 								d="M12 20l0 -10"
 							/>
 						</motion.svg>
 						<input
 							ref={firstInputRef}
-							onFocus={() => {
-								// firstInputRef.current.closest("label").style.color =
-								// 	"rgba(230, 230, 230, 0.9)";
-								setHomeSettings((prevValue) => {
-									return { ...prevValue, seasonal: true, saved: false };
-								});
-								// return setIsActiveLeaf(true);
-							}}
 							onBlur={() => {
-								// firstInputRef.current.closest("label").style.color =
-								// 	"rgba(123, 123, 123, 0.9)";
 								console.log("Blur.");
-								// return setIsActiveLeaf(false);
 							}}
+							onClick={(event) => handleChange(event)}
 							type="radio"
 							id="radioInputSeason"
-							value="season"
+							value="seasonal"
 						/>
-						SEASONAL
+						<span>SEASONAL</span>
 					</label>
 
 					<label
 						htmlFor="radioInputSaved"
 						style={
-							homeSettings.saved
+							checkSaved
 								? { color: "rgba(230, 230, 230, 0.9)" }
 								: { color: "rgba(123, 123, 123, 0.9)" }
 						}
@@ -205,7 +204,7 @@ export default function VisualOption() {
 								strokeWidth="1.5px"
 								variants={pathVariants}
 								initial="hidden"
-								animate={homeSettings.saved ? "visible" : ""}
+								animate={checkSaved ? "visible" : ""}
 								exit="exit"
 								d="M5 3.75C5 2.784 5.784 2 6.75 2h10.5c.966 0 1.75.784 1.75 1.75v17.5a.75.75 0 0 1-1.218.586L12 17.21l-5.781 4.625A.75.75 0 0 1 5 21.25Zm1.75-.25a.25.25 0 0 0-.25.25v15.94l5.031-4.026a.749.749 0 0 1 .938 0L17.5 19.69V3.75a.25.25 0 0 0-.25-.25Z"
 							/>
@@ -223,7 +222,7 @@ export default function VisualOption() {
 								strokeWidth="1.5px"
 								variants={pathVariantsInverted}
 								initial="hidden"
-								animate={homeSettings.saved ? "visible" : ""}
+								animate={checkSaved ? "visible" : ""}
 								exit="exit"
 								d="M5 3.75C5 2.784 5.784 2 6.75 2h10.5c.966 0 1.75.784 1.75 1.75v17.5a.75.75 0 0 1-1.218.586L12 17.21l-5.781 4.625A.75.75 0 0 1 5 21.25Zm1.75-.25a.25.25 0 0 0-.25.25v15.94l5.031-4.026a.749.749 0 0 1 .938 0L17.5 19.69V3.75a.25.25 0 0 0-.25-.25Z"
 							/>
@@ -233,22 +232,12 @@ export default function VisualOption() {
 							id="radioInputSaved"
 							value="saved"
 							ref={secondInputRef}
-							onFocus={() => {
-								// secondInputRef.current.closest("label").style.color =
-								// 	"rgba(230, 230, 230, 0.9)";
-								setHomeSettings((prevValue) => {
-									return { ...prevValue, seasonal: false, saved: true };
-								});
-								// return setIsActiveBookmark(true);
-							}}
 							onBlur={() => {
-								// secondInputRef.current.closest("label").style.color =
-								// 	"rgba(123, 123, 123, 0.9)";
 								console.log("Blur.");
-								// return setIsActiveBookmark(false);
 							}}
+							onClick={(event) => handleChange(event)}
 						/>
-						SAVED
+						<span>SAVED</span>
 					</label>
 					<div className={styles["inputs-plate"]}></div>
 				</div>

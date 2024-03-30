@@ -38,3 +38,7 @@ export default function singleRecipeReducer(state, action) {
 		throw Error("Unknown action: " + action.type);
 	}
 }
+
+{
+	/* Capire come inserire alternativa in mancanza di steps */
+}

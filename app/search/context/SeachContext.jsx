@@ -7,14 +7,16 @@
 
 // Qui verrà scritto Context e export Provider
 
-import { createContext, useReducer } from "react";
+// import { createContext, useReducer } from "react";
 
-export const SearchContext = createContext();
+// export const SearchContext = createContext(null);
+// export const SearchDispatchContext = createContext(null);
 
-function searchReducer(variable, action) {
-	if (action.type === "change") {
-	}
-}
+// export default function searchReducer(list, action) {
+// 	if (action.type === "add") {
+// 	} else if (action.type === "remove") {
+// 	}
+// }
 
 // export function SearchProvider({ children, data }) {
 // 	const [completeRecipes, dispatch] = useReducer(searchReducer, ___);

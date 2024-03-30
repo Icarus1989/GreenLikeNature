@@ -1,11 +1,12 @@
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import PrefIconComponent from "@/components/LoadingSpinner/PreferIconComponent";
 
-export default function PreferencesLoading() {
+export default function SettingsLoading() {
 	return (
 		<>
 			<section
 				style={{
+					position: "fixed",
 					display: "grid",
 					placeItems: "center",
 					width: "100vw",

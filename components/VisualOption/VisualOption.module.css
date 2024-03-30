@@ -1,12 +1,10 @@
 .options-form {
 	width: 100%;
-	/* height: 30vh; */
 	padding: 2%;
 }
 
 .options-form-title {
 	font-size: 24px;
-	/* text-decoration: solid underline purple 4px; */
 	text-decoration: solid underline rgb(124, 57, 1) 8px;
 
 	margin-top: 5%;
@@ -58,19 +56,6 @@
 	text-shadow: 0px 1px 5px black;
 	font-size: 16px;
 	font-weight: 600;
-	/* background: linear-gradient(
-		25deg,
-		rgba(2, 180, 2, 1) 10%,
-		rgba(2, 180, 2, 0.9) 30%,
-		rgba(23, 95, 55, 0.9) 47%,
-		rgba(4, 89, 4, 1) 48%,
-		rgb(3, 64, 2) 49.9%,
-		rgb(3, 64, 2) 50.1%,
-		rgba(4, 89, 4, 1) 52%,
-		rgba(23, 95, 55, 0.9) 53%,
-		rgba(1, 160, 1, 0.9) 70%,
-		rgba(2, 180, 2, 1) 90%
-	); */
 	background: linear-gradient(
 		31deg,
 		rgba(2, 180, 2, 1) 10%,
@@ -84,29 +69,12 @@
 		rgba(1, 140, 1, 0.9) 80%,
 		rgba(2, 180, 2, 1) 90%
 	);
-
-	/* padding-top: 8%;
-	padding-left: 16%;
-	padding-bottom: 8%;
-	padding-right: 14%;
-	border: 3px solid rgba(23, 95, 55, 1); */
-	/* padding-top: 8%;
-	padding-left: 16%;
-	padding-bottom: 8%;
-	padding-right: 14%; */
-
-	/* last --> */
-	/* padding-top: 8%;
-	padding-left: 10%;
-	padding-bottom: 3%;
-	padding-right: 8%; */
 	border-top: 4px solid rgba(3, 64, 2, 0.95);
 	border-right: 2px solid rgba(3, 64, 2, 0.9);
 	border-bottom: 2px solid rgba(3, 64, 2, 0.9);
 	border-left: 4px solid rgba(3, 64, 2, 0.95);
 	border-radius: 55% 100% / 10% 135%;
 	margin-right: 2%;
-	/* opacity: 0.9; */
 	filter: brightness(1.1);
 }
 
@@ -117,30 +85,29 @@
 	stroke-width: 1px;
 	stroke: rgba(230, 230, 230, 0.9);
 	z-index: 5;
-	/* margin-top: auto;
-	margin-bottom: 5%; */
 }
 
 .inputs-container {
 	position: relative;
-	width: auto;
-	height: 14vh;
+	width: 100%;
+	height: fit-content;
 	display: grid;
-	place-items: center;
+	/* place-items: center; */
+	padding-left: 10%;
 	margin-bottom: 5%;
+	justify-content: start;
 }
 
 .inputs-container > label {
-	width: 80%;
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	/* color: rgba(230, 230, 230, 0.9); */
 	color: rgba(123, 123, 123, 0.9);
 	font-size: 16px;
 	font-weight: 600;
 	margin: 0.8rem;
-	margin-left: 18%;
+	justify-content: flex-start;
 }
 
 .input-label {
@@ -153,8 +120,6 @@
 
 .plant-icon {
 	position: absolute;
-	/* top: 0;
-	left: 0; */
 	width: 1.8em;
 	height: 1.8em;
 	z-index: 2;
@@ -164,8 +129,6 @@
 
 .plant-icon-white {
 	position: absolute;
-	/* top: 0;
-	left: 0; */
 	width: 1.8em;
 	height: 1.8em;
 	z-index: 1;
@@ -175,12 +138,8 @@
 
 .bookmark-icon {
 	position: absolute;
-	/* top: 0;
-	left: 0; */
 	width: 1.7em;
 	height: 1.7em;
-	/* stroke-width: 1px; */
-	/* stroke: rgba(230, 230, 230, 0.9); */
 	z-index: 2;
 	margin-left: 0.2rem;
 	margin-right: 1rem;
@@ -188,12 +147,8 @@
 
 .bookmark-icon-white {
 	position: absolute;
-	/* top: 0;
-	left: 0; */
 	width: 1.7em;
 	height: 1.7em;
-	/* stroke-width: 1px; */
-	/* stroke: rgba(230, 230, 230, 0.9); */
 	z-index: 1;
 	margin-left: 0.2rem;
 	margin-right: 1rem;
@@ -201,15 +156,13 @@
 
 .inputs-plate {
 	position: absolute;
-	top: -1%;
-	left: 15%;
-	/* width: 15%; */
-	min-width: 50px;
-	/* height: 33vw; */
-	min-height: 130px;
+	top: 0%;
+	width: 55px;
+	height: 100%;
 	background-color: rgba(23, 23, 23, 0.64);
 	border: 3px solid rgba(101, 100, 100, 0.352);
 	border-radius: 25px 25px / 25px 25px;
+	margin-left: 11%;
 	z-index: 1;
 	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
 		rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
@@ -220,21 +173,18 @@
 
 .inputs-container > label > input {
 	appearance: none;
-	/* padding-right: 0.6rem; */
 	margin-left: 0rem;
 	margin-right: 1rem;
 	font: inherit;
-	/* color: transparent; */
 	color: currentColor;
 	width: 2.3em;
 	height: 2.3em;
 	border: 0.15em solid transparent;
 	border-radius: 0;
 	transform: translateY(-0.075em);
-	/* clip-path: ; */
 	z-index: 3;
 }
 
-.inputs-container > label > input:checked {
-	/* appearance: none; */
+.inputs-container > label > span {
+	padding-left: 2%;
 }

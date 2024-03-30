@@ -31,3 +31,5 @@ export default function PlantIconComponent() {
 		</svg>
 	);
 }
+
+// clean

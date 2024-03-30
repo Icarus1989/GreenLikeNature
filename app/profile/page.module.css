@@ -1,44 +1,16 @@
-.main-container {
-	display: flex;
-	flex-direction: column;
+.main {
+	display: grid;
+	place-items: center;
 	width: 100vw;
 	height: auto;
 	background: #2d2d2d;
 	scrollbar-width: auto;
 	touch-action: auto;
+	overflow-y: scroll;
 }
 
-.main-container::-webkit-scrollbar {
-	display: auto;
+.error-page {
 }
 
-/* .main-container:nth-last-of-type(section) {
-	margin-bottom: 6vh;
-} */
-
-.title-section {
-	display: grid;
-	place-items: center;
-	width: 100%;
-	min-height: 20vdh;
-	/* border: 1px solid rgba(255, 255, 255, 0.7); */
-}
-
-.title {
-	font-size: 26px;
-	padding: 3%;
-	margin-top: 3%;
-}
-
-.description {
-	color: rgba(230, 230, 230, 0.8);
-	font-size: 16px;
-	padding-left: 3%;
-	margin-bottom: 0%;
-}
-
-.plant-container {
-	width: auto;
-	height: auto;
-	/* border: 1px solid red; */
+.loading-page {
 }

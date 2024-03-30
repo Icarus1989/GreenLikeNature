@@ -6,11 +6,11 @@ export default function GeneralLoading() {
 		<>
 			<section
 				style={{
+					position: "fixed",
 					display: "grid",
 					placeItems: "center",
-					width: "100vw",
-					height: "100vh",
-					// background: "linear-gradient(45deg, #06590696, #191b19)"
+					width: "100dvw",
+					height: "94dvh",
 					background: "#2d2d2d",
 					overflow: "hidden"
 				}}
@@ -19,8 +19,6 @@ export default function GeneralLoading() {
 				<LoadingSpinner>
 					<PlantIconComponent />
 				</LoadingSpinner>
-				{/* Loading Spinner Component */}
-				{/* Qui bkg parzialmente transparent */}
 			</section>
 		</>
 	);

@@ -1,35 +1,15 @@
 .straw-leaves-container {
-	/* width: 6dvh; */
-	/* height: 12dvh; */
 	position: absolute;
-	/* top: 80%;
-	left: 2%; */
 	display: flex;
 	flex-direction: column;
-	/* top: 85%;
-	left: 10%; */
-	/* width: auto;
-	height: auto; */
-	/* transform: scale(1.23) rotateZ(30deg); */
 }
 
 .straw-leaf {
-	/* position: absolute; */
-	/* top: 100%;
-	left: 2%; */
-	/* top: 85%;
-	left: 10%; */
-	/* width: 6dvh;
-	height: 6dvh; */
 	overflow: hidden;
 	transform-origin: 0% 0%;
 	filter: drop-shadow(2px 2px 10px black);
 }
 
 .straw-leaf > path {
-	/* fill: #073a07; */
-	/* stroke: rgb(1, 28, 1); */
-	/* stroke: linear-gradient(red, white); */
 	stroke-width: 4px;
-	/* opacity: 0.3; */
 }

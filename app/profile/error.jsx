@@ -1,6 +1,6 @@
 "use client";
 
-export default function ErrorProfilePage() {
+export default function SettingsError() {
 	return (
 		<section>
 			<h2>Something wrong SearchPage</h2>

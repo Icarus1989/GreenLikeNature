@@ -22,6 +22,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import Flower from "../FlowerComponent/Flower";
 import { Modal } from "../Modal/Modal";
 
+import bkgImage from "../../public/retina-wood.png";
+
 const pathVariants = {
 	hidden: {
 		pathLength: 0,
@@ -126,7 +128,7 @@ export default function CarouselsContainer({ recipes, data }) {
 	// console.log(recipeData);
 
 	function handleCloseDetails(text) {
-		console.log(text);
+		// console.log(text);
 		titleRef.current.textContent = text;
 		setShowModal(false);
 		// const actualRecipe = recipes.filter(
@@ -274,61 +276,80 @@ export default function CarouselsContainer({ recipes, data }) {
 			// Da testare, ma più pesante --->
 			if (lastAngle >= 0) {
 				const actualVel = xVelocity.get();
+				// console.log("pos " + lastAngle);
 
 				theta.map((piSection, index) => {
 					if (
-						(lastAngle - 5) * (Math.PI / 180) <= piSection &&
-						piSection <= (lastAngle + 5) * (Math.PI / 180)
+						(lastAngle - 10) * (Math.PI / 180) <= piSection &&
+						piSection <= (lastAngle + 10) * (Math.PI / 180)
 					) {
 						// heavier calculations for half of the total angles
 
 						// slow if plate proximity
-						xVelocity.set(actualVel - 0.1 * actualVel);
+
+						// xVelocity.set(actualVel - 0.1 * actualVel);
+						xVelocity.set(actualVel * 0.001 * 2);
+
 						// change title if plate proximity0
 						const h4Title = titleRef.current.textContent;
 						const actualTitle = invertedRecipes[index].title;
 						h4Title !== actualTitle
 							? (titleRef.current.textContent = invertedRecipes[index].title)
 							: null;
-						if (Math.round(lastAngle) % 22.5 === 0) {
-							// heaviest calculations for 8 of the total angles
+						// if (Math.round(lastAngle) % 22.5 === 0) {
+						// 	// heaviest calculations for 8 of the total angles
 
-							// stop if plate max proximity
-							xVelocity.set(0);
-							// set perfect angle if plate max proximity
-							angle.set(Math.round(lastAngle));
-							// stop at position for block next change
-							x.set(x.get());
-						}
+						// 	// stop if plate max proximity
+						// 	xVelocity.set(0);
+						// 	// set perfect angle if plate max proximity
+						// 	angle.set(Math.round(lastAngle));
+						// 	// stop at position for block next change
+						// 	x.set(x.get());
+						// }
+					} else if (Math.round(lastAngle) % 22.5 === 0) {
+						// heaviest calculations for 8 of the total angles
+
+						// stop if plate max proximity
+						xVelocity.set(0);
+						// set perfect angle if plate max proximity
+						angle.set(Math.round(lastAngle));
+						// stop at position for block next change
+						x.set(x.get());
 					} else {
-						xVelocity.set(actualVel + 0.2);
+						xVelocity.set(xVelocity.get());
 					}
 					return;
 				});
 			}
 			// <--- Da testare, ma più pesante
 			else if (lastAngle < 0) {
+				// console.log("neg " + lastAngle);
+
 				const actualVel = xVelocity.get();
 
 				theta.map((piSection, index) => {
 					if (
-						(lastAngle + 5) * (Math.PI / 180) >= -piSection &&
-						-piSection >= (lastAngle - 5) * (Math.PI / 180)
+						(lastAngle + 10) * (Math.PI / 180) >= -piSection &&
+						-piSection >= (lastAngle - 10) * (Math.PI / 180)
 					) {
-						xVelocity.set(actualVel - 0.1 * actualVel);
+						xVelocity.set(actualVel * 0.01 * 2);
 						const h4Title = titleRef.current.textContent;
 						const actualTitle = recipes[index].title;
 						// Questo --->
 						h4Title !== actualTitle
 							? (titleRef.current.textContent = recipes[index].title)
 							: null;
-						if (Math.round(lastAngle) % -22.5 === 0) {
-							angle.set(Math.round(lastAngle));
-							x.set(x.get());
-							xVelocity.set(0);
-						}
+						// if (Math.round(lastAngle) % -22.5 === 0) {
+						// 	angle.set(Math.round(lastAngle));
+						// 	x.set(x.get());
+						// 	xVelocity.set(0);
+						// }
+					} else if (Math.round(lastAngle) % -22.5 === 0) {
+						angle.set(Math.round(lastAngle));
+						x.set(x.get());
+						xVelocity.set(0);
 					} else {
-						xVelocity.set(actualVel + 0.2);
+						xVelocity.set(xVelocity.get());
 					}
 					return;
 				});
@@ -379,15 +400,7 @@ export default function CarouselsContainer({ recipes, data }) {
 		recipes.map((recipe, index) => {
 			return placePlate(recipe.title, index);
 		});
-
-		// setRecipeTitle(recipes[0].title);
 	}, []);
-
-	// function handleModalClick() {
-	// 	recipes.map((recipe) => {
-
-	// 	})
-	// }
 
 	return (
 		<>
@@ -428,7 +441,7 @@ export default function CarouselsContainer({ recipes, data }) {
 					<SearchBar position="absolute" />
 				</div>
 				<div className={styles["carousel-container"]}>
-					<div className={styles.dailyCarousel}>
+					<div className={styles["carousel"]}>
 						<div className={styles["circular-container"]}>
 							<motion.div
 								ref={menuRef}
@@ -440,6 +453,7 @@ export default function CarouselsContainer({ recipes, data }) {
 								// 	// modifyTarget: (target) => Math.round(target / 90) * 90
 								// }}
 								style={{
+									backgroundImage: `url(${bkgImage.src})`,
 									rotateZ: angle
 								}}
 							>

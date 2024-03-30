@@ -1,46 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import Image from "next/image";
 import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
+import {
+	GeneralContext,
+	GeneralDispatchContext
+} from "@/app/generalContext/GeneralContext";
 import styles from "./SavedRecipes.module.css";
 import { GoX, GoBookmark } from "react-icons/go";
 
 export default function SavedRecipes({ onClick }) {
-	const [recipeList, setRecipeList] = useState([
-		{ name: "recipe_1", id: "recipe_1" },
-		{ name: "recipe_2", id: "recipe_2" },
-		{ name: "recipe_3", id: "recipe_3" },
-		{ name: "recipe_4", id: "recipe_4" },
-		{ name: "recipe_5", id: "recipe_5" },
-		{ name: "recipe_6", id: "recipe_6" },
-		{ name: "recipe_7", id: "recipe_7" }
-	]);
+	const generalDispatch = useContext(GeneralDispatchContext);
+	const settings = useContext(GeneralContext);
 
 	function handleRemove(id) {
-		const newList = recipeList.filter((recipe) => recipe.id !== id);
-		setRecipeList(newList);
+		generalDispatch({
+			type: "delete",
+			id: id
+		});
 	}
 
 	function handleClear() {
-		return setRecipeList([]);
+		generalDispatch({
+			type: "clear"
+		});
 	}
-
-	// // per eventuale spostamento ricette in su e giù:
-
-	// function handleClick() {
-	// 	const insertAt = 1;
-	// 	// può essere ogni index
-	// 	const nextArtists = [
-	// 		// items prima del punto di inserimento
-	// 		...artists.slice(0, insertAt),
-	// 		// nuovo item
-	// 		{ id: nextId++, name: name },
-	// 		// Items dopo il punto di inserimento
-	// 		...artists.slice(insertAt)
-	// 	];
-	// 	setArtists(nextArtists);
-	// 	setName("");
-	// }
 
 	return (
 		<div className={styles["saved-recipes-container"]} onClick={onClick}>
@@ -49,22 +34,27 @@ export default function SavedRecipes({ onClick }) {
 					<TomatoLeaf />
 					{<GoBookmark className={styles["legend-svg"]} />}
 				</legend>
-				{recipeList.length > 0 ? (
+				{settings["saved-recipes"].length > 0 ? (
 					<>
 						<p className={styles["description"]}>
 							Gestisci le Ricette Salvate:
 						</p>
 						<ul className={styles["saved-recipes-list"]}>
-							{/* <ul> */}
-							{recipeList.map((recipe) => (
-								<li id={recipe.id} key={recipe.name}>
-									<div className={styles["recipe-img-container"]}></div>
+							{settings["saved-recipes"].map((recipe, index) => (
+								<li id={recipe.id} key={`${recipe.name}${index}`}>
+									<div className={styles["recipe-img-container"]}>
+										<Image
+											src={recipe.image}
+											className={styles["recipe-img"]}
+											width="556"
+											height="320"
+											alt={`${recipe.name} image`}
+										/>
+									</div>
 									<span>
-										{recipe.name === "recipe_1" ||
-										recipe.name === "recipe_3" ||
-										recipe.name === "recipe_4"
-											? `${recipe.name} ${recipe.name}`
-											: recipe.name}
+										{recipe.title.length >= 30
+											? `${recipe.title.slice(0, 29)}...`
+											: recipe.title}
 									</span>
 									<button
 										onClick={() => {
@@ -94,10 +84,12 @@ export default function SavedRecipes({ onClick }) {
 						<br />
 						<br />
 						Cerca tra le ricette disponibili le tue preferite fino ad un massimo
-						di 7.
+						di 8.
 					</p>
 				)}
 			</fieldset>
 		</div>
 	);
 }
+
+// cambiare nome prop in arrivo in handleClick

@@ -1,53 +1,36 @@
-import SingleRecipe from "@/components/SingleRecipe/SingleRecipe";
-// import { data } from "@/spoonTempData/testSingleRecipeData";
+import SingleRecipePrimary from "@/components/SingleRecipePrimary/SingleRecipePrimary";
 import { secondRecipeData } from "@/spoonTempData/secondRecipeData";
-import * as deepl from "deepl-node";
+// import { deeplTranslate } from "@/app/ServerComponent";
+import { translateRecipe } from "@/app/ServerComponent";
 
-async function getData(id) {
-	const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=1330da99e91849ae86b3e94990dd9365
+async function getDataByID(id) {
+	const apiKey = process.env.APIKEYSPOONTWO;
+	const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${apiKey}
 `;
+	// const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&instructionsRequired=true&addRecipeInformation=true&fillIngredients=true&apiKey=${apiKey}`
 	const response = await fetch(url);
 	if (!response.ok) {
 		throw new Error("Fetch Failed");
 	}
-	return response.json();
+	const json = await response.json();
+	return json;
 }
 
-const deeplAuthKey = process.env.APIKEYDEEPL;
-const translator = new deepl.Translator(deeplAuthKey);
+// [ ] Inserire uso Axios
 
-async function deeplTranslate(text) {
-	const result = await translator.translateText(text, null, "it");
-	// console.log(result.text);
-	return result;
-}
+export default async function SingleRecipePage({ params }) {
+	const lang = "it";
 
-export default async function Recipe({ params }) {
-	// const spoonData = await getData(params.id);
-	// deeplTranslate();
-	const tempData = secondRecipeData;
-	// console.log(data);
+	// Provare ---> per distinguere lingua provare ad aggiungere
+	// "-it" alla fine dell'id, poi qui dividere in base al "-"
+	// e usare params[0] per id e params[1] per lang così da
+	// verificarne la presenza, se non presente o "en" non trad.
+	// Poi inserire al posto di lang.
 
-	// perfettamente funzionante --->
-	// const cleanText = tempData.summary.replace(/(<([^>]+)>)/gi, "");
-	// const translatedText = await deeplTranslate(cleanText);
-	// const newData = { ...tempData, summary: translatedText.text };
-	// console.log(newData);
-	// <--- perfettamente funzionante
-	// <--- Consolidare in text distinti: --->
-	// summary
-	// steps (tools / ingredients)
-	// ingredients
-	// ---> risuddividere corettamente
-	// ---> creare nuovo object con traduzioni
-	// ---> meno richieste possibili ma non una singola enorme
+	const data = await getDataByID(params.id);
+	const newData = await translateRecipe(data, lang);
 
 	// Spostare cleanSummary da SingleRecipe per Eng Vers.
 	// di default?
-	return (
-		<main>
-			{/* <h1>Recipe with ID: {params.id}</h1> */}
-			{<SingleRecipe data={tempData} />}
-		</main>
-	);
+	return <main>{<SingleRecipePrimary data={newData} saved={false} />}</main>;
 }

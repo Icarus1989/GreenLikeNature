@@ -6,6 +6,7 @@ export default function SearchLoading() {
 		<>
 			<section
 				style={{
+					position: "fixed",
 					display: "grid",
 					placeItems: "center",
 					width: "100vw",

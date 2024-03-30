@@ -21,14 +21,8 @@
 
 .tomato-svg {
 	position: absolute;
-	/* transform: scale(0.26, 0.26) translate(23%, 52%); */
 	z-index: 1;
-	/* filter: hue-rotate(30deg); */
 }
-
-/* .firstTomatoPath {
-	filter: hue-rotate(80deg);
-} */
 
 .tomato-svg > path {
 	stroke-width: 2px;
@@ -36,9 +30,8 @@
 
 .end-leaves {
 	position: absolute;
-	/* transform: scale(0.23, 0.23) translate(130%, 23%); */
-	/* rotate: 30deg; */
-	/* transform: scale(0.23, 0.23) translate(90%, 50%) rotate(30deg); */
 	z-index: 2;
 	overflow: hidden;
 }
+
+/* clean */

@@ -1,6 +1,6 @@
 "use client";
 
-export default function ErrorPageSearch() {
+export default function SearchError() {
 	return (
 		<section>
 			<h2>Something wrong SearchPage</h2>

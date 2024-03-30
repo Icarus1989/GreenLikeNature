@@ -935,3 +935,652 @@ if (
 // 		return ingrObj;
 // 	}
 // });
+
+// function handleComplete(value) {
+// 	const ts = value ? savedMoment : "none";
+// 	// if (ts === "none") {
+// 	// 	console.log("scroll");
+// 	// 	window.scrollTo({
+// 	// 		top: 0,
+// 	// 		left: 0,
+// 	// 		behavior: "smooth"
+// 	// 	});
+// 	// } else {
+// 	// 	recipeRef.current.scrollIntoView({
+// 	// 		behavior: "smooth",
+// 	// 		block: "end"
+// 	// 	});
+// 	// }
+// 	setRecipeState(() => {
+// 		return {
+// 			ingredients: data.extendedIngredients.map((ingredient, index) => {
+// 				return { [`${ingredient.name}_${index}`]: value };
+// 			}),
+// 			steps: data.analyzedInstructions[0].steps.map((step) => {
+// 				return { [`step-${step.number}`]: value };
+// 			}),
+// 			complete: {
+// 				confirm: value,
+// 				timestamp: ts
+// 			}
+// 		};
+// 	});
+// }
+
+// function handleChange(event) {
+// 	const target = event.target;
+// 	const value = target.checked;
+// 	const name = target.name;
+// 	const category = name.split("-")[0];
+// 	const detail = category === "ingredient" ? name.split("-")[1] : name;
+// 	setRecipeState((prevRecState) => {
+// 		const key = `${category}s`;
+// 		return {
+// 			...prevRecState,
+// 			[key]: prevRecState[key].map((field) => {
+// 				if (Object.keys(field)[0] === detail) {
+// 					return { [detail]: value };
+// 				} else {
+// 					return field;
+// 				}
+// 			})
+// 		};
+// 	});
+// }
+
+// setRecipeState((prevRecState) => {
+// 	return {
+// 		...prevRecState,
+// 		complete: {
+// 			confirm: true,
+// 			timestamp: savedMoment
+// 		}
+// 	};
+// });
+// setRecipeState((prevRecState) => {
+// 	return {
+// 		...prevRecState,
+// 		complete: {
+// 			confirm: false,
+// 			timestamp: "none"
+// 		}
+// 	};
+// });
+
+// seasonalString();
+
+// export async function getSingleData(id) {
+// 	const apiKey = process.env.APIKEYSPOON;
+// 	const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${apiKey}
+// `;
+// 	const response = await fetch(url);
+// 	if (!response.ok) {
+// 		throw new Error("Fetch Failed");
+// 	}
+// 	return response.json();
+// }
+
+// const apiKey = process.env.APIKEYSPOON;
+
+// export async function searchByQuery(text, allergens) {
+// 	"use server";
+// 	const excludeIngredients =
+// 		allergens.length > 0
+// 			? `&excludeIngredients=${allergens
+// 					.map((elem) => elem.toLowerCase())
+// 					.join(",")}`
+// 			: "";
+// 	// const url = `https://api.spoonacular.com/recipes/complexSearch?query=${text.toLowerCase()}&diet=vegetarian&fillIngredients=true${excludeIngredients}&number=50&instructionsRequired=true&addRecipeInformation=true&apiKey=${apiKey}`;
+// 	const url = `https://api.spoonacular.com/recipes/complexSearch?query=${text.toLowerCase()}&diet=vegetarian${excludeIngredients}&number=50&apiKey=${apiKey}`;
+// 	const res = await fetch(url);
+// 	const json = await res.json();
+// 	// console.log(json);
+// 	return json;
+// }
+
+// export async function seasonalData() {
+// 	const data = await getData();
+// 	const seasonalFruit = await seasonalFrtAndVgt(data);
+// 	// console.log("Here");
+// 	// console.log(seasonalFruit);
+
+// 	// console.log(seasonalFruit);
+// 	// const frtAndVegArr = seasonalFruit.map((elem) => elem.name);
+
+// 	const orderedList = seasonalFruit.map((elem) => {
+// 		const name = elem.split(" - ")[0] || elem;
+// 		const variety = elem.split(" - ")[1] || "All";
+// 		return {
+// 			[name]: [variety]
+// 		};
+// 	});
+
+// 	const list = {};
+
+// 	for (const elem of Object.values(orderedList)) {
+// 		if (!list[Object.keys(elem)[0]]) {
+// 			list[Object.keys(elem)[0]] = Object.values(elem)[0];
+// 		} else {
+// 			list[Object.keys(elem)[0]] = [
+// 				...list[Object.keys(elem)[0]],
+// 				...Object.values(elem)[0]
+// 			];
+// 		}
+// 	}
+
+// 	// console.log("Here");
+// 	// console.log(list);
+
+// 	return list;
+// }
+
+// export async function getSpoonData(list) {
+// 	"use server";
+// 	const apiKey = process.env.APIKEYSPOON;
+// 	// const intolerances = "one,two,three,from state?";
+
+// 	const seasonalPresence = true;
+// 	// const seasonalIngr = await seasonalData();
+// 	// const seasonalString = Object.keys(seasonalIngr)
+// 	// 	.map((elem) => elem.toLowerCase())
+// 	// 	.join(",");
+// 	// console.log(seasonalString);
+// 	// TESTARE URL CON LISTA OTTENUTA
+// 	// Attenzione --- trasformare tutto in minuscolo
+// 	const includeIngredients = list > 0 ? `&includeIngredients=${list}` : "";
+
+// 	console.log("Here 2");
+// 	// console.log(includeIngredients);
+
+// 	// const intolerancesPresence = true;
+// 	// IMPORTANTE --> CAPIRE come far leggere context o altri
+// 	// dati inseriti dall'utente al server component
+// 	// NOTA utile anche per ricerca ricette
+// 	// const intolerancesListFromContext = ["apples", "eggs", "nuts"];
+// 	// const intolerancesStrg = intolerancesListFromContext.join(",");
+// 	// const excludeIngredients =
+// 	// 	intolerancesListFromContext.length > 0
+// 	// 		? `&excludeIngredients=${intolerancesListFromContext.join(",")}`
+// 	// 		: "";
+
+// 	const url = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&number=100&instructionsRequired=true&fillIngredients=true${includeIngredients}&addRecipeInformation=true&apiKey=${apiKey}`;
+
+// 	// const strg =
+// 	// 	"https://api.spoonacular.com/recipes/findByIngredients?ingredients=pears&number=10&apiKey=977944bb2264474782049f9e558b9143&includeNutrition=true";
+// 	// const frtAndVegString = frtAndVeg.join(",");
+// 	// const spoonUrl = `"https://api.spoonacular.com/recipes/findByIngredients?ingredients=${frtAndVegString}&diet=vegetarian&intolerances=${intolerances}&number=10&apiKey=${apiKey}&includeNutrition=true`;
+// 	try {
+// 		const spoonData = await fetch(url);
+// 		const json = await spoonData.json();
+// 		// console.log(json);
+// 		return json;
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// }
+
+// export async function seasonalFrtAndVgt(arr) {
+// 	const frtAndVgt = arr.map((item) => {
+// 		const product = Object.keys(item);
+// 		// console.log(product);
+// 		// console.log(item[product]);
+
+// 		// console.log(Object.values(item));
+// 		return item[product].map((variety) => {
+// 			const varietyName = Object.keys(variety);
+// 			// console.log("Here");
+// 			// console.log(varietyName[0]);
+// 			const varietyAbbr = varietyName[0].toString().split("-")[0];
+// 			const productName = `${product
+// 				.toString()
+// 				.slice(0, 1)
+// 				.toUpperCase()}${product.toString().slice(1)}`;
+
+// 			const varietyLabel =
+// 				`${varietyName}` === `${productName}: All types and varieties`
+// 					? `${productName}`
+// 					: `${productName} - ${varietyAbbr}`;
+
+// 			// console.log(varietyLabel);
+
+// 			// Modifcare qui ---> inserire fristYear e secondYear
+// 			if (!variety[varietyName]["2022_seasonality"]) {
+// 				variety[varietyName]["2022_seasonality"] =
+// 					variety[varietyName]["2023_seasonality"];
+// 				// Condizione creata per eventuali nuove categorie di dati per prodotto,
+// 				// con ovvia mancanza nell'anno precedente
+// 			}
+
+// 			const firstYearBeginDate =
+// 				variety[varietyName]["2022_seasonality"].beginSeason;
+
+// 			const firstYearEndDate =
+// 				variety[varietyName]["2022_seasonality"].endSeason;
+
+// 			const secondYearBeginDate =
+// 				variety[varietyName]["2023_seasonality"].beginSeason;
+
+// 			const secondYearEndDate =
+// 				variety[varietyName]["2023_seasonality"].endSeason;
+
+// 			// console.log(firstYearBeginDate.toLocale)
+
+// 			function calculateTimestamps(stringDate) {
+// 				const dateArray = stringDate.split("/");
+// 				const date = new Date();
+// 				date.setFullYear(2024);
+// 				date.setDate(dateArray[0]);
+// 				date.setMonth(Number(dateArray[1]) - 1);
+// 				return Number(date.getTime());
+// 			}
+
+// 			function calculateRanges() {
+// 				const firstYearBeginTimestamp = calculateTimestamps(firstYearBeginDate);
+// 				const firstYearEndTimestamp = calculateTimestamps(firstYearEndDate);
+// 				const secondYearBeginTimestamp =
+// 					calculateTimestamps(secondYearBeginDate);
+// 				const secondYearEndTimestamp = calculateTimestamps(secondYearEndDate);
+
+// 				const today = Number(new Date().getTime());
+
+// 				const firstDay = Number(new Date().setFullYear(2024, 0, 1));
+
+// 				function yearCheckSeasonal(begin, end, now) {
+// 					if (begin < end) {
+// 						if (now >= begin && now <= end) {
+// 							return true;
+// 						} else if (now >= begin && now <= end) {
+// 							return true;
+// 						} else if (now < begin || now > end) {
+// 							return false;
+// 						}
+// 					} else if (begin > end) {
+// 						if (now >= begin && now <= end) {
+// 							return true;
+// 						} else if (now < begin || now > end) {
+// 							return false;
+// 						}
+// 					}
+// 				}
+
+// 				const firstYearCheck = yearCheckSeasonal(
+// 					firstYearBeginTimestamp,
+// 					firstYearEndTimestamp,
+// 					today
+// 				);
+
+// 				const secondYearCheck = yearCheckSeasonal(
+// 					secondYearBeginTimestamp,
+// 					secondYearEndTimestamp,
+// 					today
+// 				);
+
+// 				if (firstYearCheck || secondYearCheck) {
+// 					return true;
+// 				} else {
+// 					return false;
+// 				}
+// 			}
+// 			return {
+// 				[varietyLabel]: {
+// 					"1st_from": firstYearBeginDate,
+// 					"1st_to": firstYearEndDate,
+// 					"2nd_from": secondYearBeginDate,
+// 					"2nd_to": secondYearEndDate,
+// 					seasonal: calculateRanges()
+// 				}
+// 			};
+// 		});
+// 	});
+
+// 	// console.log("frtAndVgt");
+// 	// console.log(frtAndVgt);
+
+// 	// const today = date.getTime();
+
+// 	// Calcolare qui frutti e verdure di stagione ora
+
+// 	function calculateActualFrtAndVgt(data) {
+// 		// console.log(data);
+// 		const actualFrtAndVgt = [];
+// 		data.map((prod) => {
+// 			// console.log(prod);
+// 			return prod.map((variety) => {
+// 				const name = Object.keys(variety)[0];
+// 				// console.log(Object.keys(variety)[0]);
+// 				// console.log(variety);
+// 				if (variety[name].seasonal === true) {
+// 					// console.log(name);
+// 					actualFrtAndVgt.push(name);
+// 				}
+// 			});
+// 			// return prod.map((variety) => {
+// 			// 	const varietyName = Object.keys(variety)[0];
+// 			// 	const varietyData = variety[varietyName].seasonality;
+// 			// 	Object.entries(varietyData).map((elem) => {
+// 			// 		if (timestamp >= elem[1].from && timestamp <= elem[1].to) {
+// 			// 			actualFrtAndVgt.push({
+// 			// 				product: varietyName.split(" - ")[0],
+// 			// 				variety: varietyName.split(" - ")[1] || "All",
+// 			// 				seasonal: true,
+// 			// 				phase: elem[0]
+// 			// 			});
+// 			// 		} else {
+// 			// 			return;
+// 			// 		}
+// 			// 	});
+// 			// });
+// 		});
+// 		return actualFrtAndVgt;
+// 	}
+
+// 	return calculateActualFrtAndVgt(frtAndVgt);
+// }
+
+// console.log(filteredList);
+
+// const listTest = state.initialList.filter((recipe) => {
+// 	for (let intol of intolerancesArr) {
+// 		if (recipe[`${intol}Free`] === true) {
+// 			return true;
+// 		} else {
+// 			return false;
+// 		}
+// 	}
+// });
+// const set = new Set();
+// // const newList = [];
+
+// for (let recipe of state.recipesList) {
+// 	for (let intol of intolerancesArr) {
+// 		if (
+// 			// recipe[`${intol}Free`] !== undefined &&
+// 			recipe[`${intol}Free`] === true
+// 		) {
+// 			// newList.push(recipe);
+// 			set.add(recipe.id);
+// 		}
+// 		// else if (recipe[`${intol}Free`] === undefined) {
+// 		// 	// Temporaneo
+// 		// 	set.add(recipe.id);
+// 		// }
+// 		// Aggiungere in seguito ad eventuale nuova
+// 		// integrazione recipes, o forse no
+// 		// else if (recipe[`${intol}Free`] === undefined) {
+// 		// 	const ingrList = recipe["extendedIngredients"].map(
+// 		// 		(ingr) => ingr.name
+// 		// 	);
+// 		// 	console.log();
+// 		// }
+// 	}
+// }
+
+// 	if (
+// 		(allergiesSettings.length > 0 || intolerancesSettings.length > 0) &&
+// 		pathname !== "/profile"
+// 		// allergiesSettings.length > 0 ||
+// 		// intolerancesSettings.length > 0
+// 	) {
+// 		// const filterByAllergiesList = allergiesFilter(
+// 		// 	recipesList,
+// 		// 	allergiesSettings
+// 		// );
+// 		// const filterByIntolerancesList = intolerancesFilter(
+// 		// 	filterByAllergiesList,
+// 		// 	intolerancesSettings
+// 		// );
+
+// 		// const uniqueRecipesList = getUniqueElem(filterByIntolerancesList);
+
+// 		// console.log(uniqueRecipesList);
+
+// 		if (uniqueRecipesList.length < 80) {
+// 			createList(uniqueRecipesList);
+// 		} else {
+// 			console.log("Filtered only");
+// 			// setNewList(uniqueRecipesList);
+// 			// dispatchRedux(reInitializeRecipes(uniqueRecipesList));
+// 		}
+
+// 		// return filterByIntolerancesList.length <= 80
+// 		// 	? createList(filterByIntolerancesList)
+// 		// 	: setNewList(filterByIntolerancesList);
+// 	}
+
+// filterByAllergy: (state, action) => {
+// 			const filteredList = state.recipesList.filter((recipe) => {
+// 				// return
+// 				const dangIngredients = recipe.extendedIngredients
+// 					.map((elem) => elem.name)
+// 					.filter((ingr) => String(ingr) === action.name);
+// 				if (dangIngredients > 0) {
+// 					return false;
+// 				} else {
+// 					return true;
+// 				}
+// 				// const check = ingredients.map()
+// 			});
+// 			return {
+// 				...state,
+// 				recipesList: filteredList
+// 			};
+// 		},
+// 		filterByAllergies: (state, action) => {
+// 			const allergiesList = action.payload;
+// 			if (allergiesList.length > 0) {
+// 				console.log(allergiesList);
+
+// 				const selectedList = state.recipesList
+// 					// .map((recipe) => {
+// 					// 	const ingrs = recipe.extendedIngredients.map((ingr) => ingr.name);
+// 					// 	const checked = [];
+// 					// 	for (let ingr of ingrs) {
+// 					// 		for (let allergy of allergiesList) {
+// 					// 			if (ingr.includes(allergy)) {
+// 					// 				checked.push(allergy);
+// 					// 			}
+// 					// 		}
+// 					// 	}
+// 					// 	return {
+// 					// 		...recipe,
+// 					// 		allergyCheck: checked.length > 0
+// 					// 	};
+// 					// })
+// 					.filter((recipe) => {
+// 						const ingrs = recipe.extendedIngredients.map((ingr) => ingr.name);
+// 						const danger = [];
+// 						// for (let allergy of allergiesList) {
+// 						// 	if (ingrs.includes(allergy) || ingrs.includes(`${allergy}s`)) {
+// 						// 		danger.push(allergy);
+// 						// 	}
+// 						// }
+// 						for (let ingr of ingrs) {
+// 							for (let allergy of allergiesList) {
+// 								if (ingr.includes(allergy)) {
+// 									danger.push(ingr);
+// 								}
+// 							}
+// 						}
+// 						if (danger.length > 0) {
+// 							return false;
+// 						} else {
+// 							return true;
+// 						}
+// 					});
+
+// 				return {
+// 					...state,
+// 					recipesList: selectedList
+// 				};
+// 			}
+// 			// else {
+// 			// 	return {
+// 			// 		...state,
+// 			// 		recipesList: state.initialList
+// 			// 	};
+// 			// }
+// 		},
+// 		filterByIntolerances: (state, action) => {
+// 			console.log(action.payload);
+// 			const intolerancesArr = action.payload.intolerances;
+// 			const allergiesArr = action.payload.allergies;
+
+// 			if (intolerancesArr.length > 0) {
+// 				const filteredList = state.initialList
+// 					.map((recipe) => {
+// 						const keys = Array.from(Object.keys(recipe));
+// 						const intolList = [];
+// 						for (let key of keys) {
+// 							if (key.includes("Free")) {
+// 								if (recipe[key] === true) {
+// 									intolList.push(`${key.slice(0, -4)}`);
+// 								}
+// 							}
+// 						}
+// 						return {
+// 							...recipe,
+// 							intolFree: intolList
+// 						};
+// 					})
+// 					.filter((recipe) => {
+// 						const check = [];
+// 						for (let intol of intolerancesArr) {
+// 							if (recipe["intolFree"].includes(intol)) {
+// 								check.push(intol);
+// 							}
+// 						}
+// 						if (check.length === intolerancesArr.length) {
+// 							return true;
+// 						} else {
+// 							return false;
+// 						}
+// 					});
+
+// 				return {
+// 					...state,
+// 					recipesList: filteredList
+// 				};
+// 			} else if (intolerancesArr.length === 0) {
+// 				return {
+// 					...state,
+// 					recipesList:
+// 						allergiesArr.length > 0
+// 							? [...state.recipesList]
+// 							: [...state.initialList]
+// 				};
+// 			}
+// 		}
+
+// Inserire chiamata a Server Action translateRecipe
+// const summary = await data["summary"];
+// const analyzedInstructions = await data["analyzedInstructions"];
+// const extendedIngredients = await data["extendedIngredients"];
+
+// const analyzedInstructionsTexts = await analyzedInstructions[0]["steps"].map(
+// 	(step) => {
+// 		const arrTexts = [];
+// 		if (step["step"]) {
+// 			arrTexts.push(step["step"]);
+// 		}
+
+// 		if (step["equipment"].length > 0) {
+// 			step["equipment"].map((tool) => {
+// 				return arrTexts.push(
+// 					`${tool.name[0].toUpperCase()}${tool.name.slice(1)}`
+// 				);
+// 			});
+// 		}
+// 		if (step["ingredients"].length > 0) {
+// 			step["ingredients"].map((ingr) => {
+// 				return arrTexts.push(
+// 					`${ingr.name[0].toUpperCase()}${ingr.name.slice(1)}`
+// 				);
+// 			});
+// 		}
+// 		return arrTexts.join(" | ");
+// 	}
+// );
+
+// const ingredientsNamesList = await extendedIngredients.map((ingredient) => {
+// 	return `${ingredient.original[0].toUpperCase()}${ingredient.original.slice(
+// 		1
+// 	)}`;
+// });
+// const translateSummary = await deeplTranslate([summary], lang);
+// const translateInstructionsText = await deeplTranslate(
+// 	analyzedInstructionsTexts,
+// 	lang
+// );
+// const translateIngredients = await deeplTranslate(ingredientsNamesList, lang);
+
+// const instructionsCompleteArr = await translateInstructionsText.map((elem) =>
+// 	elem.text.split(" | ")
+// );
+
+// const stepsTranslated = await analyzedInstructions[0]["steps"].map(
+// 	(step, index) => {
+// 		const translatedCompleteStep = instructionsCompleteArr[index];
+// 		const equipmentLength = step["equipment"].length;
+// 		const ingredientsLength = step["ingredients"].length;
+
+// 		return {
+// 			...step,
+// 			number: index + 1,
+// 			step: translatedCompleteStep[0],
+// 			equipment:
+// 				step["equipment"].length > 0
+// 					? step["equipment"].map((tool, toolIndex) => {
+// 							const toolsList = translatedCompleteStep.slice(
+// 								1,
+// 								translatedCompleteStep.length - ingredientsLength
+// 							);
+// 							return {
+// 								...tool,
+// 								name: toolsList[toolIndex]
+// 							};
+// 					  })
+// 					: [],
+// 			ingredients:
+// 				step["ingredients"].length > 0
+// 					? step["ingredients"].map((ingr, ingrIndex) => {
+// 							const listIngr = translatedCompleteStep.slice(
+// 								equipmentLength + 1,
+// 								translatedCompleteStep.length + 1
+// 							);
+// 							return {
+// 								...ingr,
+// 								id: ingr.id,
+// 								name: listIngr[ingrIndex]
+// 							};
+// 					  })
+// 					: []
+// 		};
+// 	}
+// );
+
+// const extendedIngrsTranslated = await extendedIngredients.map(
+// 	(ingrObj, indexIngr) => {
+// 		return {
+// 			...ingrObj,
+// 			original: translateIngredients[indexIngr].text
+// 		};
+// 	}
+// );
+
+// const newData = {
+// 	...data,
+// 	summary: translateSummary[0].text,
+// 	analyzedInstructions: [{ ["steps"]: stepsTranslated }],
+// 	extendedIngredients: extendedIngrsTranslated
+// };
+
+// const internalData = recipes.filter(
+// 	(recipe) => String(recipe.id) === String(params.id)
+// );
+// if (internalData.length === 0) {
+// Salvare ricetta tramite reduxDispatch se non presente
+// ...(internalData llo indica) in initialList
+// NO, qui non si ha accesso al context, inserire in SinglePage
+// se non presente
+// }
+// console.log(internalData);

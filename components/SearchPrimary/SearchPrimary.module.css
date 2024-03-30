@@ -1,0 +1,130 @@
+.container {
+	max-width: 100vw;
+	height: 94dvh;
+	display: grid;
+	place-items: start center;
+	background-color: #232323;
+}
+
+.search-part {
+	width: 100dvw;
+	height: 12dvh;
+	display: grid;
+	place-items: center;
+	border: 1px solid transparent;
+}
+
+.results-part {
+	width: 94dvw;
+	height: 80dvh;
+	position: relative;
+	overflow-x: hidden;
+	background-color: #2d2d2d;
+	border: 1px solid transparent;
+	border-radius: 10px;
+	scrollbar-width: none;
+	z-index: 8;
+}
+
+.results-part::-webkit-scrollbar {
+	display: none;
+}
+
+.results-part-title {
+	font-weight: 500;
+	padding: 2%;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	margin: 2%;
+	list-style: none;
+}
+
+.cancel-btn {
+	position: fixed;
+	top: 10%;
+	right: 0%;
+	width: 6dvh;
+	height: 6dvh;
+	display: grid;
+	place-items: center;
+	background: radial-gradient(
+		ellipse at center,
+		black 0,
+		black 2px,
+		rgba(203, 4, 4, 0.95) 1px,
+		2px,
+		rgba(203, 4, 4, 0.95) 100%
+	);
+	background-repeat: repeat;
+	background-position: left center;
+	background-size: 11px 11px;
+	border: 2px solid rgb(100, 2, 3);
+	border-radius: 10px;
+	border-bottom-right-radius: 50% 50%;
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 20% 20%;
+	margin: 6% 3% 0% 0%;
+	box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.85);
+	z-index: 10;
+	filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.775));
+}
+
+.x-icon {
+	width: 1.6em;
+	height: 1.6em;
+	fill: white;
+	stroke: white;
+	stroke-width: 2px;
+}
+
+.straw-leaves {
+	position: absolute;
+	top: -23%;
+	left: 18%;
+	width: 100%;
+	height: 100%;
+	stroke: rgba(5, 54, 5, 0.76);
+	stroke-width: 3px;
+	fill: #025a02;
+	transform: scale(1.2);
+}
+
+.straw-plant-container {
+	position: fixed;
+	top: 15%;
+	right: 0%;
+	width: 6dvh;
+	height: 300px;
+	margin: 6% 3% 0% 0%;
+}
+
+.straw-plant {
+	fill: none;
+	stroke: rgba(1, 140, 1, 0.9);
+	stroke-width: 3px;
+	transform: scaleY(3);
+	transform-origin: 0% 0%;
+	position: absolute;
+	top: 0;
+	overflow: hidden;
+	/* Aggiungere z-index corretto */
+}
+
+.straw-leaf {
+	position: absolute;
+	top: 100%;
+	left: 2%;
+	width: 6dvh;
+	height: 6dvh;
+	overflow: hidden;
+	transform: scale(1.5);
+}
+
+.straw-leaf > path {
+	stroke-width: 4px;
+	filter: brightness(0.9);
+}

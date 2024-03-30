@@ -14,5 +14,3 @@ export default function PrefIconComponent() {
 		</svg>
 	);
 }
-
-// Sostituire con icon user gear in download

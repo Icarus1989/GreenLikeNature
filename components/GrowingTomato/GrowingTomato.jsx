@@ -27,21 +27,7 @@ export default function GrowingTomato({
 	yPerc,
 	autoplay
 }) {
-	// const [tomatoOpts, setTomatoOpts] = useState({
-	// 	id: id,
-	// 	lightPerc: lightPerc,
-	// 	growingPerc: growingPerc,
-	// 	xPerc: xPerc,
-	// 	yPerc: yPerc,
-	// 	animPlay: autoplay
-	// });
-	// const [animPlay, setAnimPlay] = useState(autoplay);
-
-	// console.log(autoplay);
-
 	useEffect(() => {
-		// console.log(tomatoOpts.animPlay !== false);
-
 		const tomatoPathAnim = anime({
 			targets: `#firstTomatoPath${id}`,
 			d: [
@@ -202,7 +188,6 @@ export default function GrowingTomato({
 				style={{
 					transform: `scale(${growingPerc}, ${growingPerc}) translate(${xPerc}, ${yPerc})`
 				}}
-				// style={{ transform: "scale(0.23, 0.23) translate(23%, 52%)" }}
 			>
 				<path
 					id={`firstTomatoPath${id}`}
@@ -307,3 +292,5 @@ export default function GrowingTomato({
 		</div>
 	);
 }
+
+// clean

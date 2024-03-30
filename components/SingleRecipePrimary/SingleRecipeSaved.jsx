@@ -1,10 +1,26 @@
 "use client";
 
-import { Fragment, useState, useRef, useEffect, useReducer } from "react";
+import {
+	Fragment,
+	useState,
+	useRef,
+	useEffect,
+	useReducer,
+	useContext
+} from "react";
 import parse from "html-react-parser";
-import styles from "./SingleRecipe.module.css";
+import styles from "./SingleRecipePrimary.module.css";
 import Link from "next/link";
+import Image from "next/image";
 import singleRecipeReducer from "./recipeReducer";
+import {
+	GeneralContext,
+	GeneralDispatchContext
+} from "@/app/generalContext/GeneralContext";
+
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { addRecipe } from "@/lib/features/recipes/recipesSlice";
+
 import { FaArrowLeft } from "react-icons/fa";
 import {
 	PiClockCountdownBold,
@@ -14,7 +30,9 @@ import {
 	PiCheckBold,
 	PiArrowCounterClockwiseBold
 } from "react-icons/pi";
+
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+
 import {
 	circleStrokeGradient,
 	circleFillGradient,
@@ -24,34 +42,60 @@ import {
 	knifeFillGradient,
 	knifeStrokeGradient
 } from "./Defs";
+import { useParams } from "next/navigation";
 
-export default function SingleRecipe({ data }) {
-	// console.log(data);
-	const [saved, setSaved] = useState(false);
+export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
+	console.log(data);
+	const params = useParams();
+
+	const { recipesList, ingrList } = useAppSelector((state) => state.recipes);
+	const dispatchRedux = useAppDispatch();
+
+	const actualData = recipesList.filter((elem) => {
+		return String(elem.id) === String(params.id);
+	})[0];
+
+	const [recipeData, setRecipeData] = useState(actualData);
 	const [goDown, setGoDown] = useState(false);
-	const [recipeState, setRecipeState] = useState({
-		ingredients: data.extendedIngredients.map((ingredient, index) => {
-			return { [`${ingredient.name}_${index}`]: false };
-		}),
-		steps: data.analyzedInstructions[0].steps.map((step) => {
-			return { [`step-${step.number}`]: false };
-		}),
-		complete: { confirm: false, timestamp: "none" }
-	});
 
-	// testReducer
+	const ingredients = recipeData.extendedIngredients
+		? recipeData.extendedIngredients
+		: {
+				"Nessun ingrediente": true
+		  };
+	const steps =
+		recipeData.analyzedInstructions.length > 0
+			? recipeData.analyzedInstructions[0].steps
+			: [
+					{
+						steps: [
+							{
+								number: 1,
+								equipment: [],
+								ingredients: [],
+								step: "Nessuno step"
+							}
+						]
+					}
+			  ];
 
 	const [recipe, dispatch] = useReducer(singleRecipeReducer, {
-		ingredients: data.extendedIngredients.map((ingredient, index) => {
+		ingredients: ingredients.map((ingredient, index) => {
 			return { [`${ingredient.name}_${index}`]: false };
 		}),
-		steps: data.analyzedInstructions[0].steps.map((step) => {
+		steps: steps.map((step) => {
 			return { [`step-${step.number}`]: false };
 		}),
 		complete: { confirm: false, timestamp: "none" }
 	});
 
-	// testReducer
+	const generalDispatch = useContext(GeneralDispatchContext);
+	const settings = useContext(GeneralContext);
+	const savedList = settings["saved-recipes"];
+
+	const savedRecipe = savedList.filter((elem) => {
+		return String(elem.id) === String(recipeData.id);
+	});
 
 	const btnsRef = useRef(null);
 	const recipeRef = useRef(null);
@@ -61,51 +105,46 @@ export default function SingleRecipe({ data }) {
 		hidden: { opacity: 0 },
 		visible: { opacity: 1.0, transition: { duration: 0.8 } }
 	};
-	// console.log(data.summary.replace(/(<([^>]+)>)/gi, ""));
-	const newSummary = data.summary.replaceAll(/\./g, ".\n");
+	// const newSummary = recipeData.summary.replaceAll(/\./g, ".\n");
+	const newSummary = recipeData["summary"];
 	const cleanSummary = parse(newSummary, {
 		replace(domNode) {
-			// console.dir(domNode, { depth: null });
 			if (domNode.name === "a") {
 				return <b>{domNode.children[0].data}</b>;
 			}
 		}
 	});
-	// <--- da tenere per english vers
-	// console.log(cleanSummary);
-	// const cleanSummary = data.summary;
 
-	// Per context Redux
 	function handleDelete() {
-		setSaved(false);
+		generalDispatch({
+			type: "delete",
+			id: recipeData.id
+		});
 		// gestire localStorage
 	}
-	function handleSaved() {
-		setSaved(true);
-		// gestire localStorage
-	}
-	// Per context Redux
 
-	// function handleChange(event) {
-	// 	const target = event.target;
-	// 	const value = target.checked;
-	// 	const name = target.name;
-	// 	const category = name.split("-")[0];
-	// 	const detail = category === "ingredient" ? name.split("-")[1] : name;
-	// 	setRecipeState((prevRecState) => {
-	// 		const key = `${category}s`;
-	// 		return {
-	// 			...prevRecState,
-	// 			[key]: prevRecState[key].map((field) => {
-	// 				if (Object.keys(field)[0] === detail) {
-	// 					return { [detail]: value };
-	// 				} else {
-	// 					return field;
-	// 				}
-	// 			})
-	// 		};
-	// 	});
-	// }
+	function handleSave() {
+		if (settings["saved-recipes"].length === 8) {
+			const updateList = settings["saved-recipes"]
+				.sort((a, b) => {
+					return a.savedAt < b.savedAt;
+				})
+				.filter((elem, index) => {
+					return index !== 0;
+				});
+			generalDispatch({
+				type: "rewrite",
+				list: [...updateList, { ...recipeData, savedAt: Date.now() }]
+			});
+		} else {
+			generalDispatch({
+				type: "save",
+				recipe: { ...recipeData, savedAt: Date.now() }
+			});
+		}
+
+		// gestire localStorage
+	}
 
 	function handleChangeRecipe(target, recipe) {
 		dispatch({
@@ -115,45 +154,12 @@ export default function SingleRecipe({ data }) {
 		});
 	}
 
-	console.log(recipe);
-
 	const savedMoment = new Date(Date.now()).toLocaleDateString("it-IT", {
 		weekday: "long",
 		year: "numeric",
 		month: "long",
 		day: "numeric"
 	});
-
-	function handleComplete(value) {
-		const ts = value ? savedMoment : "none";
-		// if (ts === "none") {
-		// 	console.log("scroll");
-		// 	window.scrollTo({
-		// 		top: 0,
-		// 		left: 0,
-		// 		behavior: "smooth"
-		// 	});
-		// } else {
-		// 	recipeRef.current.scrollIntoView({
-		// 		behavior: "smooth",
-		// 		block: "end"
-		// 	});
-		// }
-		setRecipeState(() => {
-			return {
-				ingredients: data.extendedIngredients.map((ingredient, index) => {
-					return { [`${ingredient.name}_${index}`]: value };
-				}),
-				steps: data.analyzedInstructions[0].steps.map((step) => {
-					return { [`step-${step.number}`]: value };
-				}),
-				complete: {
-					confirm: value,
-					timestamp: ts
-				}
-			};
-		});
-	}
 
 	function handleCompleteRecipe(value, recipe) {
 		const ts = value ? savedMoment : "none";
@@ -163,6 +169,18 @@ export default function SingleRecipe({ data }) {
 			text: ts,
 			recipe: recipe
 		});
+		if (value === true) {
+			generalDispatch({
+				type: "complete_recipe",
+				id: recipeData.id
+			});
+		} else if (value === false) {
+			generalDispatch({
+				type: "reset_recipe",
+				id: recipeData.id
+			});
+		}
+		// Far leggere GeneralContext al Component per complete
 	}
 
 	const { scrollYProgress } = useScroll({
@@ -189,7 +207,6 @@ export default function SingleRecipe({ data }) {
 		const ingrArr = recipe["ingredients"];
 		const stepArr = recipe["steps"];
 		let checkCount = 0;
-		// Sostituire loop con filter arr?
 		for (let obj of ingrArr) {
 			for (const [key, value] of Object.entries(obj)) {
 				if (value) {
@@ -208,15 +225,6 @@ export default function SingleRecipe({ data }) {
 			checkCount === ingrArr.length + stepArr.length &&
 			!recipe.complete.confirm
 		) {
-			// setRecipeState((prevRecState) => {
-			// 	return {
-			// 		...prevRecState,
-			// 		complete: {
-			// 			confirm: true,
-			// 			timestamp: savedMoment
-			// 		}
-			// 	};
-			// });
 			const ts = savedMoment;
 			dispatch({
 				type: "completed",
@@ -228,15 +236,6 @@ export default function SingleRecipe({ data }) {
 			checkCount < ingrArr.length + stepArr.length &&
 			recipe.complete.confirm === true
 		) {
-			// setRecipeState((prevRecState) => {
-			// 	return {
-			// 		...prevRecState,
-			// 		complete: {
-			// 			confirm: false,
-			// 			timestamp: "none"
-			// 		}
-			// 	};
-			// });
 			const ts = "none";
 			dispatch({
 				type: "completed",
@@ -252,11 +251,52 @@ export default function SingleRecipe({ data }) {
 		}
 	}, [recipe]);
 
-	// console.log(recipeState);
+	useEffect(() => {
+		const lang = "it";
+		// <--- leggere in seguito da object Navigator
+		let ignore = false;
+
+		async function translate(data) {
+			const result = await translateRecipe(data, lang);
+			if (!ignore) {
+				setRecipeData(result);
+			}
+		}
+		translate(actualData);
+
+		return () => {
+			ignore = true;
+		};
+	}, []);
 
 	return (
-		<section ref={recipeRef} className={styles["single-recipe"]}>
-			<h1 className={styles["main-title"]}>{data.title}</h1>
+		<section
+			onLoad={() => {
+				if (saved === false) {
+					const newReduxRecipe = {
+						id: data.id,
+						title: data.title,
+						aggregateLikes: data.aggregateLikes,
+						analyzedInstructions: data.analyzedInstructions,
+						extendedIngredients: data.extendedIngredients,
+						image: data.image,
+						readyInMinutes: data.readyInMinutes,
+						servings: data.servings,
+						summary: data.summary,
+						vegan: data.vegan,
+						vegetarian: data.vegetarian
+					};
+					dispatchRedux(addRecipe(newReduxRecipe));
+				}
+				return generalDispatch({
+					type: "add_recent",
+					recipe: recipeData
+				});
+			}}
+			ref={recipeRef}
+			className={styles["single-recipe"]}
+		>
+			<h1 className={styles["main-title"]}>{recipeData.title}</h1>
 			<div className={styles["info-container"]}>
 				<div className={styles["first-info"]}>
 					<div className={styles["images-part"]}>
@@ -274,7 +314,13 @@ export default function SingleRecipe({ data }) {
 							</defs>
 						</svg>
 						<div className={styles["image-container"]}>
-							<img className={styles["image"]} src={data.image} />
+							<Image
+								className={styles["image"]}
+								src={recipeData.image}
+								alt={`${recipeData.title} sample image`}
+								width="556"
+								height="370"
+							/>
 						</div>
 					</div>
 				</div>
@@ -311,12 +357,12 @@ export default function SingleRecipe({ data }) {
 						</Link>
 					</button>
 					<button
-						onClick={saved ? handleDelete : handleSaved}
+						onClick={savedRecipe.length === 0 ? handleSave : handleDelete}
 						className={styles["save-btn"]}
 					>
 						<PiBookmarkSimpleFill
 							style={
-								saved
+								savedRecipe.length > 0
 									? {
 											fill: "rgba(255, 255, 255, 0.0)",
 											stroke: "rgba(23, 180, 23, 0.9)"
@@ -342,7 +388,7 @@ export default function SingleRecipe({ data }) {
 								d="M 27.357 2.597 C 27.357 2.597 36.131555372986355 43.06530175220627 38.853 72.694 C 43.48448106819192 123.1174970087963 53.86238979542882 246.75777437929167 43.098 278.383 C 39.332237369980454 289.44661763850036 30.903277760119884 287.249884177024 27.329 298.012 C 18.100924628881586 325.7976458373837 28.13894483244894 433.846450112959 33.281 465.739 C 35.391163237416244 478.82685770012426 44.29320888142333 488.49468569125435 41.207 492.869 C 38.616990886118096 496.54001332473985 26.780806877316362 499.22172519030977 21.334 494.017 C -5.729955799751776 468.15589354384446 27.357 2.597 27.357 2.597 C 27.357000000000003 2.5970000000000004 27.357 2.597 27.357 2.597 C 27.357 2.597 27.356999999999996 2.5969999999999995 27.357 2.597"
 								transform="matrix(1, 0, 0, 1, 5.684341886080802e-14, 0)"
 							/>
-							{saved && (
+							{savedRecipe.length > 0 && (
 								<motion.path
 									className={styles["green-sauce"]}
 									fill="url(#greenSauce)"
@@ -365,21 +411,21 @@ export default function SingleRecipe({ data }) {
 				<h3 className={styles["section-title"]}>Info:</h3>
 				<div className={styles["text-container"]}>
 					<p className={styles["time"]}>
-						{<PiClockCountdownBold />} <span>{data.readyInMinutes}'</span>
+						{<PiClockCountdownBold />} <span>{recipeData.readyInMinutes}'</span>
 					</p>
 					<p className={styles["servings"]}>
-						{<PiUserBold />} <span>{data.servings}</span>
+						{<PiUserBold />} <span>{recipeData.servings}</span>
 					</p>
 					<p className={styles["likes"]}>
-						{<PiThumbsUpBold />} <span>{data.aggregateLikes}</span>
+						{<PiThumbsUpBold />} <span>{recipeData.aggregateLikes}</span>
 					</p>
-					{data.vegetarian ? (
+					{recipeData.vegan ? (
 						<p className={styles["diet"]}>
-							<span>Vegetariano</span> {<PiCheckBold />}
+							<span>Vegano</span> {<PiCheckBold />}
 						</p>
 					) : (
 						<p className={styles["diet"]}>
-							<span>Vegano</span> {<PiCheckBold />}
+							<span>Vegetariano</span> {<PiCheckBold />}
 						</p>
 					)}
 				</div>
@@ -390,9 +436,8 @@ export default function SingleRecipe({ data }) {
 			</div>
 			<div className={styles["ingredients"]}>
 				<h3 className={styles["section-title"]}>Ingredienti:</h3>
-				<ul className={styles["total-ingrediets"]}>
-					{data.extendedIngredients.map((ingredient, index) => {
-						// console.log(ingredient);
+				<ul className={styles["total-ingredients"]}>
+					{recipeData.extendedIngredients.map((ingredient, index) => {
 						return (
 							<li
 								key={`${ingredient.id}${index}`}
@@ -405,10 +450,6 @@ export default function SingleRecipe({ data }) {
 									className={styles["ingredient-checkbox"]}
 									checked={
 										recipe.ingredients[index][`${ingredient.name}_${index}`]
-										// recipe.ingredients.filter((ingr,) => {
-
-										// })
-										// Object.values(recipe.ingredients[index])
 									}
 									onChange={(event) => handleChangeRecipe(event.target, recipe)}
 								/>
@@ -421,76 +462,78 @@ export default function SingleRecipe({ data }) {
 				</ul>
 			</div>
 
-			<div className={styles["instructions-container"]}>
-				<h3 className={styles["section-title"]}>Preparazione:</h3>
-				<ul className={styles["instructions-list"]}>
-					{data.analyzedInstructions[0].steps.map((step, index) => {
-						return (
-							<li key={`number${step.number}`} className={styles["step"]}>
-								<details open={!recipe.complete.confirm}>
-									<summary className={styles["step-title"]}>
-										{/* <label htmlFor={`step${step.number}`}> */}
-										Passo {step.number} /{" "}
-										{data.analyzedInstructions[0].steps.length}
-										{/* </label> */}
-										<input
-											id={`step${step.number}`}
-											name={`step-${step.number}`}
-											type="checkbox"
-											className={styles["step-checkbox"]}
-											// checked={recipeState["complete"].confirm}
-											checked={recipe.steps[index][`step-${step.number}`]}
-											onChange={(event) =>
-												handleChangeRecipe(event.target, recipe)
-											}
-										/>
-									</summary>
-									{step.equipment.length > 0 && (
-										<div className={styles["equipment"]}>
-											<h5 className={styles["equipment-title"]}>
-												+ Strumenti:
-											</h5>
-											<ul className={styles["equipment-list"]}>
-												{step.equipment.map((tool) => {
-													return (
-														<li className={styles["tool-elem"]} key={tool.name}>
-															<p className={styles["tool-name"]}>
-																{tool.name}
-																{tool.temperature &&
-																	` - temperatura: ${tool.temperature.number}° ${tool.temperature.unit}`}
-															</p>
-														</li>
-													);
-												})}
-											</ul>
-										</div>
-									)}
-									{step.ingredients.length > 0 && (
-										<div className={styles["step-ingredients"]}>
-											<h5 className={styles["ingredients-title"]}>
-												+ Ingredienti:
-											</h5>
-											<ul className={styles["ingredients-list"]}>
-												{step.ingredients.map((ingr, index) => {
-													return (
-														<li
-															className={styles["ingredient-name"]}
-															key={`${ingr.id}${index}`}
-														>
-															{ingr.name}
-														</li>
-													);
-												})}
-											</ul>
-										</div>
-									)}
-									<p className={styles["step-text"]}>{step.step}</p>
-								</details>
-							</li>
-						);
-					})}
-				</ul>
-			</div>
+			{recipeData.analyzedInstructions.length > 0 && (
+				<div className={styles["instructions-container"]}>
+					<h3 className={styles["section-title"]}>Preparazione:</h3>
+					<ul className={styles["instructions-list"]}>
+						{/* Capire come inserire alternativa in mancanza di steps */}
+						{steps.map((step, index) => {
+							return (
+								<li key={`number${step.number}`} className={styles["step"]}>
+									<details open={!recipe.complete.confirm}>
+										<summary className={styles["step-title"]}>
+											Passo {step.number} / {steps.length}
+											<input
+												id={`step${step.number}`}
+												name={`step-${step.number}`}
+												type="checkbox"
+												className={styles["step-checkbox"]}
+												checked={recipe.steps[index][`step-${step.number}`]}
+												onChange={(event) =>
+													handleChangeRecipe(event.target, recipe)
+												}
+											/>
+										</summary>
+										{step.equipment.length > 0 && (
+											<div className={styles["equipment"]}>
+												<h5 className={styles["equipment-title"]}>
+													+ Strumenti:
+												</h5>
+												<ul className={styles["equipment-list"]}>
+													{step.equipment.map((tool) => {
+														return (
+															<li
+																className={styles["tool-elem"]}
+																key={tool.name}
+															>
+																<p className={styles["tool-name"]}>
+																	{tool.name}
+																	{tool.temperature &&
+																		` - temperatura: ${tool.temperature.number}° ${tool.temperature.unit}`}
+																</p>
+															</li>
+														);
+													})}
+												</ul>
+											</div>
+										)}
+										{step.ingredients.length > 0 && (
+											<div className={styles["step-ingredients"]}>
+												<h5 className={styles["ingredients-title"]}>
+													+ Ingredienti:
+												</h5>
+												<ul className={styles["ingredients-list"]}>
+													{step.ingredients.map((ingr, index) => {
+														return (
+															<li
+																className={styles["ingredient-name"]}
+																key={`${ingr.id}${index}`}
+															>
+																{ingr.name}
+															</li>
+														);
+													})}
+												</ul>
+											</div>
+										)}
+										<p className={styles["step-text"]}>{step.step}</p>
+									</details>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			)}
 
 			<div className={styles["controls-container"]}>
 				<button
@@ -517,33 +560,3 @@ export default function SingleRecipe({ data }) {
 		</section>
 	);
 }
-
-// function singleRecipeReducer(state, action) {
-// 	// da usare per recipeState
-// 	// change
-// 	// reset / complete ?
-// 	if (action.type === "change") {
-// 		const value = action.target.checked;
-// 		const name = action.target.name;
-// 		const category = name.split("-")[0];
-// 		const detail = category === "ingredient" ? name.split("-")[1] : name;
-// 		const key = `${category}s`;
-// 		return {
-// 			...state,
-// 			[key]: state[key].map((field) => {
-// 				if (Object.keys(field)[0] === detail) {
-// 					return { [detail]: value };
-// 				} else {
-// 					return field;
-// 				}
-// 			})
-// 		};
-// 		// console.log(changedRecipe);
-// 		// } else if (action.type === "complete") {
-// 		// } else if (action.type === "reset") {
-// 	} else {
-// 		throw Error("Unknown action: " + action.type);
-// 	}
-// }
-
-function completeReducer() {}

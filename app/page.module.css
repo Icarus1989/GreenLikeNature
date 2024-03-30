@@ -6,8 +6,7 @@
 	padding: 6rem;
 	min-height: 100vh;
 	touch-action: none;
-
-	/* scroll-snap-type: x mandatory; */
+	overflow: hidden;
 }
 
 .description {
@@ -237,5 +236,4 @@
 	background-color: #232323;
 	user-select: none;
 	-webkit-user-select: none;
-	/* provare per bloccare long press  */
 }
