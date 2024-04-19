@@ -1,14 +1,16 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { useRef, useContext } from "react";
-import { GoHome } from "react-icons/go";
-import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
-import { motion } from "framer-motion";
 
 import {
 	GeneralContext,
 	GeneralDispatchContext
 } from "@/app/generalContext/GeneralContext";
+
+import { motion } from "framer-motion";
+import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
+import { GoHome } from "react-icons/go";
 
 import styles from "./VisualOption.module.css";
 
@@ -23,6 +25,8 @@ export default function VisualOption() {
 		settings["tomato-settings"]["recipes-type"] === "seasonal";
 
 	const checkSaved = settings["tomato-settings"]["recipes-type"] === "saved";
+
+	const { t } = useTranslation();
 
 	const pathVariants = {
 		hidden: {
@@ -83,9 +87,7 @@ export default function VisualOption() {
 					<TomatoLeaf />
 					{<GoHome className={styles["legend-svg"]} />}
 				</legend>
-				<p className={styles["description"]}>
-					Seleziona le ricette da visualizzare nella Home Page:
-				</p>
+				<p className={styles["description"]}>{t("home_select")}</p>
 				<div className={styles["inputs-container"]}>
 					<label
 						htmlFor="radioInputSeason"

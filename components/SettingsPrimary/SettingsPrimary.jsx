@@ -1,20 +1,30 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { useState, Suspense, Fragment } from "react";
 import UserOption from "../UserOption/UserOption";
 import VisualOption from "../VisualOption/VisualOption";
 import SavedRecipes from "../SavedRecipes/SavedRecipes";
 import AllergiesOption from "../AllergiesOption/AllergiesOption";
+import LanguageOption from "../LanguageOption/LanguageOption";
 import GrowingTomato from "../GrowingTomato/GrowingTomato";
 
 import styles from "./SettingsPrimary.module.css";
 
-export default function SettingsPrimary({ seasonalData, getSpoonData }) {
+export default function SettingsPrimary({
+	seasonalData,
+	getSpoonData,
+	translateToEng,
+	translateList
+}) {
 	const [animationState, setAnimationState] = useState({
 		firstPlant: false,
 		secondPlant: false,
-		thirdPlant: false
+		thirdPlant: false,
+		fourthPlant: false
 	});
+
+	const { t } = useTranslation();
 
 	function handleClickSecond() {
 		setAnimationState((prevValue) => {
@@ -34,6 +44,15 @@ export default function SettingsPrimary({ seasonalData, getSpoonData }) {
 		});
 	}
 
+	function handleClickFourth() {
+		setAnimationState((prevValue) => {
+			return {
+				...prevValue,
+				fourthPlant: true
+			};
+		});
+	}
+
 	return (
 		<section
 			onContextMenu={(event) => event.preventDefault()}
@@ -41,10 +60,7 @@ export default function SettingsPrimary({ seasonalData, getSpoonData }) {
 		>
 			<div className={styles["title-section"]}>
 				<h2 className={styles["title"]}>Tomato Settings</h2>
-				<p className={styles["description"]}>
-					Personalizza la tua esperienza modificando le opzioni per le varie
-					pagine:
-				</p>
+				<p className={styles["description"]}>{t("introduction")}</p>
 			</div>
 			<Fragment>
 				<Fragment key="firstPlant">
@@ -96,8 +112,28 @@ export default function SettingsPrimary({ seasonalData, getSpoonData }) {
 						<AllergiesOption
 							seasonalData={seasonalData}
 							getSpoonData={getSpoonData}
+							translateToEng={translateToEng}
+							translateList={translateList}
 							onStartAnim={() => handleClickThird()}
 						/>
+					</Suspense>
+				</UserOption>
+			</Fragment>
+
+			<Fragment>
+				<Fragment key="thirdPlant">
+					<GrowingTomato
+						id="fourthPlant"
+						lightPerc="34%"
+						growingPerc="0.20"
+						xPerc="28%"
+						yPerc="63%"
+						autoplay={animationState.fourthPlant}
+					/>
+				</Fragment>
+				<UserOption>
+					<Suspense fallback={<p>Loading languages...</p>}>
+						<LanguageOption onStartAnim={() => handleClickFourth()} />
 					</Suspense>
 				</UserOption>
 			</Fragment>

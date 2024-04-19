@@ -19,6 +19,8 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addRecipe } from "@/lib/features/recipes/recipesSlice";
 // test
 
+import { useTranslation } from "react-i18next";
+
 import {
 	motion,
 	AnimatePresence,
@@ -34,14 +36,100 @@ import { Modal } from "../Modal/Modal";
 
 import styles from "./MainPrimary.module.css";
 import bkgImage from "../../public/retina-wood.png";
+import altImage from "../../public/plus.svg";
 import { GoX } from "react-icons/go";
 
 const netwrokError = null;
 
-export default function MainPrimary({ recipes, searchByQuery }) {
-	const { recipesList, ingrList } = useAppSelector((state) => state.recipes);
+export default function MainPrimary({
+	defaultRecipes,
+	// savedRecipes,
+	searchByQuery
+}) {
+	const { recipesList, ingrList, seasonalRecipes } = useAppSelector(
+		(state) => state.recipes
+	);
+
+	const { t } = useTranslation();
+
+	const generalDispatch = useContext(GeneralDispatchContext);
+	const settings = useContext(GeneralContext);
+
+	const allergens =
+		settings["tomato-settings"]["allergens-list"].length > 0
+			? settings["tomato-settings"]["allergens-list"]
+					.map((elem) => elem.toLowerCase())
+					.join(",")
+			: "";
+
+	// Attivare quando pronto intolerances nel GlobalContext --->
+	const intolerances =
+		settings["tomato-settings"]["intolerances-list"].length > 0
+			? settings["tomato-settings"]["intolerances-list"]
+					.map((elem) => elem.toLowerCase())
+					.join(",")
+			: "";
+	// <--- Attivare quando pronto intolerances nel GlobalContext
+
+	const savedRecipes = settings["saved-recipes"];
+
+	// console.log(testSaved);
+
+	// Sistemare --->
+
+	const emptyIndications = [
+		"Cerca una ricetta...",
+		"Search for a recipe...",
+		"Nach einem Rezept suchen...",
+		"Zoek een recept...",
+		"Rechercher une recette...",
+		"Busca una receta...",
+		"Procure uma receita...",
+		"Sök efter ett recept..."
+	];
+	// const savedRecipesComplete = [...new Array(8)].map((elem, index) => {
+	// 	return savedRecipes[index] !== undefined || savedRecipes[index] !== null
+	// 		? savedRecipes[index]
+	// 		: {
+	// 				id: `${self.crypto.randomUUID()}`,
+	// 				title: emptyIndications[index],
+	// 				image: altImage,
+	// 				readyInMinutes: 0,
+	// 				extendedIngredients: [].length,
+	// 				likes: 0
+	// 		  };
+	// });
+
+	const [saved, setSaved] = useState(
+		[...new Array(8)].map((elem, index) => {
+			return savedRecipes[index] !== undefined || savedRecipes[index] !== null
+				? savedRecipes[index]
+				: {
+						id: `${self.crypto.randomUUID()}`,
+						title: emptyIndications[index],
+						image: altImage,
+						readyInMinutes: 0,
+						extendedIngredients: [].length,
+						likes: 0
+				  };
+		})
+	);
+
+	// const savedRecipesComplete = defaultRecipes;
+	// console.log(savedRecipesComplete);
+
+	const settingsType = settings["tomato-settings"]["recipes-type"];
+	const recipes = settingsType === "seasonal" ? seasonalRecipes : saved;
+	// <--- aggiungere defaultRecipes se saved 0
+	// <--- modificare savedRecipes in modo che se >=1 o < 8...
+	// si aggiunga indicazione al salvataggio e search come link
+	// nel Modal
 
 	console.log("From Main");
+	console.log("saved ---> ");
+	console.log(recipes);
+	console.log(seasonalRecipes);
+	// console.log(seasonalRecipes);
 
 	const [recipeData, setRecipeData] = useState({
 		id: recipes[0].id,
@@ -64,25 +152,6 @@ export default function MainPrimary({ recipes, searchByQuery }) {
 
 	const sectionRef = useRef(null);
 	const titleRef = useRef(null);
-
-	const generalDispatch = useContext(GeneralDispatchContext);
-	const settings = useContext(GeneralContext);
-
-	const allergens =
-		settings["tomato-settings"]["allergens-list"].length > 0
-			? settings["tomato-settings"]["allergens-list"]
-					.map((elem) => elem.toLowerCase())
-					.join(",")
-			: "";
-
-	// Attivare quando pronto intolerances nel GlobalContext --->
-	// const intolerances =
-	// 	settings["tomato-settings"]["intolerances-list"].length > 0
-	// 		? settings["tomato-settings"]["intolerances-list"]
-	// 				.map((elem) => elem.toLowerCase())
-	// 				.join(",")
-	// 		: "";
-	// <--- Attivare quando pronto intolerances nel GlobalContext
 
 	const filteredList = recipesList.filter((recipe) =>
 		recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -112,10 +181,10 @@ export default function MainPrimary({ recipes, searchByQuery }) {
 		event.preventDefault();
 		// searchByQuery(searchTerm);
 		if (searchTerm.length > 0) {
-			const response = await searchByQuery(searchTerm, allergens, "");
+			// const response = await searchByQuery(searchTerm, allergens, "");
 
 			// Attivare quando pronto intolerances nel GlobalContext --->
-			// const response = await searchByQuery(searchTerm, allergens, intolerances);
+			const response = await searchByQuery(searchTerm, allergens, intolerances);
 			// <--- Attivare quando pronto intolerances nel GlobalContext
 
 			// console.log(response);
@@ -533,14 +602,16 @@ export default function MainPrimary({ recipes, searchByQuery }) {
 							className={styles["text-container"]}
 						>
 							<p className={styles["text-info"]}>
-								...oppure ruota e scegline una di stagione:
+								{/* ...oppure ruota e scegline una di stagione: */}
+								{t("suggest_seasonal")}
 							</p>
 							{/* Text Alternativo qui per ricette salvate */}
 							<button
 								onClick={handleOpenDetails}
 								className={styles["modal-btn"]}
 							>
-								Dettagli
+								{/* Dettagli */}
+								{t("details_btn")}
 							</button>
 						</motion.div>
 					)}

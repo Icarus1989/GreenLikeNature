@@ -1,7 +1,10 @@
+import TranslationsProvider from "../i18nProvider/TranslationsProvider";
+// import initTranslations from "@/i18n";
+import initTranslations from "../i18n";
 import MainPrimary from "@/components/MainPrimary/MainPrimary";
-import { getData, seasonalFrtAndVgt, seasonalData } from "./ServerComponent";
-import newRecipes from "../spoonTempData/tempData.json";
-import testSeasonalList from "../spoonTempData/testingSeasonalList.json";
+import { getData, seasonalFrtAndVgt, seasonalData } from "../ServerComponent";
+import newRecipes from "@/spoonTempData/tempData.json";
+import testSeasonalList from "@/spoonTempData/testingSeasonalList.json";
 import styles from "./page.module.css";
 
 import { Inter } from "next/font/google";
@@ -31,15 +34,32 @@ export async function searchByQuery(text, allergens, intols) {
 	return json;
 }
 
-export default async function HomePage() {
+const i18nNamespaces = ["main"];
+
+export default async function HomePage({ params: { locale } }) {
 	const now = new Date();
+
+	const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
 	// ATTENZIONE DETERMINARE seasonalList da lista completa
 	// nel Redux Context
 
+	console.log("Here");
+	console.log(locale);
+
 	return (
-		<main className={styles["main-element"]}>
-			<MainPrimary recipes={testSeasonalList} searchByQuery={searchByQuery} />
-		</main>
+		<TranslationsProvider
+			namespaces={i18nNamespaces}
+			locale={locale}
+			resources={resources}
+		>
+			<main className={styles["main-element"]}>
+				<MainPrimary
+					defaultRecipes={testSeasonalList}
+					savedRecipes={testSeasonalList}
+					searchByQuery={searchByQuery}
+				/>
+			</main>
+		</TranslationsProvider>
 	);
 }

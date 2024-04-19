@@ -95,28 +95,34 @@ export const Modal = forwardRef(
 					>
 						<Link
 							className={styles["modal-link"]}
-							href={`/search/${id}${recipePresence ? "/saved" : ""}`}
+							href={
+								id !== -1
+									? `/search/${id}${recipePresence ? "/saved" : ""}`
+									: "/search"
+							}
 						>
 							<IoIosArrowForward />
 						</Link>
 					</motion.label>
 
-					<motion.div
-						className={styles["modal-recipe-infos"]}
-						variants={textVariant}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<p className={styles["modal-text"]}>
-							{ingrNum} Ingr{ingrNum > 0 ? "s" : ""}
-						</p>
-						<p className={styles["modal-text"]}>{time} min.</p>
-						<p className={styles["modal-text"]}>
-							<AiOutlineLike />
-							{likes}{" "}
-						</p>
-					</motion.div>
+					{id !== -1 && (
+						<motion.div
+							className={styles["modal-recipe-infos"]}
+							variants={textVariant}
+							initial="hidden"
+							animate="visible"
+							exit="exit"
+						>
+							<p className={styles["modal-text"]}>
+								{ingrNum} Ingr{ingrNum > 0 ? "s" : ""}
+							</p>
+							<p className={styles["modal-text"]}>{time} min.</p>
+							<p className={styles["modal-text"]}>
+								<AiOutlineLike />
+								{likes}{" "}
+							</p>
+						</motion.div>
+					)}
 				</div>
 				<motion.button
 					variants={textVariant}

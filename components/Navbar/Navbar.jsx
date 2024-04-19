@@ -1,10 +1,18 @@
 "use client";
 
+// ATTENZIONE --->
+// aggiungere a path in svgs la parte della language da i18
+
 import { Fragment, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./Navbar.module.css";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import {
+	useRouter,
+	usePathname,
+	useSearchParams,
+	useParams
+} from "next/navigation";
 
 export default function Navbar() {
 	const [x, setX] = useState(0);
@@ -12,8 +20,10 @@ export default function Navbar() {
 
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
+	const params = useParams();
 
-	const urlPath = `/${pathname.split("/")[1]}`;
+	// const urlPath = `/${pathname.slice(1).split("/")[1]}`;
+	const urlPath = pathname.split("/").slice(0, 3).join("/");
 
 	const homeRef = useRef(null);
 	const searchRef = useRef(null);
@@ -21,7 +31,8 @@ export default function Navbar() {
 
 	const svgs = [
 		{
-			path: "/",
+			// path: "/",
+			path: `/${params.locale}`,
 			ref: homeRef,
 			d: "M12.97 2.59a1.5 1.5 0 0 0-1.94 0l-7.5 6.363A1.5 1.5 0 0 0 3 10.097V19.5A1.5 1.5 0 0 0 4.5 21h4.75a.75.75 0 0 0 .75-.75V14h4v6.25c0 .414.336.75.75.75h4.75a1.5 1.5 0 0 0 1.5-1.5v-9.403a1.5 1.5 0 0 0-.53-1.144l-7.5-6.363Z",
 			fill: "none",
@@ -33,7 +44,8 @@ export default function Navbar() {
 			exit: "exit"
 		},
 		{
-			path: "/search",
+			// path: "/search",
+			path: `/${params.locale}/search`,
 			ref: searchRef,
 			d: "M 10.437 17.435 C 15.839 17.435 19.246 11.589 16.545 6.911 C 13.844 2.233 7.092 2.233 4.391 6.911 C 2.838 9.6 3.292 12.743 5.056 14.891 C 6.097 16.158 7.991 17.429 10.438 17.431 M 22.522 23.382 L 14.67 16.517",
 			fill: "none",
@@ -45,7 +57,8 @@ export default function Navbar() {
 			exit: "exit"
 		},
 		{
-			path: "/profile",
+			// path: "/profile",
+			path: `/${params.locale}/profile`,
 			ref: profileRef,
 			d: "M12 2.5a5.25 5.25 0 0 0-2.519 9.857 9.005 9.005 0 0 0-6.477 8.37.75.75 0 0 0 .727.773H20.27a.75.75 0 0 0 .727-.772 9.005 9.005 0 0 0-6.477-8.37A5.25 5.25 0 0 0 12 2.5Z",
 			fill: "none",
@@ -99,7 +112,7 @@ export default function Navbar() {
 	useEffect(() => {
 		const url =
 			searchParams.length > 0 ? `${pathname}?${searchParams}` : `${pathname}`;
-		console.log("URL --> " + url);
+		// console.log("URL --> " + url);
 		// salvataggio localStorage o qui
 
 		svgs.map((elem) => {
@@ -116,12 +129,14 @@ export default function Navbar() {
 	return (
 		<nav className={styles["navbar"]}>
 			{svgs.map((elem) => {
+				// console.log(elem.path);
+				// console.log(urlPath);
 				return (
 					<Fragment key={elem.path}>
 						<motion.button
 							className={styles["navbar-button"]}
 							ref={elem.ref}
-							onClick={(event) => {
+							onClick={() => {
 								router.push(elem.path);
 							}}
 						>
@@ -133,7 +148,7 @@ export default function Navbar() {
 									width="24"
 									height="24"
 								>
-									{elem.path === urlPath ? (
+									{elem.path === urlPath || elem.path.includes(urlPath) ? (
 										<motion.path
 											fill={elem.fill}
 											stroke={elem.activeStroke}

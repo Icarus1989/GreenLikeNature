@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 import { useState, useRef, useEffect, useReducer, useContext } from "react";
 import parse from "html-react-parser";
 
@@ -39,13 +41,15 @@ import {
 
 import styles from "./SingleRecipePrimary.module.css";
 
-export default function SingleRecipePrimary({ data, saved }) {
+export default function SingleRecipePrimary({ data, saved, originalData }) {
 	const params = useParams();
 
 	const { recipesList, ingrList } = useAppSelector((state) => state.recipes);
 	const dispatchRedux = useAppDispatch();
 
 	const recipeData = data;
+
+	const { t } = useTranslation();
 
 	const [goDown, setGoDown] = useState(false);
 
@@ -273,17 +277,18 @@ export default function SingleRecipePrimary({ data, saved }) {
 			onLoad={() => {
 				if (saved === false) {
 					const newReduxRecipe = {
-						id: data.id,
-						title: data.title,
-						aggregateLikes: data.aggregateLikes,
-						analyzedInstructions: data.analyzedInstructions,
-						extendedIngredients: data.extendedIngredients,
-						image: data.image,
-						readyInMinutes: data.readyInMinutes,
-						servings: data.servings,
-						summary: data.summary,
-						vegan: data.vegan,
-						vegetarian: data.vegetarian
+						// id: originalData.id,
+						// title: originalData.title,
+						// aggregateLikes: originalData.aggregateLikes,
+						// analyzedInstructions: originalData.analyzedInstructions,
+						// extendedIngredients: originalData.extendedIngredients,
+						// image: originalData.image,
+						// readyInMinutes: originalData.readyInMinutes,
+						// servings: originalData.servings,
+						// summary: originalData.summary,
+						// vegan: originalData.vegan,
+						// vegetarian: originalData.vegetarian
+						...originalData
 					};
 					dispatchRedux(addRecipe(newReduxRecipe));
 				}
@@ -407,7 +412,7 @@ export default function SingleRecipePrimary({ data, saved }) {
 				</motion.div>
 			</div>
 			<div className={styles["general-info"]}>
-				<h3 className={styles["section-title"]}>Info:</h3>
+				<h3 className={styles["section-title"]}>{t("info_label")}</h3>
 				<div className={styles["text-container"]}>
 					<p className={styles["time"]}>
 						{<PiClockCountdownBold />} <span>{recipeData.readyInMinutes}'</span>
@@ -420,21 +425,21 @@ export default function SingleRecipePrimary({ data, saved }) {
 					</p>
 					{recipeData.vegan ? (
 						<p className={styles["diet"]}>
-							<span>Vegano</span> {<PiCheckBold />}
+							<span>{t("vegan_label")}</span> {<PiCheckBold />}
 						</p>
 					) : (
 						<p className={styles["diet"]}>
-							<span>Vegetariano</span> {<PiCheckBold />}
+							<span>{t("vegetarian_label")}</span> {<PiCheckBold />}
 						</p>
 					)}
 				</div>
 			</div>
 			<div className={styles["recipe-presentation"]}>
-				<h3 className={styles["section-title"]}>Presentazione:</h3>
+				<h3 className={styles["section-title"]}>{t("presentation_label")}</h3>
 				<summary className={styles["recipe-summary"]}>{cleanSummary}</summary>
 			</div>
 			<div className={styles["ingredients"]}>
-				<h3 className={styles["section-title"]}>Ingredienti:</h3>
+				<h3 className={styles["section-title"]}>{t("ingredients_label")}</h3>
 				<ul className={styles["total-ingredients"]}>
 					{recipeData.extendedIngredients.map((ingredient, index) => {
 						return (
@@ -463,7 +468,7 @@ export default function SingleRecipePrimary({ data, saved }) {
 
 			{recipeData.analyzedInstructions.length > 0 && (
 				<div className={styles["instructions-container"]}>
-					<h3 className={styles["section-title"]}>Preparazione:</h3>
+					<h3 className={styles["section-title"]}>{t("preparation_label")}</h3>
 					<ul className={styles["instructions-list"]}>
 						{/* Capire come inserire alternativa in mancanza di steps */}
 						{steps.map((step, index) => {
@@ -471,7 +476,7 @@ export default function SingleRecipePrimary({ data, saved }) {
 								<li key={`number${step.number}`} className={styles["step"]}>
 									<details open={!recipe.complete.confirm}>
 										<summary className={styles["step-title"]}>
-											Passo {step.number} / {steps.length}
+											{t("step_label")} {step.number} / {steps.length}
 											<input
 												id={`step${step.number}`}
 												name={`step-${step.number}`}
@@ -486,7 +491,7 @@ export default function SingleRecipePrimary({ data, saved }) {
 										{step.equipment.length > 0 && (
 											<div className={styles["equipment"]}>
 												<h5 className={styles["equipment-title"]}>
-													+ Strumenti:
+													+ {t("tools_label")}
 												</h5>
 												<ul className={styles["equipment-list"]}>
 													{step.equipment.map((tool) => {
@@ -498,7 +503,9 @@ export default function SingleRecipePrimary({ data, saved }) {
 																<p className={styles["tool-name"]}>
 																	{tool.name}
 																	{tool.temperature &&
-																		` - temperatura: ${tool.temperature.number}° ${tool.temperature.unit}`}
+																		` - ${t("temperature_label")}: ${
+																			tool.temperature.number
+																		}° ${tool.temperature.unit}`}
 																</p>
 															</li>
 														);
@@ -509,7 +516,7 @@ export default function SingleRecipePrimary({ data, saved }) {
 										{step.ingredients.length > 0 && (
 											<div className={styles["step-ingredients"]}>
 												<h5 className={styles["ingredients-title"]}>
-													+ Ingredienti:
+													+ {t("ingredients_label")}
 												</h5>
 												<ul className={styles["ingredients-list"]}>
 													{step.ingredients.map((ingr, index) => {

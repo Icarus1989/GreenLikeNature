@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 import { Fragment, useState } from "react";
-import RecipeSummary from "../RecipeSummary/RecipeSummary";
 import { useAppSelector } from "@/lib/hooks";
+import RecipeSummary from "../RecipeSummary/RecipeSummary";
+
 import styles from "./ArticlesSection.module.css";
 
 // Aggiungere visualizzazione se presenti recipes con
@@ -13,6 +15,8 @@ export default function ArticlesSection({ recipes, name, varieties }) {
 	const [idsList, setIdsList] = useState(calcRecipesIds(recipes));
 	const recipesIds = recipes.map((recipe) => recipe.id);
 	const ingrsLists = recipes.map((recipe) => recipe.extendedIngredients);
+
+	const { t } = useTranslation();
 
 	const { recipesList, ingrList } = useAppSelector((state) => state.recipes);
 
@@ -32,10 +36,10 @@ export default function ArticlesSection({ recipes, name, varieties }) {
 		const filteredIds = filteredList.filter((recipeObj) => {
 			const recipeIngrsArr = Object.values(recipeObj)[0];
 			const recipeIngrsNames = recipeIngrsArr.map((ingr) => ingr.name);
-			const x = recipeIngrsNames.filter((ingrName) => {
+			const includesList = recipeIngrsNames.filter((ingrName) => {
 				return ingrName.includes(name);
 			});
-			if (x.length > 0) {
+			if (includesList.length > 0) {
 				return true;
 			} else {
 				return false;
@@ -59,7 +63,10 @@ export default function ArticlesSection({ recipes, name, varieties }) {
 			{name ? (
 				<>
 					<h3 className={styles["section-title"]}>
-						con <span className={styles["seasonal-name"]}>{name}</span> varietà{" "}
+						{t("variety_label_1")}{" "}
+						<span className={styles["seasonal-name"]}>{name}</span>{" "}
+						{t("variety_label_2")}{" "}
+						<span className={styles["seasonal-name"]}>{varieties[0]}</span>
 						{/* <span className={styles["seasonal-name"]}>
 							{varieties.join(", ")}
 						</span> */}
@@ -93,7 +100,7 @@ export default function ArticlesSection({ recipes, name, varieties }) {
 			) : (
 				<>
 					<h3 className={styles["section-title"]}>
-						ricette <span className={styles["seasonal-name"]}>Recenti</span>
+						<span className={styles["seasonal-name"]}>{t("label_recent")}</span>
 					</h3>
 					<div className={styles["articles-container"]} dir="ltr">
 						{recipes.map((recipe) => {

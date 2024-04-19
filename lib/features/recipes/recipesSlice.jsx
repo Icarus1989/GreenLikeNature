@@ -7,6 +7,8 @@ const initialState = {
 	initialList: [],
 	seasonalRecipes: [],
 	ingrList: []
+	// localSettings: {}
+	// localSettings: JSON.parse(window.localStorage.getItem("settings"))
 	// total: 0
 };
 
@@ -54,6 +56,12 @@ const recipesSlice = createSlice({
 				...state,
 				recipesList: getUniqueElems(totalRecipeList),
 				initialList: getUniqueElems(totalInitialList)
+			};
+		},
+		initializeSeasonal: (state, action) => {
+			return {
+				...state,
+				seasonalRecipes: action.payload
 			};
 		},
 		addRecipe: (state, action) => {
@@ -170,6 +178,7 @@ export const {
 	addSeasonalRecipes,
 	initializeList,
 	initializeRecipes,
+	initializeSeasonal,
 	reInitializeRecipes,
 	filterByAllergens
 } = recipesSlice.actions;

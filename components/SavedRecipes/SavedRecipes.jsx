@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useContext } from "react";
+import { useTranslation } from "react-i18next";
+import { useContext } from "react";
 import Image from "next/image";
 import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
 import {
@@ -13,6 +14,8 @@ import { GoX, GoBookmark } from "react-icons/go";
 export default function SavedRecipes({ onClick }) {
 	const generalDispatch = useContext(GeneralDispatchContext);
 	const settings = useContext(GeneralContext);
+
+	const { t } = useTranslation();
 
 	function handleRemove(id) {
 		generalDispatch({
@@ -36,9 +39,7 @@ export default function SavedRecipes({ onClick }) {
 				</legend>
 				{settings["saved-recipes"].length > 0 ? (
 					<>
-						<p className={styles["description"]}>
-							Gestisci le Ricette Salvate:
-						</p>
+						<p className={styles["description"]}>{t("intro_savedrecipes")}</p>
 						<ul className={styles["saved-recipes-list"]}>
 							{settings["saved-recipes"].map((recipe, index) => (
 								<li id={recipe.id} key={`${recipe.name}${index}`}>
@@ -74,17 +75,16 @@ export default function SavedRecipes({ onClick }) {
 									return handleClear();
 								}}
 							>
-								<GoX /> Cancella Lista
+								<GoX /> {t("btn_cancelall")}
 							</button>
 						</div>
 					</>
 				) : (
 					<p className={styles["description"]}>
-						Nessuna ricetta é stata ancora salvata.
+						{t("intro_norecipes_1")}
 						<br />
 						<br />
-						Cerca tra le ricette disponibili le tue preferite fino ad un massimo
-						di 8.
+						{t("intro_norecipes_2")}
 					</p>
 				)}
 			</fieldset>

@@ -1,4 +1,6 @@
 import * as deepl from "deepl-node";
+// import { intolerancesObj } from "./utils/intolerances/intolerancesObj";
+import { intolerancesObj } from "./utils/intolerances/intolerancesObj";
 
 const now = new Date();
 
@@ -352,6 +354,23 @@ export async function seasonalFrtAndVgt(arr) {
 	return calculateActualFrtAndVgt(frtAndVgt);
 }
 
+export function detectIntolerance(allergen, list) {
+	const intolList = intolerancesObj[allergen];
+	const detected = [];
+	for (let name of list) {
+		for (let intol of intolList) {
+			if (String(name).includes(intol)) {
+				detected.push(intol);
+			}
+		}
+	}
+	if (detected.length > 0) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 export async function getSpoonData(
 	inclList,
 	exclList,
@@ -380,7 +399,67 @@ export async function getSpoonData(
 	try {
 		const spoonData = await fetch(url);
 		const json = await spoonData.json();
-		return json;
+
+		const results = await json["results"].map((recipe) => {
+			const {
+				id,
+				title,
+				aggregateLikes,
+				analyzedInstructions,
+				diaryFree,
+				extendedIngredients,
+				glutenFree,
+				image,
+				readyInMinutes,
+				servings,
+				summary,
+				vegan,
+				vegetarian
+			} = recipe;
+
+			const ingrsNames = extendedIngredients.map((ingr) => ingr.name);
+
+			const eggFree = detectIntolerance("egg", ingrsNames);
+			const grainFree = detectIntolerance("grain", ingrsNames);
+			const peanutFree = detectIntolerance("peanut", ingrsNames);
+			const seafoodFree = detectIntolerance("seafood", ingrsNames);
+			const sesameFree = detectIntolerance("sesame", ingrsNames);
+			const shellfishFree = detectIntolerance("shellfish", ingrsNames);
+			const soyFree = detectIntolerance("soy", ingrsNames);
+			const sulfiteFree = detectIntolerance("sulfite", ingrsNames);
+			const treeNutFree = detectIntolerance("treeNut", ingrsNames);
+			const wheatFree = detectIntolerance("wheat", ingrsNames);
+
+			return {
+				// ...recipe, // <--- forse eliminare le altre properties per alleggerire
+				id: id,
+				title: title,
+				aggregateLikes: aggregateLikes,
+				analyzedInstructions: analyzedInstructions,
+				diaryFree: diaryFree,
+				extendedIngredients: extendedIngredients,
+				glutenFree: glutenFree,
+				eggFree: eggFree,
+				grainFree: grainFree,
+				peanutFree: peanutFree,
+				seafoodFree: seafoodFree,
+				sesameFree: sesameFree,
+				shellfishFree: shellfishFree,
+				soyFree: soyFree,
+				sulfiteFree: sulfiteFree,
+				treeNutFree: treeNutFree,
+				wheatFree: wheatFree,
+				image: image,
+				readyInMinutes: readyInMinutes,
+				servings: servings,
+				summary: summary,
+				vegan: vegan,
+				vegetarian: vegetarian
+			};
+		});
+
+		return { results: [...results] };
+		// return json;
 	} catch (error) {
 		console.error(error);
 	}
@@ -419,17 +498,23 @@ const translator = new deepl.Translator(deeplAuthKey);
 
 export async function deeplTranslate(textArr, lang) {
 	"use server";
+	console.log(textArr);
 	if (lang !== "en") {
 		try {
 			const result = await translator.translateText(textArr, "en", lang, {
 				split_sentences: "0"
 			});
+			console.log(result);
 			return result;
 		} catch (error) {
 			console.log(error);
 		}
 	} else {
-		const result = [{ text: text }];
+		const result = textArr.map((text) => {
+			return { text: text };
+		});
+		// const result = [{ text: text }];
+		// const result = textArr;
 		return result;
 	}
 }
@@ -544,4 +629,49 @@ export async function translateRecipe(data, lang) {
 	};
 
 	return newData;
+}
+
+export async function translateToEng(word, lang) {
+	"use server";
+
+	const deeplAuthKey = process.env.APIKEYDEEPL;
+	const translator = new deepl.Translator(deeplAuthKey);
+
+	const textArr = [word];
+	if (lang !== "en") {
+		try {
+			const result = await translator.translateText(textArr, lang, "en-GB", {
+				split_sentences: "0"
+			});
+			// console.log(result);
+			return result[0];
+		} catch (error) {
+			console.log(error);
+			return { text: word };
+		}
+	} else {
+		return { text: word };
+	}
+}
+
+export async function translateList(list, lang) {
+	"use server";
+	const deeplAuthKey = process.env.APIKEYDEEPLTWO;
+	const translator = new deepl.Translator(deeplAuthKey);
+
+	if (lang !== "en") {
+		try {
+			const resultsArr = await translator.translateText(list, "en", lang, {
+				split_sentences: "0"
+			});
+			console.log("Results ---> ");
+			console.log(resultsArr);
+			return resultsArr.map((elem) => elem.text);
+		} catch (error) {
+			console.log(error);
+			return list;
+		}
+	} else {
+		return list;
+	}
 }

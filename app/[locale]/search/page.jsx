@@ -1,7 +1,11 @@
+import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
+import initTranslations from "@/app/i18n";
 import SearchPrimaryComponent from "@/components/SearchPrimary/SearchPrimary";
 import styles from "./page.module.css";
 
 const apiKey = process.env.APIKEYSPOONTWO;
+
+const i18nNamespaces = ["search"];
 
 export async function searchByQuery(text, allergens) {
 	"use server";
@@ -20,10 +24,18 @@ export async function searchByQuery(text, allergens) {
 	return json;
 }
 
-export default async function SearchPage() {
+export default async function SearchPage({ params: { locale } }) {
+	const { t, resources } = await initTranslations(locale, i18nNamespaces);
+
 	return (
-		<main className={styles["main"]}>
-			<SearchPrimaryComponent searchByQuery={searchByQuery} />
-		</main>
+		<TranslationsProvider
+			namespaces={i18nNamespaces}
+			locale={locale}
+			resources={resources}
+		>
+			<main className={styles["main"]}>
+				<SearchPrimaryComponent searchByQuery={searchByQuery} />
+			</main>
+		</TranslationsProvider>
 	);
 }

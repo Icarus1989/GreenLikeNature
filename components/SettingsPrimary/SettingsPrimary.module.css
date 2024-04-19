@@ -17,7 +17,7 @@
 	display: grid;
 	place-items: center;
 	width: 100%;
-	min-height: 20vdh;
+	height: 20vdh;
 }
 
 .title {

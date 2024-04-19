@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 import {
 	Fragment,
 	useEffect,
@@ -37,6 +39,8 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 
 	console.log("From Search");
 	const settings = useContext(GeneralContext);
+	console.log(settings);
+
 	const recentList = settings["recent-recipes"];
 
 	const allergens =
@@ -46,13 +50,15 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 					.join(",")
 			: "";
 
+	const { t } = useTranslation();
+
 	// Attivare quando pronto intolerances nel GlobalContext --->
-	// const intolerances =
-	// 	settings["tomato-settings"]["intolerances-list"].length > 0
-	// 		? settings["tomato-settings"]["intolerances-list"]
-	// 				.map((elem) => elem.toLowerCase())
-	// 				.join(",")
-	// 		: "";
+	const intolerances =
+		settings["tomato-settings"]["intolerances-list"].length > 0
+			? settings["tomato-settings"]["intolerances-list"]
+					.map((elem) => elem.toLowerCase())
+					.join(",")
+			: "";
 	// <--- Attivare quando pronto intolerances nel GlobalContext
 
 	const resultsRef = useRef(null);
@@ -128,7 +134,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		event.preventDefault();
 		// setRecipesList(recipes.filter((recipe) => recipe.title.includes(query)));
 		// Da spostare in handleChange--->
-		const response = await searchByQuery(searchTerm, allergens, "");
+		const response = await searchByQuery(searchTerm, allergens, intolerances);
 
 		// Attivare quando pronto intolerances nel GlobalContext --->
 		// const response = await searchByQuery(searchTerm, allergens, intolerances);
@@ -136,7 +142,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 
 		// ATTENZIONE
 		// [x] Impostare al meglio allergens
-		// [ ] Testare allergens
+		// [x] Testare allergens
 		// [ ] Impostare intolerances
 
 		setSearchData(response["results"]);
@@ -184,7 +190,9 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			<div ref={resultsRef} className={styles["results-part"]}>
 				{!view ? (
 					<>
-						<h2 className={styles["results-part-title"]}>Suggerite</h2>
+						<h2 className={styles["results-part-title"]}>
+							{t("label_suggest")}
+						</h2>
 						{Object.entries(ingrList).map((elem) => {
 							const nameStrg = elem[0].toLowerCase();
 							const name =
