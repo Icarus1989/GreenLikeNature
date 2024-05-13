@@ -6,7 +6,8 @@ const initialState = {
 	recipesList: [],
 	initialList: [],
 	seasonalRecipes: [],
-	ingrList: []
+	ingrList: [],
+	errorsReport: {}
 	// localSettings: {}
 	// localSettings: JSON.parse(window.localStorage.getItem("settings"))
 	// total: 0
@@ -45,6 +46,12 @@ const recipesSlice = createSlice({
 				...state,
 				recipesList: action.payload,
 				initialList: action.payload
+			};
+		},
+		initializeErrors: (state, action) => {
+			return {
+				...state,
+				errorsReport: action.payload
 			};
 		},
 		reInitializeRecipes: (state, action) => {
@@ -156,6 +163,16 @@ const recipesSlice = createSlice({
 				...state,
 				recipesList: filterByAllergy
 			};
+		},
+		setError: (state, action) => {
+			// const newError = action.payload;
+			return {
+				...state,
+				errorsReport: {
+					...state.errorsReport,
+					[action.payload.name]: action.payload.message
+				}
+			};
 		}
 	}
 });
@@ -179,8 +196,10 @@ export const {
 	initializeList,
 	initializeRecipes,
 	initializeSeasonal,
+	initializeErrors,
 	reInitializeRecipes,
-	filterByAllergens
+	filterByAllergens,
+	setError
 } = recipesSlice.actions;
 
 export default recipesSlice.reducer;

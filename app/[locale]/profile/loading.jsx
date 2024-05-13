@@ -1,5 +1,5 @@
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
-import PrefIconComponent from "@/components/LoadingSpinner/PreferIconComponent";
+import LoadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
+import PrefIconComponent from "@/app/components/LoadingSpinner/PreferIconComponent";
 
 export default function SettingsLoading() {
 	return (

@@ -1584,3 +1584,605 @@ if (
 // se non presente
 // }
 // console.log(internalData);
+
+// useEffect(() => {
+// 	if (settingsType === "saved") {
+// 		const localRecipes = JSON.parse(localStorage.getItem("settings"))[
+// 			"saved-recipes"
+// 		];
+// 		console.log(localRecipes);
+
+// 		if (localRecipes.length >= 0) {
+// 			// const saved = [
+// 			// 	...defaultRecipes.map((elem, index) => {
+// 			// 		if (localRecipes[index]) {
+// 			// 			return localRecipes.at(index);
+// 			// 		} else {
+// 			// 			return {
+// 			// 				...elem,
+// 			// 				id: Number(`-${elem.id}`),
+// 			// 				title: emptyInd[index],
+// 			// 				image: altImage
+// 			// 				// readyInMinutes: 0,
+// 			// 				// extendedIngredients: [],
+// 			// 				// likes: 0
+// 			// 			};
+// 			// 		}
+// 			// 	})
+// 			// ];
+// 			const savedList = createSavedList(localRecipes, defaultRecipes);
+// 			console.log(savedList);
+
+// 			setRecipes(() => {
+// 				return [...savedList];
+// 			});
+// 		} else {
+// 			return;
+// 		}
+// 	}
+// }, [settingsType]);
+
+// useEffect(() => {
+// 	if (settingsType === "saved") {
+// 		const localSettings = localStorage.getItem("settings");
+// 		const localParsed = JSON.parse(localSettings);
+// 		if (localSettings && localParsed["saved-recipes"].length > 0) {
+// 			// dispatch({
+// 			// 	type: "set_context",
+// 			// 	payload: localSettings["saved-recipes"]
+// 			// });
+// 			// const savedRec = defaultRecipes.map((elem, index) => {
+// 			// 	if (localParsed["saved-recipes"][index]) {
+// 			// 		return { ...localParsed["saved-recipes"].at(index) };
+// 			// 	} else {
+// 			// 		return {
+// 			// 			...elem,
+// 			// 			id: emptyInd[index],
+// 			// 			title: emptyInd[index]
+// 			// 			// image: elem.image,
+// 			// 			// readyInMinutes: 0,
+// 			// 			// extendedIngredients: [],
+// 			// 			// likes: 0
+// 			// 		};
+// 			// 	}
+// 			// });
+// 			setRecState(() => {
+// 				return [...localParsed["saved-recipes"]];
+// 			});
+// 		}
+// 	}
+// }, []);
+
+// useEffect(() => {
+// 	// if (settingsType === "seasonal") {
+// 	// 	setRecipes(() => {
+// 	// 		return seasonalRecipes;
+// 	// 	});
+// 	// } else
+// 	if (settingsType === "saved") {
+// 		const saved = defaultRecipes.map((elem, index) => {
+// 			if (recState[index]) {
+// 				return recState.at(index);
+// 			} else {
+// 				return {
+// 					...elem,
+// 					id: emptyInd[index],
+// 					title: emptyInd[index],
+// 					image: altImage
+// 					// readyInMinutes: 0,
+// 					// extendedIngredients: [],
+// 					// likes: 0
+// 				};
+// 			}
+// 		});
+// 		console.log("saved");
+// 		setRecipes(() => {
+// 			return [...saved];
+// 		});
+// 	}
+// }, [recState]);
+
+// useEffect(() => {
+// 	const localStorageSettings = window.localStorage.getItem("settings")
+// 		? JSON.parse(window.localStorage.getItem("settings"))
+// 		: null;
+// 	const localSaved = localStorageSettings["saved-recipes"];
+// 	if (localSaved.length > 0) {
+// 		console.log("true");
+// 		// dispatch({
+// 		// 	type: "set_context",
+// 		// 	payload: localStorageSettings
+// 		// });
+// 		setRecipes((prevValue) => {
+// 			return [
+// 				...prevValue.map((elem, index) => {
+// 					if (localSaved[index]) {
+// 						return localSaved.at(index);
+// 					} else {
+// 						return {
+// 							...elem
+// 							// id: emptyInd[index],
+// 							// title: emptyInd[index]
+// 							// image: elem.image,
+// 							// readyInMinutes: 0,
+// 							// extendedIngredients: [],
+// 							// likes: 0
+// 						};
+// 					}
+// 				})
+// 			];
+// 		});
+// 	}
+// }, []);
+
+// const [recipes, setRecipes] = useState([...defaultRecipes]);
+// <--- aggiungere defaultRecipes se saved 0
+// <--- modificare savedRecipes in modo che se >=1 o < 8...
+// si aggiunga indicazione al salvataggio e search come link
+// nel Modal
+
+// useEffect(() => {
+// 	const localSettings = JSON.parse(localStorage.getItem("settings"));
+// 	console.log(localSettings);
+// 	const type = localSettings["tomato-settings"]["recipes-type"];
+// 	const saved = localSettings["saved-recipes"];
+
+// 	if (type === "seasonal") {
+// 		setRecipes(() => {
+// 			return [...seasonalRecipes];
+// 		});
+// 	} else if (type === "saved") {
+// const savedRecipesComplete = [
+// 	...emptyInd.map((elem, index) => {
+// 		if (saved[index]) {
+// 			return saved[index];
+// 		} else {
+// 			return {
+// 				id: elem,
+// 				title: elem,
+// 				image: altImage,
+// 				readyInMinutes: 0,
+// 				extendedIngredients: [],
+// 				likes: 0
+// 			};
+// 		}
+// 	})
+// ];
+// 		console.log("savedComplete");
+
+// 		console.log(savedRecipesComplete);
+// 		setRecipes(() => {
+// 			return savedRecipesComplete;
+// 		});
+// 	}
+// }, []);
+
+// localStorage / saved Effect
+// useEffect(() => {
+// 	const settings = JSON.parse(localStorage.getItem("settings"));
+// 	console.log(settings);
+// 	if (settings["tomato-settings"]["recipes-type"] === "saved") {
+// 		const savedRecipesComplete = [
+// 			...emptyInd.map((elem, index) => {
+// 				if (settings["saved-recipes"][index]) {
+// 					return settings["saved-recipes"];
+// 				} else {
+// 					return {
+// 						id: elem,
+// 						title: elem,
+// 						image: altImage,
+// 						readyInMinutes: 0,
+// 						extendedIngredients: [],
+// 						likes: 0
+// 					};
+// 				}
+// 			})
+// 		];
+// 		setRecipes(() => {
+// 			return savedRecipesComplete;
+// 		});
+// 	}
+// }, []);
+
+// const [saved, setSaved] = useState([
+// 	...defaultRecipes.map((elem, index) => {
+// 		if (recState[index]) {
+// 			return recState.at(index);
+// 		} else {
+// 			return {
+// 				// ...elem,
+// 				id: Number(`-${elem.id}`),
+// 				title: emptyInd[index],
+// 				image: altImage
+// 				// readyInMinutes: 0,
+// 				// extendedIngredients: [],
+// 				// likes: 0
+// 			};
+// 		}
+// 	})
+// ]);
+
+// const savedRecipes = settings["saved-recipes"];
+// const [savedRecipes, setSavedRecipes] = useState([...defaultRecipes]);
+
+// for (let i = 0; i <= 8; i++) {
+// 	if (list[i]) {
+// 		savedSet.add(list[i]);
+// 	} else {
+// 		const emptyElem = {
+// 			...defaultRecipes[i],
+// 			id: Number(`-${defaultRecipes[i].id}`),
+// 			title: emptyInd[i],
+// 			image: altImage.src
+// 		};
+// 		console.log(emptyElem);
+
+// 		savedSet.add(emptyElem);
+// 		return;
+// 	}
+// }
+
+// const savedRecipesComplete = [...new Array(8)].map((elem, index) => {
+// 	return savedRecipes[index] !== undefined || savedRecipes[index] !== null
+// 		? savedRecipes[index]
+// 		: {
+// 				id: `${self.crypto.randomUUID()}`,
+// 				title: emptyIndications[index],
+// 				image: altImage,
+// 				readyInMinutes: 0,
+// 				extendedIngredients: [].length,
+// 				likes: 0
+// 		  };
+// });
+
+// const [savedRecipesComplete, setSavedRecipesComplete] = useState([
+// 	...emptyInd.map((elem, index) => {
+// 		if (savedRecipes[index]) {
+// 			return savedRecipes[index];
+// 		} else {
+// 			return {
+// 				id: elem,
+// 				title: elem,
+// 				image: altImage,
+// 				readyInMinutes: 0,
+// 				extendedIngredients: [],
+// 				likes: 0
+// 			};
+// 		}
+// 	})
+// ]);
+
+// const emptySavedList = [...new Array(8)].map((elem, index) => {
+// 	return {
+// 		id: emptyIndications[index].length + index,
+// 		title: emptyIndications[index],
+// 		image: altImage,
+// 		readyInMinutes: 0,
+// 		extendedIngredients: [].length,
+// 		likes: 0
+// 	};
+// });
+
+// const [saved, setSaved] = useState(
+// 	[...new Array(8)].map((elem, index) => {
+// 		return savedRecipes[index] !== undefined || savedRecipes[index] !== null
+// 			? savedRecipes[index]
+// 			: {
+// 					id: emptyIndications[index],
+// 					title: emptyIndications[index],
+// 					image: altImage,
+// 					readyInMinutes: 0,
+// 					extendedIngredients: [].length,
+// 					likes: 0
+// 			  };
+// 	})
+// );
+// const [recState, setRecState] = useState([]);
+
+// const savedRecipesComplete = defaultRecipes;
+// console.log(savedRecipesComplete);
+
+// console.log("seasonal recipes");
+// console.log(
+// 	cleanList.find((recipe) => Number(seasonalListIDs[0]) === recipe.id)
+// );
+// console.log(seasonalRecipes);
+
+// test
+
+// const cleanList = completeList["results"].map((recipe) => {
+// 	const {
+// 		id,
+// 		title,
+// 		aggregateLikes,
+// 		analyzedInstructions,
+// 		diaryFree,
+// 		extendedIngredients,
+// 		glutenFree,
+// 		image,
+// 		readyInMinutes,
+// 		servings,
+// 		summary,
+// 		vegan,
+// 		vegetarian
+// 	} = recipe;
+
+// 	const ingrsNames = extendedIngredients.map((ingr) => ingr.name);
+
+// 	function detectIntolerance(name) {
+// 		const intolList = intolerancesObj[name];
+// 		const detected = [];
+// 		for (let name of ingrsNames) {
+// 			for (let intol of intolList) {
+// 				if (String(name).includes(intol)) {
+// 					detected.push(intol);
+// 				}
+// 			}
+// 		}
+// 		if (detected.length > 0) {
+// 			return false;
+// 		} else {
+// 			return true;
+// 		}
+// 	}
+
+// 	const eggFree = detectIntolerance("egg");
+// 	const grainFree = detectIntolerance("grain");
+// 	const peanutFree = detectIntolerance("peanut");
+// 	const seafoodFree = detectIntolerance("seafood");
+// 	const sesameFree = detectIntolerance("sesame");
+// 	const shellfishFree = detectIntolerance("shellfish");
+// 	const soyFree = detectIntolerance("soy");
+// 	const sulfiteFree = detectIntolerance("sulfite");
+// 	const treeNutFree = detectIntolerance("treeNut");
+// 	const wheatFree = detectIntolerance("wheat");
+
+// 	return {
+// 		...recipe,
+// 		id: id,
+// 		title: title,
+// 		aggregateLikes: aggregateLikes,
+// 		analyzedInstructions: analyzedInstructions,
+// 		diaryFree: diaryFree,
+// 		extendedIngredients: extendedIngredients,
+// 		glutenFree: glutenFree,
+// 		eggFree: eggFree,
+// 		grainFree: grainFree,
+// 		peanutFree: peanutFree,
+// 		seafoodFree: seafoodFree,
+// 		sesameFree: sesameFree,
+// 		shellfishFree: shellfishFree,
+// 		soyFree: soyFree,
+// 		sulfiteFree: sulfiteFree,
+// 		treeNutFree: treeNutFree,
+// 		wheatFree: wheatFree,
+// 		image: image,
+// 		readyInMinutes: readyInMinutes,
+// 		servings: servings,
+// 		summary: summary,
+// 		vegan: vegan,
+// 		vegetarian: vegetarian
+// 	};
+// });
+
+// old
+
+// useEffect(() => {
+// 	let ignore = false;
+// 	console.log("LOcal");
+// 	async function setLocalStorage() {
+// 		const localStorageSettings = await window.localStorage.getItem(
+// 			"settings"
+// 		);
+// 		if (!ignore) {
+// 			if (!localStorageSettings) {
+// 				dispatch({
+// 					type: "set_context",
+// 					payload: initialSettings
+// 				});
+// 				window.localStorage.setItem("settings", JSON.stringify(settings));
+// 			} else {
+// 				dispatch({
+// 					type: "set_context",
+// 					payload: await JSON.parse(localStorageSettings)
+// 				});
+// 			}
+// 		}
+// 	}
+// 	setLocalStorage();
+// 	return () => {
+// 		ignore = true;
+// 	};
+// }, []);
+
+// old GeneralContext
+
+// useEffect(() => {
+// 	// window.localStorage.setItem("settings", JSON.stringify(settings));
+// 	setLocalData(JSON.parse(window.localStorage.getItem("settings")));
+// }, [settings]);
+
+// useEffect(() => {
+// 	console.log("change");
+// 	// window.localStorage.setItem("settings", )
+// 	setLocalData(settings);
+// }, [settings]);
+
+// useEffect(() => {
+// 	window.localStorage.setItem("settings", JSON.stringify(localData));
+// }, [localData]);
+
+// useEffect(() => {
+// 	console.log(JSON.parse(localStorage.getItem("settings")));
+// }, [settings]);
+
+// console.log(localData);
+
+// const initialValue = localStorage.getItem("settings")
+// 	? localStorage.getItem("settings")
+// 	: initialSettings;
+
+// const emptyIndications = [
+// 	"Cerca una ricetta...",
+// 	"Search for a recipe...",
+// 	"Nach einem Rezept suchen...",
+// 	"Zoek een recept...",
+// 	"Rechercher une recette...",
+// 	"Busca una receta...",
+// 	"Procure uma receita...",
+// 	"Sök efter ett recept..."
+// ];
+
+// const emptySavedList = [...new Array(8)].map((elem, index) => {
+// 	return {
+// 		id: emptyIndications[index].length + index,
+// 		title: emptyIndications[index],
+// 		image: altImage,
+// 		readyInMinutes: 0,
+// 		extendedIngredients: [].length,
+// 		likes: 0
+// 	};
+// });
+
+// <--- arriverà da localStorage
+
+// const [saved, setSaved] = useState(
+// 		[...new Array(8)].map((elem, index) => {
+// 			return savedRecipes[index] !== undefined
+// 				? savedRecipes[index]
+// 				: {
+// 						id: emptyIndications[index],
+// 						title: emptyIndications[index],
+// 						image: altImage,
+// 						readyInMinutes: 0,
+// 						extendedIngredients: [].length,
+// 						likes: 0
+// 				  };
+// 		})
+// 	);
+
+// const localStorageSettings = JSON.parse()
+// ? JSON.parse(window.localStorage.getItem("settings"))
+// : null;
+// if (localStorageSettings["tomato-settings"]["recipes-type"] === "saved") {
+
+// test
+
+// const initialSettings = {};
+
+// test
+// console.log(local);
+
+// const [localData, setLocalData] = useState(initialSettings);
+
+// const initialValue = JSON.parse(window.localStorage.getItem("settings"));
+// const initial = initialValue ? initialValue : initialSettings;
+
+// const [dataFromLocal, setDataFromLocal] = useState(initialSettings);
+// if (!localStorage.getItem("settings")) {
+
+// Provare a leggere localStorage da redux --> importare...
+// redux useAppSelector e usare localStorage --> fare leggere
+// come initialValue del context qui
+
+// const [local, setLocal] = useState(initialSettings);
+// const value = localStorage.getItem("settings") || initialSettings;
+// let initialValue = initialSettings;
+// if (typeof window !== undefined) {
+// 	initialValue = JSON.parse(window.localStorage.getItem("settings"));
+// }
+// try {
+// 	initialValue = JSON.parse(window.localStorage.getItem("settings"));
+// } catch (error) {
+// 	console.log("error load localStorage");
+// 	console.log(error);
+// }
+
+// Da NavigationEvents
+
+// function intolerancesFilter(list, intolerancesArr) {
+// 	// const checkedList = list.filter((recipe) => {
+// 	// 	for (let intol of intolerancesArr) {
+// 	// 		console.log("Intol -> " + intol);
+// 	// 		if (recipe[`${intol}Free`] !== undefined) {
+// 	// 			if (recipe[`${intol}Free`] === false) {
+// 	// 				return false;
+// 	// 			} else {
+// 	// 				return true;
+// 	// 			}
+// 	// 		} else {
+// 	// 			return true;
+// 	// 		}
+// 	// 	}
+// 	// });
+// 	// // return checkedList;
+
+// 	// const filtered
+// 	// for (let recipe of list) {
+// 	// 	const checked = intolerancesArr.filter((intol) => {
+// 	// 		return recipe[`${intol}Free`] === true;
+// 	// 	});
+// 	// }
+// 	// const existFilter =
+
+// 	const newList = [];
+
+// 	for (let recipe of list) {
+// 		for (let intol of intolerancesArr) {
+// 			if (
+// 				recipe[`${intol}Free`] !== undefined &&
+// 				recipe[`${intol}Free`] === true
+// 			) {
+// 				newList.push(recipe);
+// 			} else if (recipe[`${intol}Free`] === undefined) {
+// 				// Temporaneo
+// 				newList.push(recipe);
+// 			}
+// 			// Aggiungere in seguito ad eventuale nuova
+// 			// integrazione recipes, o forse no
+// 			// else if (recipe[`${intol}Free`] === undefined) {
+// 			// 	const ingrList = recipe["extendedIngredients"].map(
+// 			// 		(ingr) => ingr.name
+// 			// 	);
+// 			// 	console.log();
+// 			// }
+// 		}
+// 	}
+// 	return newList;
+// }
+
+// function getUniqueElem(arr) {
+// 	const set = new Set();
+
+// 	for (let item of arr) {
+// 		set.add(item.id);
+// 	}
+
+// 	const list = Array.from(set).map((id) => {
+// 		return { ...arr.filter((item) => String(item.id) === String(id))[0] };
+// 	});
+// 	return list;
+// }
+
+// ---------- From Navigation
+
+// function allergiesFilter(list, paramsArr) {
+// 	const selectedList = list
+// 		.map((recipe) => {
+// 			const ingrs = recipe.extendedIngredients.map((ingr) => ingr.name);
+// 			const checked = [];
+// 			for (let ingr of ingrs) {
+// 				for (let param of paramsArr) {
+// 					if (ingr.includes(param)) {
+// 						checked.push(param);
+// 					}
+// 				}
+// 			}
+// 			return {
+// 				...recipe,
+// 				allergyCheck: checked.length > 0
+// 			};
+// 		})
+// 		.filter((elem) => elem.allergyCheck === false);
+// 	return selectedList;
+// }

@@ -1,9 +1,11 @@
 "use client";
 
-export default function SearchError() {
+import ErrorComponent from "@/app/components/ErrorComponent/ErrorComponent";
+
+export default function SearchError({ error, reset }) {
 	return (
 		<section>
-			<h2>Something wrong SearchPage</h2>
+			<ErrorComponent error={error} reset={() => reset()} value="Search" />
 		</section>
 	);
 }

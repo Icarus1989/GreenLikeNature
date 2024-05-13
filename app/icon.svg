@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 323 323" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="gradient-1" cx="259.609" cy="145.039" r="72.652" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.437127, 0.682692, -1.47811, 0.946429, 311.348663, -201.60193)">
+      <stop offset="0.164" style="stop-color: rgb(4, 169, 5);"/>
+      <stop offset="0.38" style="stop-color: rgb(0, 104, 46);"/>
+      <stop offset="0.38" style="stop-color: rgb(0, 100, 0);"/>
+      <stop offset="0.576" style="stop-color: rgb(5, 70, 4);"/>
+      <stop offset="0.64" style="stop-color: rgb(4, 98, 4);"/>
+      <stop offset="0.799" style="stop-color: rgb(8, 108, 52);"/>
+      <stop offset="1" style="stop-color: rgb(0, 181, 15);"/>
+    </radialGradient>
+    <radialGradient id="gradient-4" cx="250.18" cy="140.527" r="72.652" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.357566, 0.571594, -1.140545, 0.713477, 284.823029, -143.35576)">
+      <stop offset="0" style="stop-color: rgb(4, 169, 5);"/>
+      <stop offset="0.299" style="stop-color: rgb(0, 104, 46);"/>
+      <stop offset="0.38" style="stop-color: rgb(0, 100, 0);"/>
+      <stop offset="0.46" style="stop-color: rgb(5, 70, 4);"/>
+      <stop offset="0.607" style="stop-color: rgb(4, 98, 4);"/>
+      <stop offset="0.711" style="stop-color: rgb(8, 108, 52);"/>
+      <stop offset="1" style="stop-color: rgb(0, 181, 15);"/>
+    </radialGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="269.652" y1="345.896" x2="269.652" y2="380.047" id="gradient-8" gradientTransform="matrix(0.994763, 0.102201, -0.228507, 2.224146, -26.922703, -555.152055)">
+      <stop offset="0" style="stop-color: rgb(182, 109, 6);"/>
+      <stop offset="0.582" style="stop-color: rgb(102, 55, 6);"/>
+      <stop offset="1" style="stop-color: rgb(31, 13, 1);"/>
+    </linearGradient>
+    <radialGradient id="gradient-2" cx="26.627" cy="237.409" r="88.157" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-0.549997, 0.765883, -1.957348, -1.405618, 557.825745, 440.500228)">
+      <stop offset="0.105" style="stop-color: rgb(4, 169, 5);"/>
+      <stop offset="0.332" style="stop-color: rgb(0, 104, 46);"/>
+      <stop offset="0.342" style="stop-color: rgb(3, 103, 3);"/>
+      <stop offset="0.46" style="stop-color: rgb(5, 78, 3);"/>
+      <stop offset="0.607" style="stop-color: rgb(4, 98, 4);"/>
+      <stop offset="0.711" style="stop-color: rgb(8, 108, 52);"/>
+      <stop offset="0.853" style="stop-color: rgb(0, 146, 28);"/>
+      <stop offset="1" style="stop-color: rgb(0, 81, 7);"/>
+    </radialGradient>
+    <radialGradient id="gradient-0" cx="-77.647" cy="336.517" r="87.45" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-1.901294, -1.158016, 0.962473, -1.580238, -359.766296, 535.568587)">
+      <stop offset="0" style="stop-color: rgb(8, 201, 9);"/>
+      <stop offset="0.342" style="stop-color: rgb(0, 104, 46);"/>
+      <stop offset="0.359" style="stop-color: rgb(0, 100, 0);"/>
+      <stop offset="0.434" style="stop-color: rgb(5, 70, 4);"/>
+      <stop offset="0.643" style="stop-color: rgb(4, 98, 4);"/>
+      <stop offset="0.867" style="stop-color: rgb(8, 108, 52);"/>
+      <stop offset="1" style="stop-color: rgb(10, 143, 21);"/>
+    </radialGradient>
+    <radialGradient id="gradient-5" cx="275.5" cy="148.987" r="72.652" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.427334, 0.414043, -0.825574, 0.721027, 199.08725, -33.115144)">
+      <stop offset="0.171" style="stop-color: rgb(4, 169, 5);"/>
+      <stop offset="0.38" style="stop-color: rgb(0, 104, 46);"/>
+      <stop offset="0.38" style="stop-color: rgb(0, 100, 0);"/>
+      <stop offset="0.576" style="stop-color: rgb(5, 70, 4);"/>
+      <stop offset="0.64" style="stop-color: rgb(4, 98, 4);"/>
+      <stop offset="0.799" style="stop-color: rgb(8, 108, 52);"/>
+      <stop offset="1" style="stop-color: rgb(0, 181, 15);"/>
+    </radialGradient>
+  </defs>
+  <path style="stroke-width: 3px; fill: url('#gradient-1'); stroke: url('#gradient-4');" d="M 150.693 146.954 C 150.693 146.954 194.17420978331884 147.55167932119795 210.71 137.437 C 228.45908883601072 126.58016525141936 236.78079913046227 90.9563970299059 251.964 80.871 C 262.7970797018266 73.67515830704455 286.35482211151606 76.60787884294433 286.65 72.677 C 287.00946787222966 67.88997255386079 255.5346242184718 54.03265837654739 237.601 52.979 C 216.74686367177577 51.75375209917344 184.9976935404365 59.75352632772466 168.613 71.665 C 154.9368409788006 81.60740189582016 142.4528173099694 104.02554271522177 141.403 113.37 C 140.91554520156086 117.70885067336852 143.88842181669455 119.3354330302526 145.128 123.439 C 146.98770077338227 129.59545448592473 150.693 146.954 150.693 146.954 C 150.693 146.95400000000004 150.693 146.954 150.693 146.954" transform="matrix(1, 0, 0, 1, 2.842170943040401e-14, 0)"/>
+  <path style="fill: url('#gradient-8');" d="M 121.071 242.909 C 121.071 242.909 133.894 241.15 150.194 240.477 C 166.494 239.803 185.831 242.021 200.179 244.556 C 218.19 247.738 229.28 251.207 253.069 264.179 C 276.858 277.151 322.473 323.178 322.239 323.18 C 311.11 323.29 15.12 323.23 0.461 323.068 C 0.05 323.063 8.335 303.593 21.43 292.491 C 34.525 281.39 51.207 270.392 62.539 264.779 C 72.824 259.685 85.948 252.771 98.436 249.008 C 110.925 245.245 121.071 242.909 121.071 242.909" transform="matrix(1, 0, 0, 1, 2.842170943040401e-14, 0)"/>
+  <path d="M 34.89 86.986 C 30.183 66.9 3.861 63.657 1.462 63.813 C 1.435 63.815 1.406 61.863 1.445 59.249 C 1.454 58.615 12.77 54.801 21.411 51.136 C 32.46 47.982 54.319 46.83 54.319 46.83 C 105.026 47.154 140.407 76.079 160.421 116.313 C 169.153 133.866 170.125 154.472 170.806 175.503 L 171.041 193.084 L 171.833 245.162 C 170.985 255.732 178.626 259.52 162.953 259.897 C 147.28 260.274 153.264 255.105 153.264 245.31 L 152.2 162.626 C 81.843 159.246 45.119 130.635 34.89 86.986 Z" style="stroke-width: 3px; paint-order: fill; stroke: url('#gradient-0'); fill: url('#gradient-2');" transform="matrix(1, 0, 0, 1, 2.842170943040401e-14, 0)"/>
+  <path style="stroke-width: 3px; fill: url('#gradient-5'); stroke: rgba(4, 169, 5, 0);" d="M 163.381 202.694 C 163.381 202.694 185.81112179512021 197.91425240080505 193.674 191.138 C 201.87857854425266 184.06726920531696 204.01195080573956 166.78616301062428 210.988 160.374 C 216.11123762625357 155.66488257738644 228.5955640168305 154.29172589934976 228.307 152.464 C 227.96425338160776 150.2930887469933 210.83276394637008 147.79010807109486 201.624 149.375 C 190.64494307719988 151.26457158694407 174.9880468686361 158.59825788719675 167.346 166.193 C 161.17306198012318 172.3277271411921 156.006324879912 184.04879169605104 156.234 188.49 C 156.33505739688104 190.46130433061757 157.93349853794422 190.91193363816896 158.861 192.636 C 160.2512126081594 195.22016713242536 163.381 202.694 163.381 202.694 C 163.38099999999997 202.694 163.381 202.694 163.381 202.694" transform="matrix(1, 0, 0, 1, 2.842170943040401e-14, 0)"/>
+</svg>

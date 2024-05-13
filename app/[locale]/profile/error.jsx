@@ -1,9 +1,11 @@
 "use client";
 
-export default function SettingsError() {
+import ErrorComponent from "@/app/components/ErrorComponent/ErrorComponent";
+
+export default function SettingsError({ error, reset }) {
 	return (
 		<section>
-			<h2>Something wrong SearchPage</h2>
+			<ErrorComponent error={error} reset={() => reset()} value="Profile" />
 		</section>
 	);
 }

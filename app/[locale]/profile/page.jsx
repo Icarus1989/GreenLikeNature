@@ -1,14 +1,13 @@
 import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
 import initTranslations from "@/app/i18n";
 
-import SettingsPrimary from "@/components/SettingsPrimary/SettingsPrimary";
+import SettingsPrimary from "@/app/[locale]/profile/components/SettingsPrimary/SettingsPrimary";
 import styles from "./page.module.css";
 import {
-	seasonalData,
 	getSpoonData,
 	translateToEng,
 	translateList
-} from "../../ServerComponent";
+} from "../../serverActions/ServerActions";
 
 const i18nNamespaces = ["profile"];
 

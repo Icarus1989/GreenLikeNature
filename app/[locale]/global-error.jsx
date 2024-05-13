@@ -1,14 +1,16 @@
 "use client";
 
-import ErrorComponent from "@/components/ErrorComponent/ErrorComponent";
+import { useEffect } from "react";
+import ErrorComponent from "@/app/components/ErrorComponent/ErrorComponent";
 
 export default function GlobalError({ error, reset }) {
+	// useEffect(() => {
+	// 	console.error(error);
+	// }, [error]);
 	return (
 		<html>
 			<body>
-				<ErrorComponent error={error} reset={reset} />
-				{/* <h2>Something went wrong</h2>
-				<button onClick={() => reset()}></button> */}
+				<ErrorComponent error={error} reset={() => reset()} />
 			</body>
 		</html>
 	);

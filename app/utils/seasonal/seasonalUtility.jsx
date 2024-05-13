@@ -1,6 +1,5 @@
 export const calcSeasonalListIDs = (listObjs, data) => {
 	const listNames = Array.from(Object.keys(listObjs));
-	// console.log(listNames);
 	const list = new Set();
 	for (let name of listNames) {
 		const ids = calcRecipesIds(data, name);
@@ -8,11 +7,7 @@ export const calcSeasonalListIDs = (listObjs, data) => {
 			list.add(idElem);
 		}
 	}
-	// console.log(takeEightSeasonal(Array.from(list)));
 	return takeEightSeasonal(Array.from(list));
-	// const list = listNames.map((name) => {
-	// 	return calcRecipesIds(data, name);
-	// })
 };
 
 function takeEightSeasonal(list) {
@@ -26,7 +21,6 @@ function takeEightSeasonal(list) {
 }
 
 function calcRecipesIds(data, name) {
-	// console.log(name);
 	const filteredList = data.map((elem) => {
 		return {
 			[elem.id]: elem.extendedIngredients
@@ -34,8 +28,6 @@ function calcRecipesIds(data, name) {
 	});
 
 	const cleanName = name[name.length - 1] === "s" ? name.slice(0, -1) : name;
-
-	// console.log(name.slice(0, -1));
 
 	const filteredIds = filteredList.filter((recipeObj) => {
 		const recipeIngrsArr = Object.values(recipeObj)[0];
@@ -52,8 +44,5 @@ function calcRecipesIds(data, name) {
 		}
 	});
 
-	// console.log(filteredIds.map((obj) => Object.keys(obj)));
-
 	return filteredIds.map((obj) => Object.keys(obj)[0]);
 }
-// test

@@ -1,5 +1,5 @@
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
-import PlantIconComponent from "@/components/LoadingSpinner/PlantIconComponent";
+import LoadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
+import PlantIconComponent from "@/app/components/LoadingSpinner/PlantIconComponent";
 
 export default function GeneralLoading() {
 	return (
@@ -15,7 +15,6 @@ export default function GeneralLoading() {
 					overflow: "hidden"
 				}}
 			>
-				{/* ... */}
 				<LoadingSpinner>
 					<PlantIconComponent />
 				</LoadingSpinner>

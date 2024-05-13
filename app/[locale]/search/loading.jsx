@@ -1,5 +1,5 @@
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
-import RecipeIconComponent from "@/components/LoadingSpinner/RecipeIconComponent";
+import LoadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
+import RecipeIconComponent from "@/app/components/LoadingSpinner/RecipeIconComponent";
 
 export default function SearchLoading() {
 	return (
