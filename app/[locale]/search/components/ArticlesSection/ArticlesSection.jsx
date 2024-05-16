@@ -8,9 +8,6 @@ import RecipeSummary from "../RecipeSummary/RecipeSummary";
 
 import styles from "./ArticlesSection.module.css";
 
-// Aggiungere visualizzazione se presenti recipes con
-// ingredient scelto di stagione
-
 export default function ArticlesSection({ recipes, name, varieties }) {
 	const [idsList, setIdsList] = useState(calcRecipesIds(recipes));
 	const recipesIds = recipes.map((recipe) => recipe.id);
@@ -18,13 +15,7 @@ export default function ArticlesSection({ recipes, name, varieties }) {
 
 	const { t } = useTranslation();
 
-	const { recipesList, ingrList } = useAppSelector((state) => state.recipes);
-
-	// const filteredList = recipes.map((recipe) => {
-	// 	return {
-	// 		[recipe.id]: recipe.extendedIngredients
-	// 	};
-	// });
+	const { recipesList } = useAppSelector((state) => state.recipes);
 
 	function calcRecipesIds(data) {
 		const filteredList = data.map((elem) => {
@@ -67,9 +58,6 @@ export default function ArticlesSection({ recipes, name, varieties }) {
 						<span className={styles["seasonal-name"]}>{name}</span>{" "}
 						{t("variety_label_2")}{" "}
 						<span className={styles["seasonal-name"]}>{varieties[0]}</span>
-						{/* <span className={styles["seasonal-name"]}>
-							{varieties.join(", ")}
-						</span> */}
 					</h3>
 					<div className={styles["articles-container"]} dir="ltr">
 						{suggestedList.map((recipe) => {

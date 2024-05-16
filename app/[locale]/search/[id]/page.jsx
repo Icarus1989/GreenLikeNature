@@ -1,9 +1,7 @@
 import axios from "axios";
 import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
 import initTranslations from "@/app/i18n";
-// import SingleRecipePrimary from "@/components/SingleRecipePrimary/SingleRecipePrimary";
 import SingleRecipePrimary from "./components/SingleRecipePrimary/SingleRecipePrimary";
-// import { translateRecipe, detectIntolerance } from "@/app/ServerComponent";
 import {
 	translateRecipe,
 	detectIntolerance
@@ -14,8 +12,6 @@ async function getDataByID(recipeId) {
 	const apiKey = process.env.APIKEYSPOONTWO;
 	const url = `https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=false&apiKey=${apiKey}
 `;
-	// const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&instructionsRequired=true&addRecipeInformation=true&fillIngredients=true&apiKey=${apiKey}`
-
 	try {
 		const response = await axios({
 			method: "get",
@@ -28,7 +24,6 @@ async function getDataByID(recipeId) {
 
 		const data = await response.data;
 
-		// const results = await json["results"].map((recipe) => {
 		const {
 			id,
 			title,

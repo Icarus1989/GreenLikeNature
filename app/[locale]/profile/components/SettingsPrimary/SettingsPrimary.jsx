@@ -1,9 +1,9 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-
-import { useTranslation } from "react-i18next";
 import { useState, Suspense, Fragment } from "react";
+import { useAppSelector } from "@/lib/hooks";
+import { useTranslation } from "react-i18next";
+
 import UserOption from "../UserOption/UserOption";
 import VisualOption from "../VisualOption/VisualOption";
 import SavedRecipes from "../SavedRecipes/SavedRecipes";
@@ -29,7 +29,6 @@ export default function SettingsPrimary({
 	});
 
 	const { errorsReport } = useAppSelector((state) => state.recipes);
-	const reduxDispatch = useAppDispatch();
 
 	const errorsValues = Array.from(Object.values(errorsReport));
 	const errorCheck = errorsValues.filter((elem) => elem !== null)[0] || null;
@@ -111,7 +110,7 @@ export default function SettingsPrimary({
 				</Fragment>
 				<UserOption>
 					<Suspense fallback={<p>Loading saved recipes...</p>}>
-						<SavedRecipes onClick={handleClickSecond} />
+						<SavedRecipes handleClick={handleClickSecond} />
 					</Suspense>
 				</UserOption>
 			</Fragment>
@@ -167,5 +166,3 @@ export default function SettingsPrimary({
 		</section>
 	);
 }
-
-// clean

@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import styles from "./page.module.css";
-
-import { motion } from "framer-motion";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function ErrorPageId({ error }) {
@@ -23,12 +21,6 @@ export default function ErrorPageId({ error }) {
 							{error}
 						</details>
 					</div>
-					{/* )} */}
-					{/* <button className={styles["close-btn"]} onClick={onClick}>
-						<IoIosClose className={styles["close-icon"]} />
-					</button> */}
-
-					{/* Da riattivare ---> */}
 					<button className={styles["undo-btn"]}>
 						<Link href="/search">
 							<FaArrowLeft className={styles["undo-icon"]} />

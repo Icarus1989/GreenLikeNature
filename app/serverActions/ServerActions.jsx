@@ -17,17 +17,11 @@ const secondYear = now.getFullYear() - 1;
 // l'effettiva stagionalità dei prodotti ortofrutticoli e quindi possono essere utilizzati
 // in un progetto di studio.
 
-// const baseUrl = process.env.BASEURL;
-
 // const completeUrl =
 // 	"https://ec.europa.eu/agrifood/api/fruitAndVegetable/prices?memberStateCodes=IT&months=1,2,3,4,5,6,7,8,9,10,11,12&beginDate=01/01/2022&endDate=20/02/2024";
 
-// Test url con date reali --->
-
 const completeUrl = `https://ec.europa.eu/agrifood/api/fruitAndVegetable/prices?memberStateCodes=IT&months=1,2,3,4,5,6,7,8,9,10,11,12&beginDate=01/01/${firstYear}&endDate=31/12/${secondYear}`;
 
-// Test cache
-// Oppure scrivere come funzione normale async --->
 export const getData = cache(async () => {
 	try {
 		// const res = await fetch(completeUrl, { next: { revalidate: 86400 } });

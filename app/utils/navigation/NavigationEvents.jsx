@@ -10,10 +10,7 @@ import {
 	setError
 } from "@/lib/features/recipes/recipesSlice";
 
-import {
-	GeneralContext,
-	GeneralDispatchContext
-} from "@/app/generalContext/GeneralContext";
+import { GeneralContext } from "@/app/generalContext/GeneralContext";
 
 export function NavigationEvents({ getSpoonData }) {
 	const pathname = usePathname();
@@ -56,8 +53,6 @@ export function NavigationEvents({ getSpoonData }) {
 	useEffect(() => {
 		let ignore = false;
 
-		console.log("UPDATE LIST EFFECT");
-
 		async function createList() {
 			const requestList = await getNewList(
 				[],
@@ -93,7 +88,6 @@ export function NavigationEvents({ getSpoonData }) {
 
 	useEffect(() => {
 		if (pathname === "/profile") {
-			console.log("FILTER EFFECT NAVIGATION");
 			reduxDispatch(
 				filterByAllergens({
 					intolerances: intolerancesSettings,
@@ -104,9 +98,6 @@ export function NavigationEvents({ getSpoonData }) {
 	}, [intolerancesSettings, allergiesSettings, pathname]);
 
 	useEffect(() => {
-		// const url =
-		// 	searchParams.length > 0 ? `${pathname}?${searchParams}` : `${pathname}`;
-
 		if (navigator.onLine && errorsReport?.network) {
 			reduxDispatch(setError({ name: "network", message: null }));
 		}

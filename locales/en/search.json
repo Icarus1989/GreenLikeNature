@@ -1,1 +1,1 @@
-{"label_recent":"Recent","label_suggest":"Suggest","search_placeholder":"Search for a recipe...","variety_label_1":"with","variety_label_2":"variety"}
+{"label_recent":"Recent","label_suggest":"Suggest","no_results_label":"No results for: {{searchTerm}}","no_suggestion_label":"No suggestions available.","results_label":"Results for: {{searchTerm}}","search_placeholder":"Search for a recipe...","variety_label_1":"with","variety_label_2":"variety"}

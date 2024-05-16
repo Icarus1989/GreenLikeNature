@@ -463,11 +463,15 @@
 	text-decoration-color: rgb(6, 102, 23);
 	text-underline-offset: 0.5rem;
 	text-decoration-thickness: 3px;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	padding: 2% 3% 2% 3%;
 	/* letter-spacing: 0.1em; */
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.no-suggest-label {
+	padding: 3%;
 }
 
 .list > li {
@@ -567,7 +571,8 @@
 	color: rgb(2, 180, 2);
 	font-size: 48px;
 	font-weight: 200;
-	font-family: "Great Vibes", cursive;
+	/* font-family: "Great Vibes", cursive; */
+	font-family: var(--font-great-vibes);
 	text-align: center;
 	text-shadow: 3px 3px 10px #000000;
 	z-index: 8;

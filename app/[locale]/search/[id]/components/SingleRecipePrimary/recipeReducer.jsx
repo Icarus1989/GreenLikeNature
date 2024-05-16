@@ -1,7 +1,4 @@
 export default function singleRecipeReducer(state, action) {
-	// da usare per recipeState
-	// change
-	// reset / complete ?
 	if (action.type === "change") {
 		const value = action.target.checked;
 		const name = action.target.name;
@@ -23,7 +20,6 @@ export default function singleRecipeReducer(state, action) {
 			ingredients: state.ingredients.map((ingredient) => {
 				const key = Object.keys(ingredient)[0];
 				return { [key]: action.value };
-				// return {}
 			}),
 			steps: state.steps.map((step) => {
 				const key = Object.keys(step)[0];
@@ -37,8 +33,4 @@ export default function singleRecipeReducer(state, action) {
 	} else {
 		throw Error("Unknown action: " + action.type);
 	}
-}
-
-{
-	/* Capire come inserire alternativa in mancanza di steps */
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { i18nConfig } from "@/i18nConfig";
@@ -12,7 +12,6 @@ import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
 import { MdLanguage } from "react-icons/md";
 
 import styles from "./LanguageOption.module.css";
-import { Fragment } from "react";
 
 export default function LanguageOption({ onStartAnim }) {
 	const { i18n } = useTranslation();

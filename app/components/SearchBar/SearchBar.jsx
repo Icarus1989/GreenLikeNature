@@ -5,7 +5,7 @@ import { GoSearch } from "react-icons/go";
 
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar({ value, position, onChange }) {
+export default function SearchBar({ value, position, handleChange }) {
 	const { t } = useTranslation();
 
 	return (
@@ -15,7 +15,7 @@ export default function SearchBar({ value, position, onChange }) {
 				id="input-bar"
 				type="text"
 				value={value}
-				onChange={(event) => onChange(event)}
+				onChange={(event) => handleChange(event)}
 				className={styles["input-bar"]}
 				placeholder={t("search_placeholder")}
 			/>

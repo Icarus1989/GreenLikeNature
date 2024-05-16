@@ -7,7 +7,6 @@ import parse from "html-react-parser";
 
 import Link from "next/link";
 import Image from "next/image";
-import { useParams } from "next/navigation";
 
 import singleRecipeReducer from "./recipeReducer";
 import {
@@ -42,15 +41,11 @@ import {
 import styles from "./SingleRecipePrimary.module.css";
 
 export default function SingleRecipePrimary({ data, saved, originalData }) {
-	console.log(data);
-	const params = useParams();
-
-	const { recipesList, ingrList } = useAppSelector((state) => state.recipes);
-	const reduxDispatch = useAppDispatch();
-
 	const recipeData = data;
 
 	const { t } = useTranslation();
+
+	const reduxDispatch = useAppDispatch();
 
 	const [goDown, setGoDown] = useState(false);
 
@@ -119,7 +114,6 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 			type: "delete",
 			id: recipeData.id
 		});
-		// gestire localStorage
 	}
 
 	function handleSave() {
@@ -141,8 +135,6 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 				recipe: { ...recipeData, savedAt: Date.now() }
 			});
 		}
-
-		// gestire localStorage
 	}
 
 	function handleChangeRecipe(target, recipe) {
@@ -179,7 +171,6 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 				id: recipeData.id
 			});
 		}
-		// Far leggere GeneralContext al Component per complete
 	}
 
 	const { scrollYProgress } = useScroll({
@@ -251,44 +242,11 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 		}
 	}, [recipe]);
 
-	// Considerare se usare questo al posto dell'onLoad --->
-	// useEffect(() => {
-	// 	console.log("effect add");
-	// 	if (saved === false) {
-	// 		const newReduxRecipe = {
-	// 			id: data.id,
-	// 			title: data.title,
-	// 			aggregateLikes: data.aggregateLikes,
-	// 			analyzedInstructions: data.analyzedInstructions,
-	// 			extendedIngredients: data.extendedIngredients,
-	// 			image: data.image,
-	// 			readyInMinutes: data.readyInMinutes,
-	// 			servings: data.servings,
-	// 			summary: data.summary,
-	// 			vegan: data.vegan,
-	// 			vegetarian: data.vegetarian
-	// 		};
-	// 		// usare useAppDispatch per salvare ricetta in Redux recipesList
-	// 		reduxDispatch(addRecipe(newReduxRecipe));
-	// 	}
-	// }, []);
-
 	return (
 		<section
 			onLoad={() => {
 				if (saved === false) {
 					const newReduxRecipe = {
-						// id: originalData.id,
-						// title: originalData.title,
-						// aggregateLikes: originalData.aggregateLikes,
-						// analyzedInstructions: originalData.analyzedInstructions,
-						// extendedIngredients: originalData.extendedIngredients,
-						// image: originalData.image,
-						// readyInMinutes: originalData.readyInMinutes,
-						// servings: originalData.servings,
-						// summary: originalData.summary,
-						// vegan: originalData.vegan,
-						// vegetarian: originalData.vegetarian
 						...originalData
 					};
 					reduxDispatch(addRecipe(newReduxRecipe));
@@ -471,8 +429,7 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 				<div className={styles["instructions-container"]}>
 					<h3 className={styles["section-title"]}>{t("preparation_label")}</h3>
 					<ul className={styles["instructions-list"]}>
-						{/* Capire come inserire alternativa in mancanza di steps */}
-						{steps.map((step, index) => {
+						{steps?.map((step, index) => {
 							return (
 								<li key={`number${step.number}`} className={styles["step"]}>
 									<details open={!recipe.complete.confirm}>

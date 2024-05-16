@@ -6,8 +6,6 @@ export const GeneralContext = createContext(null);
 export const GeneralDispatchContext = createContext(null);
 
 export default function GeneralProvider({ children }) {
-	console.log("local");
-
 	const initialSettings = {
 		"title-animation": false,
 		"saved-recipes": [],
@@ -26,12 +24,10 @@ export default function GeneralProvider({ children }) {
 		const localStorageSettings = window.localStorage.getItem("settings");
 
 		if (localStorageSettings) {
-			console.log("load");
 			dispatch({
 				type: "set_context"
 			});
 		} else {
-			console.log("new");
 			window.localStorage.setItem("settings", JSON.stringify(initialSettings));
 		}
 		// }

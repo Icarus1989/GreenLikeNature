@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "./RecipeSummary.module.css";
 import fallbackImg from "@/public/tableNapkin.svg";
 
@@ -21,10 +21,7 @@ export default function RecipeSummary({
 	}, []);
 
 	return (
-		<article
-			onClick={() => console.log("Go to single recipe")}
-			className={styles["summary-container"]}
-		>
+		<article className={styles["summary-container"]}>
 			<h2 className={styles["summary-title"]}>
 				{title.length > 42 ? `${title.slice(0, 40)}...` : title}
 			</h2>
@@ -61,5 +58,3 @@ export default function RecipeSummary({
 		</article>
 	);
 }
-
-// clean

@@ -8,9 +8,6 @@ const initialState = {
 	seasonalRecipes: [],
 	ingrList: [],
 	errorsReport: {}
-	// localSettings: {}
-	// localSettings: JSON.parse(window.localStorage.getItem("settings"))
-	// total: 0
 };
 
 const recipesSlice = createSlice({
@@ -18,27 +15,6 @@ const recipesSlice = createSlice({
 	initialState,
 	reducers: {
 		initializeList: (state, action) => {
-			// const extList = action.payload.map((elem) => {
-			// 	const name = elem.split(" - ")[0] || elem;
-			// 	const variety = elem.split(" - ")[1] || "All";
-			// 	return {
-			// 		[name]: [variety]
-			// 	};
-			// });
-
-			// const list = {};
-
-			// for (const elem of Object.values(extList)) {
-			// 	if (!list[Object.keys(elem)[0]]) {
-			// 		list[Object.keys(elem)[0]] = Object.values(elem)[0];
-			// 	} else {
-			// 		list[Object.keys(elem)[0]] = [
-			// 			...list[Object.keys(elem)[0]],
-			// 			...Object.values(elem)[0]
-			// 		];
-			// 	}
-			// }
-
 			return { ...state, ingrList: action.payload };
 		},
 		initializeRecipes: (state, action) => {
@@ -78,10 +54,6 @@ const recipesSlice = createSlice({
 			const checkInitialList =
 				state.initialList.filter((recipe) => recipe.id === action.payload.id)
 					.length > 0;
-			// [x] Sistemare filter, così metodo vecchio vedi Navigation
-			console.log("addRecipe");
-			console.log(action.payload);
-			// [ ] Forse evitare di inserire getUniqueElems dopo controllo filter
 			return {
 				...state,
 				recipesList: checkRecipesList
@@ -155,17 +127,12 @@ const recipesSlice = createSlice({
 				}
 			});
 
-			// Restituire ricette senza ingredients e intolFree
-			// dopo restaurazione che aggiungerà eggFree, treeNutFree...
-			// ...peanutsFree ecc
-
 			return {
 				...state,
 				recipesList: filterByAllergy
 			};
 		},
 		setError: (state, action) => {
-			// const newError = action.payload;
 			return {
 				...state,
 				errorsReport: {

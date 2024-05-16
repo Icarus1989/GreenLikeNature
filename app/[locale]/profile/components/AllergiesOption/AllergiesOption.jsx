@@ -15,8 +15,6 @@ import {
 import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
 import anime from "animejs/lib/anime.es.js";
 
-import ErrorModal from "../../../../components/ErrorModal/ErrorModal";
-
 import { CiMedicalCross } from "react-icons/ci";
 import { PiProhibitBold, PiTrash } from "react-icons/pi";
 import styles from "./AllergiesOption.module.css";
@@ -76,7 +74,6 @@ export default function AllergiesOptions({
 		}
 
 		if (checkText.length > 0) {
-			console.log(checkText[0]);
 			generalDispatch({
 				type: "remove_intolerance",
 				name: checkText[0]
@@ -92,10 +89,8 @@ export default function AllergiesOptions({
 	function handleChange(event) {
 		const name = event.target.name.split("_")[0];
 		const value = event.target.value;
-		console.log(name, value);
 		if (value.length >= 0) {
 			if (name === "intolerances") {
-				console.log(value);
 				setInputSelect(value);
 			} else if (name === "allergies") {
 				setInputText(value);
@@ -137,10 +132,13 @@ export default function AllergiesOptions({
 				});
 				setInputText("");
 			} else {
-				// inputRef.current.style.borderColor = "red";
+				inputRef.current.style.borderColor = "red";
+				setTimeout(() => {
+					inputRef.current.style.borderColor = "rgb(133, 133, 133)";
+				}, 2300);
+				return;
 			}
 		} else if (name === "intolerances") {
-			console.log(inputSelect);
 			if (inputSelect.length > 0) {
 				generalDispatch({
 					type: "add_intolerance",
@@ -150,6 +148,11 @@ export default function AllergiesOptions({
 					return { ...prevPlay, second: true };
 				});
 				setInputSelect("");
+			} else {
+				selectRef.current.style.borderColor = "red";
+				setTimeout(() => {
+					selectRef.current.style.borderColor = "rgb(133, 133, 133)";
+				}, 2300);
 			}
 		}
 	}
@@ -185,7 +188,6 @@ export default function AllergiesOptions({
 			});
 			setInputText("");
 		} else {
-			// inputRef.current.style.borderColor = "red";
 			return;
 		}
 	}
@@ -267,7 +269,6 @@ export default function AllergiesOptions({
 
 		async function translateToLocale() {
 			const result = await translateList(allergiesList, params.locale);
-			console.log(result);
 
 			if (result[0]?.error) {
 				reduxDispatch(setError({ name: "list", message: result[0]?.error }));
@@ -292,8 +293,6 @@ export default function AllergiesOptions({
 			ignore = true;
 		};
 	}, [allergiesList]);
-
-	console.log(errorsReport);
 
 	return (
 		<>

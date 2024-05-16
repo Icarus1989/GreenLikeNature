@@ -1,21 +1,18 @@
 import { Suspense } from "react";
-import Navbar from "../components/Navbar/Navbar";
-import { seasonalData, getSpoonData } from "../serverActions/ServerActions";
-import GeneralProvider from "../generalContext/GeneralContext";
-import { NavigationEvents } from "../utils/navigation/NavigationEvents";
-import StoreProvider from "../reduxContext/StoreProvider";
-
-import testList from "@/spoonTempData/tempList.json";
-
-import { calcSeasonalListIDs } from "../utils/seasonal/seasonalUtility";
-
-import "./globals.css";
-import { Inter } from "next/font/google";
-
 import { i18nConfig } from "@/i18nConfig";
 import { dir } from "i18next";
+import StoreProvider from "../reduxContext/StoreProvider";
+import GeneralProvider from "../generalContext/GeneralContext";
+import { seasonalData, getSpoonData } from "../serverActions/ServerActions";
+import { NavigationEvents } from "../utils/navigation/NavigationEvents";
+import { calcSeasonalListIDs } from "../utils/seasonal/seasonalUtility";
 
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "../components/Navbar/Navbar";
+
+import "./globals.css";
+import { inter } from "@/app/utils/fonts/fonts";
+
+import testList from "@/spoonTempData/tempList.json";
 
 export const metadata = {
 	title: "Green Like Nature",

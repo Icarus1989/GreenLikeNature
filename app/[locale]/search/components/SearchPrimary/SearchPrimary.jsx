@@ -1,11 +1,8 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
-
 import { Fragment, useEffect, useState, useRef, useContext } from "react";
-// import Link from "next/link";
-// import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useTranslation } from "react-i18next";
 import { setError } from "@/lib/features/recipes/recipesSlice";
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
@@ -26,7 +23,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		second: false,
 		third: false
 	});
-	// const [searchData, setSearchData] = useState([]);
 
 	const { recipesList, ingrList, errorsReport } = useAppSelector(
 		(state) => state.recipes
@@ -116,8 +112,8 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 
 	useEffect(() => {
 		if (view === true) {
-			console.log("blur effect");
 			window.addEventListener("blur", handleCloseTab);
+			setSearchData({ type: "default", results: [] });
 			return () => {
 				window.removeEventListener("blur", handleCloseTab);
 			};
@@ -141,7 +137,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 
 	async function handleSubmit(event) {
 		event.preventDefault();
-		console.log(navigator.onLine);
 
 		if (searchTerm.length > 0 && navigator.onLine) {
 			if (errorsReport?.network) {
@@ -154,8 +149,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 					intolerances
 				);
 				if (response?.error) {
-					console.log(response.error);
-					// setSearchData({ type: "error", message: response.error });
 					reduxDispatch(setError({ name: "query", message: response.error }));
 				}
 				if (response["totalResults"] > 0) {
@@ -164,12 +157,9 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 					setSearchData({ type: "empty", results: response["results"] });
 				}
 			} catch (error) {
-				// setSearchData({ type: "error", message: error });
 				reduxDispatch(setError({ name: "submit", message: error.message }));
-				console.log(error);
 			}
 		} else if (!navigator.onLine) {
-			// setSearchData({ type: "error", message: "Network error." });
 			reduxDispatch(
 				setError({ name: "network", message: "Check network connection." })
 			);
@@ -177,35 +167,12 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		} else {
 			return;
 		}
-
-		// Attivare quando pronto intolerances nel GlobalContext --->
-		// const response = await searchByQuery(searchTerm, allergens, intolerances);
-		// <--- Attivare quando pronto intolerances nel GlobalContext
-
-		// ATTENZIONE
-		// [x] Impostare al meglio allergens
-		// [x] Testare allergens
-		// [x] Impostare intolerances
-
-		// setSearchData(response["results"]);
-		// Aggiungere ricerca usando query impostato in handleChange
-		// creare funzione getData e passare query
-		// console.log(
-		// 	// Da spostare in handleChange, come suggeriemnti
-		// 	recipesList.filter((recipe) =>
-		// 		recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
-		// 	)
-		// );
-
-		// ATTENZIONE aggiungere alternativa testuale
-		// se ricerca infruttuosa
 	}
 
 	function handleCloseTab() {
-		if (searchData?.results.length > 0) {
+		if (searchData.results.length > 0) {
 			setSearchData({ type: "default", results: [] });
 		}
-		// setQuery("");
 		setSearchTerm("");
 		scrollYProgress.set(0);
 		setLeavesDisplay(() => {
@@ -225,7 +192,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			<form onSubmit={handleSubmit} className={styles["search-part"]}>
 				<SearchBar
 					value={searchTerm}
-					onChange={handleChange}
+					handleChange={handleChange}
 					position="static"
 				/>
 			</form>
@@ -377,10 +344,14 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 							<ul className={styles["list"]}>
 								{/* ATTENZIONE traduzione i18 qui ---> */}
 								<span className={styles["list-label"]}>
-									{searchData.type === "positive" &&
+									{/* {searchData.type === "positive" &&
 										`Risultati per: ${searchTerm}`}
 									{searchData.type === "empty" &&
-										`Nessun risultato per: ${searchTerm}`}
+										`Nessun risultato per: ${searchTerm}`} */}
+									{searchData.type === "positive" &&
+										t("results_label", { searchTerm })}
+									{searchData.type === "empty" &&
+										t("no_results_label", { searchTerm })}
 								</span>
 								{searchData.type === "positive" &&
 									searchData.results.map((elem) => {
@@ -404,7 +375,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 							<ul className={styles["list"]}>
 								<span className={styles["list-label"]}>Suggerimenti:</span>
 								{data.map((elem) => {
-									// Here
 									const recipePresence =
 										recipesList.filter(
 											(recipe) => String(recipe.id) === String(elem.id)
@@ -422,11 +392,11 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 								})}
 							</ul>
 						) : (
-							// traduzione i18 --->
-							<p>{`Nessun suggerimento disponibile.`}</p>
+							// controllare traduzione i18 --->
+							<p className={styles["no-suggest-label"]}>
+								{t("no_suggestion_label")}
+							</p>
 						)}
-						{/* creare class css per error e mettere davanti z-index center page */}
-						{/* {searchData.type === "error" && <p>{searchData.message}</p>} */}
 					</motion.div>
 				)}
 			</div>

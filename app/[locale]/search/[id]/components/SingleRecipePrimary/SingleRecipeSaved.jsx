@@ -42,11 +42,10 @@ import {
 import { useParams } from "next/navigation";
 
 export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
-	console.log(data);
 	const params = useParams();
 	const lang = params.locale;
 
-	const { recipesList, ingrList, errorsReport } = useAppSelector(
+	const { recipesList, errorsReport } = useAppSelector(
 		(state) => state.recipes
 	);
 	const reduxDispatch = useAppDispatch();
@@ -299,8 +298,6 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 		};
 	}, []);
 
-	console.log(errorsReport);
-
 	return (
 		<section
 			onLoad={() => {
@@ -498,8 +495,7 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 				<div className={styles["instructions-container"]}>
 					<h3 className={styles["section-title"]}>{t("preparation_label")}</h3>
 					<ul className={styles["instructions-list"]}>
-						{/* Capire come inserire alternativa in mancanza di steps */}
-						{steps.map((step, index) => {
+						{steps?.map((step, index) => {
 							return (
 								<li key={`number${step.number}`} className={styles["step"]}>
 									<details open={!recipe.complete.confirm}>

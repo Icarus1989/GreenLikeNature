@@ -1,8 +1,9 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+
 import TomatoLeaf from "../TomatoLeaf/TomatoLeaf";
 import {
 	GeneralContext,
@@ -11,7 +12,7 @@ import {
 import styles from "./SavedRecipes.module.css";
 import { GoX, GoBookmark } from "react-icons/go";
 
-export default function SavedRecipes({ onClick }) {
+export default function SavedRecipes({ handleClick }) {
 	const generalDispatch = useContext(GeneralDispatchContext);
 	const settings = useContext(GeneralContext);
 
@@ -31,7 +32,7 @@ export default function SavedRecipes({ onClick }) {
 	}
 
 	return (
-		<div className={styles["saved-recipes-container"]} onClick={onClick}>
+		<div className={styles["saved-recipes-container"]} onClick={handleClick}>
 			<fieldset className={styles["saved-recipes-fieldset"]}>
 				<legend className={styles["saved-recipes-legend"]}>
 					<TomatoLeaf />
@@ -91,5 +92,3 @@ export default function SavedRecipes({ onClick }) {
 		</div>
 	);
 }
-
-// cambiare nome prop in arrivo in handleClick

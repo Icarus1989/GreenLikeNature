@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-	useState,
-	useEffect,
-	useRef,
-	useContext,
-	Fragment
-} from "react";
+import { useState, useEffect, useRef, useContext, Fragment } from "react";
 
 import Image from "next/image";
 
@@ -34,10 +28,11 @@ import Flower from "../FlowerComponent/Flower";
 import { Modal } from "../Modal/Modal";
 import ErrorModal from "../../../components/ErrorModal/ErrorModal";
 
+import { great_vibes } from "@/app/utils/fonts/fonts";
 import styles from "./MainPrimary.module.css";
 
 import bkgImage from "@/public/retina-wood.png";
-import altImage from "@/public/plus.svg";
+import altImage from "@/public/plusCircleTrans.svg";
 import fallbackImg from "@/public/tableNapkin.svg";
 import { GoX } from "react-icons/go";
 
@@ -209,7 +204,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	}
 
 	function handleCloseTab() {
-		if (searchData?.results.length > 0) {
+		if (searchData.results.length > 0) {
 			setSearchData({ type: "default", results: [] });
 		}
 		setSearchTerm("");
@@ -219,7 +214,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	}
 
 	function handleAnimComplete() {
-		console.log("handlecomplete");
 		generalDispatch({
 			type: "title_animated"
 		});
@@ -374,8 +368,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// Blur Effect
 	useEffect(() => {
 		if (view === true) {
-			console.log("blur effect");
 			window.addEventListener("blur", handleCloseTab);
+			setSearchData({ type: "default", results: [] });
 			return () => {
 				window.removeEventListener("blur", handleCloseTab);
 			};
@@ -386,7 +380,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		<>
 			<section
 				ref={sectionRef}
-				className={styles["container"]}
+				className={`${styles["container"]} ${great_vibes.variable}`}
 				dir="ltr"
 				onContextMenu={(event) => event.preventDefault()}
 			>
@@ -428,7 +422,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							id="searchBar"
 							value={searchTerm}
 							position="absolute"
-							onChange={handleChange}
+							handleChange={handleChange}
 						/>
 					</form>
 					{view && (
@@ -459,12 +453,12 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									searchData.type === "empty" ? (
 										<ul className={styles["list"]}>
 											{" "}
-											{/* ATTENZIONE traduzione i18 qui ---> */}
+											{/* controllare traduzione i18 qui ---> */}
 											<span className={styles["list-label"]}>
 												{searchData.type === "positive" &&
-													`Risultati per: ${searchTerm}`}
+													t("results_label", { searchTerm })}
 												{searchData.type === "empty" &&
-													`Nessun risultato per: ${searchTerm}`}
+													t("no_results_label", { searchTerm })}
 											</span>
 											{searchData.type === "positive" &&
 												searchData["results"].map((elem) => {
@@ -507,8 +501,10 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 											})}
 										</ul>
 									) : (
-										// traduzione i18 --->
-										<p>{`Nessun suggerimento disponibile.`}</p>
+										// controllare traduzione i18 --->
+										<p className={styles["no-suggest-label"]}>
+											{t("no_suggestion_label")}
+										</p>
 									)}
 								</div>
 							</motion.div>
@@ -577,6 +573,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 												>
 													<div className={styles["plate-image-container"]}>
 														<Image
+															style={
+																settingsType !== "seasonal"
+																	? { transform: "translateX(0%)" }
+																	: { transform: "translateX(-20%)" }
+															}
 															className={
 																errorsReport.network &&
 																errorsReport.network !== null
@@ -590,8 +591,9 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 																	: recipe.image
 															}
 															alt={recipe.title}
-															width="321"
-															height="231"
+															width="230"
+															height="172"
+															quality={100}
 														/>
 													</div>
 												</motion.li>
@@ -634,9 +636,16 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						>
 							<p className={styles["text-info"]}>
 								{/* ...oppure ruota e scegline una di stagione: */}
-								{t("suggest_seasonal")}
+								{settingsType === "seasonal" &&
+									(seasonalRecipes.length > 0
+										? `${t("suggest_seasonal")}`
+										: `${t("suggest_default")}`)}
+								{settingsType === "saved" &&
+									(savedRecipes.length > 0
+										? `${t("suggest_saved")}`
+										: `${t("suggest_default")}`)}
 							</p>
-							{/* Text Alternativo e traduzione qui per ricette salvate */}
+							{/* Controllare traduzione qui per ricette salvate */}
 							<button
 								onClick={handleOpenDetails}
 								className={styles["modal-btn"]}

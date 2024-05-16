@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import anime from "animejs/lib/anime.es.js";
 import styles from "./GrowingTomato.module.css";
 
@@ -292,5 +292,3 @@ export default function GrowingTomato({
 		</div>
 	);
 }
-
-// clean
