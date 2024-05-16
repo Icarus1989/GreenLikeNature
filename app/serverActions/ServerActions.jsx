@@ -8,14 +8,11 @@ const now = new Date();
 const firstYear = now.getFullYear() - 2;
 const secondYear = now.getFullYear() - 1;
 
-// Nota forse da copiare presentazione: Nel prossimo aggiornamento l'Url coprirà un periodo di due anni completi
-// precendenti alla data odierna, restituendo così dei risultati più precisi.
-// E' stata necessaria questa scelta a causa di una evidente parzialità dei
-// dati forniti prima del 2022. In assenza di altri dati open source disponibili
-// ho deciso di usare i dati dell'anno corrente 2023 nonostante ancora
-// evidentemente incompleti. Tuttavia nella maggior parte dei casi i risultati rispecchiano
-// l'effettiva stagionalità dei prodotti ortofrutticoli e quindi possono essere utilizzati
-// in un progetto di studio.
+// Nota da copiare in README.md Nonostante si potesse ottenere una
+// maggiore precisione utilizzando più anni nel calcolo della
+// stagionalità, non é stata implementata perché, dopo un'
+// attenta analisi dei dati, ho notato che prima del 2022
+// questi sono lacunosi e palesemente errati.
 
 // const completeUrl =
 // 	"https://ec.europa.eu/agrifood/api/fruitAndVegetable/prices?memberStateCodes=IT&months=1,2,3,4,5,6,7,8,9,10,11,12&beginDate=01/01/2022&endDate=20/02/2024";
@@ -677,7 +674,7 @@ export async function translateToEng(word, lang) {
 
 export async function translateList(list, lang) {
 	"use server";
-	const deeplAuthKey = process.env.APIKEYDEEPLTWO;
+	const deeplAuthKey = process.env.APIKEYDEEPL;
 	const translator = new deepl.Translator(deeplAuthKey);
 
 	if (lang !== "en") {
