@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, Suspense, Fragment } from "react";
-import { useAppSelector } from "@/lib/hooks";
+import { useState, useEffect, useContext, Suspense, Fragment } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setError } from "@/lib/features/recipes/recipesSlice";
 import { useTranslation } from "react-i18next";
+import { useParams } from "next/navigation";
 
 import UserOption from "../UserOption/UserOption";
 import VisualOption from "../VisualOption/VisualOption";
@@ -14,6 +16,15 @@ import GrowingTomato from "../GrowingTomato/GrowingTomato";
 import ErrorModal from "../../../../components/ErrorModal/ErrorModal";
 
 import styles from "./SettingsPrimary.module.css";
+
+// test
+
+import {
+	GeneralContext,
+	GeneralDispatchContext
+} from "@/app/generalContext/GeneralContext";
+
+// test
 
 export default function SettingsPrimary({
 	seasonalData,
@@ -27,6 +38,67 @@ export default function SettingsPrimary({
 		thirdPlant: false,
 		fourthPlant: false
 	});
+
+	// const { errorsReport } = useAppSelector((state) => state.recipes);
+	const reduxDispatch = useAppDispatch();
+
+	const settings = useContext(GeneralContext);
+
+	const settingsIntol = settings["tomato-settings"]["intolerances-list"];
+	const allergiesList = settings["tomato-settings"]["allergens-list"];
+
+	const allergensList = [...allergiesList, ...settingsIntol];
+
+	const [resultsList, setResultsList] = useState([]);
+
+	const params = useParams();
+
+	useEffect(() => {
+		let ignore = false;
+
+		const translateToLocale = async () => {
+			if (allergiesList.length > 0) {
+				const result = await translateList(allergiesList, params.locale);
+				console.log(result);
+
+				// const result = await transMemo;
+
+				// if (result[0]?.error) {
+				// 	reduxDispatch(setError({ name: "list", message: result[0]?.error }));
+				// 	// setVisualError(true);
+				// } else if (!result[0]?.error) {
+				// 	reduxDispatch(setError({ name: "list", message: null }));
+				// 	// setVisualError(false);
+				// }
+
+				// restituire questo --->
+				// const namesList = await result.map((elem) => elem.text);
+				// portare fuori funzione da Effect
+				// if (!ignore) {
+				setResultsList(() => {
+					return result;
+				});
+			} else {
+				return;
+			}
+			// }
+		};
+
+		if (!ignore) {
+			// const res = translateToLocale();
+			// console.log(res);
+
+			// // restituire questo --->
+			// const namesList = res.map((elem) => elem.text);
+			// portare fuori funzione da Effect
+			// if (!ignore) {
+			translateToLocale();
+		}
+
+		return () => {
+			ignore = true;
+		};
+	}, [allergiesList, params.locale, translateList]);
 
 	const { errorsReport } = useAppSelector((state) => state.recipes);
 
@@ -133,6 +205,7 @@ export default function SettingsPrimary({
 							getSpoonData={getSpoonData}
 							translateToEng={translateToEng}
 							translateList={translateList}
+							translatedArr={resultsList}
 							setVisualError={(value) => setShowError(value)}
 							onStartAnim={() => handleClickThird()}
 						/>

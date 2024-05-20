@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import SearchLoading from "./loading";
 import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
 import initTranslations from "@/app/i18n";
 import SearchPrimaryComponent from "@/app/[locale]/search/components/SearchPrimary/SearchPrimary";
@@ -18,7 +20,9 @@ export default async function SearchPage({ params: { locale } }) {
 			resources={resources}
 		>
 			<main className={styles["main"]}>
-				<SearchPrimaryComponent searchByQuery={searchByQuery} />
+				<Suspense fallback={<SearchLoading />}>
+					<SearchPrimaryComponent searchByQuery={searchByQuery} />
+				</Suspense>
 			</main>
 		</TranslationsProvider>
 	);

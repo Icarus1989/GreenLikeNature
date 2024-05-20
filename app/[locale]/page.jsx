@@ -1,6 +1,8 @@
+import { Suspense } from "react";
+import GeneralLoading from "./loading";
 import TranslationsProvider from "../i18nProvider/TranslationsProvider";
 import initTranslations from "../i18n";
-import { searchByQuery } from "../serverActions/ServerActions";
+import { searchByQuery } from "@/app/serverActions/ServerActions";
 import MainPrimary from "@/app/[locale]/components/MainPrimary/MainPrimary";
 import defaultList from "@/app/utils/defaults/defaultList.json";
 import styles from "./page.module.css";
@@ -17,10 +19,12 @@ export default async function HomePage({ params: { locale } }) {
 			resources={resources}
 		>
 			<main className={styles["main-element"]}>
-				<MainPrimary
-					defaultRecipes={defaultList}
-					searchByQuery={searchByQuery}
-				/>
+				<Suspense fallback={<GeneralLoading />}>
+					<MainPrimary
+						defaultRecipes={defaultList}
+						searchByQuery={searchByQuery}
+					/>
+				</Suspense>
 			</main>
 		</TranslationsProvider>
 	);

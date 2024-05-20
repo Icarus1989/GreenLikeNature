@@ -2,7 +2,14 @@
 
 import { useTranslation } from "react-i18next";
 import { useParams } from "next/navigation";
-import { useEffect, useState, useRef, useContext } from "react";
+import {
+	useEffect,
+	useState,
+	useRef,
+	useContext,
+	useMemo,
+	useCallback
+} from "react";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { setError } from "@/lib/features/recipes/recipesSlice";
@@ -22,6 +29,7 @@ import styles from "./AllergiesOption.module.css";
 export default function AllergiesOptions({
 	translateToEng,
 	translateList,
+	translatedArr,
 	setVisualError,
 	onStartAnim
 }) {
@@ -100,11 +108,12 @@ export default function AllergiesOptions({
 		}
 	}
 
-	function handleClick(event) {
+	async function handleClick(event) {
 		const target = event.target.closest("button");
 		const name = target.name.split("_")[0];
 
 		if (name === "allergies") {
+			console.log(inputText);
 			if (inputText.length > 0) {
 				const checkText = [];
 
@@ -116,10 +125,33 @@ export default function AllergiesOptions({
 					}
 				}
 
+				console.log(checkText);
+
 				if (checkText.length === 0) {
-					setNewAllergen(() => {
-						return inputText.toLowerCase();
+					// test
+					// async function engTranslation(text, locale) {
+					// const result = await translateToEng(
+					// 	inputText.toLowerCase(),
+					// 	params.locale
+					// );
+					// console.log(result);
+
+					// if (!ignore) {
+					//
+					generalDispatch({
+						type: "add_allergen",
+						name: inputText.toLowerCase()
 					});
+
+					// setNewAllergen("");
+					// }
+					// }
+					// engTranslation(newAllergen, params.locale);
+					// setNewAllergen(() => {
+					// 	return inputText.toLowerCase();
+					// });
+
+					// test
 				} else {
 					generalDispatch({
 						type: "add_intolerance",
@@ -157,7 +189,7 @@ export default function AllergiesOptions({
 		}
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
 		if (inputText.length > 0) {
 			const checkText = [];
@@ -169,9 +201,33 @@ export default function AllergiesOptions({
 			}
 
 			if (checkText.length === 0) {
-				setNewAllergen(() => {
-					return inputText.toLowerCase();
+				// setNewAllergen(() => {
+				// 	return inputText.toLowerCase();
+				// });
+				// test
+				// async function engTranslation(text, locale) {
+				const result = await translateToEng(
+					inputText.toLowerCase(),
+					params.locale
+				);
+				// console.log(result);
+
+				// if (!ignore) {
+				//
+				generalDispatch({
+					type: "add_allergen",
+					name: result.text.toLowerCase()
 				});
+
+				// setNewAllergen("");
+				// }
+				// }
+				// engTranslation(newAllergen, params.locale);
+				// setNewAllergen(() => {
+				// 	return inputText.toLowerCase();
+				// });
+
+				// test
 
 				setInputText("");
 			} else {
@@ -239,60 +295,158 @@ export default function AllergiesOptions({
 	}, [playAnim.second]);
 
 	useEffect(() => {
-		let ignore = false;
+		// setTermList(translatedArr);
 
-		async function translateToEN(text) {
-			const result = await translateToEng(text, params.locale);
-			console.log(result);
+		// if (translatedArr[0]?.error) {
+		// 	reduxDispatch(
+		// 		setError({ name: "list", message: translatedArr[0]?.error })
+		// 	);
+		// 	// setVisualError(true);
+		// } else if (!translatedArr[0]?.error) {
+		// 	reduxDispatch(setError({ name: "list", message: null }));
+		// 	// setVisualError(false);
+		// }
 
-			if (!ignore) {
-				generalDispatch({
-					type: "add_allergen",
-					name: result.text.toLowerCase()
-				});
-
-				setNewAllergen("");
+		// restituire questo --->
+		const namesList = translatedArr.map((elem) => {
+			if (elem?.text) {
+				return elem.text;
+			} else {
+				return elem;
 			}
-		}
+		});
+		// portare fuori funzione da Effect
+		// if (!ignore) {
+		setTermList(() => {
+			return namesList;
+		});
+	}, [translatedArr]);
 
-		if (newAllergen.length > 0) {
-			translateToEN(newAllergen);
-		}
+	// useEffect(() => {
+	// 	let ignore = false;
 
-		return () => {
-			ignore = true;
-		};
-	}, [newAllergen]);
+	// 	if (newAllergen.length > 0 && !ignore) {
+	// 		async function engTranslation(text, locale) {
+	// 			const result = await translateToEng(text, locale);
+	// 			console.log(result);
 
-	useEffect(() => {
-		let ignore = false;
+	// 			// if (!ignore) {
+	// 			//
+	// 			generalDispatch({
+	// 				type: "add_allergen",
+	// 				name: result.text.toLowerCase()
+	// 			});
 
-		async function translateToLocale() {
-			const result = await translateList(allergiesList, params.locale);
+	// 			setNewAllergen("");
+	// 			// }
+	// 		}
+	// 		engTranslation(newAllergen, params.locale);
+	// 	}
 
-			if (result[0]?.error) {
-				reduxDispatch(setError({ name: "list", message: result[0]?.error }));
-				setVisualError(true);
-			} else if (!result[0]?.error) {
-				reduxDispatch(setError({ name: "list", message: null }));
-				setVisualError(false);
-			}
+	// 	return () => {
+	// 		ignore = true;
+	// 	};
+	// }, [newAllergen]);
 
-			const namesList = result.map((elem) => elem.text);
+	// const transMemo = useMemo(() => {
+	// 	const result = translateList(allergiesList, params.locale);
+	// 	return result;
+	// }, [allergiesList, params.locale]);
 
-			if (!ignore) {
-				setTermList(namesList);
-			}
-		}
+	// test
 
-		if (allergiesList.length > 0) {
-			translateToLocale();
-		}
+	// const translateArr = useMemo(async () => {
+	// 	try {
+	// 		const result = await translateList(allergiesList, params.locale);
+	// 		if (result[0]?.error) {
+	// 			throw new Error(result[0].error);
+	// 		} else {
+	// 			reduxDispatch(setError({ name: "list", message: null }));
+	// 			setVisualError(false);
+	// 			const namesList = await result.map((elem) => elem.text);
+	// 			setTermList(() => {
+	// 				return [...namesList];
+	// 			});
+	// 		}
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 		reduxDispatch(setError({ name: "list", message: error.message }));
+	// 		setVisualError(true);
+	// 	}
+	// }, [allergiesList, params.locale]);
 
-		return () => {
-			ignore = true;
-		};
-	}, [allergiesList]);
+	// test
+
+	// async function translateToLocale() {
+	// 	try {
+	// 		const result = translateArr();
+	// 		if (result[0]?.error) {
+	// 			throw new Error(result[0].error);
+	// 		} else {
+	// 			reduxDispatch(setError({ name: "list", message: null }));
+	// 			setVisualError(false);
+	// 			const namesList = await result.map((elem) => elem.text);
+	// 			setTermList(() => {
+	// 				return [...namesList];
+	// 			});
+	// 		}
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 		reduxDispatch(setError({ name: "list", message: error.message }));
+	// 		setVisualError(true);
+	// 	}
+	// }
+
+	// const fetchTranslation = useMemo(() => {
+	// 	translateToLocale();
+	// }, []);
+
+	// useEffect(() => {
+	// 	let ignore = false;
+
+	// 	const translateToLocale = async () => {
+	// 		if (allergiesList.length > 0) {
+	// 			const result = await translateList(allergiesList, params.locale);
+	// 			// console.log(transMemo);
+
+	// 			// const result = await transMemo;
+
+	// 			if (result[0]?.error) {
+	// 				reduxDispatch(setError({ name: "list", message: result[0]?.error }));
+	// 				setVisualError(true);
+	// 			} else if (!result[0]?.error) {
+	// 				reduxDispatch(setError({ name: "list", message: null }));
+	// 				setVisualError(false);
+	// 			}
+
+	// 			// restituire questo --->
+	// 			const namesList = await result.map((elem) => elem.text);
+	// 			// portare fuori funzione da Effect
+	// 			// if (!ignore) {
+	// 			setTermList(() => {
+	// 				return namesList;
+	// 			});
+	// 		} else {
+	// 			return;
+	// 		}
+	// 		// }
+	// 	};
+
+	// 	if (allergiesList.length > 0 && !ignore) {
+	// 		// const res = translateToLocale();
+	// 		// console.log(res);
+
+	// 		// // restituire questo --->
+	// 		// const namesList = res.map((elem) => elem.text);
+	// 		// portare fuori funzione da Effect
+	// 		// if (!ignore) {
+	// 		translateToLocale();
+	// 	}
+
+	// 	return () => {
+	// 		ignore = true;
+	// 	};
+	// }, [allergiesList, params.locale]);
 
 	return (
 		<>
@@ -354,7 +508,7 @@ export default function AllergiesOptions({
 							type="submit"
 							className={styles["add-btn"]}
 							name="allergies_btn"
-							onClick={handleClick}
+							// onClick={handleClick}
 						>
 							<svg
 								version="1.2"

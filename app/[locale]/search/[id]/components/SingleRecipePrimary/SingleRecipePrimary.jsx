@@ -240,7 +240,7 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 		) {
 			return;
 		}
-	}, [recipe]);
+	}, [recipe, savedMoment]);
 
 	return (
 		<section
@@ -374,7 +374,8 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 				<h3 className={styles["section-title"]}>{t("info_label")}</h3>
 				<div className={styles["text-container"]}>
 					<p className={styles["time"]}>
-						{<PiClockCountdownBold />} <span>{recipeData.readyInMinutes}'</span>
+						{<PiClockCountdownBold />}{" "}
+						<span>{recipeData.readyInMinutes} &apos;</span>
 					</p>
 					<p className={styles["servings"]}>
 						{<PiUserBold />} <span>{recipeData.servings}</span>

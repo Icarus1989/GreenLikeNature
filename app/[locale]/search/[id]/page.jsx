@@ -1,11 +1,14 @@
+import { Suspense } from "react";
 import axios from "axios";
 import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
 import initTranslations from "@/app/i18n";
+// import SingleRecipePrimary from "@/app/[locale]/search/[id]/components/SingleRecipePrimary";
 import SingleRecipePrimary from "./components/SingleRecipePrimary/SingleRecipePrimary";
 import {
 	translateRecipe,
 	detectIntolerance
 } from "@/app/serverActions/ServerActions";
+import SearchLoading from "../loading";
 import ErrorPageId from "./error";
 
 async function getDataByID(recipeId) {
@@ -104,11 +107,13 @@ export default async function SingleRecipePage({ params }) {
 			<main>
 				{data.error && <ErrorPageId error={data.error} />}
 				{!data.error && (
-					<SingleRecipePrimary
-						data={newData}
-						saved={false}
-						originalData={data}
-					/>
+					<Suspense fallback={<SearchLoading />}>
+						<SingleRecipePrimary
+							data={newData}
+							saved={false}
+							originalData={data}
+						/>
+					</Suspense>
 				)}
 			</main>
 		</TranslationsProvider>

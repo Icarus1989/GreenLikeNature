@@ -178,7 +178,7 @@ export default function StrawCoupleLeaves({
 				loop: false
 			});
 		}
-	}, []);
+	}, [id, isActive]);
 	return (
 		<Fragment key={id}>
 			<div

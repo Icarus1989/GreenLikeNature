@@ -1,5 +1,8 @@
+import { Suspense } from "react";
+import SearchLoading from "../../loading";
 import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
 import initTranslations from "@/app/i18n";
+// import SingleRecipeSaved from "@/app/[locale]/search/[id]/components/";
 import SingleRecipeSaved from "../components/SingleRecipePrimary/SingleRecipeSaved";
 
 import { translateRecipe } from "@/app/serverActions/ServerActions";
@@ -18,12 +21,14 @@ export default async function SingleRecipePage({ params }) {
 		>
 			<main>
 				{
-					<SingleRecipeSaved
-						params={params}
-						data={[]}
-						translateRecipe={translateRecipe}
-						saved={true}
-					/>
+					<Suspense fallback={<SearchLoading />}>
+						<SingleRecipeSaved
+							params={params}
+							data={[]}
+							translateRecipe={translateRecipe}
+							saved={true}
+						/>
+					</Suspense>
 				}
 			</main>
 		</TranslationsProvider>

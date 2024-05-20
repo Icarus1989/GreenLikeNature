@@ -6,7 +6,7 @@ export const GeneralContext = createContext(null);
 export const GeneralDispatchContext = createContext(null);
 
 export default function GeneralProvider({ children }) {
-	const initialSettings = {
+	const [initialSettings, setInitialSettings] = useState({
 		"title-animation": false,
 		"saved-recipes": [],
 		"recent-recipes": [],
@@ -16,7 +16,7 @@ export default function GeneralProvider({ children }) {
 			"allergens-list": [],
 			"intolerances-list": []
 		}
-	};
+	});
 
 	const [settings, dispatch] = useReducer(settingsReducer, initialSettings);
 
@@ -31,7 +31,7 @@ export default function GeneralProvider({ children }) {
 			window.localStorage.setItem("settings", JSON.stringify(initialSettings));
 		}
 		// }
-	}, []);
+	}, [initialSettings]);
 
 	function settingsReducer(state, action) {
 		if (action.type === "set_context") {

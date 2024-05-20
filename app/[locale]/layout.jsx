@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import { i18nConfig } from "@/i18nConfig";
 import { dir } from "i18next";
-import StoreProvider from "../reduxContext/StoreProvider";
-import GeneralProvider from "../generalContext/GeneralContext";
-import { seasonalData, getSpoonData } from "../serverActions/ServerActions";
-import { NavigationEvents } from "../utils/navigation/NavigationEvents";
-import { calcSeasonalListIDs } from "../utils/seasonal/seasonalUtility";
+import StoreProvider from "@/app/reduxContext/StoreProvider";
+import GeneralProvider from "@/app/generalContext/GeneralContext";
+import { seasonalData, getSpoonData } from "@/app/serverActions/ServerActions";
+import { NavigationEvents } from "@/app/utils/navigation/NavigationEvents";
+import { calcSeasonalListIDs } from "@/app/utils/seasonal/seasonalUtility";
 
 import Navbar from "../components/Navbar/Navbar";
 
@@ -55,10 +55,10 @@ export default async function RootLayout({ children, params: { locale } }) {
 	async function calcCleanList() {
 		try {
 			// Riattivare qui --->
-			const spoonList = await getSpoonData("", "", "", 100, 0);
+			// const spoonList = await getSpoonData("", "", "", 100, 0);
 			// <--- Riattivare qui
 
-			// const spoonList = { results: testList };
+			const spoonList = { results: testList };
 
 			if (spoonList["error"]) {
 				return { results: [], error: error.message };
@@ -115,20 +115,20 @@ export default async function RootLayout({ children, params: { locale } }) {
 	return (
 		<html lang={locale} dir={dir(locale)}>
 			<body className={inter.className}>
-				<StoreProvider
-					recipes={cleanList}
-					list={seasonalRecipes["seasonalList"]}
-					seasonal={seasonalRecipes["results"]}
-					errors={errorsObj}
-				>
-					<GeneralProvider>
-						{children}
-						<Suspense fallback={null}>
+				<Suspense fallback={null}>
+					<StoreProvider
+						recipes={cleanList}
+						list={seasonalRecipes["seasonalList"]}
+						seasonal={seasonalRecipes["results"]}
+						errors={errorsObj}
+					>
+						<GeneralProvider>
+							{children}
 							<NavigationEvents getSpoonData={getSpoonData} />
-						</Suspense>
-					</GeneralProvider>
-					<Navbar />
-				</StoreProvider>
+						</GeneralProvider>
+						<Navbar />
+					</StoreProvider>
+				</Suspense>
 			</body>
 		</html>
 	);

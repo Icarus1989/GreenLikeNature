@@ -21,12 +21,12 @@ import {
 	useVelocity
 } from "framer-motion";
 
-import AnimatedText from "../AnimatedText/AnimatedText";
-import SearchBar from "../../../components/SearchBar/SearchBar";
-import SearchResult from "../../../components/SearchResult/SearchResult";
-import Flower from "../FlowerComponent/Flower";
-import { Modal } from "../Modal/Modal";
-import ErrorModal from "../../../components/ErrorModal/ErrorModal";
+import AnimatedText from "@/app/[locale]/components/AnimatedText/AnimatedText";
+import SearchBar from "@/app/components/SearchBar/SearchBar";
+import SearchResult from "@/app/components/SearchResult/SearchResult";
+import Flower from "@/app/[locale]/components/FlowerComponent/Flower";
+import { Modal } from "@/app/[locale]/components/Modal/Modal";
+import ErrorModal from "@/app/components/ErrorModal/ErrorModal";
 
 import { great_vibes } from "@/app/utils/fonts/fonts";
 import styles from "./MainPrimary.module.css";
@@ -129,7 +129,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
 	);
 
-	const theta = [
+	const [theta, setTheta] = useState([
 		0,
 		Math.PI / 4,
 		Math.PI / 2,
@@ -138,7 +138,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		5 * (Math.PI / 4),
 		3 * (Math.PI / 2),
 		7 * (Math.PI / 4)
-	];
+	]);
 
 	function createSavedList(list, defaultList) {
 		const savedSet = new Set();
@@ -204,7 +204,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	}
 
 	function handleCloseTab() {
-		if (searchData.results.length > 0) {
+		if (searchData.results.length > 0 && view === true) {
 			setSearchData({ type: "default", results: [] });
 		}
 		setSearchTerm("");
@@ -249,8 +249,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	const x = useMotionValue(0);
 	const xVelocity = useVelocity(x);
 
-	const invertedRecipes = [recipes[0], ...recipes.slice(1).reverse()];
-
 	// Plates Positioning Effect
 	useEffect(() => {
 		const searchbarDim = formRef.current.children[0].getBoundingClientRect();
@@ -286,7 +284,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		recipes.map((recipe, index) => {
 			return placePlate(recipe.title, index);
 		});
-	}, []);
+	}, [recipes, theta]);
 
 	// Motion Transmission Effect
 	useEffect(() => {
@@ -295,10 +293,12 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				angle.get() + -Number((xVelocity.current / (360 / Math.PI)).toFixed(3))
 			);
 		});
-	}, []);
+	}, [angle, x, xVelocity]);
 
 	// Movement and Title Detect Effect
 	useEffect(() => {
+		const invertedRecipes = [recipes[0], ...recipes.slice(1).reverse()];
+
 		angle.on("change", (lastAngle) => {
 			if (lastAngle > 360) {
 				angle.set(0);
@@ -363,7 +363,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				});
 			}
 		});
-	}, []);
+	}, [angle, recipes, theta, x, xVelocity]);
 
 	// Blur Effect
 	useEffect(() => {
@@ -501,7 +501,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 											})}
 										</ul>
 									) : (
-										// controllare traduzione i18 --->
 										<p className={styles["no-suggest-label"]}>
 											{t("no_suggestion_label")}
 										</p>
@@ -635,7 +634,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							className={styles["text-container"]}
 						>
 							<p className={styles["text-info"]}>
-								{/* ...oppure ruota e scegline una di stagione: */}
 								{settingsType === "seasonal" &&
 									(seasonalRecipes.length > 0
 										? `${t("suggest_seasonal")}`

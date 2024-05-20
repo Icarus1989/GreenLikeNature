@@ -25,7 +25,7 @@ export default function Navbar() {
 	const searchRef = useRef(null);
 	const profileRef = useRef(null);
 
-	const svgs = [
+	const [svgs, setSvgs] = useState([
 		{
 			path: `/${params.locale}`,
 			ref: homeRef,
@@ -62,7 +62,7 @@ export default function Navbar() {
 			animate: "visible",
 			exit: "exit"
 		}
-	];
+	]);
 
 	const pathVariants = {
 		hidden: {
@@ -111,7 +111,7 @@ export default function Navbar() {
 				setX(elem.ref.current.closest("button").getBoundingClientRect().x);
 			}
 		});
-	}, [pathname, searchParams]);
+	}, [pathname, searchParams, svgs]);
 
 	return (
 		<nav className={styles["navbar"]}>

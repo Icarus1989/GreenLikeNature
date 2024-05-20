@@ -170,7 +170,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	}
 
 	function handleCloseTab() {
-		if (searchData.results.length > 0) {
+		if (searchData.results.length > 0 && view === true) {
 			setSearchData({ type: "default", results: [] });
 		}
 		setSearchTerm("");
@@ -188,6 +188,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			className={styles["container"]}
 			onContextMenu={(event) => event.preventDefault()}
 			tabIndex={0}
+			// onBlur={handleCloseTab}
 		>
 			<form onSubmit={handleSubmit} className={styles["search-part"]}>
 				<SearchBar
@@ -225,7 +226,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 					<motion.div>
 						<motion.button
 							className={styles["cancel-btn"]}
-							onClick={handleCloseTab}
+							onClick={() => handleCloseTab()}
 						>
 							<StrawCoupleLeaves
 								id="btnLeafOne"

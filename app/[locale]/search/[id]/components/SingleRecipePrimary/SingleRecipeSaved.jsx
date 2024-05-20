@@ -259,31 +259,9 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 		) {
 			return;
 		}
-	}, [recipe]);
+	}, [recipe, savedMoment]);
 
-	useEffect(() => {
-		let ignore = false;
-
-		async function translate(data) {
-			try {
-				const results = await translateRecipe(data, lang);
-				if (results?.error) {
-					console.log(results);
-					throw new Error(results.error.message);
-				} else if (!results?.error && errorsReport["saved"]) {
-					reduxDispatch(setError({ name: "saved", message: null }));
-				}
-
-				if (!ignore) {
-					setRecipeData(results);
-				}
-			} catch (error) {
-				console.log(error);
-				reduxDispatch(setError({ name: "saved", message: error.message }));
-				setShowError(true);
-			}
-		}
-
+	async function translate(data) {
 		if (!navigator.onLine) {
 			reduxDispatch(
 				setError({ name: "network", message: "Check network connection." })
@@ -291,12 +269,32 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 			setShowError(true);
 		}
 
-		translate(actualData);
+		try {
+			const results = await translateRecipe(data, lang);
+			if (results?.error) {
+				console.log(results);
+				throw new Error(results.error.message);
+			} else if (!results?.error && errorsReport["saved"]) {
+				reduxDispatch(setError({ name: "saved", message: null }));
+			}
 
+			setRecipeData(results);
+		} catch (error) {
+			console.log(error);
+			reduxDispatch(setError({ name: "saved", message: error.message }));
+			setShowError(true);
+		}
+	}
+
+	useEffect(() => {
+		let ignore = false;
+		if (!ignore) {
+			translate(actualData);
+		}
 		return () => {
 			ignore = true;
 		};
-	}, []);
+	}, [actualData]);
 
 	return (
 		<section
@@ -440,7 +438,8 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 				<h3 className={styles["section-title"]}>{t("info_label")}</h3>
 				<div className={styles["text-container"]}>
 					<p className={styles["time"]}>
-						{<PiClockCountdownBold />} <span>{recipeData.readyInMinutes}'</span>
+						{<PiClockCountdownBold />}{" "}
+						<span>{recipeData.readyInMinutes} &apos;</span>
 					</p>
 					<p className={styles["servings"]}>
 						{<PiUserBold />} <span>{recipeData.servings}</span>

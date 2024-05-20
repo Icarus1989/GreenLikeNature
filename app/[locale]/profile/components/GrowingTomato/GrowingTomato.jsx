@@ -151,7 +151,7 @@ export default function GrowingTomato({
 			plantDarkAnim.play();
 			endLeavesAnim.play();
 		}
-	}, [autoplay]);
+	}, [autoplay, id]);
 	return (
 		<div className={styles["animation-container"]}>
 			<svg
