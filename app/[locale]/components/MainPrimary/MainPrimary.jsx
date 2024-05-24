@@ -1,6 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef, useContext, Fragment } from "react";
+import {
+	useState,
+	useEffect,
+	useRef,
+	useContext,
+	Fragment,
+	useCallback
+} from "react";
 
 import Image from "next/image";
 
@@ -31,7 +38,7 @@ import ErrorModal from "@/app/components/ErrorModal/ErrorModal";
 import { great_vibes } from "@/app/utils/fonts/fonts";
 import styles from "./MainPrimary.module.css";
 
-import bkgImage from "@/public/retina-wood.png";
+import bkgImage from "@/public/retina-wood.svg";
 import altImage from "@/public/plusCircleTrans.svg";
 import fallbackImg from "@/public/tableNapkin.svg";
 import { GoX } from "react-icons/go";
@@ -173,9 +180,9 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	async function handleSubmit(event) {
 		event.preventDefault();
 		if (searchTerm.length > 0 && navigator.onLine) {
-			if (errorsReport?.network) {
-				reduxDispatch(setError({ name: "network", message: null }));
-			}
+			// if (errorsReport?.network) {
+			// 	reduxDispatch(setError({ name: "network", message: null }));
+			// }
 			try {
 				const response = await searchByQuery(
 					searchTerm,
@@ -194,24 +201,24 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				reduxDispatch(setError({ name: "submit", message: error.message }));
 			}
 		} else if (!navigator.onLine) {
-			reduxDispatch(
-				setError({ name: "network", message: "Check network connection." })
-			);
+			// reduxDispatch(
+			// 	setError({ name: "network", message: "Check network connection." })
+			// );
 			setShowError(true);
 		} else {
 			return;
 		}
 	}
 
-	function handleCloseTab() {
-		if (searchData.results.length > 0 && view === true) {
+	const handleCloseTab = useCallback(() => {
+		if (searchData.results.length > 0) {
 			setSearchData({ type: "default", results: [] });
 		}
 		setSearchTerm("");
 		setView(() => {
 			return false;
 		});
-	}
+	}, [searchData.results.length]);
 
 	function handleAnimComplete() {
 		generalDispatch({
@@ -369,12 +376,12 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	useEffect(() => {
 		if (view === true) {
 			window.addEventListener("blur", handleCloseTab);
-			setSearchData({ type: "default", results: [] });
+			// setSearchData({ type: "default", results: [] });
 			return () => {
 				window.removeEventListener("blur", handleCloseTab);
 			};
 		}
-	}, [view]);
+	}, [view, handleCloseTab]);
 
 	return (
 		<>
@@ -513,13 +520,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				<div className={styles["carousel-container"]}>
 					<motion.div
 						initial={{
-							y: 0,
 							opacity: 0
 						}}
 						animate={{
-							y: 0,
 							opacity: 1.0,
-							transition: { duration: 1, delay: 0 }
+							transition: { duration: 0.5, delay: 0 }
 						}}
 						ref={carouselRef}
 						className={styles["carousel"]}
@@ -528,11 +533,33 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							<motion.div
 								ref={menuRef}
 								className={styles["circular-menu"]}
+								initial={{
+									opacity: 0.0
+								}}
+								animate={{
+									opacity: 1.0,
+									transition: {
+										delay: 0,
+										duration: 0.5
+									}
+								}}
 								style={{
-									backgroundImage: `url(${bkgImage.src})`,
 									rotateZ: angle
 								}}
 							>
+								<Image
+									src={bkgImage}
+									alt="wood-table"
+									fill
+									style={{
+										objectFit: "cover",
+										maxWidth: "100%",
+										borderRadius: "50%",
+										zIndex: 5
+									}}
+									quality={40}
+									priority
+								/>
 								<div
 									ref={internal}
 									className={styles["circular-border-internal"]}
@@ -573,15 +600,18 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 													<div className={styles["plate-image-container"]}>
 														<Image
 															style={
-																settingsType !== "seasonal"
+																settingsType !== "seasonal" ||
+																(errorsReport.network &&
+																	errorsReport.network !== null)
 																	? { transform: "translateX(0%)" }
 																	: { transform: "translateX(-20%)" }
 															}
 															className={
-																errorsReport.network &&
-																errorsReport.network !== null
-																	? styles["plate-fallback"]
-																	: styles["plate-image"]
+																// errorsReport.network &&
+																// errorsReport.network !== null
+																// 	? styles["plate-fallback"]
+																// 	:
+																styles["plate-image"]
 															}
 															src={
 																errorsReport.network &&
@@ -593,6 +623,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 															width="230"
 															height="172"
 															quality={100}
+															priority={false}
 														/>
 													</div>
 												</motion.li>

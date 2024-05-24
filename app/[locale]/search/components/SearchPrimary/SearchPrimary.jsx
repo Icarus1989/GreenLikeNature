@@ -1,6 +1,13 @@
 "use client";
 
-import { Fragment, useEffect, useState, useRef, useContext } from "react";
+import {
+	Fragment,
+	useEffect,
+	useState,
+	useRef,
+	useContext,
+	useCallback
+} from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useTranslation } from "react-i18next";
 import { setError } from "@/lib/features/recipes/recipesSlice";
@@ -66,6 +73,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			: [];
 
 	const resultsRef = useRef(null);
+	const searchResults = useRef(null);
 	const leafBranch = useRef(null);
 
 	const data = recipesList.filter((recipe) =>
@@ -110,18 +118,33 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		}
 	});
 
+	const handleCloseTab = useCallback(() => {
+		if (searchData.results.length > 0) {
+			setSearchData({ type: "default", results: [] });
+		}
+		setSearchTerm("");
+		resultsRef.current.scrollTo({ top: 0, left: 0 });
+		// scrollYProgress.set(0);
+		setLeavesDisplay(() => {
+			return { first: false, second: false, third: false };
+		});
+		setView(() => {
+			return false;
+		});
+	}, [searchData.results.length]);
+
 	useEffect(() => {
 		if (view === true) {
 			window.addEventListener("blur", handleCloseTab);
-			setSearchData({ type: "default", results: [] });
+			// setSearchData({ type: "default", results: [] });
 			return () => {
 				window.removeEventListener("blur", handleCloseTab);
 			};
 		}
-	}, [view]);
+	}, [view, handleCloseTab]);
 
 	function handleChange(event) {
-		resultsRef.current.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+		resultsRef.current.scrollTo({ top: 0, left: 0 });
 		if (event.target.value.length > 0) {
 			scrollYProgress.set(0);
 
@@ -160,28 +183,29 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 				reduxDispatch(setError({ name: "submit", message: error.message }));
 			}
 		} else if (!navigator.onLine) {
-			reduxDispatch(
-				setError({ name: "network", message: "Check network connection." })
-			);
+			// reduxDispatch(
+			// 	setError({ name: "network", message: "Check network connection." })
+			// );
 			setShowError(true);
 		} else {
 			return;
 		}
 	}
 
-	function handleCloseTab() {
-		if (searchData.results.length > 0 && view === true) {
-			setSearchData({ type: "default", results: [] });
-		}
-		setSearchTerm("");
-		scrollYProgress.set(0);
-		setLeavesDisplay(() => {
-			return { first: false, second: false, third: false };
-		});
-		setView(() => {
-			return false;
-		});
-	}
+	// function handleCloseTab() {
+	// 	setSearchTerm("");
+
+	// 	setLeavesDisplay(() => {
+	// 		return { first: false, second: false, third: false };
+	// 	});
+	// 	scrollYProgress.set(0);
+	// 	if (searchData.results.length > 0 && view === true) {
+	// 		setSearchData({ type: "default", results: [] });
+	// 	}
+	// 	setView(() => {
+	// 		return false;
+	// 	});
+	// }
 
 	return (
 		<section
@@ -223,7 +247,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 						{recentList.length > 0 && <ArticlesSection recipes={recentList} />}
 					</>
 				) : (
-					<motion.div>
+					<motion.div ref={searchResults}>
 						<motion.button
 							className={styles["cancel-btn"]}
 							onClick={() => handleCloseTab()}

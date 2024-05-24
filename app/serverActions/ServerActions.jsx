@@ -364,7 +364,7 @@ export async function getSpoonData(
 	inclList,
 	exclList,
 	intolList,
-	elems = 100,
+	elems = 80,
 	offset = 0
 ) {
 	"use server";

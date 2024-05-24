@@ -18,7 +18,10 @@ export default async function HomePage({ params: { locale } }) {
 			locale={locale}
 			resources={resources}
 		>
-			<main className={styles["main-element"]}>
+			<main
+				styles={{ width: "100dvw", height: "100dvh" }}
+				className={styles["main-element"]}
+			>
 				<Suspense fallback={<GeneralLoading />}>
 					<MainPrimary
 						defaultRecipes={defaultList}

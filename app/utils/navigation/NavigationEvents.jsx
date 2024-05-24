@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -21,7 +21,7 @@ export function NavigationEvents({ getSpoonData }) {
 	const intolerancesSettings = settings["tomato-settings"]["intolerances-list"];
 	const allergiesSettings = settings["tomato-settings"]["allergens-list"];
 
-	const { recipesList, errorsReport } = useAppSelector(
+	const { recipesList, initialList, errorsReport } = useAppSelector(
 		(state) => state.recipes
 	);
 	const reduxDispatch = useAppDispatch();
@@ -50,58 +50,103 @@ export function NavigationEvents({ getSpoonData }) {
 
 	const [lastPath, setLastPath] = useState("");
 
+	// async function createList() {
+	// 	const requestList = await getNewList(
+	// 		[],
+	// 		intolerancesSettings,
+	// 		allergiesSettings,
+	// 		50,
+	// 		100
+	// 	);
+	// 	if (requestList?.error) {
+	// 		reduxDispatch(
+	// 			setError({ name: "recipes", message: requestList["error"] })
+	// 		);
+	// 	} else {
+	// 		reduxDispatch(reInitializeRecipes(requestList["results"]));
+	// 	}
+	// }
+
+	// provare useCallback domani --->
+
+	const createList = useCallback(async () => {
+		const requestList = await getNewList(
+			[],
+			intolerancesSettings,
+			allergiesSettings,
+			30,
+			80
+		);
+		if (requestList?.error) {
+			reduxDispatch(
+				setError({ name: "recipes", message: requestList["error"] })
+			);
+		} else {
+			reduxDispatch(reInitializeRecipes(requestList["results"]));
+		}
+	}, [allergiesSettings, intolerancesSettings, getNewList]);
+
 	useEffect(() => {
 		let ignore = false;
 
-		async function createList() {
-			const requestList = await getNewList(
-				[],
-				intolerancesSettings,
-				allergiesSettings,
-				50,
-				100
-			);
-			if (requestList?.error) {
-				reduxDispatch(
-					setError({ name: "recipes", message: requestList["error"] })
-				);
-			}
+		// async function createList() {
+		// 	const requestList = await getNewList(
+		// 		[],
+		// 		intolerancesSettings,
+		// 		allergiesSettings,
+		// 		50,
+		// 		100
+		// 	);
+		// 	if (requestList?.error) {
+		// 		reduxDispatch(
+		// 			setError({ name: "recipes", message: requestList["error"] })
+		// 		);
+		// 	}
 
-			if (!ignore) {
-				reduxDispatch(reInitializeRecipes(requestList["results"]));
-			}
-		}
+		// 	if (!ignore) {
+		// 		reduxDispatch(reInitializeRecipes(requestList["results"]));
+		// 	}
+		// }
 
 		if (
 			pathname !== "/profile" &&
 			recipesList.length > 0 &&
-			recipesList.length <= 80
+			recipesList.length < 80 &&
+			!ignore
 		) {
-			console.log("UPDATE FROM NAVIGATION...");
+			// console.log("UPDATE FROM NAVIGATION...");
 			createList();
 		}
 
 		return () => {
 			ignore = true;
 		};
-	}, [pathname, lastPath]);
+	}, [pathname, lastPath, recipesList.length, createList]);
 
 	useEffect(() => {
-		if (pathname === "/profile") {
-			reduxDispatch(
-				filterByAllergens({
-					intolerances: intolerancesSettings,
-					allergies: allergiesSettings
-				})
-			);
-		}
+		// if (pathname === "/profile") {
+		// console.log("filtered");
+
+		reduxDispatch(
+			filterByAllergens({
+				intolerances: intolerancesSettings,
+				allergies: allergiesSettings
+			})
+		);
+		// }
 	}, [intolerancesSettings, allergiesSettings, pathname]);
 
 	useEffect(() => {
-		if (navigator.onLine && errorsReport?.network) {
+		if (navigator.onLine && errorsReport?.network?.message !== null) {
 			reduxDispatch(setError({ name: "network", message: null }));
+		} else if (!navigator.onLine) {
+			reduxDispatch(
+				setError({ name: "network", message: "Check network connection." })
+			);
 		}
-	}, [pathname, searchParams]);
+	}, [pathname, searchParams, errorsReport?.network?.message]);
+
+	// console.log(recipesList);
 
 	return null;
 }

@@ -6,7 +6,6 @@
 	position: absolute;
 	left: 10%;
 	bottom: 23%;
-	/* Regolare left con JS */
 	justify-content: center;
 	align-items: center;
 	border: 1px solid transparent;
@@ -45,7 +44,6 @@
 }
 
 .input-bar::placeholder {
-	/* color: #aaaaaa; */
 	color: rgba(230, 230, 230, 0.74);
 	opacity: 0.9;
 }
