@@ -399,22 +399,22 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					}
 					dragElastic={0.05}
 					style={{ x }}
-					onClick={() => {
-						const actualAngle = angle.get();
-						x.set(0);
-						angle.set(actualAngle);
-						xVelocity.set(0);
-					}}
+					// onClick={() => {
+					// 	const actualAngle = angle.get();
+					// 	x.set(0);
+					// 	angle.set(actualAngle);
+					// 	xVelocity.set(0);
+					// }}
 					onPointerDown={() => {
-						const actualAngle = angle.get();
+						// const actualAngle = angle.get();
 						x.set(0);
-						angle.set(actualAngle);
+						// angle.set(actualAngle);
 						xVelocity.set(0);
 					}}
 					onDragTransitionEnd={() => {
-						const actualAngle = angle.get();
+						// const actualAngle = angle.get();
 						x.set(0);
-						angle.set(actualAngle);
+						// angle.set(actualAngle);
 					}}
 				></motion.div>
 
