@@ -291,7 +291,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		recipes.map((recipe, index) => {
 			return placePlate(recipe.title, index);
 		});
-	}, [recipes, theta]);
+	}, []);
 
 	// Motion Transmission Effect
 	useEffect(() => {
@@ -370,7 +370,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				});
 			}
 		});
-	}, [angle, recipes, theta, x, xVelocity]);
+	}, [angle]);
 
 	// Blur Effect
 	useEffect(() => {
