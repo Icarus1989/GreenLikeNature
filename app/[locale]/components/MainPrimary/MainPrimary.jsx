@@ -300,7 +300,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				angle.get() + -Number((xVelocity.current / (360 / Math.PI)).toFixed(3))
 			);
 		});
-	}, [angle, x, xVelocity]);
+	}, []);
 
 	// Movement and Title Detect Effect
 	useEffect(() => {
@@ -370,7 +370,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				});
 			}
 		});
-	}, [angle]);
+	}, []);
 
 	// Blur Effect
 	useEffect(() => {
