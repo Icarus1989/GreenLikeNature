@@ -19,7 +19,7 @@
 .invisible-div {
 	width: 700vw;
 	height: 67dvh;
-	border: 1px solid transparent;
+	border: 1px solid red;
 	z-index: 24;
 	touch-action: none;
 	position: relative;
@@ -248,6 +248,7 @@
 		#232323 55%,
 		#232323 80%
 	);
+	border: 1px solid blue;
 }
 
 .search-part {
