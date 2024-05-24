@@ -233,6 +233,16 @@
 	z-index: 5;
 }
 
+.circular-border-internal > div {
+	position: absolute;
+	display: grid;
+	place-items: center;
+}
+
+.circular-border-internal > ul {
+	/* position: absolute; */
+}
+
 .carousel::-webkit-scrollbar {
 	display: none;
 }
