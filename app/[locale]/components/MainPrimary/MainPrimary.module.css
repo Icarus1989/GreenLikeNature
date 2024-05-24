@@ -234,7 +234,7 @@
 }
 
 .circular-border-internal > div {
-	position: absolute;
+	/* position: absolute; */
 	display: grid;
 	place-items: center;
 }

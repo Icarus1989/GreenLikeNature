@@ -77,7 +77,7 @@ export default function Flower() {
 	}, []);
 
 	return (
-		<div>
+		<div style={{ position: "absolute" }}>
 			<div className={styles["flowers-vase"]}></div>
 			<div className={styles["flowers-container"]}>
 				<svg
