@@ -397,8 +397,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					dragConstraints={
 						!showModal ? { left: -1400, right: 1400 } : { left: 0, right: 0 }
 					}
-					dragElastic={0.1}
+					dragElastic={0.05}
 					style={{ x }}
+					onClick={() => {
+						const actualAngle = angle.get();
+						x.set(0);
+						angle.set(actualAngle);
+						xVelocity.set(0);
+					}}
 					onPointerDown={() => {
 						const actualAngle = angle.get();
 						x.set(0);
