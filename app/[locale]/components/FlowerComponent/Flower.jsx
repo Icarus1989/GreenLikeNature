@@ -87,7 +87,7 @@ export default function Flower() {
 					version="1.2"
 					id="flowerSvg"
 					style={{
-						transform: "scale(0.45) translate(-50%, -50%)",
+						transform: "scale(0.45) translate(-45%, -45%)",
 						position: "absolute"
 					}}
 					className={styles["flower-svg"]}
