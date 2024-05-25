@@ -16,8 +16,8 @@
 	border-radius: 50%;
 	border: 2px solid transparent;
 	z-index: 10;
-	transform: scale(0.45);
-	transform-origin: 50% 50%;
+	/* transform: scale(0.45);
+	transform-origin: 50% 50%; */
 }
 
 .flowers-container > svg {

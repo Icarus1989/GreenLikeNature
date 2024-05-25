@@ -79,19 +79,17 @@ export default function Flower() {
 	return (
 		<>
 			<div className={styles["flowers-vase"]}></div>
-			<div
-				style={{ transform: "scale(0.45)" }}
-				className={styles["flowers-container"]}
-			>
+			<div className={styles["flowers-container"]}>
 				<svg
 					width="500"
 					height="500"
 					xmlns="http://www.w3.org/2000/svg"
 					version="1.2"
 					id="flowerSvg"
-					style={{
-						position: "absolute"
-					}}
+					// style={{
+					// 	position: "absolute"
+					// }}
+					style={{ transform: "scale(0.45)", transformOrigin: "50% 50%" }}
 					className={styles["flower-svg"]}
 				>
 					<path
