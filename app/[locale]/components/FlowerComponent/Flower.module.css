@@ -22,7 +22,7 @@
 	display: grid;
 	place-content: center;
 	position: absolute;
-	transform: scale(0.45);
+	/* transform: scale(0.45); */
 }
 
 .flowers-path {

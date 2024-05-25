@@ -86,7 +86,7 @@ export default function Flower() {
 					xmlns="http://www.w3.org/2000/svg"
 					version="1.2"
 					id="flowerSvg"
-					style={{ position: "absolute" }}
+					style={{ position: "absolute", transform: "scale(0.45)" }}
 					className={styles["flower-svg"]}
 				>
 					<path
