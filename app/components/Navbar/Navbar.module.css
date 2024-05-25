@@ -2,7 +2,7 @@
 	position: fixed;
 	bottom: 0%;
 	width: 100dvw;
-	height: 6dvh;
+	height: 8dvh;
 	background-color: #232323;
 	z-index: 10;
 }
@@ -45,7 +45,7 @@
 
 .cursor-container {
 	width: 100%;
-	height: 3px;
+	height: 0.8dvh;
 	background-color: #232323;
 	position: fixed;
 	bottom: 0;
@@ -53,6 +53,6 @@
 
 .cursor {
 	width: 33.3%;
-	height: 3px;
+	height: 0.5dvh;
 	background-color: rgba(2, 180, 2, 0.9);
 }
