@@ -21,7 +21,7 @@
 	height: 67dvh;
 	border: 1px solid red;
 	z-index: 24;
-	touch-action: none;
+	touch-action: auto;
 	position: relative;
 	left: -300vw;
 }
@@ -235,8 +235,11 @@
 
 .circular-border-internal > div {
 	/* position: absolute; */
+	width: auto;
+	height: auto;
 	display: grid;
 	place-items: center;
+	border: 1px solid yellowgreen;
 }
 
 .circular-border-internal > ul {

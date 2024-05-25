@@ -8,7 +8,7 @@
 }
 
 .flowers-container {
-	position: absolute;
+	/* position: absolute; */
 	display: grid;
 	place-items: center;
 	width: 64vw;

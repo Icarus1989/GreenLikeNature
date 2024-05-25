@@ -397,8 +397,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					dragConstraints={
 						!showModal ? { left: -1400, right: 1400 } : { left: 0, right: 0 }
 					}
-					dragElastic={0.05}
-					style={{ x }}
+					dragElastic={0.1}
+					style={{ x, cursor: "grab" }}
 					// onClick={() => {
 					// 	const actualAngle = angle.get();
 					// 	x.set(0);
@@ -406,16 +406,17 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// 	xVelocity.set(0);
 					// }}
 					onPointerDown={() => {
-						// const actualAngle = angle.get();
+						const actualAngle = angle.get();
 						x.set(0);
-						// angle.set(actualAngle);
+						angle.set(actualAngle);
 						xVelocity.set(0);
 					}}
 					onDragTransitionEnd={() => {
-						// const actualAngle = angle.get();
+						const actualAngle = angle.get();
 						x.set(0);
-						// angle.set(actualAngle);
+						angle.set(actualAngle);
 					}}
+					whileTap={{ cursor: "grabbing" }}
 				></motion.div>
 
 				<div id="circ-hole" className={styles["title-search-part"]}>
@@ -546,7 +547,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									opacity: 1.0,
 									transition: {
 										delay: 0,
-										duration: 0.5
+										duration: 1.0
 									}
 								}}
 								style={{
