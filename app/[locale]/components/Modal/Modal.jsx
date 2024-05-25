@@ -38,7 +38,7 @@ export const Modal = forwardRef(function Modal(
 		visible: {
 			opacity: 1.0,
 			rotateZ: 0,
-			transition: { type: "spring", bounce: 0.4, duration: 0.8 }
+			transition: { type: "spring", bounce: 0.4, duration: 1.6 }
 		},
 		exit: {
 			opacity: 0.0,
@@ -60,7 +60,7 @@ export const Modal = forwardRef(function Modal(
 			transition: {
 				type: "spring",
 				bounce: 0.4,
-				duration: 1.0
+				duration: 2.0
 			}
 		},
 		exit: {

@@ -14,10 +14,10 @@
 	width: 64vw;
 	height: 64vw;
 	/* border-radius: 50%; */
-	/* border: 2px solid transparent; */
+	border: 2px solid transparent;
 	z-index: 10;
 
-	border: 1px solid pink;
+	/* border: 1px solid pink; */
 	/* transform: scale(0.45);
 	transform-origin: 50% 50%; */
 }

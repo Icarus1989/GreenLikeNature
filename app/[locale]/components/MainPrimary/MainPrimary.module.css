@@ -272,7 +272,7 @@
 		#232323 55%,
 		#232323 80%
 	);
-	border: 1px solid blue;
+	/* border: 1px solid blue; */
 	display: grid;
 	place-items: center;
 }
