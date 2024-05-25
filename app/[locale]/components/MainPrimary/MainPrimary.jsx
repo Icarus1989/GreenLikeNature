@@ -124,6 +124,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	const formRef = useRef(null);
 	const carouselRef = useRef(null);
+	const flowerRef = useRef(null);
 
 	const recipeRef = useRef(null);
 	const menuRef = useRef(null);
@@ -259,11 +260,17 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// Plates Positioning Effect
 	useEffect(() => {
 		const searchbarDim = formRef.current.children[0].getBoundingClientRect();
-		const searchbarCenter = searchbarDim.top + searchbarDim.height / 2;
+		const searchbarCenterX = searchbarDim.left + searchbarDim.width / 2;
+		const searchbarCenterY = searchbarDim.top + searchbarDim.height / 2;
 		const carouselDim = carouselRef.current.getBoundingClientRect();
+		const flowerDim = flowerRef.current.getBoundingClientRect();
 
+		flowerRef.current.style.top =
+			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
+		flowerRef.current.style.left =
+			searchbarCenterX - flowerDim.width / 2 + "px";
 		carouselRef.current.style.top =
-			searchbarCenter - carouselDim.height / 2 - 3 + "px";
+			searchbarCenterY - carouselDim.height / 2 - 3 + "px";
 
 		const measuresContainer = menuRef.current.getBoundingClientRect();
 		const measuresInternal = internal.current.getBoundingClientRect();
@@ -370,7 +377,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				});
 			}
 		});
-	}, []);
+	}, [theta]);
 
 	// Blur Effect
 	useEffect(() => {
@@ -427,6 +434,24 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							handleAnimComplete={handleAnimComplete}
 						></AnimatedText>
 					</div>
+					<motion.div
+						ref={flowerRef}
+						style={{ position: "fixed", rotateZ: angle }}
+						className={styles["flower-container"]}
+						initial={{
+							opacity: 0
+						}}
+						animate={{
+							opacity: 1.0,
+							transition: { duration: 0.5, delay: 0 }
+						}}
+					>
+						<Flower />
+					</motion.div>
+					{/* <--- centrare */}
+					{/* <--- utilizzare una prop per trasmattere...
+					rotateZ */}
+					{/* <--- test */}
 					<form
 						ref={formRef}
 						onSubmit={handleSubmit}
@@ -571,7 +596,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									ref={internal}
 									className={styles["circular-border-internal"]}
 								>
-									<Flower />
 									<motion.ul
 										initial={{
 											opacity: 0.0
