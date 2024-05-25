@@ -13,9 +13,11 @@
 	place-items: center;
 	width: 64vw;
 	height: 64vw;
-	border-radius: 50%;
-	border: 2px solid transparent;
+	/* border-radius: 50%; */
+	/* border: 2px solid transparent; */
 	z-index: 10;
+
+	border: 1px solid pink;
 	/* transform: scale(0.45);
 	transform-origin: 50% 50%; */
 }
@@ -24,6 +26,8 @@
 	display: grid;
 	place-content: center;
 	position: absolute;
+	top: -50%;
+	left: -50%;
 	/* transform: scale(0.45); */
 }
 
