@@ -273,6 +273,8 @@
 		#232323 80%
 	);
 	border: 1px solid blue;
+	display: grid;
+	place-items: center;
 }
 
 .search-part {
@@ -390,12 +392,12 @@
 	place-items: center;
 	height: 12dvh;
 	z-index: 7;
-	background: radial-gradient(
+	/* background: radial-gradient(
 		circle at 50% 158%,
 		transparent 52%,
 		#232323 55%,
 		#232323 80%
-	);
+	); */
 }
 
 .logo-container {
@@ -413,6 +415,7 @@
 }
 
 .title-general {
+	width: 100%;
 	display: grid;
 	place-items: center;
 	color: rgb(2, 180, 2);
