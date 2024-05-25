@@ -21,7 +21,7 @@
 	height: 67dvh;
 	border: 1px solid red;
 	z-index: 24;
-	touch-action: auto;
+	touch-action: none;
 	position: relative;
 	left: -300vw;
 }
@@ -240,10 +240,12 @@
 	display: grid;
 	place-items: center;
 	border: 1px solid yellowgreen;
+	touch-action: none;
 }
 
 .circular-border-internal > ul {
 	/* position: absolute; */
+	touch-action: none;
 }
 
 .carousel::-webkit-scrollbar {

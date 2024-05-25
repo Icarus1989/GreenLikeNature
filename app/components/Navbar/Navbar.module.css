@@ -8,7 +8,7 @@
 }
 
 .navbar-button {
-	width: 33.3%;
+	width: 33.3dvw;
 	height: 100%;
 	border: 1px solid transparent;
 	border-radius: 0%;
@@ -28,7 +28,7 @@
 }
 
 .nav-icon {
-	position: absolute;
+	/* position: absolute; */
 	color: white;
 	font-weight: 700;
 	font-size: 24px;
