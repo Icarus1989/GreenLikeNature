@@ -392,11 +392,17 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	return (
 		<>
-			<section
+			<motion.section
 				ref={sectionRef}
 				className={`${styles["container"]} ${great_vibes.variable}`}
 				dir="ltr"
 				onContextMenu={(event) => event.preventDefault()}
+				onTapStart={() => {
+					// const actualAngle = angle.get();
+					x.set(0);
+					// angle.set(actualAngle);
+					// xVelocity.set(0);
+				}}
 			>
 				<motion.div
 					className={styles["invisible-div"]}
@@ -407,6 +413,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							: { left: 0, right: 0 }
 					}
 					dragElastic={0.1}
+					// dragSnapToOrigin={true}
 					style={{ x }}
 					// onClick={() => {
 					// 	const actualAngle = angle.get();
@@ -414,19 +421,20 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// 	angle.set(actualAngle);
 					// 	xVelocity.set(0);
 					// }}
-					onPointerDown={() => {
-						// const actualAngle = angle.get();
-						x.set(0);
-						// angle.set(actualAngle);
-						xVelocity.set(0);
-					}}
-					onPointerUp={() => {
-						x.set(0);
-					}}
-					onDragTransitionEnd={() => {
-						// const actualAngle = angle.get();
-						x.set(0);
-						// angle.set(actualAngle);
+					// onPointerDown={() => {
+					// 	const actualAngle = angle.get();
+					// 	x.set(0);
+					// 	angle.set(actualAngle);
+					// 	xVelocity.set(0);
+					// }}
+					// onPointerUp={() => {
+					// 	x.set(0);
+					// }}
+					// onTapStart={}
+					onTapStart={() => {
+						const actualAngle = angle.get();
+						// x.set(0);
+						angle.set(actualAngle);
 					}}
 					// whileTap={{ cursor: "grabbing" }}
 				></motion.div>
@@ -726,7 +734,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						onClick={() => setShowError(false)}
 					/>
 				)}
-			</section>
+			</motion.section>
 		</>
 	);
 }
