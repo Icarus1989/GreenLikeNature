@@ -89,7 +89,7 @@ export default function Flower() {
 					// style={{
 					// 	position: "absolute"
 					// }}
-					style={{ transform: "scale(0.45)", transformOrigin: "50% 50%" }}
+					style={{ transform: "scale(0.45)", transformOrigin: "48% 49%" }}
 					className={styles["flower-svg"]}
 				>
 					<path
