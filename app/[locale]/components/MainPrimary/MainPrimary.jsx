@@ -315,8 +315,10 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 		angle.on("change", (lastAngle) => {
 			if (lastAngle > 360) {
+				xVelocity.set(xVelocity.get());
 				angle.set(0);
 			} else if (lastAngle < -360) {
+				xVelocity.set(xVelocity.get());
 				angle.set(0);
 			}
 
@@ -330,7 +332,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					) {
 						// slow if plate proximity
 
-						xVelocity.set(actualVel * 0.02);
+						// testing here --->
+						// xVelocity.set(actualVel * 0.023);
 
 						// change title if plate proximity
 
@@ -358,7 +361,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
 						-piSection >= (lastAngle - 15) * (Math.PI / 180)
 					) {
-						xVelocity.set(actualVel * 0.02);
+						// testing here --->
+						// xVelocity.set(actualVel * 0.023);
 
 						const h4Title = titleRef.current.textContent;
 						const actualTitle = recipes[index].title;
