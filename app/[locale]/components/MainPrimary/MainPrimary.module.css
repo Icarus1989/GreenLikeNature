@@ -37,13 +37,13 @@
 	transform: scale(5);
 }
 
-.invisible-element {
+/* .invisible-element {
 	display: grid;
 	width: 100vw;
 	height: 43vh;
 	scroll-snap-align: center;
 	flex: none;
-}
+} */
 
 .carousel-container {
 	position: fixed;

@@ -392,7 +392,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	return (
 		<>
-			<section
+			<motion.section
 				ref={sectionRef}
 				className={`${styles["container"]} ${great_vibes.variable}`}
 				dir="ltr"
@@ -409,7 +409,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					drag="x"
 					dragConstraints={
 						!showModal
-							? { left: -`300dvw`, right: +`300dvw` }
+							? { left: -`400dvw`, right: +`400dvw` }
 							: { left: 0, right: 0 }
 					}
 					dragElastic={0.1}
@@ -431,11 +431,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// 	x.set(0);
 					// }}
 					// onTapStart={}
-					// onTapStart={() => {
-					// 	const actualAngle = angle.get();
-					// 	// x.set(0);
-					// 	angle.set(actualAngle);
-					// }}
+					onTapStart={() => {
+						const actualAngle = angle.get();
+						x.set(0);
+						angle.set(actualAngle);
+					}}
 					// whileTap={{ cursor: "grabbing" }}
 				></motion.div>
 
@@ -734,7 +734,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						onClick={() => setShowError(false)}
 					/>
 				)}
-			</section>
+			</motion.section>
 		</>
 	);
 }
