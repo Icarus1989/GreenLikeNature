@@ -330,7 +330,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					) {
 						// slow if plate proximity
 
-						xVelocity.set(actualVel * 0.01);
+						xVelocity.set(actualVel * 0.02);
 
 						// change title if plate proximity
 
@@ -358,7 +358,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
 						-piSection >= (lastAngle - 15) * (Math.PI / 180)
 					) {
-						xVelocity.set(actualVel * 0.01);
+						xVelocity.set(actualVel * 0.02);
 
 						const h4Title = titleRef.current.textContent;
 						const actualTitle = recipes[index].title;
