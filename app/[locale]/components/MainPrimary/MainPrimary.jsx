@@ -392,17 +392,17 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	return (
 		<>
-			<motion.section
+			<section
 				ref={sectionRef}
 				className={`${styles["container"]} ${great_vibes.variable}`}
 				dir="ltr"
 				onContextMenu={(event) => event.preventDefault()}
-				onTapStart={() => {
-					// const actualAngle = angle.get();
-					x.set(0);
-					// angle.set(actualAngle);
-					// xVelocity.set(0);
-				}}
+				// onTapStart={() => {
+				// 	// const actualAngle = angle.get();
+				// 	x.set(0);
+				// 	// angle.set(actualAngle);
+				// 	// xVelocity.set(0);
+				// }}
 			>
 				<motion.div
 					className={styles["invisible-div"]}
@@ -431,11 +431,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// 	x.set(0);
 					// }}
 					// onTapStart={}
-					onTapStart={() => {
-						const actualAngle = angle.get();
-						// x.set(0);
-						angle.set(actualAngle);
-					}}
+					// onTapStart={() => {
+					// 	const actualAngle = angle.get();
+					// 	// x.set(0);
+					// 	angle.set(actualAngle);
+					// }}
 					// whileTap={{ cursor: "grabbing" }}
 				></motion.div>
 
@@ -734,7 +734,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						onClick={() => setShowError(false)}
 					/>
 				)}
-			</motion.section>
+			</section>
 		</>
 	);
 }
