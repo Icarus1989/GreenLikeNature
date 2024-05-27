@@ -137,7 +137,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
 	);
 
-	const [theta, setTheta] = useState([
+	const theta = [
 		0,
 		Math.PI / 4,
 		Math.PI / 2,
@@ -146,7 +146,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		5 * (Math.PI / 4),
 		3 * (Math.PI / 2),
 		7 * (Math.PI / 4)
-	]);
+	];
 
 	function createSavedList(list, defaultList) {
 		const savedSet = new Set();
@@ -377,7 +377,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				});
 			}
 		});
-	}, [theta]);
+	}, []);
 
 	// Blur Effect
 	useEffect(() => {
@@ -451,13 +451,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						ref={flowerRef}
 						style={{ position: "fixed", rotateZ: angle }}
 						className={styles["flower-container"]}
-						initial={{
-							opacity: 0
-						}}
-						animate={{
-							opacity: 1.0,
-							transition: { duration: 0.5, delay: 1.0 }
-						}}
+						// initial={{
+						// 	opacity: 0
+						// }}
+						// animate={{
+						// 	opacity: 1.0,
+						// 	transition: { duration: 0.5, delay: 1.0 }
+						// }}
 					>
 						<Flower />
 					</motion.div>
