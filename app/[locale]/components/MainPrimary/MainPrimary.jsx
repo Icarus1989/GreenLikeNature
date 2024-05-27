@@ -326,19 +326,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				const actualVel = xVelocity.get();
 
 				theta.map((piSection, index) => {
-					// if (
-					// 	(lastAngle - 15) * (Math.PI / 180) <= piSection &&
-					// 	piSection <= (lastAngle + 15) * (Math.PI / 180)
-					// ) {
-					// 	// slow if plate proximity
+					if (
+						(lastAngle - 15) * (Math.PI / 180) <= piSection &&
+						piSection <= (lastAngle + 15) * (Math.PI / 180)
+					) {
+						// slow if plate proximity
 
-					// 	// testing here --->
-					// 	// xVelocity.set(actualVel * 0.023);
+						// testing here --->
+						xVelocity.set(actualVel * 0.23);
 
-					// } else
-					if (Math.round(lastAngle) % 22.5 === 0 && xVelocity.get() > -10) {
-						// stop if plate max proximity
-						xVelocity.set(0);
 						// change title if plate proximity
 
 						const h4Title = titleRef.current.textContent;
@@ -346,33 +342,40 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						h4Title !== actualTitle
 							? (titleRef.current.textContent = invertedRecipes[index].title)
 							: null;
+					} else if (
+						Math.round(lastAngle) % 22.5 === 0 &&
+						xVelocity.get() > -10
+					) {
+						// stop if plate max proximity
+						xVelocity.set(0);
 						// set perfect angle if plate max proximity
 						angle.set(Math.round(lastAngle));
-						x.set(0);
+						x.set(x.get());
 					}
 					return;
 				});
 			} else if (lastAngle < 0) {
 				const actualVel = xVelocity.get();
 				theta.map((piSection, index) => {
-					// if (
-					// 	(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
-					// 	-piSection >= (lastAngle - 15) * (Math.PI / 180)
-					// ) {
-					// 	// testing here --->
-					// 	// xVelocity.set(actualVel * 0.023);
-
-					// } else
-					if (Math.round(lastAngle) % -22.5 === 0 && xVelocity.get() < 10) {
-						xVelocity.set(0);
+					if (
+						(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
+						-piSection >= (lastAngle - 15) * (Math.PI / 180)
+					) {
+						// testing here --->
+						xVelocity.set(actualVel * 0.23);
 
 						const h4Title = titleRef.current.textContent;
 						const actualTitle = recipes[index].title;
 						h4Title !== actualTitle
 							? (titleRef.current.textContent = recipes[index].title)
 							: null;
+					} else if (
+						Math.round(lastAngle) % -22.5 === 0 &&
+						xVelocity.get() < 10
+					) {
 						angle.set(Math.round(lastAngle));
-						x.set(0);
+						x.set(x.get());
+						xVelocity.set(0);
 					}
 					return;
 				});
