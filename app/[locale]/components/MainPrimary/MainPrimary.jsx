@@ -342,15 +342,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						h4Title !== actualTitle
 							? (titleRef.current.textContent = invertedRecipes[index].title)
 							: null;
-					} else if (
-						Math.round(lastAngle) % 22.5 === 0 &&
-						xVelocity.get() > -10
-					) {
-						// stop if plate max proximity
-						xVelocity.set(0);
-						// set perfect angle if plate max proximity
-						angle.set(Math.round(angle.get()));
-						// x.set(x.get());
+
+						if (Math.round(lastAngle) % 22.5 === 0 && xVelocity.get() > -10) {
+							// stop if plate max proximity
+							xVelocity.set(0);
+							// set perfect angle if plate max proximity
+							angle.set(Math.round(angle.get()));
+							// x.set(x.get());
+						}
 					}
 					return;
 				});
@@ -369,13 +368,12 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						h4Title !== actualTitle
 							? (titleRef.current.textContent = recipes[index].title)
 							: null;
-					} else if (
-						Math.round(lastAngle) % -22.5 === 0 &&
-						xVelocity.get() < 10
-					) {
-						angle.set(Math.round(angle.get()));
-						// x.set(x.get());
-						xVelocity.set(0);
+
+						if (Math.round(lastAngle) % -22.5 === 0 && xVelocity.get() < 10) {
+							angle.set(Math.round(angle.get()));
+							// x.set(x.get());
+							xVelocity.set(0);
+						}
 					}
 					return;
 				});
