@@ -333,7 +333,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						// slow if plate proximity
 
 						// testing here --->
-						xVelocity.set(actualVel * 0.23);
+						xVelocity.set(actualVel * 0.235);
 
 						// change title if plate proximity
 
@@ -349,8 +349,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						// stop if plate max proximity
 						xVelocity.set(0);
 						// set perfect angle if plate max proximity
-						angle.set(Math.round(lastAngle));
-						x.set(x.get());
+						angle.set(Math.round(angle.get()));
+						// x.set(x.get());
 					}
 					return;
 				});
@@ -362,7 +362,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						-piSection >= (lastAngle - 15) * (Math.PI / 180)
 					) {
 						// testing here --->
-						xVelocity.set(actualVel * 0.23);
+						xVelocity.set(actualVel * 0.235);
 
 						const h4Title = titleRef.current.textContent;
 						const actualTitle = recipes[index].title;
@@ -373,8 +373,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						Math.round(lastAngle) % -22.5 === 0 &&
 						xVelocity.get() < 10
 					) {
-						angle.set(Math.round(lastAngle));
-						x.set(x.get());
+						angle.set(Math.round(angle.get()));
+						// x.set(x.get());
 						xVelocity.set(0);
 					}
 					return;
