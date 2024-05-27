@@ -436,10 +436,10 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// }}
 					// onTapStart={}
 					onTapStart={() => {
-						const actualVelocity = xVelocity.get();
-						if (actualVelocity > 0) {
-							xVelocity.set(actualVelocity);
-						}
+						// const actualVelocity = xVelocity.get();
+						// if (actualVelocity > 0) {
+						// 	xVelocity.set(actualVelocity);
+						// }
 						const actualAngle = angle.get();
 						x.set(0);
 						angle.set(actualAngle);
@@ -452,8 +452,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						<AnimatedText
 							text={`Green Like Nature`}
 							className={styles["title-general"]}
-							// handleAnimComplete={handleAnimComplete}
-							handleAnimComplete={true}
+							handleAnimComplete={handleAnimComplete}
+							// handleAnimComplete={true}
 						></AnimatedText>
 					</div>
 					<motion.div

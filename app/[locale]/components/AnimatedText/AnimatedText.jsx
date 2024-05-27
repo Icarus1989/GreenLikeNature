@@ -17,7 +17,7 @@ export default function AnimatedText({ text, className, handleAnimComplete }) {
 	const settings = useContext(GeneralContext);
 	const titleAnimated = settings["title-animation"];
 
-	const [execute, setExecute] = useState(titleAnimated);
+	const [execute, setExecute] = useState(true);
 
 	const ref = useRef(null);
 	const isInView = useInView(ref, { amount: 0.5, once: true });
