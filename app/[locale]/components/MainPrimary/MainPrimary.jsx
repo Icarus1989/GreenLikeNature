@@ -25,7 +25,9 @@ import {
 	motion,
 	AnimatePresence,
 	useMotionValue,
-	useVelocity
+	useVelocity,
+	useMotionValueEvent,
+	useMotionTemplate
 } from "framer-motion";
 
 import AnimatedText from "@/app/[locale]/components/AnimatedText/AnimatedText";
@@ -131,6 +133,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	const internal = useRef(null);
 
 	const sectionRef = useRef(null);
+	const moveRef = useRef(null);
 	const titleRef = useRef(null);
 
 	const filteredList = recipesList.filter((recipe) =>
@@ -256,14 +259,27 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	const angle = useMotionValue(0);
 	const x = useMotionValue(0);
 	const xVelocity = useVelocity(x);
+	const angVelocity = useVelocity(xVelocity);
+
+	// const leftMove = useMotionTemplate`${x}dvw`;
+
+	const [limits, setLimits] = useState({ min: null, max: null });
 
 	// Plates Positioning Effect
 	useEffect(() => {
+		const sectionDim = sectionRef.current.getBoundingClientRect();
+		setLimits(() => {
+			return { min: -(1 * sectionDim.width), max: 2 * sectionDim.width };
+		});
+
 		const searchbarDim = formRef.current.children[0].getBoundingClientRect();
 		const searchbarCenterX = searchbarDim.left + searchbarDim.width / 2;
 		const searchbarCenterY = searchbarDim.top + searchbarDim.height / 2;
 		const carouselDim = carouselRef.current.getBoundingClientRect();
 		const flowerDim = flowerRef.current.getBoundingClientRect();
+
+		moveRef.current.style.width = sectionDim.width * 4 + "px";
+		moveRef.current.style.left = -2 * sectionDim.width + "px";
 
 		flowerRef.current.style.top =
 			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
@@ -301,85 +317,321 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	}, []);
 
 	// Motion Transmission Effect
-	useEffect(() => {
-		return x.on("change", (lastValue) => {
-			angle.set(
-				angle.get() + -Number((xVelocity.current / (360 / Math.PI)).toFixed(3))
-			);
-		});
-	}, []);
+	// useEffect(() => {
+	// 	function updateAngle() {
+	// 		// angle.set(angle.get() + xVelocity.get() / -360);
+	// 		angle.set(angle.get() + -Number(xVelocity.get() / (360 / Math.PI)));
+	// 	}
+
+	// 	// const eventVel = xVelocity.on("change", (lastValue) => {
+	// 	// 	// console.log("Vel");
+	// 	// 	// console.log(lastValue);
+	// 	// 	// console.log("angVel");
+	// 	// 	// console.log(angVelocity.get());
+	// 	// 	// angle.set(angle.get() + -Number(xVelocity.get() / (360 / Math.PI)));
+	// 	// 	angle.set(angle.get() + xVelocity.get() / -360);
+	// 	// 	// if (xVelocity.get() === 0) {
+	// 	// 	// 	x.set(0);
+	// 	// 	// }
+	// 	// });
+
+	// 	const unsubVel = xVelocity.on("change", updateAngle);
+	// 	return () => {
+	// 		unsubVel();
+	// 		// moveRef.current.style.transform = "translateX(-235.95px)";
+	// 	};
+	// }, [xVelocity]);
+
+	// Limits --->
+
+	useMotionValueEvent(x, "change", (lastX) => {
+		// const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+		const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+
+		if (lastX === limits.max) {
+			x.jump(invDiv);
+			console.log("limit");
+		}
+
+		// if (lastX === limits.min) {
+		// 	x.jump(invDiv);
+		// }
+		// if (lastX === limits.min) {
+		// 	x.jump(invDiv * 2);
+		// }
+		// else if (lastX === limits.max) {
+		// 	x.jump(invDiv + 1);
+		// }
+	});
+
+	// useMotionValueEvent(angle, "change", (lastAngle) => {
+	// 	// Invisible return
+	// 	// console.log(angle.get());
+	// 	if (x.get() <= limits.min) {
+	// 		// console.log(moveRef.current.getBoundingClientRect());
+	// 		// moveRef.current.style.transform = "none";
+	// 		// moveRef.current.style.left = "0px";
+	// 		// moveRef.current.style.transform =
+	// 		// 	"translateX(0px) translateY(0px) translateZ(0px)";
+	// 		// xVelocity.jump(x.getVelocity());
+	// 		// x.jump(0);
+	// 		angle.jump(lastAngle);
+	// 		console.log("limit");
+	// 	} else if (x.get() >= limits.max) {
+	// 		// Manca solo getstire arrivo al limite massimo poi test
+	// 		// moveRef.current.style.transform = `translateX(-${100}%)`;
+	// 		// moveRef.current.style.transform =
+	// 		// 	"translateX(0px) translateY(0px) translateZ(0px)";
+	// 		// xVelocity.jump(x.getVelocity());
+
+	// 		// x.jump(0);
+	// 		angle.jump(lastAngle);
+
+	// 		// moveRef.current.style.transform = "none";
+
+	// 		console.log("limit");
+	// 		// console.log(moveRef.current.style.left);
+	// 	}
+	// });
+
+	// useMotionValueEvent(x, "animationComplete", () => {
+	// 	// moveRef.current.style.transform =
+	// 	// 	"translateX(0px) translateY(0px) translateZ(0px)";
+	// 	const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+	// 	x.set(invDiv);
+	// });
+
+	useMotionValueEvent(xVelocity, "change", () => {
+		angle.set(angle.get() + -Number(xVelocity.get() / (360 / Math.PI)));
+	});
+
+	// useEffect(() => {
+	// 	console.log("initial");
+	// 	console.log(moveRef.current.getBoundingClientRect());
+	// 	// console.log(x.get());
+	// }, []);
+
+	// useMotionValueEvent(angle, "change", (lastAngle) => {
+	// 	// console.log(lastAngle);
+	// 	if (angle.get() >= 360) {
+	// 		x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+	// 	} else if (angle.get() <= -360) {
+	// 		x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+	// 	}
+	// });
+
+	// useMotionValueEvent(x, "animationComplete", () => {
+	// 	const actualAngle = angle.get();
+	// 	console.log(actualAngle);
+	// 	angle.set(angle.current);
+	// 	// x.set(0);
+	// 	x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+
+	// 	console.log("complete");
+	// 	// x.set(0);
+	// });
+
+	// useEffect(() => {
+	// 	x.on("change", (lastX) => {
+	// 		if (lastX < `-300vw` || lastX > `300vw`) {
+	// 			x.set(0);
+	// 		}
+	// 	});
+	// }, []);
+
+	// useEffect(() => {
+	// 	angVelocity.on("change", (lastValue) => {
+	// 		// if (xVelocity.get() === 0) {
+	// 		// 	x.set(0);
+	// 		// }
+	// 		angle.set(lastValue / carouselRef.current.getBoundingClientRect().width);
+	// 	});
+	// });
 
 	// Movement and Title Detect Effect
-	useEffect(() => {
-		const invertedRecipes = [recipes[0], ...recipes.slice(1).reverse()];
+	// useEffect(() => {
+	// 	const invertedRecipes = [recipes[0], ...recipes.slice(1).reverse()];
 
-		angle.on("change", (lastAngle) => {
-			if (lastAngle > 360) {
-				xVelocity.set(xVelocity.get());
-				angle.set(0);
-			} else if (lastAngle < -360) {
-				xVelocity.set(xVelocity.get());
-				angle.set(0);
-			}
+	// 	angle.on("change", (lastAngle) => {
+	// 		if (lastAngle >= 360) {
+	// 			// xVelocity.set(0);
+	// 			angle.set(0);
+	// 			// x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+	// 		} else if (lastAngle <= -360) {
+	// 			// xVelocity.set(0);
+	// 			angle.set(0);
+	// 			// x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+	// 		}
 
-			if (lastAngle >= 0) {
-				const actualVel = xVelocity.get();
+	// 		if (lastAngle >= 0) {
+	// 			const actualVel = xVelocity.get();
 
-				theta.map((piSection, index) => {
-					if (
-						(lastAngle - 15) * (Math.PI / 180) <= piSection &&
-						piSection <= (lastAngle + 15) * (Math.PI / 180)
-					) {
-						// slow if plate proximity
+	// 			theta.map((piSection, index) => {
+	// 				if (
+	// 					(lastAngle - 15) * (Math.PI / 180) <= piSection &&
+	// 					piSection <= (lastAngle + 15) * (Math.PI / 180)
+	// 				) {
+	// 					// slow if plate proximity
 
-						// testing here --->
-						xVelocity.set(actualVel * 0.235);
+	// 					// testing here --->
+	// 					xVelocity.set(actualVel * 0.235);
 
-						// change title if plate proximity
+	// 					// change title if plate proximity
 
-						const h4Title = titleRef.current.textContent;
-						const actualTitle = invertedRecipes[index].title;
-						h4Title !== actualTitle
-							? (titleRef.current.textContent = invertedRecipes[index].title)
-							: null;
+	// 					const h4Title = titleRef.current.textContent;
+	// 					const actualTitle = invertedRecipes[index].title;
+	// 					h4Title !== actualTitle
+	// 						? (titleRef.current.textContent = invertedRecipes[index].title)
+	// 						: null;
 
-						if (Math.round(lastAngle) % 22.5 === 0 && xVelocity.get() > -10) {
-							// stop if plate max proximity
-							xVelocity.set(0);
-							// set perfect angle if plate max proximity
-							angle.set(Math.round(angle.get()));
-							// x.set(x.get());
-						}
+	// 					if (Math.round(lastAngle) % 22.5 === 0 && xVelocity.get() > -10) {
+	// 						// stop if plate max proximity
+	// 						xVelocity.set(0);
+	// 						// set perfect angle if plate max proximity
+	// 						angle.set(Math.round(angle.get()));
+	// 						// x.set(x.get());
+	// 					}
+	// 				}
+	// 				return;
+	// 			});
+	// 		} else if (lastAngle < 0) {
+	// 			const actualVel = xVelocity.get();
+	// 			theta.map((piSection, index) => {
+	// 				if (
+	// 					(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
+	// 					-piSection >= (lastAngle - 15) * (Math.PI / 180)
+	// 				) {
+	// 					// testing here --->
+	// 					xVelocity.set(actualVel * 0.235);
+
+	// 					const h4Title = titleRef.current.textContent;
+	// 					const actualTitle = recipes[index].title;
+	// 					h4Title !== actualTitle
+	// 						? (titleRef.current.textContent = recipes[index].title)
+	// 						: null;
+
+	// 					if (Math.round(lastAngle) % -22.5 === 0 && xVelocity.get() < 10) {
+	// 						angle.set(Math.round(angle.get()));
+	// 						// x.set(x.get());
+	// 						xVelocity.set(0);
+	// 					}
+	// 				}
+	// 				return;
+	// 			});
+	// 		}
+	// 	});
+	// }, []);
+
+	// Movement and Title Detect
+
+	const invertedRecipes = [recipes[0], ...recipes.slice(1).reverse()];
+
+	useMotionValueEvent(angle, "change", (lastAngle) => {
+		// console.log(x.get());
+		// console.log(lastAngle);
+		// if (angle.get() >= 360) {
+		// 	x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+		// } else if (angle.get() <= -360) {
+		// 	x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+		// }
+
+		if (angle.get() >= 360) {
+			// xVelocity.set(0);
+			angle.set(0);
+
+			// moveRef.current.style.left =
+			// 	-moveRef.current.getBoundingClientRect().width / 2 + "px";
+			// const actualVelocity = xVelocity.get();
+			// if (actualVelocity > 0) {
+			// 	xVelocity.set(actualVelocity);
+			// }
+			// const actualAngle = angle.get();
+			// x.set(0);
+			// angle.set(actualAngle);
+			// xVelocity.set(0);
+			// x.set(0);
+			// x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+		} else if (angle.get() <= -360) {
+			// xVelocity.set(0);
+			angle.set(0);
+
+			// const actualVelocity = xVelocity.get();
+			// if (actualVelocity > 0) {
+			// 	xVelocity.set(actualVelocity);
+			// }
+			// const actualAngle = angle.get();
+			// x.set(0);
+			// angle.set(actualAngle);
+			// xVelocity.set(0);
+			// x.set(0);
+			// x.set(-3 * sectionRef.current.getBoundingClientRect().width);
+		}
+
+		if (angle.get() >= 0) {
+			const actualVel = xVelocity.get();
+
+			theta.map((piSection, index) => {
+				if (
+					(angle.get() - 15) * (Math.PI / 180) <= piSection &&
+					piSection <= (angle.get() + 15) * (Math.PI / 180)
+				) {
+					// slow if plate proximity
+
+					// testing here --->
+					xVelocity.set(actualVel * 0.235);
+
+					// change title if plate proximity
+
+					const h4Title = titleRef.current.textContent;
+					const actualTitle = invertedRecipes[index].title;
+					h4Title !== actualTitle
+						? (titleRef.current.textContent = invertedRecipes[index].title)
+						: null;
+
+					if (Math.round(angle.get()) % 22.5 === 0 && xVelocity.get() > -10) {
+						// stop if plate max proximity
+						xVelocity.set(0);
+						// set perfect angle if plate max proximity
+						angle.set(Math.round(angle.get()));
+						// x.set(x.get());
 					}
-					return;
-				});
-			} else if (lastAngle < 0) {
-				const actualVel = xVelocity.get();
-				theta.map((piSection, index) => {
-					if (
-						(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
-						-piSection >= (lastAngle - 15) * (Math.PI / 180)
-					) {
-						// testing here --->
-						xVelocity.set(actualVel * 0.235);
+				}
+				return;
+			});
+		} else if (angle.get() < 0) {
+			const actualVel = xVelocity.get();
+			theta.map((piSection, index) => {
+				if (
+					(angle.get() + 15) * (Math.PI / 180) >= -piSection &&
+					-piSection >= (angle.get() - 15) * (Math.PI / 180)
+				) {
+					// testing here --->
+					xVelocity.set(actualVel * 0.235);
 
-						const h4Title = titleRef.current.textContent;
-						const actualTitle = recipes[index].title;
-						h4Title !== actualTitle
-							? (titleRef.current.textContent = recipes[index].title)
-							: null;
+					const h4Title = titleRef.current.textContent;
+					const actualTitle = recipes[index].title;
+					h4Title !== actualTitle
+						? (titleRef.current.textContent = recipes[index].title)
+						: null;
 
-						if (Math.round(lastAngle) % -22.5 === 0 && xVelocity.get() < 10) {
-							angle.set(Math.round(angle.get()));
-							// x.set(x.get());
-							xVelocity.set(0);
-						}
+					if (Math.round(angle.get()) % -22.5 === 0 && xVelocity.get() < 10) {
+						angle.set(Math.round(angle.get()));
+						// x.set(x.get());
+						xVelocity.set(0);
 					}
-					return;
-				});
-			}
-		});
-	}, []);
+				}
+				return;
+			});
+		}
+	});
+
+	// Test --->
+
+	// useMotionValueEvent(x, "change", (lastX) => {
+	// 	console.log(lastX);
+	// });
+
+	// <--- Test
 
 	// Blur Effect
 	useEffect(() => {
@@ -408,14 +660,16 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			>
 				<motion.div
 					className={styles["invisible-div"]}
+					ref={moveRef}
 					drag="x"
 					dragConstraints={
 						!showModal
-							? { left: -`400dvw`, right: +`400dvw` }
+							? { left: limits.min, right: limits.max }
 							: { left: 0, right: 0 }
 					}
-					dragElastic={0.1}
+					dragElastic={0}
 					// dragSnapToOrigin={true}
+					// HERE
 					style={{ x }}
 					// onClick={() => {
 					// 	const actualAngle = angle.get();
@@ -429,18 +683,39 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// 	angle.set(actualAngle);
 					// 	xVelocity.set(0);
 					// }}
-					// onPointerUp={() => {
+					// onDragOver={}
+					// onTapCancel={() => {
 					// 	x.set(0);
 					// }}
 					// onTapStart={}
-					onTapStart={() => {
+
+					onTapStart={(event) => {
+						// console.log(event);
 						// const actualVelocity = xVelocity.get();
-						// if (actualVelocity > 0) {
-						// 	xVelocity.set(actualVelocity);
-						// }
+						if (xVelocity.get() > 0) {
+							xVelocity.set(xVelocity.get());
+						}
 						const actualAngle = angle.get();
-						x.set(0);
 						angle.set(actualAngle);
+
+						const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+						x.jump(invDiv);
+						// if (actualAngle < 0) {
+
+						// }
+
+						// const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+
+						// x.set(event.clientX);
+						// x.set(-moveRef.current.getBoundingClientRect().width / 2);
+						// x.jump(0);
+						// moveRef.current.style.left =
+						// 	-moveRef.current.getBoundingClientRect().width / 2 + "px";
+						// moveRef.current.style.transform = `translateX(${0}px) translateY(0px) translateZ(0px)`;
+						// x.jump(x.get() - moveRef.current.getBoundingClientRect().left);
+						// x.stop();
+						// -2.5 * sectionDim.width;
+						// moveRef.current.style.transform = `translateX(${event.clientX}px) translateY(0px) translateZ(0px)`;
 					}}
 					// whileTap={{ cursor: "grabbing" }}
 				></motion.div>
@@ -598,6 +873,51 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 								style={{
 									rotateZ: angle
 								}}
+								// onClick={() => {
+								// 	// const actualAngle = angle.get();
+								// 	console.log('"external click');
+								// 	console.log(moveRef.current.getBoundingClientRect());
+								// 	moveRef.current.style.left =
+								// 		-moveRef.current.getBoundingClientRect().width / 2 + "px";
+								// 	// if (xVelocity.get() < 1) {
+								// 	// 	const actualAngle = angle.get();
+								// 	// 	// x.set(0);
+								// 	// 	angle.set(actualAngle);
+								// 	// 	// x.set(0);
+								// 	// }
+								// 	// onClick={() => {
+								// 	// 	x.set(-`300dvw`);
+								// }}
+
+								// onPointerDown={() => {
+								// 	console.log(Number(moveRef.current.style.left.slice(0, -3)));
+								// 	// const actualVelocity = xVelocity.get();
+								// 	// if (xVelocity.get() > 0) {
+								// 	xVelocity.set(xVelocity.get());
+								// 	// }
+								// 	const actualAngle = angle.get();
+								// 	angle.set(actualAngle);
+
+								// 	// moveRef.current.scrollTo(0, 0);
+								// 	moveRef.current.style.transform = `translateX(${10}px)`;
+								// 	// x.set(10);
+								// 	// const distance =
+								// 	// 	moveRef.current.getBoundingClientRect().left + "px";
+								// 	// if (
+								// 	// 	Number(moveRef.current.getBoundingClientRect().left) >= 0
+								// 	// ) {
+								// 	// 	moveRef.current.style.left =
+								// 	// 		moveRef.current.getBoundingClientRect().width / 4 + "px";
+								// 	// } else {
+								// 	// 	moveRef.current.style.left =
+								// 	// 		-moveRef.current.getBoundingClientRect().width / 4 + "px";
+								// 	// }
+								// 	// angle.set(angle.get());
+								// }}
+
+								// 	// angle.set(actualAngle);
+								// 	// xVelocity.set(0);
+								// }}
 							>
 								<Image
 									src={bkgImage}
@@ -617,16 +937,16 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									className={styles["circular-border-internal"]}
 								>
 									<motion.ul
-										initial={{
-											opacity: 0.0
-										}}
-										animate={{
-											opacity: 1.0,
-											transition: {
-												duration: 0.5,
-												staggerChildren: 0.1
-											}
-										}}
+									// initial={{
+									// 	opacity: 0.0
+									// }}
+									// animate={{
+									// 	opacity: 1.0,
+									// 	transition: {
+									// 		duration: 0.5,
+									// 		staggerChildren: 0.1
+									// 	}
+									// }}
 									>
 										{recipes.map((recipe, index) => {
 											return (

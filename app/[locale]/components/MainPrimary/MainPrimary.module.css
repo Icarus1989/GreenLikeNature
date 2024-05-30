@@ -17,13 +17,13 @@
 }
 
 .invisible-div {
-	width: 700vw;
+	/* width: 700dvw; */
 	height: 67dvh;
 	border: 1px solid red;
 	z-index: 24;
 	touch-action: none;
 	position: relative;
-	left: -300vw;
+	/* left: -300dvw; */
 }
 
 .arrow-right {
