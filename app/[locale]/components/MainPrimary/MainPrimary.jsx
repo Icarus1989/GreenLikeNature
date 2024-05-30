@@ -267,19 +267,23 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	// Plates Positioning Effect
 	useEffect(() => {
-		const sectionDim = sectionRef.current.getBoundingClientRect();
-		setLimits(() => {
-			return { min: -(2 * sectionDim.width), max: 2 * sectionDim.width };
-		});
-
 		const searchbarDim = formRef.current.children[0].getBoundingClientRect();
 		const searchbarCenterX = searchbarDim.left + searchbarDim.width / 2;
 		const searchbarCenterY = searchbarDim.top + searchbarDim.height / 2;
 		const carouselDim = carouselRef.current.getBoundingClientRect();
 		const flowerDim = flowerRef.current.getBoundingClientRect();
 
-		moveRef.current.style.width = sectionDim.width * 5 + "px";
-		moveRef.current.style.left = -2 * sectionDim.width + "px";
+		const sectionDim = sectionRef.current.getBoundingClientRect();
+		setLimits(() => {
+			return {
+				min: -(Math.PI * carouselDim.width) / 2,
+				max: (Math.PI * carouselDim.width) / 2
+			};
+		});
+
+		moveRef.current.style.width =
+			Math.PI * carouselDim.width + sectionDim.width + "px";
+		moveRef.current.style.left = -(Math.PI * carouselDim.width) / 2 + "px";
 
 		flowerRef.current.style.top =
 			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
@@ -344,30 +348,30 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	// Limits --->
 
-	useMotionValueEvent(x, "change", (lastX) => {
-		// const invDiv = moveRef.current.getBoundingClientRect().width / 2;
-		const invDiv = moveRef.current.getBoundingClientRect().width / 2 - 1;
-		const actualAngle = angle.get();
+	// useMotionValueEvent(x, "change", (lastX) => {
+	// 	// const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+	// 	const invDiv = moveRef.current.getBoundingClientRect().width / 2 - 1;
+	// 	const actualAngle = angle.get();
 
-		if (lastX === limits.max) {
-			angle.jump(actualAngle);
-			x.jump(0);
-			console.log("limit");
-		}
+	// 	if (lastX === limits.max) {
+	// 		angle.jump(actualAngle);
+	// 		x.jump(0);
+	// 		console.log("limit");
+	// 	}
 
-		if (lastX === limits.min) {
-			angle.jump(actualAngle);
+	// 	if (lastX === limits.min) {
+	// 		angle.jump(actualAngle);
 
-			x.jump(0);
-			console.log("limit min");
-		}
-		// if (lastX === limits.min) {
-		// 	x.jump(invDiv * 2);
-		// }
-		// else if (lastX === limits.max) {
-		// 	x.jump(invDiv + 1);
-		// }
-	});
+	// 		x.jump(0);
+	// 		console.log("limit min");
+	// 	}
+	// 	// if (lastX === limits.min) {
+	// 	// 	x.jump(invDiv * 2);
+	// 	// }
+	// 	// else if (lastX === limits.max) {
+	// 	// 	x.jump(invDiv + 1);
+	// 	// }
+	// });
 
 	// useMotionValueEvent(angle, "change", (lastAngle) => {
 	// 	// Invisible return
