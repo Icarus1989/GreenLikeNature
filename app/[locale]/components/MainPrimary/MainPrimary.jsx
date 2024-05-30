@@ -269,7 +269,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	useEffect(() => {
 		const sectionDim = sectionRef.current.getBoundingClientRect();
 		setLimits(() => {
-			return { min: -(1 * sectionDim.width), max: 2 * sectionDim.width };
+			return { min: -(2 * sectionDim.width), max: 2 * sectionDim.width };
 		});
 
 		const searchbarDim = formRef.current.children[0].getBoundingClientRect();
@@ -278,7 +278,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		const carouselDim = carouselRef.current.getBoundingClientRect();
 		const flowerDim = flowerRef.current.getBoundingClientRect();
 
-		moveRef.current.style.width = sectionDim.width * 4 + "px";
+		moveRef.current.style.width = sectionDim.width * 5 + "px";
 		moveRef.current.style.left = -2 * sectionDim.width + "px";
 
 		flowerRef.current.style.top =
@@ -346,16 +346,21 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	useMotionValueEvent(x, "change", (lastX) => {
 		// const invDiv = moveRef.current.getBoundingClientRect().width / 2;
-		const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+		const invDiv = moveRef.current.getBoundingClientRect().width / 2 - 1;
+		const actualAngle = angle.get();
 
 		if (lastX === limits.max) {
-			x.jump(invDiv);
+			angle.jump(actualAngle);
+			x.jump(0);
 			console.log("limit");
 		}
 
-		// if (lastX === limits.min) {
-		// 	x.jump(invDiv);
-		// }
+		if (lastX === limits.min) {
+			angle.jump(actualAngle);
+
+			x.jump(0);
+			console.log("limit min");
+		}
 		// if (lastX === limits.min) {
 		// 	x.jump(invDiv * 2);
 		// }
@@ -689,34 +694,34 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// }}
 					// onTapStart={}
 
-					onTapStart={(event) => {
-						// console.log(event);
-						// const actualVelocity = xVelocity.get();
-						if (xVelocity.get() > 0) {
-							xVelocity.set(xVelocity.get());
-						}
-						const actualAngle = angle.get();
-						angle.set(actualAngle);
+					// onTapStart={(event) => {
+					// 	// console.log(event);
+					// 	// const actualVelocity = xVelocity.get();
+					// 	if (xVelocity.get() > 0) {
+					// 		xVelocity.set(xVelocity.get());
+					// 	}
+					// 	const actualAngle = angle.get();
+					// 	angle.set(actualAngle);
 
-						const invDiv = moveRef.current.getBoundingClientRect().width / 2;
-						x.jump(invDiv);
-						// if (actualAngle < 0) {
+					// 	const invDiv = moveRef.current.getBoundingClientRect().width;
+					// 	x.jump(invDiv);
+					// 	// if (actualAngle < 0) {
 
-						// }
+					// 	// }
 
-						// const invDiv = moveRef.current.getBoundingClientRect().width / 2;
+					// 	// const invDiv = moveRef.current.getBoundingClientRect().width / 2;
 
-						// x.set(event.clientX);
-						// x.set(-moveRef.current.getBoundingClientRect().width / 2);
-						// x.jump(0);
-						// moveRef.current.style.left =
-						// 	-moveRef.current.getBoundingClientRect().width / 2 + "px";
-						// moveRef.current.style.transform = `translateX(${0}px) translateY(0px) translateZ(0px)`;
-						// x.jump(x.get() - moveRef.current.getBoundingClientRect().left);
-						// x.stop();
-						// -2.5 * sectionDim.width;
-						// moveRef.current.style.transform = `translateX(${event.clientX}px) translateY(0px) translateZ(0px)`;
-					}}
+					// 	// x.set(event.clientX);
+					// 	// x.set(-moveRef.current.getBoundingClientRect().width / 2);
+					// 	// x.jump(0);
+					// 	// moveRef.current.style.left =
+					// 	// 	-moveRef.current.getBoundingClientRect().width / 2 + "px";
+					// 	// moveRef.current.style.transform = `translateX(${0}px) translateY(0px) translateZ(0px)`;
+					// 	// x.jump(x.get() - moveRef.current.getBoundingClientRect().left);
+					// 	// x.stop();
+					// 	// -2.5 * sectionDim.width;
+					// 	// moveRef.current.style.transform = `translateX(${event.clientX}px) translateY(0px) translateZ(0px)`;
+					// }}
 					// whileTap={{ cursor: "grabbing" }}
 				></motion.div>
 
