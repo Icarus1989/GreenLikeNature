@@ -130,7 +130,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	const flowerRef = useRef(null);
 
 	const recipeRef = useRef(null);
-	const menuRef = useRef(null);
+	// const menuRef = useRef(null);
 	const internal = useRef(null);
 
 	const sectionRef = useRef(null);
@@ -422,44 +422,50 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	// useMotionValueEvent(angle, "animation")
 
-	console.log(recVelocity);
+	// console.log(recVelocity);
 
-	const [scope, animate] = useAnimate();
+	const [menuRef, animate] = useAnimate();
 
 	useEffect(() => {
 		// Funzione rotation
 
 		// Spostare in useMotionValueEvent con x?
 
-		const difference = 45;
+		// const difference = 45;
 
-		function rotateAngle(value, range) {
-			const sign = -value / value;
-			const newAngle = angle.get() + range * sign;
-			// console.log("angle");
-			// console.log(angle.get());
-			angle.set(newAngle);
-			// console.log(angle.get());
-		}
+		// function rotateAngle(value, range) {
+		// 	const sign = -value / value;
+		// 	const newAngle = angle.get() + range * sign;
+		// 	// console.log("angle");
+		// 	// console.log(angle.get());
+		// 	angle.set(newAngle);
+		// 	// console.log(angle.get());
+		// }
 		// if (recVelocity.length > 0) {
 		// 	;
 		// }
 		if (recVelocity[0] && recVelocity[0] !== 0) {
 			const vel = recVelocity[0];
-			console.log("start");
+			// console.log("start");
 			// rotateAngle(vel, difference);
 			const difference = 45;
 			// const sign = -vel / vel;
-			console.log("angle");
-			console.log(angle.get());
+			// console.log("angle");
+			// console.log(angle.get());
 			const newAngle =
 				vel > 0 ? angle.get() - difference : angle.get() + difference;
-			animate(scope.current, { rotateZ: `${newAngle}deg` });
+			animate(menuRef.current, { rotateZ: `${newAngle}deg` });
 			angle.set(newAngle);
-			setRecVelocity((prevValue) => {
-				return (prevValue = []);
-			});
+			// setRecVelocity((prevValue) => {
+			// 	return (prevValue = []);
+			// });
+			// setRecVelocity((prevValue) => {
+			// 	return (prevValue.length = 0);
+			// });
+			recVelocity.length = 0;
 			xVelocity.set(0);
+		} else {
+			return;
 		}
 
 		return () => {};
@@ -639,47 +645,37 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// 	x.set(-3 * sectionRef.current.getBoundingClientRect().width);
 		// }
 
-		if (angle.get() >= 360) {
-			// xVelocity.set(0);
-			angle.set(0);
-
-			// moveRef.current.style.left =
-			// 	-moveRef.current.getBoundingClientRect().width / 2 + "px";
-			// const actualVelocity = xVelocity.get();
-			// if (actualVelocity > 0) {
-			// 	xVelocity.set(actualVelocity);
-			// }
-			// const actualAngle = angle.get();
-			// x.set(0);
-			// angle.set(actualAngle);
-			// xVelocity.set(0);
-			// x.set(0);
-			// x.set(-3 * sectionRef.current.getBoundingClientRect().width);
-		} else if (angle.get() <= -360) {
-			// xVelocity.set(0);
-			angle.set(0);
-
-			// const actualVelocity = xVelocity.get();
-			// if (actualVelocity > 0) {
-			// 	xVelocity.set(actualVelocity);
-			// }
-			// const actualAngle = angle.get();
-			// x.set(0);
-			// angle.set(actualAngle);
-			// xVelocity.set(0);
-			// x.set(0);
-			// x.set(-3 * sectionRef.current.getBoundingClientRect().width);
-		}
+		// if (angle.get() >= 360) {
+		// 	angle.set(0);
+		// } else if (angle.get() <= -360) {
+		// 	angle.set(0);
+		// }
 
 		if (lastAngle >= 0) {
 			const actualVel = xVelocity.get();
 
 			theta.map((piSection, index) => {
+				// test --->
+				// if (Math.sin(angle.get() * (Math.PI / 180)) === Math.sin(piSection)) {
+				// 	const h4Title = titleRef.current.textContent;
+				// 	const actualTitle = invertedRecipes[index].title;
+				// 	h4Title !== actualTitle
+				// 		? (titleRef.current.textContent = invertedRecipes[index].title)
+				// 		: null;
+				// }
 				if (
 					(angle.get() - 15) * (Math.PI / 180) <= piSection &&
 					piSection <= (angle.get() + 15) * (Math.PI / 180)
 				) {
 					// slow if plate proximity
+					console.log("Angle");
+					console.log(angle.get());
+					console.log("angle sin");
+					console.log(Math.sin(angle.get() * (Math.PI / 180)));
+					console.log("PI section");
+					console.log(piSection);
+					console.log("section sin");
+					console.log(Math.sin(piSection));
 
 					// testing here --->
 					// xVelocity.set(actualVel * 0.235);
@@ -691,13 +687,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					h4Title !== actualTitle
 						? (titleRef.current.textContent = invertedRecipes[index].title)
 						: null;
-					if (Math.round(lastAngle) % 22.5 === 0 && xVelocity.get() > -10) {
-						// stop if plate max proximity
-						xVelocity.set(0);
-						// set perfect angle if plate max proximity
-						angle.set(Math.round(lastAngle));
-						// x.set(x.get());
-					}
+					// if (Math.round(lastAngle) % 22.5 === 0) {
+					// 	// stop if plate max proximity
+					// 	xVelocity.set(0);
+					// 	// set perfect angle if plate max proximity
+					// 	angle.set(Math.round(lastAngle));
+					// 	// x.set(x.get());
+					// }
 				}
 			});
 		} else if (lastAngle < 0) {
@@ -710,16 +706,23 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// testing here --->
 					// xVelocity.set(actualVel * 0.235);
 
+					console.log("Angle");
+					console.log(angle.get());
+					console.log("PI section");
+					console.log(piSection);
+					console.log("section sin");
+					console.log(Math.sin(piSection));
+
 					const h4Title = titleRef.current.textContent;
 					const actualTitle = recipes[index].title;
 					h4Title !== actualTitle
 						? (titleRef.current.textContent = recipes[index].title)
 						: null;
-					if (Math.round(lastAngle) % -22.5 < 0.1 && xVelocity.get() < 10) {
-						angle.set(Math.round(lastAngle));
-						// x.set(x.get());
-						xVelocity.set(0);
-					}
+					// if (Math.round(lastAngle) % -22.5 < 0.1) {
+					// 	angle.set(Math.round(lastAngle));
+					// 	// x.set(x.get());
+					// 	xVelocity.set(0);
+					// }
 				}
 
 				return;
@@ -773,6 +776,16 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					dragSnapToOrigin={true}
 					// HERE
 					style={{ x }}
+					onTapStart={() => {
+						// if (recVelocity[0] === 0) {
+						// 	setRecVelocity([]);
+						// }
+
+						// setRecVelocity((prevValue) => {
+						// 	return (prevValue.length = 0);
+						// });
+						recVelocity.length = 0;
+					}}
 					// onClick={() => {
 					// 	const actualAngle = angle.get();
 					// 	x.set(0);
@@ -958,7 +971,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						ref={carouselRef}
 						className={styles["carousel"]}
 					>
-						<div ref={scope} className={styles["circular-container"]}>
+						<div className={styles["circular-container"]}>
 							<motion.div
 								ref={menuRef}
 								className={styles["circular-menu"]}
