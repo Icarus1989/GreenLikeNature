@@ -27,7 +27,8 @@ import {
 	useMotionValue,
 	useVelocity,
 	useMotionValueEvent,
-	useMotionTemplate
+	useMotionTemplate,
+	useAnimate
 } from "framer-motion";
 
 import AnimatedText from "@/app/[locale]/components/AnimatedText/AnimatedText";
@@ -396,60 +397,73 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// console.log(angle.get());
 	}
 
-	useMotionValueEvent(xVelocity, "change", (lastVel) => {
+	useMotionValueEvent(x, "animationStart", () => {
+		console.log(x.getVelocity());
 		if (recVelocity.length === 0) {
 			setRecVelocity((prevValue) => {
-				return [...prevValue, lastVel];
+				return [...prevValue, x.getVelocity()];
 			});
 		}
 
-		const difference = 45;
+		// const difference = 45;
 
-		// if (recVelocity.length > 0) {
-		// 	;
+		// // if (recVelocity.length > 0) {
+		// // 	;
+		// // }
+		// if (recVelocity[0]) {
+		// 	const vel = recVelocity[0];
+		// 	console.log("start");
+		// 	rotateAngle(vel, difference);
+		// 	setRecVelocity((prevValue) => {
+		// 		return (prevValue = []);
+		// 	});
 		// }
-		if (recVelocity[0]) {
-			const vel = recVelocity[0];
-			console.log("start");
-			rotateAngle(vel, difference);
-			setRecVelocity((prevValue) => {
-				return (prevValue = []);
-			});
-		}
 	});
+
+	// useMotionValueEvent(angle, "animation")
 
 	console.log(recVelocity);
 
-	// useEffect(() => {
-	// 	// Funzione rotation
+	const [scope, animate] = useAnimate();
 
-	// 	// Spostare in useMotionValueEvent con x?
+	useEffect(() => {
+		// Funzione rotation
 
-	// 	const difference = 45;
+		// Spostare in useMotionValueEvent con x?
 
-	// 	function rotateAngle(value, range) {
-	// 		const sign = -value / value;
-	// 		const newAngle = angle.get() + range * sign;
-	// 		// console.log("angle");
-	// 		// console.log(angle.get());
-	// 		angle.set(newAngle);
-	// 		// console.log(angle.get());
-	// 	}
-	// 	// if (recVelocity.length > 0) {
-	// 	// 	;
-	// 	// }
-	// 	if (recVelocity[0]) {
-	// 		const vel = recVelocity[0];
-	// 		console.log("start");
-	// 		rotateAngle(vel, difference);
-	// 		setRecVelocity((prevValue) => {
-	// 			return (prevValue = []);
-	// 		});
-	// 	}
+		const difference = 45;
 
-	// return () => {
-	// };
-	// }, [recVelocity[0]]);
+		function rotateAngle(value, range) {
+			const sign = -value / value;
+			const newAngle = angle.get() + range * sign;
+			// console.log("angle");
+			// console.log(angle.get());
+			angle.set(newAngle);
+			// console.log(angle.get());
+		}
+		// if (recVelocity.length > 0) {
+		// 	;
+		// }
+		if (recVelocity[0] && recVelocity[0] !== 0) {
+			const vel = recVelocity[0];
+			console.log("start");
+			// rotateAngle(vel, difference);
+			const difference = 45;
+			// const sign = -vel / vel;
+			console.log("angle");
+			console.log(angle.get());
+			const newAngle =
+				vel > 0 ? angle.get() - difference : angle.get() + difference;
+			animate(scope.current, { rotateZ: `${newAngle}deg` });
+			angle.set(newAngle);
+			setRecVelocity((prevValue) => {
+				return (prevValue = []);
+			});
+			xVelocity.set(0);
+		}
+
+		return () => {};
+	}, [recVelocity[0]]);
 
 	// const rotation = useMotionTemplate`translateZ(${angle})`;
 
@@ -944,7 +958,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						ref={carouselRef}
 						className={styles["carousel"]}
 					>
-						<div className={styles["circular-container"]}>
+						<div ref={scope} className={styles["circular-container"]}>
 							<motion.div
 								ref={menuRef}
 								className={styles["circular-menu"]}
@@ -958,11 +972,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 										duration: 1.0
 									}
 								}}
-								style={{
-									// rotateZ: angle
-									// rotateZ: rotation
-									rotateZ: angle
-								}}
+								// style={{
+								// 	// rotateZ: angle
+								// 	// rotateZ: rotation
+								// 	rotateZ: angle
+								// }}
 								// onClick={() => {
 								// 	// const actualAngle = angle.get();
 								// 	console.log('"external click');
