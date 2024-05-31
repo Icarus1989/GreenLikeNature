@@ -276,14 +276,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		const sectionDim = sectionRef.current.getBoundingClientRect();
 		setLimits(() => {
 			return {
-				min: -(Math.PI * carouselDim.width) / 2,
-				max: (Math.PI * carouselDim.width) / 2
+				min: -sectionDim.width / 2,
+				max: sectionDim.width / 2
 			};
 		});
 
-		moveRef.current.style.width =
-			Math.PI * carouselDim.width + sectionDim.width + "px";
-		moveRef.current.style.left = -(Math.PI * carouselDim.width) / 2 + "px";
+		moveRef.current.style.width = sectionDim.width * 2 + "px";
+		moveRef.current.style.left = -sectionDim.width / 2 + 1 + "px";
 
 		flowerRef.current.style.top =
 			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
@@ -377,6 +376,83 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// 	// }
 	// });
 
+	useMotionValueEvent(x, "change", (lastX) => {
+		if (lastX === limits.max || lastX === limits.min) {
+			// xVelocity.set(0);
+			x.jump(lastX);
+			// x.set(0);
+		}
+	});
+
+	const [recVelocity, setRecVelocity] = useState([]);
+
+	function rotateAngle(value, range) {
+		const sign = -value / value;
+		const newAngle = angle.get() + range * sign;
+		// console.log("angle");
+		// console.log(angle.get());
+		angle.set(newAngle);
+		xVelocity.jump(0);
+		// console.log(angle.get());
+	}
+
+	useMotionValueEvent(xVelocity, "change", (lastVel) => {
+		if (recVelocity.length === 0) {
+			setRecVelocity((prevValue) => {
+				return [...prevValue, lastVel];
+			});
+		}
+
+		const difference = 45;
+
+		// if (recVelocity.length > 0) {
+		// 	;
+		// }
+		if (recVelocity[0]) {
+			const vel = recVelocity[0];
+			console.log("start");
+			rotateAngle(vel, difference);
+			setRecVelocity((prevValue) => {
+				return (prevValue = []);
+			});
+		}
+	});
+
+	console.log(recVelocity);
+
+	// useEffect(() => {
+	// 	// Funzione rotation
+
+	// 	// Spostare in useMotionValueEvent con x?
+
+	// 	const difference = 45;
+
+	// 	function rotateAngle(value, range) {
+	// 		const sign = -value / value;
+	// 		const newAngle = angle.get() + range * sign;
+	// 		// console.log("angle");
+	// 		// console.log(angle.get());
+	// 		angle.set(newAngle);
+	// 		// console.log(angle.get());
+	// 	}
+	// 	// if (recVelocity.length > 0) {
+	// 	// 	;
+	// 	// }
+	// 	if (recVelocity[0]) {
+	// 		const vel = recVelocity[0];
+	// 		console.log("start");
+	// 		rotateAngle(vel, difference);
+	// 		setRecVelocity((prevValue) => {
+	// 			return (prevValue = []);
+	// 		});
+	// 	}
+
+	// return () => {
+	// };
+	// }, [recVelocity[0]]);
+
+	// const rotation = useMotionTemplate`translateZ(${angle})`;
+
 	// useMotionValueEvent(angle, "change", (lastAngle) => {
 	// 	// Invisible return
 	// 	// console.log(angle.get());
@@ -414,9 +490,10 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// 	x.set(invDiv);
 	// });
 
-	useMotionValueEvent(xVelocity, "change", () => {
-		angle.set(angle.get() + -Number(xVelocity.get() / (360 / Math.PI)));
-	});
+	// useMotionValueEvent(xVelocity, "change", (lastVel) => {
+	// 	console.log(lastVel);
+	// 	angle.set(angle.get() + -Number(xVelocity.get() / (360 / Math.PI)));
+	// });
 
 	// useEffect(() => {
 	// 	console.log("initial");
@@ -679,7 +756,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							: { left: 0, right: 0 }
 					}
 					dragElastic={0}
-					// dragSnapToOrigin={true}
+					dragSnapToOrigin={true}
 					// HERE
 					style={{ x }}
 					// onClick={() => {
@@ -882,6 +959,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									}
 								}}
 								style={{
+									// rotateZ: angle
+									// rotateZ: rotation
 									rotateZ: angle
 								}}
 								// onClick={() => {
