@@ -377,13 +377,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// 	// }
 	// });
 
-	useMotionValueEvent(x, "change", (lastX) => {
-		if (lastX === limits.max || lastX === limits.min) {
-			// xVelocity.set(0);
-			x.jump(lastX);
-			// x.set(0);
-		}
-	});
+	// useMotionValueEvent(x, "change", (lastX) => {
+	// 	if (lastX === limits.max || lastX === limits.min) {
+	// 		// xVelocity.set(0);
+	// 		x.jump(lastX);
+	// 		// x.set(0);
+	// 	}
+	// });
 
 	const [recVelocity, setRecVelocity] = useState([]);
 
@@ -464,13 +464,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// setRecVelocity((prevValue) => {
 			// 	return (prevValue.length = 0);
 			// });
-			recVelocity.length = 0;
-			xVelocity.set(0);
 		} else {
 			return;
 		}
 
-		return () => {};
+		return () => {
+			recVelocity.length = 0;
+			xVelocity.set(0);
+		};
 	}, [recVelocity[0]]);
 
 	// const rotation = useMotionTemplate`translateZ(${angle})`;
@@ -638,7 +639,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	const invertedRecipes = [recipes[0], ...recipes.slice(1).reverse()];
 
-	const sinValues = theta.map((rad) => Math.sin(rad));
+	// const sinValues = theta.map((rad) => Math.sin(rad));
 	// console.log(sinValues);
 
 	useMotionValueEvent(angle, "change", (lastAngle) => {
@@ -704,8 +705,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				// }
 
 				if (
-					((angle.get() % 360) - 15) * (Math.PI / 180) <= piSection &&
-					piSection <= ((angle.get() % 360) + 15) * (Math.PI / 180)
+					((lastAngle % 360) - 15) * (Math.PI / 180) <= piSection &&
+					piSection <= ((lastAngle % 360) + 15) * (Math.PI / 180)
 				) {
 					// <----- testing here
 
@@ -742,8 +743,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// const actualVel = xVelocity.get();
 			theta.map((piSection, index) => {
 				if (
-					((angle.get() % 360) + 15) * (Math.PI / 180) >= -piSection &&
-					-piSection >= ((angle.get() % 360) - 15) * (Math.PI / 180)
+					((lastAngle % 360) + 15) * (Math.PI / 180) >= -piSection &&
+					-piSection >= ((lastAngle % 360) - 15) * (Math.PI / 180)
 				) {
 					// <----- testing here
 					// xVelocity.set(actualVel * 0.235);
