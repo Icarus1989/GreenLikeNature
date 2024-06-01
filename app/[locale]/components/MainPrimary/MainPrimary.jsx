@@ -645,11 +645,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// 	x.set(-3 * sectionRef.current.getBoundingClientRect().width);
 		// }
 
-		// if (angle.get() >= 360) {
-		// 	angle.set(0);
-		// } else if (angle.get() <= -360) {
-		// 	angle.set(0);
-		// }
+		if (angle.get() >= 360) {
+			angle.set(0);
+		} else if (angle.get() <= -360) {
+			angle.set(0);
+		}
 
 		if (lastAngle >= 0) {
 			const actualVel = xVelocity.get();
@@ -668,14 +668,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					piSection <= (angle.get() + 15) * (Math.PI / 180)
 				) {
 					// slow if plate proximity
-					console.log("Angle");
-					console.log(angle.get());
-					console.log("angle sin");
-					console.log(Math.sin(angle.get() * (Math.PI / 180)));
-					console.log("PI section");
-					console.log(piSection);
-					console.log("section sin");
-					console.log(Math.sin(piSection));
+					// console.log("Angle");
+					// console.log(angle.get());
+					// console.log("angle sin");
+					// console.log(Math.sin(angle.get() * (Math.PI / 180)));
+					// console.log("PI section");
+					// console.log(piSection);
+					// console.log("section sin");
+					// console.log(Math.sin(piSection));
 
 					// testing here --->
 					// xVelocity.set(actualVel * 0.235);
@@ -706,12 +706,12 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// testing here --->
 					// xVelocity.set(actualVel * 0.235);
 
-					console.log("Angle");
-					console.log(angle.get());
-					console.log("PI section");
-					console.log(piSection);
-					console.log("section sin");
-					console.log(Math.sin(piSection));
+					// console.log("Angle");
+					// console.log(angle.get());
+					// console.log("PI section");
+					// console.log(piSection);
+					// console.log("section sin");
+					// console.log(Math.sin(piSection));
 
 					const h4Title = titleRef.current.textContent;
 					const actualTitle = recipes[index].title;
