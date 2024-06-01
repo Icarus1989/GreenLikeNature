@@ -142,6 +142,7 @@
 	filter: brightness(1.2);
 	z-index: 23;
 	touch-action: none;
+	transition: all 1s ease-out;
 }
 
 /* .table-img {
@@ -250,6 +251,7 @@
 	position: fixed;
 	display: grid;
 	place-items: center;
+	transition: all 1s ease-out;
 }
 
 .circular-border-internal > ul {

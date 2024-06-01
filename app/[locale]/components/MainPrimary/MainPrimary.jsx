@@ -127,7 +127,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	const formRef = useRef(null);
 	const carouselRef = useRef(null);
-	const flowerRef = useRef(null);
+	// const flowerRef = useRef(null);
 
 	const recipeRef = useRef(null);
 	// const menuRef = useRef(null);
@@ -398,7 +398,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	}
 
 	useMotionValueEvent(x, "animationStart", () => {
-		console.log(x.getVelocity());
+		// console.log(x.getVelocity());
 		if (recVelocity.length === 0) {
 			setRecVelocity((prevValue) => {
 				return [...prevValue, x.getVelocity()];
@@ -425,6 +425,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// console.log(recVelocity);
 
 	const [menuRef, animate] = useAnimate();
+	const [flowerRef, animateFlower] = useAnimate();
 
 	useEffect(() => {
 		// Funzione rotation
@@ -455,6 +456,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			const newAngle =
 				vel > 0 ? angle.get() - difference : angle.get() + difference;
 			animate(menuRef.current, { rotateZ: `${newAngle}deg` });
+			animateFlower(flowerRef.current, { rotateZ: `${newAngle}deg` });
 			angle.set(newAngle);
 			// setRecVelocity((prevValue) => {
 			// 	return (prevValue = []);
@@ -636,6 +638,9 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	const invertedRecipes = [recipes[0], ...recipes.slice(1).reverse()];
 
+	const sinValues = theta.map((rad) => Math.sin(rad));
+	// console.log(sinValues);
+
 	useMotionValueEvent(angle, "change", (lastAngle) => {
 		// console.log(x.get());
 		// console.log(lastAngle);
@@ -645,14 +650,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// 	x.set(-3 * sectionRef.current.getBoundingClientRect().width);
 		// }
 
-		if (angle.get() >= 360) {
-			angle.set(0);
-		} else if (angle.get() <= -360) {
-			angle.set(0);
-		}
+		// if (angle.get() >= 360) {
+		// 	angle.set(0);
+		// } else if (angle.get() <= -360) {
+		// 	angle.set(0);
+		// }
 
 		if (lastAngle >= 0) {
-			const actualVel = xVelocity.get();
+			// const actualVel = xVelocity.get();
 
 			theta.map((piSection, index) => {
 				// test --->
@@ -663,6 +668,29 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				// 		? (titleRef.current.textContent = invertedRecipes[index].title)
 				// 		: null;
 				// }
+				// for (let sinValue of sinValues) {
+
+				// if (Math.round(lastAngle) % 22.5 === 0) {
+				// 	// stop if plate max proximity
+				// 	xVelocity.set(0);
+				// 	// set perfect angle if plate max proximity
+				// 	angle.set(Math.round(lastAngle));
+				// 	// x.set(x.get());
+				// }
+
+				// if (Math.round(angle.get()) % 22.5 === 0) {
+				// 	console.log("Angle");
+				// 	console.log(angle.get());
+				// 	console.log(
+				// 		Math.sin(angle.get() * (Math.PI / 180)) === Math.sin(piSection)
+				// 	);
+				// 	if (Math.sin(angle.get() * (Math.PI / 180)) === Math.sin(piSection)) {
+				// 		console.log("HERE ---> " + piSection);
+				// 	}
+				// }
+
+				// }
+
 				if (
 					(angle.get() - 15) * (Math.PI / 180) <= piSection &&
 					piSection <= (angle.get() + 15) * (Math.PI / 180)
@@ -697,7 +725,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				}
 			});
 		} else if (lastAngle < 0) {
-			const actualVel = xVelocity.get();
+			// const actualVel = xVelocity.get();
 			theta.map((piSection, index) => {
 				if (
 					(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
@@ -846,7 +874,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					</div>
 					<motion.div
 						ref={flowerRef}
-						style={{ position: "fixed", rotateZ: angle }}
+						// style={{ position: "fixed", rotateZ: angle }}
+						style={{ position: "fixed" }}
 						className={styles["flower-container"]}
 						// initial={{
 						// 	opacity: 0
