@@ -264,7 +264,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	// const leftMove = useMotionTemplate`${x}dvw`;
 
-	const [limits, setLimits] = useState({ min: null, max: null });
+	// const [limits, setLimits] = useState({ min: null, max: null });
 
 	// Plates Positioning Effect
 	useEffect(() => {
@@ -275,12 +275,12 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		const flowerDim = flowerRef.current.getBoundingClientRect();
 
 		const sectionDim = sectionRef.current.getBoundingClientRect();
-		setLimits(() => {
-			return {
-				min: -sectionDim.width / 2,
-				max: sectionDim.width / 2
-			};
-		});
+		// setLimits(() => {
+		// 	return {
+		// 		min: -sectionDim.width / 2,
+		// 		max: sectionDim.width / 2
+		// 	};
+		// });
 
 		moveRef.current.style.width = sectionDim.width * 2 + "px";
 		moveRef.current.style.left = -sectionDim.width / 2 + 1 + "px";
@@ -469,7 +469,9 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		}
 
 		return () => {
-			recVelocity.length = 0;
+			if (recVelocity.length > 0) {
+				recVelocity.length = 0;
+			}
 			xVelocity.set(0);
 		};
 	}, [recVelocity[0]]);
@@ -810,11 +812,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					className={styles["invisible-div"]}
 					ref={moveRef}
 					drag="x"
-					dragConstraints={
-						!showModal
-							? { left: limits.min, right: limits.max }
-							: { left: 0, right: 0 }
-					}
+					// dragConstraints={
+					// 	!showModal
+					// 		? { left: limits.min, right: limits.max }
+					// 		: { left: 0, right: 0 }
+					// }
 					dragElastic={0}
 					dragSnapToOrigin={true}
 					// HERE
@@ -1019,16 +1021,16 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							<motion.div
 								ref={menuRef}
 								className={styles["circular-menu"]}
-								initial={{
-									opacity: 0.0
-								}}
-								animate={{
-									opacity: 1.0,
-									transition: {
-										delay: 0,
-										duration: 1.0
-									}
-								}}
+								// initial={{
+								// 	opacity: 0.0
+								// }}
+								// animate={{
+								// 	opacity: 1.0,
+								// 	transition: {
+								// 		delay: 0,
+								// 		duration: 1.0
+								// 	}
+								// }}
 								// style={{
 								// 	// rotateZ: angle
 								// 	// rotateZ: rotation
