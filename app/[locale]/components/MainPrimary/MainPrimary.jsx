@@ -656,6 +656,18 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// 	angle.set(0);
 		// }
 
+		// console.log("Angle");
+		// console.log(angle.get());
+		// console.log(
+		// 	// Math.sin(45 * (Math.PI / 180)) === Math.sin(405 * (Math.PI / 180))
+		// 	angle.get() % 360
+		// );
+		// for (let rad of sinValues) {
+		// 	if (Math.sin(angle.get() * (Math.PI / 180)) === rad) {
+		// 		console.log("HERE ---> " + rad);
+		// 	}
+		// }
+
 		if (lastAngle >= 0) {
 			// const actualVel = xVelocity.get();
 
@@ -679,22 +691,24 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				// }
 
 				// if (Math.round(angle.get()) % 22.5 === 0) {
-				// 	console.log("Angle");
-				// 	console.log(angle.get());
-				// 	console.log(
-				// 		Math.sin(angle.get() * (Math.PI / 180)) === Math.sin(piSection)
-				// 	);
-				// 	if (Math.sin(angle.get() * (Math.PI / 180)) === Math.sin(piSection)) {
-				// 		console.log("HERE ---> " + piSection);
-				// 	}
+				// console.log("Angle");
+				// console.log(angle.get());
+				// console.log(
+				// 	Math.sin(angle.get() * (Math.PI / 180)) === Math.sin(piSection)
+				// );
+				// if (Math.sin(angle.get() * (Math.PI / 180)) === Math.sin(piSection)) {
+				// 	console.log("HERE ---> " + piSection);
+				// }
 				// }
 
 				// }
 
 				if (
-					(angle.get() - 15) * (Math.PI / 180) <= piSection &&
-					piSection <= (angle.get() + 15) * (Math.PI / 180)
+					((angle.get() % 360) - 15) * (Math.PI / 180) <= piSection &&
+					piSection <= ((angle.get() % 360) + 15) * (Math.PI / 180)
 				) {
+					// <----- testing here
+
 					// slow if plate proximity
 					// console.log("Angle");
 					// console.log(angle.get());
@@ -728,10 +742,10 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// const actualVel = xVelocity.get();
 			theta.map((piSection, index) => {
 				if (
-					(lastAngle + 15) * (Math.PI / 180) >= -piSection &&
-					-piSection >= (lastAngle - 15) * (Math.PI / 180)
+					((angle.get() % 360) + 15) * (Math.PI / 180) >= -piSection &&
+					-piSection >= ((angle.get() % 360) - 15) * (Math.PI / 180)
 				) {
-					// testing here --->
+					// <----- testing here
 					// xVelocity.set(actualVel * 0.235);
 
 					// console.log("Angle");
