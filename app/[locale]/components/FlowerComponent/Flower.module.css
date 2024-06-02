@@ -8,7 +8,7 @@
 }
 
 .flowers-container {
-	position: relative;
+	/* position: relative; */
 	display: grid;
 	place-items: center;
 	width: 64vw;
@@ -26,8 +26,8 @@
 	display: grid;
 	place-content: center;
 	position: absolute;
-	top: -50%;
-	left: -50%;
+	/* top: -50%;
+	left: -50%; */
 	/* transform: scale(0.45); */
 }
 
