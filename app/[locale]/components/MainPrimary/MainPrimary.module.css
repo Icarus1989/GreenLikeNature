@@ -17,7 +17,7 @@
 }
 
 .invisible-div {
-	/* width: 700dvw; */
+	width: 100dvw;
 	height: 67dvh;
 	border: 1px solid transparent;
 	z-index: 24;

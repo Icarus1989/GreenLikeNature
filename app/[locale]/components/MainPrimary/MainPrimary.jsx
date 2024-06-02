@@ -282,8 +282,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// 	};
 		// });
 
-		moveRef.current.style.width = sectionDim.width * 2 + "px";
-		moveRef.current.style.left = -sectionDim.width / 2 + 1 + "px";
+		// moveRef.current.style.width = sectionDim.width * 2 + "px";
+		// moveRef.current.style.left = -sectionDim.width / 2 + 1 + "px";
 
 		flowerRef.current.style.top =
 			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
