@@ -2,7 +2,7 @@
 	display: grid;
 	place-items: end center;
 	position: fixed;
-	bottom: 6dvh;
+	bottom: 7dvh;
 	width: 90%;
 	height: 26dvh;
 	z-index: 10;
@@ -137,7 +137,7 @@
 	display: grid;
 	place-items: center;
 	position: absolute;
-	top: 0%;
+	top: -5%;
 	right: -3%;
 	background: transparent;
 	border-radius: 50%;
@@ -148,9 +148,9 @@
 .modal-btn > svg {
 	width: 5em;
 	height: 5em;
-	stroke-width: 12px;
-	stroke: #9c2003;
-	fill: #dd2c00;
+	stroke-width: 10px;
+	stroke: #767676b8;
+	fill: #f0f0f0c7;
 }
 
 .modal-link-label {
