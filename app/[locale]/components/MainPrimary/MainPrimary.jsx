@@ -420,9 +420,19 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// }
 	});
 
+	useMotionValueEvent(x, "animationComplete", () => {
+		console.log("angle end");
+		// if (recVelocity[0] === 0) {
+		// setRecVelocity((prevValue) => {
+		// 	return (prevValue = []);
+		// });
+		recVelocity.length = 0;
+		// }
+	});
+
 	// useMotionValueEvent(angle, "animation")
 
-	// console.log(recVelocity);
+	console.log(recVelocity);
 
 	const [menuRef, animate] = useAnimate();
 	const [flowerRef, animateFlower] = useAnimate();
@@ -821,16 +831,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					dragSnapToOrigin={true}
 					// HERE
 					style={{ x }}
-					onTapStart={() => {
-						// if (recVelocity[0] === 0) {
-						// 	setRecVelocity([]);
-						// }
-
-						// setRecVelocity((prevValue) => {
-						// 	return (prevValue.length = 0);
-						// });
-						recVelocity.length = 0;
-					}}
+					// onTapStart={() => {
+					// if (recVelocity[0] === 0) {
+					// 	setRecVelocity([]);
+					// }
+					// setRecVelocity((prevValue) => {
+					// 	return (prevValue.length = 0);
+					// });
+					// recVelocity.length = 0;
+					// }}
 					// onClick={() => {
 					// 	const actualAngle = angle.get();
 					// 	x.set(0);
@@ -1021,16 +1030,16 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							<motion.div
 								ref={menuRef}
 								className={styles["circular-menu"]}
-								// initial={{
-								// 	opacity: 0.0
-								// }}
-								// animate={{
-								// 	opacity: 1.0,
-								// 	transition: {
-								// 		delay: 0,
-								// 		duration: 1.0
-								// 	}
-								// }}
+								initial={{
+									opacity: 0.0
+								}}
+								animate={{
+									opacity: 1.0,
+									transition: {
+										delay: 0,
+										duration: 1.0
+									}
+								}}
 								// style={{
 								// 	// rotateZ: angle
 								// 	// rotateZ: rotation
