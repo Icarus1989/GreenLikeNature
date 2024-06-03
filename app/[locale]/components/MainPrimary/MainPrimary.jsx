@@ -422,13 +422,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						ref={flowerRef}
 						style={{ position: "fixed" }}
 						className={styles["flower-container"]}
-						// initial={{
-						// 	opacity: 0
-						// }}
-						// animate={{
-						// 	opacity: 1.0,
-						// 	transition: { duration: 0.5, delay: 1.0 }
-						// }}
+						initial={{
+							opacity: 0
+						}}
+						animate={{
+							opacity: 1.0,
+							transition: { duration: 1.0, delay: 1.0 }
+						}}
 					>
 						<Flower />
 					</motion.div>
@@ -540,7 +540,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						}}
 						animate={{
 							opacity: 1.0,
-							transition: { duration: 0.5, delay: 0 }
+							transition: { duration: 1.0, delay: 1.0 }
 						}}
 						ref={carouselRef}
 						className={styles["carousel"]}
@@ -549,16 +549,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 							<motion.div
 								ref={menuRef}
 								className={styles["circular-menu"]}
-								initial={{
-									opacity: 0.0
-								}}
-								animate={{
-									opacity: 1.0,
-									transition: {
-										delay: 0,
-										duration: 1.0
-									}
-								}}
+								// initial={{
+								// 	opacity: 0.0
+								// }}
+								// animate={{
+								// 	opacity: 1.0,
+								// 	transition: {
+								// 		duration: 1.0
+								// 	}
+								// }}
 							>
 								<Image
 									src={bkgImage}
