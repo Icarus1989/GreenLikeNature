@@ -61,7 +61,8 @@ export default function AnimatedText({ text, className }) {
 						<motion.span
 							key={index}
 							style={{
-								color: `rgba(2, ${200 - index * 3}, 3)`,
+								color: `rgba(2, ${160 + index * 4}, ${23 + index * 4.5}, 0.9)`,
+								// textShadow: "-5px -3px 6px rgb(0, 0, 0)",
 								margin: char !== " " ? "0%" : "0% 2% 0% 2%"
 							}}
 							// variants={defaultVariations}
