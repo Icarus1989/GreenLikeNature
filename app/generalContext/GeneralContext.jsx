@@ -289,8 +289,6 @@ export default function GeneralProvider({ children }) {
 					})
 				}
 			};
-		} else if (action.type === "title_animated") {
-			return { ...state, "title-animation": true };
 		}
 	}
 

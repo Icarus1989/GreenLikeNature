@@ -13,48 +13,49 @@ const defaultVariations = {
 	exit: { opacity: 1.0, color: "rgba(2, 180, 2, 1.0)" }
 };
 
-export default function AnimatedText({ text, className, handleAnimComplete }) {
-	const settings = useContext(GeneralContext);
-	const titleAnimated = settings["title-animation"];
+export default function AnimatedText({ text, className }) {
+	// const settings = useContext(GeneralContext);
+	// const titleAnimated = settings["title-animation"];
 
-	const [execute, setExecute] = useState(true);
+	// const [execute, setExecute] = useState(true);
 
-	const ref = useRef(null);
-	const isInView = useInView(ref, { amount: 0.5, once: true });
+	// const ref = useRef(null);
+	// const isInView = useInView(ref, { amount: 0.5, once: true });
 
 	return (
 		<h2 className={className}>
-			{!execute ? (
-				<motion.span
-					ref={ref}
-					initial="hidden"
-					animate={isInView ? "visible" : "hidden"}
-					transition={{ staggerChildren: 0.05, delay: 0 }}
-					aria-hidden
-				>
-					{text.split("").map((char, index) => {
-						if (index === text.length - 1) {
-							return (
-								<motion.span
-									key={index}
-									variants={defaultVariations}
-									onAnimationComplete={() => handleAnimComplete()}
-								>
-									{char}
-								</motion.span>
-							);
-						} else {
-							return (
-								<motion.span key={index} variants={defaultVariations}>
-									{char}
-								</motion.span>
-							);
-						}
-					})}
-				</motion.span>
-			) : (
+			{
+				// 	!execute ? (
+				// 	<motion.span
+				// 		ref={ref}
+				// 		initial="hidden"
+				// 		animate={isInView ? "visible" : "hidden"}
+				// 		transition={{ staggerChildren: 0.05, delay: 0 }}
+				// 		aria-hidden
+				// 	>
+				// 		{text.split("").map((char, index) => {
+				// 			if (index === text.length - 1) {
+				// 				return (
+				// 					<motion.span
+				// 						key={index}
+				// 						variants={defaultVariations}
+				// 						// onAnimationComplete={() => handleAnimComplete()}
+				// 					>
+				// 						{char}
+				// 					</motion.span>
+				// 				);
+				// 			} else {
+				// 				return (
+				// 					<motion.span key={index} variants={defaultVariations}>
+				// 						{char}
+				// 					</motion.span>
+				// 				);
+				// 			}
+				// 		})}
+				// 	</motion.span>
+				// ) :
 				text
-			)}
+			}
 		</h2>
 	);
 }

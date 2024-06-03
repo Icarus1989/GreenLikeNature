@@ -225,11 +225,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		});
 	}, [searchData.results.length]);
 
-	function handleAnimComplete() {
-		generalDispatch({
-			type: "title_animated"
-		});
-	}
+	// function handleAnimComplete() {
+	// 	generalDispatch({
+	// 		type: "title_animated"
+	// 	});
+	// }
 
 	function getMap() {
 		if (!recipeRef.current) {
@@ -894,7 +894,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						<AnimatedText
 							text={`Green Like Nature`}
 							className={styles["title-general"]}
-							handleAnimComplete={handleAnimComplete}
+							// handleAnimComplete={handleAnimComplete}
 							// handleAnimComplete={true}
 						></AnimatedText>
 					</div>
