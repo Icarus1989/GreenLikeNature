@@ -123,18 +123,19 @@ export function NavigationEvents({ getSpoonData }) {
 		};
 	}, [pathname, lastPath, recipesList.length, createList]);
 
-	useEffect(() => {
-		// if (pathname === "/profile") {
-		// console.log("filtered");
+	// rerender (spostare) -->
+	// useEffect(() => {
+	// 	// if (pathname === "/profile") {
+	// 	// console.log("filtered");
 
-		reduxDispatch(
-			filterByAllergens({
-				intolerances: intolerancesSettings,
-				allergies: allergiesSettings
-			})
-		);
-		// }
-	}, [intolerancesSettings, allergiesSettings, pathname]);
+	// 	reduxDispatch(
+	// 		filterByAllergens({
+	// 			intolerances: intolerancesSettings,
+	// 			allergies: allergiesSettings
+	// 		})
+	// 	);
+	// 	// }
+	// }, [intolerancesSettings, allergiesSettings]);
 
 	useEffect(() => {
 		if (navigator.onLine && errorsReport?.network?.message !== null) {

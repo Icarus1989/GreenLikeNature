@@ -90,8 +90,8 @@ export default function Flower() {
 					// 	position: "absolute"
 					// }}
 					style={{
-						transform: "scale(0.5)",
-						transformOrigin: "48% 50%"
+						transform: "scale(0.5)"
+						// transformOrigin: "48% 50%"
 					}}
 					className={styles["flower-svg"]}
 				>

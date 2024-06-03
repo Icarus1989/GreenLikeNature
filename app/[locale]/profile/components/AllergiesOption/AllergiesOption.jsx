@@ -12,7 +12,10 @@ import {
 } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setError } from "@/lib/features/recipes/recipesSlice";
+import {
+	setError,
+	filterByAllergens
+} from "@/lib/features/recipes/recipesSlice";
 
 import {
 	GeneralContext,
@@ -187,6 +190,7 @@ export default function AllergiesOptions({
 				}, 2300);
 			}
 		}
+		// console.log(allergensList);
 	}
 
 	async function handleSubmit(event) {
@@ -321,6 +325,17 @@ export default function AllergiesOptions({
 			return namesList;
 		});
 	}, [translatedArr]);
+
+	useEffect(() => {
+		console.log(allergensList);
+		reduxDispatch(
+			filterByAllergens({
+				intolerances: settingsIntol,
+				allergies: allergiesList
+			})
+		);
+	}, [settingsIntol, allergiesList]);
+	// <--- testing o Navigation
 
 	// useEffect(() => {
 	// 	let ignore = false;
