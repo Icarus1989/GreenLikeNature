@@ -317,7 +317,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		recVelocity.length = 0;
 	});
 
-	console.log(recVelocity);
+	// console.log(recVelocity);
 
 	const [menuRef, animate] = useAnimate();
 	const [flowerRef, animateFlower] = useAnimate();

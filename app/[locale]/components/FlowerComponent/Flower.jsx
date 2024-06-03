@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
 import anime from "animejs/lib/anime.es.js";
 import styles from "./Flower.module.css";
 
@@ -76,6 +76,17 @@ export default function Flower() {
 		});
 	}, []);
 
+	// const containerRef = useRef(null);
+	// const flowerSvgRef = useRef(null);
+
+	// useEffect(() => {
+	// 	const containerDim = containerRef.current.getBoundingClientRect();
+	// 	console.log(containerDim);
+	// 	const flowerDim = flowerSvgRef.current.getBoundingClientRect();
+	// 	flowerSvgRef.current.style.left =
+	// 		-containerDim.width + flowerDim.width / 2 + "px";
+	// }, []);
+
 	return (
 		<>
 			<div className={styles["flowers-vase"]}></div>
@@ -90,7 +101,7 @@ export default function Flower() {
 					// 	position: "absolute"
 					// }}
 					style={{
-						transform: "scale(0.5)"
+						transform: "scale(0.4)"
 						// transformOrigin: "48% 50%"
 					}}
 					className={styles["flower-svg"]}
