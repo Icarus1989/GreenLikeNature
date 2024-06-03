@@ -418,8 +418,10 @@
 
 .title-general {
 	width: 100%;
-	display: grid;
-	place-items: center;
+	display: flex;
+	/* place-items: center; */
+	flex-direction: row;
+	justify-content: center;
 	color: rgb(2, 180, 2);
 	font-size: 48px;
 	font-weight: 200;

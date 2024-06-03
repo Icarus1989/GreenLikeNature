@@ -23,7 +23,7 @@ export default function AnimatedText({ text, className }) {
 	// const isInView = useInView(ref, { amount: 0.5, once: true });
 
 	return (
-		<h2 className={className}>
+		<motion.h2 className={className}>
 			{
 				// 	!execute ? (
 				// 	<motion.span
@@ -54,8 +54,24 @@ export default function AnimatedText({ text, className }) {
 				// 		})}
 				// 	</motion.span>
 				// ) :
-				text
+				// text
+
+				text.split("").map((char, index) => {
+					return (
+						<motion.span
+							key={index}
+							style={{
+								color: `rgba(2, ${200 - index * 3}, 3)`,
+								margin: char !== " " ? "0%" : "0% 2% 0% 2%"
+							}}
+							// variants={defaultVariations}
+							// onAnimationComplete={() => handleAnimComplete()}
+						>
+							{char}
+						</motion.span>
+					);
+				})
 			}
-		</h2>
+		</motion.h2>
 	);
 }
