@@ -447,7 +447,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						}}
 						animate={{
 							opacity: 1.0,
-							transition: { duration: 1.0 }
+							transition: { duration: 1.0, delay: 0 }
 						}}
 					>
 						<Flower />
@@ -490,7 +490,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									// 	.height + "px",
 									// HERE
 									transition: {
-										duration: 0.5
+										duration: 1.5,
+										delay: 0.1
 									}
 								}}
 								className={styles["results-part"]}
@@ -507,12 +508,24 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 										<ul className={styles["list"]}>
 											{" "}
 											{/* controllare traduzione i18 qui ---> */}
-											<span className={styles["list-label"]}>
-												{searchData.type === "positive" &&
-													t("results_label", { searchTerm })}
-												{searchData.type === "empty" &&
-													t("no_results_label", { searchTerm })}
-											</span>
+											<p className={styles["list-label"]}>
+												{searchData.type === "positive" && (
+													<>
+														{t("results_label")}
+														<span className={styles["term-label"]}>
+															{searchTerm}
+														</span>
+													</>
+												)}
+												{searchData.type === "empty" && (
+													<>
+														{t("no_results_label")}
+														<span className={styles["term-label"]}>
+															{searchTerm}
+														</span>
+													</>
+												)}
+											</p>
 											{searchData.type === "positive" &&
 												searchData["results"].map((elem) => {
 													const recipePresence =

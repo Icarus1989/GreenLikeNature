@@ -293,7 +293,8 @@
 	width: 101dvw;
 	height: 64dvh;
 	position: relative;
-	margin-top: 50px;
+	margin-top: 55px;
+	/* <--- testing */
 	/* margin-top: 8dvh; */
 	overflow-x: hidden;
 	background: radial-gradient(
@@ -345,9 +346,16 @@
 	text-decoration-color: rgb(6, 102, 23);
 	text-underline-offset: 0.5rem;
 	text-decoration-thickness: 3px;
+	font-weight: 400;
 	padding: 2% 3% 2% 3%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.term-label {
+	color: white;
+	text-transform: capitalize;
+	font-weight: 600;
 }
 
 .no-suggest-label {
