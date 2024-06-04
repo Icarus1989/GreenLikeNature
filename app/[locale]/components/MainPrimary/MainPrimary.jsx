@@ -259,6 +259,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 		// const sectionDim = sectionRef.current.getBoundingClientRect();
 
+		moveRef.current.style.top =
+			formRef.current.getBoundingClientRect().bottom + "px";
+		moveRef.current.style.height =
+			titleRef.current.parentElement.getBoundingClientRect().bottom -
+			formRef.current.getBoundingClientRect().bottom +
+			"px";
+		// titleRef.current.parentElement.style.zIndex = showModal ? "31" : "13";
+		// console.log(titleRef.current.parentElement.getBoundingClientRect());
+
 		flowerRef.current.style.top =
 			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
 		flowerRef.current.style.left =
@@ -407,6 +416,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					dragElastic={0}
 					dragSnapToOrigin={true}
 					style={{ x }}
+					// onTapStart={() => {
+					// 	if (recVelocity[0] === 0) {
+					// 		setRecVelocity([]);
+					// 	}
+					// }}
 				></motion.div>
 
 				<div id="circ-hole" className={styles["title-search-part"]}>
@@ -629,7 +643,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						</div>
 					</motion.div>
 				</div>
-				<div className={styles["recipe-title-container"]}>
+				<div
+					// className={styles["recipe-title-container"]}
+					className={
+						showModal
+							? styles["recipe-title-open"]
+							: styles["recipe-title-container"]
+					}
+				>
 					<h4
 						ref={titleRef}
 						className={
