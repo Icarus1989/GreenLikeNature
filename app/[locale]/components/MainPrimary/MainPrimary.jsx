@@ -133,9 +133,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// const menuRef = useRef(null);
 	const internal = useRef(null);
 
-	// const sectionRef = useRef(null);
+	const sectionRef = useRef(null);
 	const moveRef = useRef(null);
 	const titleRef = useRef(null);
+
+	const circHole = useRef(null);
 
 	const filteredList = recipesList.filter((recipe) =>
 		recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -266,7 +268,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			formRef.current.getBoundingClientRect().bottom +
 			"px";
 		// titleRef.current.parentElement.style.zIndex = showModal ? "31" : "13";
-		// console.log(titleRef.current.parentElement.getBoundingClientRect());
+		console.log(flowerRef.current.parentElement.getBoundingClientRect());
 
 		flowerRef.current.style.top =
 			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
@@ -391,20 +393,20 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	});
 
 	// Blur Effect
-	useEffect(() => {
-		if (view === true) {
-			window.addEventListener("blur", handleCloseTab);
-			// setSearchData({ type: "default", results: [] });
-			return () => {
-				window.removeEventListener("blur", handleCloseTab);
-			};
-		}
-	}, [view, handleCloseTab]);
+	// useEffect(() => {
+	// 	if (view === true) {
+	// 		window.addEventListener("blur", handleCloseTab);
+	// 		// setSearchData({ type: "default", results: [] });
+	// 		return () => {
+	// 			window.removeEventListener("blur", handleCloseTab);
+	// 		};
+	// 	}
+	// }, [view, handleCloseTab]);
 
 	return (
 		<>
 			<motion.section
-				// ref={sectionRef}
+				ref={sectionRef}
 				className={`${styles["container"]} ${great_vibes.variable}`}
 				dir="ltr"
 				onContextMenu={(event) => event.preventDefault()}
@@ -415,7 +417,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					drag="x"
 					dragElastic={0}
 					dragSnapToOrigin={true}
-					style={{ x }}
+					style={{ x, zIndex: view ? "0" : "26" }}
 					// onTapStart={() => {
 					// 	if (recVelocity[0] === 0) {
 					// 		setRecVelocity([]);
@@ -423,7 +425,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					// }}
 				></motion.div>
 
-				<div id="circ-hole" className={styles["title-search-part"]}>
+				<div
+					id="circ-hole"
+					className={styles["title-search-part"]}
+					ref={circHole}
+				>
 					<div className={styles["title-container"]}>
 						<AnimatedText
 							text={`Green Like Nature`}
@@ -465,6 +471,12 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					{view && (
 						<>
 							<motion.div
+								// style={{
+								// top: circHole.current.getBoundingClientRect().bottom + "px"
+								// sectionRef.current.getBoundingClientRect().height -
+								// flowerRef.current.parentElement.getBoundingClientRect()
+								// 	.height + "px"
+								// }}
 								initial={{
 									opacity: 0.0,
 									y: 800
@@ -473,6 +485,10 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 								animate={{
 									opacity: 1.0,
 									y: 0,
+									// sectionRef.current.getBoundingClientRect().height -
+									// -flowerRef.current.parentElement.getBoundingClientRect()
+									// 	.height + "px",
+									// HERE
 									transition: {
 										duration: 0.5
 									}
