@@ -19,7 +19,7 @@
 .invisible-div {
 	width: 100dvw;
 	height: 50dvh;
-	border: 1px solid red;
+	border: 1px solid transparent;
 	z-index: 26;
 	touch-action: none;
 	position: relative;
