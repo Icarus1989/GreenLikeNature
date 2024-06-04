@@ -137,7 +137,7 @@
 	display: grid;
 	place-items: center;
 	position: absolute;
-	top: -5%;
+	top: -12%;
 	right: -3%;
 	background: transparent;
 	border-radius: 50%;
@@ -146,8 +146,8 @@
 }
 
 .modal-btn > svg {
-	width: 5em;
-	height: 5em;
+	width: 4em;
+	height: 4em;
 	stroke-width: 10px;
 	stroke: #767676b8;
 	fill: #f0f0f0c7;
