@@ -68,7 +68,10 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	color: #bbbbbbf0;
+	position: relative;
+	z-index: 3;
+	color: red;
+	/* color: #bbbbbbf0; */
 	font-size: 1.1em;
 	font-weight: 500;
 	background: transparent;

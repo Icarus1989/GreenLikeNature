@@ -105,11 +105,12 @@ export default function ArticlesSection({
 						<Fragment key={name}>
 							<div className={styles["articles-container"]} dir="ltr">
 								<button
+									id={name}
 									form="search-form"
 									type="submit"
+									ref={btnRef}
 									onClick={() => searchByName(btnRef.current, name)}
 									className={styles["rel-search-btn"]}
-									ref={btnRef}
 								>
 									Cerca ricette con:{" "}
 									<span className={styles["seasonal-name"]}>{name}</span>{" "}
