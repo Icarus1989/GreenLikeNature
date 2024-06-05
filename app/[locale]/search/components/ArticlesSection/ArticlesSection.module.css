@@ -3,7 +3,7 @@
 	height: auto;
 	margin: 8% 0% 5% 0%;
 	overflow-x: scroll;
-	overflow-y: none;
+	overflow-y: hidden;
 	scrollbar-width: none;
 	filter: drop-shadow(23px 0px 20px black);
 }
@@ -35,6 +35,8 @@
 }
 
 .section-title {
+	position: relative;
+	z-index: 10;
 	color: #bbbbbbf0;
 	font-size: 1.1em;
 	font-weight: 500;
