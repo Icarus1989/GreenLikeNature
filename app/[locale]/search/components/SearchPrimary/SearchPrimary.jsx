@@ -72,6 +72,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			  )
 			: [];
 
+	const formRef = useRef(null);
 	const resultsRef = useRef(null);
 	const searchResults = useRef(null);
 	const leafBranch = useRef(null);
@@ -159,6 +160,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	}
 
 	async function handleSubmit(event) {
+		console.log(event);
 		event.preventDefault();
 
 		if (searchTerm.length > 0 && navigator.onLine) {
@@ -192,6 +194,21 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		}
 	}
 
+	function searchByName(submitter, name) {
+		// console.log(submitter);
+		// console.log("searching by seasonal name ", name);
+		// setSearchTerm(() => {
+		// 	return name;
+		// });
+		// setView(true);
+		// handleSubmit(
+		// 	new SubmitEvent("submit", {
+		// 		submitter: submitter,
+		// 		target: formRef.current
+		// 	})
+		// );
+	}
+
 	// function handleCloseTab() {
 	// 	setSearchTerm("");
 
@@ -214,7 +231,12 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			tabIndex={0}
 			// onBlur={handleCloseTab}
 		>
-			<form onSubmit={handleSubmit} className={styles["search-part"]}>
+			<form
+				id="search-form"
+				ref={formRef}
+				onSubmit={handleSubmit}
+				className={styles["search-part"]}
+			>
 				<SearchBar
 					value={searchTerm}
 					handleChange={handleChange}
@@ -229,17 +251,18 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 						</h2>
 						{Object.entries(ingrList).map((elem) => {
 							const nameStrg = elem[0].toLowerCase();
-							const name =
-								nameStrg[nameStrg.length - 1] === "s"
-									? nameStrg.slice(0, nameStrg.length - 1)
-									: nameStrg;
+							// const name =
+							// 	nameStrg[nameStrg.length - 1] === "s"
+							// 		? nameStrg.slice(0, nameStrg.length - 1)
+							// 		: nameStrg;
 							const varietiesArr = elem[1];
 							return (
 								<Fragment key={elem}>
 									<ArticlesSection
 										recipes={recipesList}
-										name={name}
+										name={nameStrg}
 										varieties={varietiesArr}
+										searchByName={searchByName}
 									/>
 								</Fragment>
 							);

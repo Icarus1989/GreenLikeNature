@@ -27,8 +27,9 @@ export default function SearchResult({ id, title, image, saved }) {
 				className={styles["recipe-image"]}
 				src={image}
 				alt={`${title} image`}
-				width="556"
-				height="370"
+				style={{ overflow: "hidden" }}
+				width={312}
+				height={231}
 			/>
 
 			<Link

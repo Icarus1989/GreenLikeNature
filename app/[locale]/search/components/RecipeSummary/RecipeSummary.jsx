@@ -26,19 +26,21 @@ export default function RecipeSummary({
 				{title.length > 42 ? `${title.slice(0, 40)}...` : title}
 			</h2>
 			<div className={styles["circular-image-section"]}>
-				<Image
-					src={loadError ? fallback : image}
-					className={styles["summary-image"]}
-					alt={`${title} image`}
-					width="556"
-					height="370"
-					onError={() => {
-						return setLoadError(() => {
-							return true;
-						});
-					}}
-				/>
-				<svg viewBox="0 0 20 10" className={styles["recipe-image-container"]}>
+				<div className={styles["summary-image-container"]}>
+					<Image
+						src={loadError ? fallback : image}
+						className={styles["summary-image"]}
+						alt={`${title} image`}
+						width={312}
+						height={231}
+						onError={() => {
+							return setLoadError(() => {
+								return true;
+							});
+						}}
+					/>
+				</div>
+				<svg viewBox="0 0 20 10" className={styles["recipe-image-circle"]}>
 					<circle
 						cx="18%"
 						cy="50%"

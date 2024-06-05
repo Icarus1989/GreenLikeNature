@@ -23,6 +23,7 @@ export default function SearchBar({ value, position, handleChange }) {
 				// 	console.log("submit");
 				// 	return inputRef.current.blur();
 				// }}
+
 				className={styles["input-bar"]}
 				placeholder={t("search_placeholder")}
 			/>
