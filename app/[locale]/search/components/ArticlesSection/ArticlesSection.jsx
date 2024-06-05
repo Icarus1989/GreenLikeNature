@@ -102,19 +102,21 @@ export default function ArticlesSection({
 							})}
 						</div>
 					) : (
-						<div className={styles["articles-container"]} dir="ltr">
-							<button
-								form="search-form"
-								type="submit"
-								onClick={() => searchByName(btnRef.current, name)}
-								className={styles["rel-search-btn"]}
-								ref={btnRef}
-							>
-								Cerca ricette con:{" "}
-								<span className={styles["seasonal-name"]}>{name}</span>{" "}
-								<GoSearch />
-							</button>
-						</div>
+						<Fragment key={name}>
+							<div className={styles["articles-container"]} dir="ltr">
+								<button
+									form="search-form"
+									type="submit"
+									onClick={() => searchByName(btnRef.current, name)}
+									className={styles["rel-search-btn"]}
+									ref={btnRef}
+								>
+									Cerca ricette con:{" "}
+									<span className={styles["seasonal-name"]}>{name}</span>{" "}
+									<GoSearch />
+								</button>
+							</div>
+						</Fragment>
 					)}
 				</>
 			) : (

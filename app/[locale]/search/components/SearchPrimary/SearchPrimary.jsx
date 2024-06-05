@@ -195,12 +195,12 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	}
 
 	function searchByName(submitter, name) {
-		// console.log(submitter);
-		// console.log("searching by seasonal name ", name);
-		// setSearchTerm(() => {
-		// 	return name;
-		// });
-		// setView(true);
+		console.log(submitter);
+		console.log("searching by seasonal name ", name);
+		setSearchTerm(() => {
+			return name;
+		});
+		setView(true);
 		// handleSubmit(
 		// 	new SubmitEvent("submit", {
 		// 		submitter: submitter,
