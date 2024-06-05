@@ -112,6 +112,7 @@ export default function ArticlesSection({
 									onClick={() => searchByName(btnRef.current, name)}
 									className={styles["rel-search-btn"]}
 								>
+									{/* Tradurre i18 ---> */}
 									Cerca ricette con:{" "}
 									<span className={styles["seasonal-name"]}>{name}</span>{" "}
 									<GoSearch className={styles["search-icon"]} />

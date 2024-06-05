@@ -1,7 +1,7 @@
 .articles-section {
 	width: 100%;
 	height: auto;
-	margin: 8% 0% 5% 0%;
+	margin: 10% 0% 10% 0%;
 	overflow-x: scroll;
 	overflow-y: none;
 	scrollbar-width: none;
@@ -24,6 +24,8 @@
 	scrollbar-width: none;
 	position: relative;
 	z-index: 3;
+	margin-top: 1%;
+	margin-bottom: 5%;
 }
 
 .articles-container::-webkit-scrollbar {
