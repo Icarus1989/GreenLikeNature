@@ -114,7 +114,8 @@ export default function ArticlesSection({
 								>
 									Cerca ricette con:{" "}
 									<span className={styles["seasonal-name"]}>{name}</span>{" "}
-									<GoSearch />
+									<GoSearch className={styles["search-icon"]} />
+									<IoIosArrowForward className={styles["arrow-icon"]} />
 								</button>
 							</div>
 						</Fragment>
