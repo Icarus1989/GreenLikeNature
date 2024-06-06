@@ -119,10 +119,11 @@ export default function ArticlesSection({
 									form="searchForm"
 									type="submit"
 									ref={btnRef}
-									onClick={(event) => {
-										handleSubmit(event, nameStrg);
+									onClick={async (event) => {
 										setView(true);
-										setSearchTerm(nameStrg);
+										// setSearchTerm(nameStrg);
+										await handleSubmit(event, nameStrg);
+
 										// return btnSubmit(event);
 									}}
 									// onClick={() => {
