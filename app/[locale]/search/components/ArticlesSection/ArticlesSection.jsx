@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Fragment, useState, useRef } from "react";
+import { Fragment, useState, useRef, useEffect } from "react";
 import { useAppSelector } from "@/lib/hooks";
 import RecipeSummary from "../RecipeSummary/RecipeSummary";
 
@@ -74,6 +74,24 @@ export default function ArticlesSection({
 	// 	searchBySeasonal();
 	// }
 
+	const [submitSeasonal, setSubmitSeasonal] = useState(false);
+
+	useEffect(() => {
+		let ignore = false;
+		if (submitSeasonal === true && !ignore) {
+			submitQuery();
+		}
+
+		async function submitQuery() {
+			searchBySeasonal(nameStrg);
+			await handleSubmit(null, nameStrg);
+		}
+		return () => {
+			ignore = true;
+			setSubmitSeasonal(false);
+		};
+	}, [submitSeasonal]);
+
 	return (
 		<div className={styles["articles-section"]}>
 			{name ? (
@@ -119,12 +137,10 @@ export default function ArticlesSection({
 									form="searchForm"
 									type="submit"
 									ref={btnRef}
-									onClick={async (event) => {
-										setView(true);
-										// setSearchTerm(nameStrg);
-										await handleSubmit(event, nameStrg);
-
-										// return btnSubmit(event);
+									onClick={() => {
+										// setView(true);
+										// await handleSubmit(event, nameStrg);
+										setSubmitSeasonal(true);
 									}}
 									// onClick={() => {
 									// 	// searchBySeasonal(btnRef.current, name);

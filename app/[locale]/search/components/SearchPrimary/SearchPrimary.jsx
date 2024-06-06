@@ -160,7 +160,8 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	}
 
 	async function handleSubmit(event, query) {
-		console.log(event.type);
+		console.log("submit");
+		console.log(query);
 		const type = event?.type || null;
 		if (type === "submit") {
 			event.preventDefault();
@@ -172,6 +173,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			}
 			try {
 				const response = await searchByQuery(query, allergens, intolerances);
+				console.log(response);
 				if (response?.error) {
 					reduxDispatch(setError({ name: "query", message: response.error }));
 				}
@@ -193,21 +195,21 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		}
 	}
 
-	function searchBySeasonal() {
-		// console.log(submitter);
+	function searchBySeasonal(name) {
+		console.log("searchBySeasonal");
 		// console.log("searching by seasonal name ", name);
-		// setSearchTerm(() => {
-		// 	return name;
-		// });
-
+		setSearchTerm(() => {
+			return name;
+		});
+		scrollYProgress.set(0);
+		resultsRef.current.scrollTo({ top: 0, left: 0 });
 		setView(true);
 
-		setLeavesDisplay(() => {
-			return { first: false, second: false, third: false };
-		});
+		// setLeavesDisplay(() => {
+		// 	return { first: false, second: false, third: false };
+		// });
 
 		// resultsRef.current.parentElement.scrollTo({ top: 0, left: 0 });
-		scrollYProgress.set(0);
 		// await handleSubmit();
 	}
 
