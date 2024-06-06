@@ -119,20 +119,20 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		}
 	});
 
-	const handleCloseTab = useCallback(() => {
+	const handleCloseTab = () => {
 		if (searchData.results.length > 0) {
 			setSearchData({ type: "default", results: [] });
 		}
 		setSearchTerm("");
 		resultsRef.current.scrollTo({ top: 0, left: 0 });
-		// scrollYProgress.set(0);
+		scrollYProgress.set(0);
 		setLeavesDisplay(() => {
 			return { first: false, second: false, third: false };
 		});
 		setView(() => {
 			return false;
 		});
-	}, [searchData.results.length]);
+	};
 
 	useEffect(() => {
 		if (view === true) {
@@ -159,20 +159,19 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		setSearchTerm(event.target.value);
 	}
 
-	async function handleSubmit(event) {
-		console.log(event);
-		event.preventDefault();
+	async function handleSubmit(event, query) {
+		console.log(event.type);
+		const type = event?.type || null;
+		if (type === "submit") {
+			event.preventDefault();
+		}
 
-		if (searchTerm.length > 0 && navigator.onLine) {
+		if (query.length > 0 && navigator.onLine) {
 			if (errorsReport?.network) {
 				reduxDispatch(setError({ name: "network", message: null }));
 			}
 			try {
-				const response = await searchByQuery(
-					searchTerm,
-					allergens,
-					intolerances
-				);
+				const response = await searchByQuery(query, allergens, intolerances);
 				if (response?.error) {
 					reduxDispatch(setError({ name: "query", message: response.error }));
 				}
@@ -194,19 +193,22 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		}
 	}
 
-	function searchByName(submitter, name) {
-		console.log(submitter);
-		console.log("searching by seasonal name ", name);
-		setSearchTerm(() => {
-			return name;
-		});
+	function searchBySeasonal() {
+		// console.log(submitter);
+		// console.log("searching by seasonal name ", name);
+		// setSearchTerm(() => {
+		// 	return name;
+		// });
+
 		setView(true);
-		// handleSubmit(
-		// 	new SubmitEvent("submit", {
-		// 		submitter: submitter,
-		// 		target: formRef.current
-		// 	})
-		// );
+
+		setLeavesDisplay(() => {
+			return { first: false, second: false, third: false };
+		});
+
+		// resultsRef.current.parentElement.scrollTo({ top: 0, left: 0 });
+		scrollYProgress.set(0);
+		// await handleSubmit();
 	}
 
 	// function handleCloseTab() {
@@ -232,9 +234,9 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			// onBlur={handleCloseTab}
 		>
 			<form
-				id="search-form"
+				name="searchForm"
 				ref={formRef}
-				onSubmit={handleSubmit}
+				onSubmit={(event) => handleSubmit(event, searchTerm)}
 				className={styles["search-part"]}
 			>
 				<SearchBar
@@ -262,7 +264,16 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 										recipes={recipesList}
 										name={nameStrg}
 										varieties={varietiesArr}
-										searchByName={searchByName}
+										searchBySeasonal={searchBySeasonal}
+										// onClick={(event) => handleSubmit(event, nameStrg)}
+										handleSubmit={handleSubmit}
+										setView={setView}
+										setSearchTerm={setSearchTerm}
+										// onClick={() => {
+										// 	return setSearchTerm((name) => {
+										// 		return name;
+										// 	});
+										// }}
 									/>
 								</Fragment>
 							);

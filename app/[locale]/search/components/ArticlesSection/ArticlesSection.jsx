@@ -14,7 +14,10 @@ export default function ArticlesSection({
 	recipes,
 	name = "",
 	varieties,
-	searchByName
+	searchBySeasonal,
+	handleSubmit,
+	setView,
+	setSearchTerm
 }) {
 	const nameStrg =
 		name[name.length - 1] === "s" ? name.slice(0, name.length - 1) : name;
@@ -64,6 +67,13 @@ export default function ArticlesSection({
 
 	// console.log(suggestedList);
 
+	// function btnSubmit(event) {
+	// 	const query = nameStrg;
+	// 	handleSubmit(event, query);
+
+	// 	searchBySeasonal();
+	// }
+
 	return (
 		<div className={styles["articles-section"]}>
 			{name ? (
@@ -105,11 +115,20 @@ export default function ArticlesSection({
 						<Fragment key={name}>
 							<div className={styles["articles-container"]} dir="ltr">
 								<button
-									id={name}
-									form="search-form"
+									// id={name}
+									form="searchForm"
 									type="submit"
 									ref={btnRef}
-									onClick={() => searchByName(btnRef.current, name)}
+									onClick={(event) => {
+										handleSubmit(event, nameStrg);
+										setView(true);
+										setSearchTerm(nameStrg);
+										// return btnSubmit(event);
+									}}
+									// onClick={() => {
+									// 	// searchBySeasonal(btnRef.current, name);
+									// 	return handleSubmit();
+									// }}
 									className={styles["rel-search-btn"]}
 								>
 									{/* Tradurre i18 ---> */}

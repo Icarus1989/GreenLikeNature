@@ -447,7 +447,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						}}
 						animate={{
 							opacity: 1.0,
-							transition: { duration: 1.0, delay: 0 }
+							transition: { duration: 1.0, delay: 0.1 }
 						}}
 					>
 						<Flower />
@@ -583,7 +583,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						}}
 						animate={{
 							opacity: 1.0,
-							transition: { duration: 1.0, delay: 0 }
+							transition: { duration: 1.0, delay: 0.1 }
 						}}
 						ref={carouselRef}
 						className={styles["carousel"]}
