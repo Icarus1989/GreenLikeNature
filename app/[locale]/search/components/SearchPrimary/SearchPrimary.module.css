@@ -3,6 +3,8 @@
 	height: 94dvh;
 	display: grid;
 	place-items: start center;
+	position: relative;
+	z-index: 1;
 	background-color: #232323;
 }
 
