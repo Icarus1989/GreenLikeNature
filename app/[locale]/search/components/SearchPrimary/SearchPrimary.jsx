@@ -12,7 +12,13 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useTranslation } from "react-i18next";
 import { setError } from "@/lib/features/recipes/recipesSlice";
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+	motion,
+	useScroll,
+	useMotionValueEvent,
+	useAnimate,
+	stagger
+} from "framer-motion";
 import SearchBar from "@/app/components/SearchBar/SearchBar";
 import SearchResult from "../../../../components/SearchResult/SearchResult";
 import ArticlesSection from "@/app/[locale]/search/components/ArticlesSection/ArticlesSection";
@@ -216,6 +222,30 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	// 	});
 	// }
 
+	const [suggScope, suggAnimate] = useAnimate();
+	const [ulScope, ulAnimate] = useAnimate();
+
+	useEffect(() => {
+		console.log("effect");
+		if (view && searchData.type === "positive") {
+			ulAnimate(
+				"li",
+				{ opacity: 1 },
+				{ delay: stagger(0.2, { startDelay: 0.15 }) }
+			);
+		}
+	}, [view, searchData.type]);
+
+	useEffect(() => {
+		if (view && data.length > 0) {
+			suggAnimate(
+				"li",
+				{ opacity: 1 },
+				{ delay: stagger(0.2, { startDelay: 0.15 }) }
+			);
+		}
+	}, [view, data.length]);
+
 	return (
 		<section
 			className={styles["container"]}
@@ -379,7 +409,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 							)}
 						</motion.div>
 						{searchData.type === "positive" || searchData.type === "empty" ? (
-							<ul className={styles["list"]}>
+							<ul ref={ulScope} className={styles["list"]}>
 								{/* ATTENZIONE traduzione i18 qui ---> */}
 								<span className={styles["list-label"]}>
 									{/* {searchData.type === "positive" &&
@@ -410,7 +440,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 									})}
 							</ul>
 						) : data.length > 0 ? (
-							<ul className={styles["list"]}>
+							<ul ref={suggScope} className={styles["list"]}>
 								<span className={styles["list-label"]}>Suggerimenti:</span>
 								{data.map((elem) => {
 									const recipePresence =
