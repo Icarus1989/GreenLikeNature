@@ -134,15 +134,15 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		});
 	};
 
-	useEffect(() => {
-		if (view === true) {
-			window.addEventListener("blur", handleCloseTab);
-			// setSearchData({ type: "default", results: [] });
-			return () => {
-				window.removeEventListener("blur", handleCloseTab);
-			};
-		}
-	}, [view, handleCloseTab]);
+	// useEffect(() => {
+	// 	if (view === true) {
+	// 		window.addEventListener("blur", handleCloseTab);
+	// 		// setSearchData({ type: "default", results: [] });
+	// 		return () => {
+	// 			window.removeEventListener("blur", handleCloseTab);
+	// 		};
+	// 	}
+	// }, [view, handleCloseTab]);
 
 	function handleChange(event) {
 		resultsRef.current.scrollTo({ top: 0, left: 0 });
@@ -160,8 +160,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	}
 
 	async function handleSubmit(event, query) {
-		console.log("submit");
-		console.log(query);
 		const type = event?.type || null;
 		if (type === "submit") {
 			event.preventDefault();
@@ -173,7 +171,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			}
 			try {
 				const response = await searchByQuery(query, allergens, intolerances);
-				console.log(response);
 				if (response?.error) {
 					reduxDispatch(setError({ name: "query", message: response.error }));
 				}
@@ -196,7 +193,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	}
 
 	function searchBySeasonal(name) {
-		console.log("searchBySeasonal");
+		// console.log("searchBySeasonal");
 		// console.log("searching by seasonal name ", name);
 		setSearchTerm(() => {
 			return name;
