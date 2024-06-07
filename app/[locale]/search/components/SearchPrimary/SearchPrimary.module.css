@@ -73,6 +73,7 @@
 	box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.85);
 	z-index: 10;
 	filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.775));
+	overflow: visible;
 }
 
 .x-icon {
@@ -102,6 +103,8 @@
 	width: 6dvh;
 	height: 300px;
 	margin: 6% 3% 0% 0%;
+	z-index: 12;
+	overflow: visible;
 }
 
 .straw-plant {

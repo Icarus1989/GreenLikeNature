@@ -30,6 +30,7 @@
 		rgba(23, 23, 23, 0) 80%
 	);
 	transform: scale(0.5);
+	transform-origin: center;
 	stroke-linejoin: round;
 	fill: rgba(23, 23, 23, 0.5);
 	z-index: 2;
@@ -46,7 +47,7 @@
 		rgba(23, 23, 23, 0) 80%
 	);
 	transform: scale(0.4);
-
+	transform-origin: center;
 	z-index: 2;
 	stroke-width: 3px;
 	fill: rgba(230, 230, 230, 0.9);
@@ -72,6 +73,7 @@
 	position: absolute;
 	z-index: 1;
 	transform: scale(4);
+	transform-origin: center;
 	overflow: hidden;
 }
 
