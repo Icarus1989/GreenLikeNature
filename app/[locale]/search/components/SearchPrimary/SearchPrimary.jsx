@@ -193,21 +193,12 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	}
 
 	function searchBySeasonal(name) {
-		// console.log("searchBySeasonal");
-		// console.log("searching by seasonal name ", name);
 		setSearchTerm(() => {
 			return name;
 		});
 		scrollYProgress.set(0);
 		resultsRef.current.scrollTo({ top: 0, left: 0 });
 		setView(true);
-
-		// setLeavesDisplay(() => {
-		// 	return { first: false, second: false, third: false };
-		// });
-
-		// resultsRef.current.parentElement.scrollTo({ top: 0, left: 0 });
-		// await handleSubmit();
 	}
 
 	// function handleCloseTab() {
@@ -230,7 +221,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			className={styles["container"]}
 			onContextMenu={(event) => event.preventDefault()}
 			tabIndex={0}
-			// onBlur={handleCloseTab}
 		>
 			<form
 				name="searchForm"
@@ -252,10 +242,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 						</h2>
 						{Object.entries(ingrList).map((elem) => {
 							const nameStrg = elem[0].toLowerCase();
-							// const name =
-							// 	nameStrg[nameStrg.length - 1] === "s"
-							// 		? nameStrg.slice(0, nameStrg.length - 1)
-							// 		: nameStrg;
 							const varietiesArr = elem[1];
 							return (
 								<Fragment key={elem}>
@@ -264,15 +250,9 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 										name={nameStrg}
 										varieties={varietiesArr}
 										searchBySeasonal={searchBySeasonal}
-										// onClick={(event) => handleSubmit(event, nameStrg)}
 										handleSubmit={handleSubmit}
 										setView={setView}
 										setSearchTerm={setSearchTerm}
-										// onClick={() => {
-										// 	return setSearchTerm((name) => {
-										// 		return name;
-										// 	});
-										// }}
 									/>
 								</Fragment>
 							);
