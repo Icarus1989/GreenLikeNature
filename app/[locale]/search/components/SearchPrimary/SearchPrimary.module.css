@@ -17,6 +17,8 @@
 }
 
 .results-container {
+	position: relative;
+	z-index: 11;
 	overflow: auto;
 }
 
@@ -109,7 +111,7 @@
 	width: 6dvh;
 	height: 300px;
 	margin: 6% 3% 0% 0%;
-	z-index: 12;
+	z-index: 11;
 	overflow: visible;
 }
 
@@ -122,7 +124,7 @@
 	position: absolute;
 	top: 0;
 	overflow: hidden;
-	z-index: 12;
+	z-index: 11;
 
 	/* Aggiungere z-index corretto */
 }
