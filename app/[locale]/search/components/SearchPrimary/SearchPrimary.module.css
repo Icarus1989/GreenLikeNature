@@ -122,6 +122,8 @@
 	position: absolute;
 	top: 0;
 	overflow: hidden;
+	z-index: 12;
+
 	/* Aggiungere z-index corretto */
 }
 
@@ -133,11 +135,13 @@
 	height: 6dvh;
 	overflow: hidden;
 	transform: scale(1.5);
+	z-index: 12;
 }
 
 .straw-leaf > path {
 	stroke-width: 4px;
 	filter: brightness(0.9);
+	z-index: 12;
 }
 
 .list-label {
