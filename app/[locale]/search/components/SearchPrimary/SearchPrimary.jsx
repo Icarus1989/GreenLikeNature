@@ -290,7 +290,10 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 						{recentList.length > 0 && <ArticlesSection recipes={recentList} />}
 					</>
 				) : (
-					<motion.div ref={searchResults}>
+					<motion.div
+						className={styles["results-container"]}
+						ref={searchResults}
+					>
 						<motion.button
 							className={styles["cancel-btn"]}
 							onClick={() => handleCloseTab()}
