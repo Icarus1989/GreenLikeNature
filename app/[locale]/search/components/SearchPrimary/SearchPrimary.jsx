@@ -228,7 +228,8 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 	useEffect(() => {
 		console.log("effect");
 		resultsRef.current.style.zIndex = "23";
-		resultsRef.current.style.overflow = "visible";
+		resultsRef.current.style.overflowX = "visible";
+		resultsRef.current.style.overflowY = "auto";
 		if (view && searchData.type === "positive") {
 			ulAnimate(
 				"li",
