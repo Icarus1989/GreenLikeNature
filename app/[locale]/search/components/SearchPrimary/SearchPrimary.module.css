@@ -19,7 +19,7 @@
 .results-container {
 	position: relative;
 	z-index: 9;
-	overflow: auto;
+	overflow: hidden;
 }
 
 .results-part {
