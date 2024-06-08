@@ -206,7 +206,7 @@ export default function StrawCoupleLeaves({
 						fill="url(#strawLeafGradientInv)"
 						strokeWidth="7px"
 						stroke="url(#leafStrokeGradientInv)"
-						d={isActive ? extPathInvStart : extPathInvEnd}
+						d={extPathInvStart}
 						transform="matrix(-1, 0, 0, -1, 256.947998, 262.315979)"
 					/>
 					<motion.path
@@ -217,21 +217,21 @@ export default function StrawCoupleLeaves({
 							strokeWidth: "5px",
 							fill: "none"
 						}}
-						d={isActive ? firstPathInvStart : firstPathInvEnd}
+						d={firstPathInvStart}
 						transform="matrix(-1, 0, 0, -1, 266.971954, 297.757996)"
 					/>
 					<motion.path
 						id={`secondPathInv${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={isActive ? secondPathInvStart : secondPathInvEnd}
+						d={secondPathInvStart}
 						transform="matrix(-1, 0, 0, -1, 264.895996, 321.850006)"
 					/>
 					<motion.path
 						id={`thirdPathInv${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={isActive ? thirdPathInvStart : thirdPathInvEnd}
+						d={thirdPathInvStart}
 						transform="matrix(-1, 0, 0, -1, 263.939972, 354.328003)"
 					/>
 					<defs>
@@ -251,7 +251,7 @@ export default function StrawCoupleLeaves({
 						fill="url(#strawLeafGradient)"
 						strokeWidth="7px"
 						stroke="url(#leafStrokeGradient)"
-						d={isActive ? ExtPathStart : ExtPathEnd}
+						d={ExtPathStart}
 					/>
 					<motion.path
 						id={`firstPath${id}`}
@@ -261,19 +261,19 @@ export default function StrawCoupleLeaves({
 							strokeWidth: "5px",
 							fill: "none"
 						}}
-						d={isActive ? firstPathStart : firstPathEnd}
+						d={firstPathStart}
 					/>
 					<motion.path
 						id={`secondPath${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={isActive ? secondPathStart : secondPathEnd}
+						d={secondPathStart}
 					/>
 					<motion.path
 						id={`thirdPath${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={isActive ? thirdPathStart : thirdPathEnd}
+						d={thirdPathStart}
 					/>
 					<defs>
 						{strawLeafGradient}
