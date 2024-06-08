@@ -96,6 +96,10 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			scrollYProgress.set(0);
 		}
 
+		if (scrollYProgress.get() < 0) {
+			scrollYProgress.set(0);
+		}
+
 		if (searchTerm.length > 0) {
 			if (latest >= 0.4 && !leavesDisplay.first) {
 				setLeavesDisplay((prevLeavesDisplay) => {

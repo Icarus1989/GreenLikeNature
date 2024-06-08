@@ -40,8 +40,8 @@ export default function StrawCoupleLeaves({
 	rotateZ,
 	rotateY,
 	leafWidth,
-	leafHeight,
-	filter
+	leafHeight
+	// filter
 }) {
 	useEffect(() => {
 		if (isActive) {
@@ -178,7 +178,7 @@ export default function StrawCoupleLeaves({
 				loop: false
 			});
 		}
-	}, [id, isActive]);
+	}, [isActive]);
 	return (
 		<Fragment key={id}>
 			<div
@@ -196,8 +196,9 @@ export default function StrawCoupleLeaves({
 					className={styles["straw-leaf"]}
 					style={{
 						width: leafWidth,
-						height: leafHeight,
-						filter: filter
+						height: leafHeight
+						// boxShadow: "0px 0px 5px rgb(0, 0, 0)"
+						// filter: filter
 					}}
 				>
 					<motion.path
