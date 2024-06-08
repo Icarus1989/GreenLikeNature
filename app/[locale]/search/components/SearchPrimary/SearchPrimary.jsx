@@ -351,7 +351,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 								rotateY={"0deg"}
 								leafWidth="6dvh"
 								leafHeight="6dvh"
-								filter={`brightness(0.7)`}
+								// filter={`brightness(0.7)`}
 							/>
 						)}
 						{leavesDisplay.second && (
@@ -366,7 +366,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 								rotateY={"0deg"}
 								leafWidth="6dvh"
 								leafHeight="6dvh"
-								filter={`brightness(1.0)`}
+								// filter={`brightness(1.0)`}
 							/>
 						)}
 						{leavesDisplay.third && (
@@ -382,7 +382,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 								rotateY={"0deg"}
 								leafWidth="6dvh"
 								leafHeight="6dvh"
-								filter={`brightness(1.23)`}
+								// filter={`brightness(1.23)`}
 							/>
 						)}
 					</motion.div>
