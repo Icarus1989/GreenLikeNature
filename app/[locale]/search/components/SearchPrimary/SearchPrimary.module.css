@@ -18,7 +18,7 @@
 
 .results-container {
 	position: relative;
-	z-index: 11;
+	z-index: 9;
 	overflow: auto;
 }
 
@@ -26,7 +26,7 @@
 	width: 94dvw;
 	height: 80dvh;
 	position: relative;
-	overflow-x: hidden;
+	overflow: auto;
 	background-color: #2d2d2d;
 	border: 1px solid transparent;
 	border-radius: 10px;
