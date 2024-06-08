@@ -290,10 +290,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 						{recentList.length > 0 && <ArticlesSection recipes={recentList} />}
 					</>
 				) : (
-					<motion.div
-						className={styles["results-container"]}
-						ref={searchResults}
-					>
+					<>
 						<motion.button
 							className={styles["cancel-btn"]}
 							onClick={() => handleCloseTab()}
@@ -411,21 +408,45 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 								/>
 							)}
 						</motion.div>
-						{searchData.type === "positive" || searchData.type === "empty" ? (
-							<ul ref={ulScope} className={styles["list"]}>
-								{/* ATTENZIONE traduzione i18 qui ---> */}
-								<span className={styles["list-label"]}>
-									{/* {searchData.type === "positive" &&
+						<motion.div
+							className={styles["results-container"]}
+							ref={searchResults}
+						>
+							{searchData.type === "positive" || searchData.type === "empty" ? (
+								<ul ref={ulScope} className={styles["list"]}>
+									{/* ATTENZIONE traduzione i18 qui ---> */}
+									<span className={styles["list-label"]}>
+										{/* {searchData.type === "positive" &&
 										`Risultati per: ${searchTerm}`}
 									{searchData.type === "empty" &&
 										`Nessun risultato per: ${searchTerm}`} */}
+										{searchData.type === "positive" &&
+											t("results_label", { searchTerm })}
+										{searchData.type === "empty" &&
+											t("no_results_label", { searchTerm })}
+									</span>
 									{searchData.type === "positive" &&
-										t("results_label", { searchTerm })}
-									{searchData.type === "empty" &&
-										t("no_results_label", { searchTerm })}
-								</span>
-								{searchData.type === "positive" &&
-									searchData.results.map((elem) => {
+										searchData.results.map((elem) => {
+											const recipePresence =
+												recipesList.filter(
+													(recipe) => String(recipe.id) === String(elem.id)
+												).length > 0;
+											return (
+												<Fragment key={elem.id}>
+													<SearchResult
+														id={elem.id}
+														title={elem.title}
+														image={elem.image}
+														saved={recipePresence}
+													/>
+												</Fragment>
+											);
+										})}
+								</ul>
+							) : data.length > 0 ? (
+								<ul ref={suggScope} className={styles["list"]}>
+									<span className={styles["list-label"]}>Suggerimenti:</span>
+									{data.map((elem) => {
 										const recipePresence =
 											recipesList.filter(
 												(recipe) => String(recipe.id) === String(elem.id)
@@ -441,34 +462,15 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 											</Fragment>
 										);
 									})}
-							</ul>
-						) : data.length > 0 ? (
-							<ul ref={suggScope} className={styles["list"]}>
-								<span className={styles["list-label"]}>Suggerimenti:</span>
-								{data.map((elem) => {
-									const recipePresence =
-										recipesList.filter(
-											(recipe) => String(recipe.id) === String(elem.id)
-										).length > 0;
-									return (
-										<Fragment key={elem.id}>
-											<SearchResult
-												id={elem.id}
-												title={elem.title}
-												image={elem.image}
-												saved={recipePresence}
-											/>
-										</Fragment>
-									);
-								})}
-							</ul>
-						) : (
-							// controllare traduzione i18 --->
-							<p className={styles["no-suggest-label"]}>
-								{t("no_suggestion_label")}
-							</p>
-						)}
-					</motion.div>
+								</ul>
+							) : (
+								// controllare traduzione i18 --->
+								<p className={styles["no-suggest-label"]}>
+									{t("no_suggestion_label")}
+								</p>
+							)}
+						</motion.div>
+					</>
 				)}
 			</div>
 			{showError && (
