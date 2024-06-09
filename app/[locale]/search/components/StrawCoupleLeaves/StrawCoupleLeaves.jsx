@@ -55,8 +55,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			loop: false
 		});
@@ -71,8 +72,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			loop: false
 		});
@@ -87,8 +89,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			loop: false
 		});
@@ -103,8 +106,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			loop: false
 		});
@@ -119,8 +123,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			delay: 0,
 			loop: false
@@ -136,8 +141,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			delay: 0,
 			loop: false
@@ -153,8 +159,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			delay: 0,
 			loop: false
@@ -170,8 +177,9 @@ export default function StrawCoupleLeaves({
 				}
 			],
 			// opacity: { value: [0.1, 1.0], duration: 230 },
+			delay: 0,
 			autoplay: false,
-			easing: "linear",
+			easing: "easeOutCubic",
 			duration: 500,
 			delay: 0,
 			loop: false
