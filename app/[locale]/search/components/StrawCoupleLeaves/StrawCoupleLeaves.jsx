@@ -44,139 +44,147 @@ export default function StrawCoupleLeaves({
 	// filter
 }) {
 	useEffect(() => {
-		if (isActive) {
-			anime({
-				targets: `#ExtPathInv${id}`,
-				d: [
-					{
-						value: extPathInvStart
-					},
-					{
-						value: extPathInvEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				loop: false
-			});
-			anime({
-				targets: `#firstPathInv${id}`,
-				d: [
-					{
-						value: firstPathInvStart
-					},
-					{
-						value: firstPathInvEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				loop: false
-			});
-			anime({
-				targets: `#secondPathInv${id}`,
-				d: [
-					{
-						value: secondPathInvStart
-					},
-					{
-						value: secondPathInvEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				loop: false
-			});
-			anime({
-				targets: `#thirdPathInv${id}`,
-				d: [
-					{
-						value: thirdPathInvStart
-					},
-					{
-						value: thirdPathInvEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				loop: false
-			});
-			anime({
-				targets: `#ExtPath${id}`,
-				d: [
-					{
-						value: ExtPathStart
-					},
-					{
-						value: ExtPathEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				delay: 0,
-				loop: false
-			});
-			anime({
-				targets: `#firstPath${id}`,
-				d: [
-					{
-						value: firstPathStart
-					},
-					{
-						value: firstPathEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				delay: 0,
-				loop: false
-			});
-			anime({
-				targets: `#secondPath${id}`,
-				d: [
-					{
-						value: secondPathStart
-					},
-					{
-						value: secondPathEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				delay: 0,
-				loop: false
-			});
-			anime({
-				targets: `#thirdPath${id}`,
-				d: [
-					{
-						value: thirdPathStart
-					},
-					{
-						value: thirdPathEnd
-					}
-				],
-				// opacity: { value: [0.1, 1.0], duration: 230 },
-				autoplay: true,
-				easing: "linear",
-				duration: 500,
-				delay: 0,
-				loop: false
-			});
+		const animeExtInvPath = anime({
+			targets: `#ExtPathInv${id}`,
+			d: [
+				{
+					value: extPathInvStart
+				},
+				{
+					value: extPathInvEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			loop: false
+		});
+		const animeFirstInvPath = anime({
+			targets: `#firstPathInv${id}`,
+			d: [
+				{
+					value: firstPathInvStart
+				},
+				{
+					value: firstPathInvEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			loop: false
+		});
+		const animeSecondInvPath = anime({
+			targets: `#secondPathInv${id}`,
+			d: [
+				{
+					value: secondPathInvStart
+				},
+				{
+					value: secondPathInvEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			loop: false
+		});
+		const animeThirdInvPath = anime({
+			targets: `#thirdPathInv${id}`,
+			d: [
+				{
+					value: thirdPathInvStart
+				},
+				{
+					value: thirdPathInvEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			loop: false
+		});
+		const animeExtPath = anime({
+			targets: `#ExtPath${id}`,
+			d: [
+				{
+					value: ExtPathStart
+				},
+				{
+					value: ExtPathEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			delay: 0,
+			loop: false
+		});
+		const animeFirstPath = anime({
+			targets: `#firstPath${id}`,
+			d: [
+				{
+					value: firstPathStart
+				},
+				{
+					value: firstPathEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			delay: 0,
+			loop: false
+		});
+		const animeSecondPath = anime({
+			targets: `#secondPath${id}`,
+			d: [
+				{
+					value: secondPathStart
+				},
+				{
+					value: secondPathEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			delay: 0,
+			loop: false
+		});
+		const animeThirdPath = anime({
+			targets: `#thirdPath${id}`,
+			d: [
+				{
+					value: thirdPathStart
+				},
+				{
+					value: thirdPathEnd
+				}
+			],
+			// opacity: { value: [0.1, 1.0], duration: 230 },
+			autoplay: false,
+			easing: "linear",
+			duration: 500,
+			delay: 0,
+			loop: false
+		});
+		if (isActive === true) {
+			animeExtInvPath.play();
+			animeFirstInvPath.play();
+			animeSecondInvPath.play();
+			animeThirdInvPath.play();
+			animeExtPath.play();
+			animeFirstPath.play();
+			animeSecondPath.play();
+			animeThirdPath.play();
 		}
 	}, [isActive]);
 	return (
