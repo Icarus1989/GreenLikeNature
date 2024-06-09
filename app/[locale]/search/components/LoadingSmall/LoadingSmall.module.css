@@ -1,0 +1,23 @@
+.spinner-svg {
+	width: 23dvw;
+	height: 23dvw;
+	stroke: rgba(1, 140, 1, 0.9);
+	stroke-width: 1px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: transparent;
+	-webkit-animation: rotate 2s normal linear infinite;
+	animation: rotate 1s normal linear infinite;
+	z-index: 3;
+}
+@keyframes rotate {
+	0% {
+		-webkit-transform: rotate3d(0, 0, 1, 0deg);
+		transform: rotate3d(0, 0, 1, 0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate3d(0, 0, 1, 360deg);
+		transform: rotate3d(0, 0, 1, -360deg);
+	}
+}

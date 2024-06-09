@@ -171,9 +171,13 @@
 
 .loading-ind {
 	position: fixed;
+	width: 100%;
+	height: auto;
 	top: 50%;
-	left: 50%;
+	/* left: 50%; */
+	display: grid;
+	place-items: center;
 	z-index: 230;
-	color: red;
-	border: 1px solid red;
+	/* color: tra; */
+	border: 1px solid transparent;
 }

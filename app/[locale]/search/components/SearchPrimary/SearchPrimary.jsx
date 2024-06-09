@@ -7,8 +7,11 @@ import {
 	useRef,
 	useContext,
 	useCallback,
-	Suspense
+	Suspense,
+	useTransition
 } from "react";
+
+// import useFormStatus
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useTranslation } from "react-i18next";
 import { setError } from "@/lib/features/recipes/recipesSlice";
@@ -28,6 +31,7 @@ import ErrorModal from "../../../../components/ErrorModal/ErrorModal";
 import { GeneralContext } from "@/app/generalContext/GeneralContext";
 import { GoX } from "react-icons/go";
 import styles from "./SearchPrimary.module.css";
+import LoadingSmall from "../LoadingSmall/LoadingSmall";
 
 export default function SearchPrimaryComponent({ searchByQuery }) {
 	const [view, setView] = useState(false);
@@ -60,6 +64,8 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		type: "default",
 		results: []
 	});
+
+	const [isPending, startTransition] = useTransition();
 
 	const settings = useContext(GeneralContext);
 	const recentList = settings["recent-recipes"];
@@ -186,9 +192,16 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 					reduxDispatch(setError({ name: "query", message: response.error }));
 				}
 				if (response["totalResults"] > 0) {
-					setSearchData({ type: "positive", results: response["results"] });
+					startTransition(() => {
+						setSearchData({ type: "positive", results: response["results"] });
+					});
 				} else {
-					setSearchData({ type: "empty", results: response["results"] });
+					startTransition(() => {
+						setSearchData({
+							type: "empty",
+							results: response["results"]
+						});
+					});
 				}
 			} catch (error) {
 				reduxDispatch(setError({ name: "submit", message: error.message }));
@@ -272,6 +285,11 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 					position="static"
 				/>
 			</form>
+			{isPending && (
+				<p className={styles["loading-ind"]}>
+					<LoadingSmall />
+				</p>
+			)}
 			{view === true && (
 				<>
 					<motion.button
@@ -437,27 +455,27 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 										t("no_results_label", { searchTerm })}
 								</span>
 								{/* Here removed */}
-								<Suspense
-									fallback={<p className={styles["loading-ind"]}>Loading...</p>}
-								>
-									{searchData.type === "positive" &&
-										searchData.results.map((elem) => {
-											const recipePresence =
-												recipesList.filter(
-													(recipe) => String(recipe.id) === String(elem.id)
-												).length > 0;
-											return (
-												<Fragment key={elem.id}>
-													<SearchResult
-														id={elem.id}
-														title={elem.title}
-														image={elem.image}
-														saved={recipePresence}
-													/>
-												</Fragment>
-											);
-										})}
-								</Suspense>
+								{/* <Suspense
+									fallback={}
+								> */}
+								{searchData.type === "positive" &&
+									searchData.results.map((elem) => {
+										const recipePresence =
+											recipesList.filter(
+												(recipe) => String(recipe.id) === String(elem.id)
+											).length > 0;
+										return (
+											<Fragment key={elem.id}>
+												<SearchResult
+													id={elem.id}
+													title={elem.title}
+													image={elem.image}
+													saved={recipePresence}
+												/>
+											</Fragment>
+										);
+									})}
+								{/* </Suspense> */}
 							</ul>
 						) : data.length > 0 ? (
 							<ul ref={suggScope} className={styles["list"]}>
