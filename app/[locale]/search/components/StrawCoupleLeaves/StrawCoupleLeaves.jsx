@@ -58,7 +58,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			loop: false
 		});
 		const animeFirstInvPath = anime({
@@ -75,7 +75,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			loop: false
 		});
 		const animeSecondInvPath = anime({
@@ -92,7 +92,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			loop: false
 		});
 		const animeThirdInvPath = anime({
@@ -109,7 +109,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			loop: false
 		});
 		const animeExtPath = anime({
@@ -126,7 +126,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			delay: 0,
 			loop: false
 		});
@@ -144,7 +144,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			delay: 0,
 			loop: false
 		});
@@ -162,7 +162,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			delay: 0,
 			loop: false
 		});
@@ -180,7 +180,7 @@ export default function StrawCoupleLeaves({
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
-			duration: 500,
+			duration: 1000,
 			delay: 0,
 			loop: false
 		});
