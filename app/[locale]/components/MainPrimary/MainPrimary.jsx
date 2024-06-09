@@ -6,7 +6,8 @@ import {
 	useRef,
 	useContext,
 	Fragment,
-	useCallback
+	useCallback,
+	Suspense
 } from "react";
 
 import Image from "next/image";
@@ -641,27 +642,30 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 													}}
 												>
 													<div className={styles["plate-image-container"]}>
-														<Image
-															style={
-																settingsType !== "seasonal" ||
-																(errorsReport.network &&
-																	errorsReport.network !== null)
-																	? { transform: "translateX(0%)" }
-																	: { transform: "translateX(-20%)" }
-															}
-															className={styles["plate-image"]}
-															src={
-																errorsReport.network &&
-																errorsReport.network !== null
-																	? fallbackImg
-																	: recipe.image
-															}
-															alt={recipe.title}
-															width="230"
-															height="172"
-															quality={100}
-															priority={false}
-														/>
+														{/* Testing suspense ---> */}
+														<Suspense fallback={<p>Loading...</p>}>
+															<Image
+																style={
+																	settingsType !== "seasonal" ||
+																	(errorsReport.network &&
+																		errorsReport.network !== null)
+																		? { transform: "translateX(0%)" }
+																		: { transform: "translateX(-20%)" }
+																}
+																className={styles["plate-image"]}
+																src={
+																	errorsReport.network &&
+																	errorsReport.network !== null
+																		? fallbackImg
+																		: recipe.image
+																}
+																alt={recipe.title}
+																width="230"
+																height="172"
+																quality={100}
+																priority={false}
+															/>
+														</Suspense>
 													</div>
 												</motion.li>
 											);
