@@ -55,7 +55,7 @@ export default function StrawCoupleLeaves({
 						value: extPathInvEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -71,7 +71,7 @@ export default function StrawCoupleLeaves({
 						value: firstPathInvEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -87,7 +87,7 @@ export default function StrawCoupleLeaves({
 						value: secondPathInvEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -103,7 +103,7 @@ export default function StrawCoupleLeaves({
 						value: thirdPathInvEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -119,7 +119,7 @@ export default function StrawCoupleLeaves({
 						value: ExtPathEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -136,7 +136,7 @@ export default function StrawCoupleLeaves({
 						value: firstPathEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -153,7 +153,7 @@ export default function StrawCoupleLeaves({
 						value: secondPathEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -170,7 +170,7 @@ export default function StrawCoupleLeaves({
 						value: thirdPathEnd
 					}
 				],
-				opacity: { value: [0.1, 1.0], duration: 230 },
+				// opacity: { value: [0.1, 1.0], duration: 230 },
 				autoplay: true,
 				easing: "linear",
 				duration: 500,
@@ -206,32 +206,29 @@ export default function StrawCoupleLeaves({
 						fill="url(#strawLeafGradientInv)"
 						strokeWidth="7px"
 						stroke="url(#leafStrokeGradientInv)"
-						d={extPathInvStart}
+						d={isActive ? extPathInvStart : extPathInvEnd}
 						transform="matrix(-1, 0, 0, -1, 256.947998, 262.315979)"
 					/>
 					<motion.path
 						id={`firstPathInv${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						style={{
-							strokeWidth: "5px",
-							fill: "none"
-						}}
-						d={firstPathInvStart}
+						strokeWidth="5px"
+						d={isActive ? firstPathInvStart : firstPathInvEnd}
 						transform="matrix(-1, 0, 0, -1, 266.971954, 297.757996)"
 					/>
 					<motion.path
 						id={`secondPathInv${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={secondPathInvStart}
+						d={isActive ? secondPathInvStart : secondPathInvEnd}
 						transform="matrix(-1, 0, 0, -1, 264.895996, 321.850006)"
 					/>
 					<motion.path
 						id={`thirdPathInv${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={thirdPathInvStart}
+						d={isActive ? thirdPathInvStart : thirdPathInvEnd}
 						transform="matrix(-1, 0, 0, -1, 263.939972, 354.328003)"
 					/>
 					<defs>
@@ -251,29 +248,26 @@ export default function StrawCoupleLeaves({
 						fill="url(#strawLeafGradient)"
 						strokeWidth="7px"
 						stroke="url(#leafStrokeGradient)"
-						d={ExtPathStart}
+						d={isActive ? ExtPathStart : ExtPathEnd}
 					/>
 					<motion.path
 						id={`firstPath${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						style={{
-							strokeWidth: "5px",
-							fill: "none"
-						}}
-						d={firstPathStart}
+						strokeWidth="5px"
+						d={isActive ? firstPathStart : firstPathEnd}
 					/>
 					<motion.path
 						id={`secondPath${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={secondPathStart}
+						d={isActive ? secondPathStart : secondPathEnd}
 					/>
 					<motion.path
 						id={`thirdPath${id}`}
 						fill="none"
 						stroke="url(#leafStrokeIntGradient)"
-						d={thirdPathStart}
+						d={isActive ? thirdPathStart : thirdPathEnd}
 					/>
 					<defs>
 						{strawLeafGradient}
