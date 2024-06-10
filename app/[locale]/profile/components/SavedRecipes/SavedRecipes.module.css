@@ -134,7 +134,7 @@
 }
 
 .saved-recipes-list > li > span {
-	/* width: 60%; */
+	width: 60%;
 	/* margin: 0% 5% 0% 0%; */
 	text-align: center;
 	text-transform: uppercase;
