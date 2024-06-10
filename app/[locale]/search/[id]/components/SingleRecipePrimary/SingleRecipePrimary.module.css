@@ -421,11 +421,22 @@
 	background: transparent;
 	width: 18px;
 	height: 18px;
-	color: white;
+	color: rgba(23, 160, 23, 0.95);
+	fill: rgba(23, 160, 23, 0.95);
 	gap: 20px;
 	border: 1px solid grey;
 	border-radius: 4px;
 	margin-right: 5%;
+}
+
+.ingredient-checkbox > i {
+	color: rgba(23, 160, 23, 0.95);
+	fill: rgba(23, 160, 23, 0.95);
+}
+
+.ingredient-checkbox > svg {
+	color: rgba(23, 160, 23, 0.95);
+	fill: rgba(23, 160, 23, 0.95);
 }
 
 .ingredient-checkbox:checked {
@@ -674,7 +685,8 @@
 }
 
 .reset-btn:active > svg {
-	fill: white;
+	fill: rgba(255, 255, 255, 0.9);
+	color: rgba(255, 255, 255, 0.9);
 }
 
 .reset-btn:disabled {
@@ -685,7 +697,14 @@
 		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset;
 }
 
+.reset-btn:disabled > svg {
+	fill: rgba(255, 255, 255, 0.3);
+	color: rgba(255, 255, 255, 0.3);
+}
+
 .reset-btn > svg {
 	width: 1.5rem;
 	height: 1.5rem;
+	fill: rgba(255, 255, 255, 0.9);
+	color: rgba(255, 255, 255, 0.9);
 }
