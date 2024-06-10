@@ -35,4 +35,6 @@
 	overflow: hidden;
 }
 
-/* clean */
+.firstTomatoPath {
+	filter: hue-rotate(80deg);
+}

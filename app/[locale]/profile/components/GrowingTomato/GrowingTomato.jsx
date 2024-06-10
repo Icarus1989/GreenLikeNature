@@ -195,8 +195,8 @@ export default function GrowingTomato({
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
-						strokeWidth: "1px",
-						filter: "hue-rotate(80deg)"
+						strokeWidth: "1px"
+						// filter: "hue-rotate(80deg)"
 					}}
 					d={tomatoBeginPath}
 				/>
