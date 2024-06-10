@@ -29,7 +29,8 @@ import {
 	useVelocity,
 	useMotionValueEvent,
 	useMotionTemplate,
-	useAnimate
+	useAnimate,
+	transform
 } from "framer-motion";
 
 import AnimatedText from "@/app/[locale]/components/AnimatedText/AnimatedText";
@@ -647,28 +648,36 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 												>
 													<div className={styles["plate-image-container"]}>
 														{/* Testing suspense ---> */}
-
-														<Image
-															style={
-																settingsType !== "seasonal" ||
-																(errorsReport.network &&
-																	errorsReport.network !== null)
-																	? { transform: "translateX(0%)" }
-																	: { transform: "translateX(-20%)" }
+														<Suspense
+															fallback={
+																<Image
+																	src={fallbackImg}
+																	style={{ transform: "translateX(0%)" }}
+																/>
 															}
-															className={styles["plate-image"]}
-															src={
-																errorsReport.network &&
-																errorsReport.network !== null
-																	? fallbackImg
-																	: recipe.image
-															}
-															alt={recipe.title}
-															width="230"
-															height="172"
-															quality={100}
-															priority
-														/>
+														>
+															<Image
+																style={
+																	settingsType !== "seasonal" ||
+																	(errorsReport.network &&
+																		errorsReport.network !== null)
+																		? { transform: "translateX(0%)" }
+																		: { transform: "translateX(-12%%)" }
+																}
+																className={styles["plate-image"]}
+																src={
+																	errorsReport.network &&
+																	errorsReport.network !== null
+																		? fallbackImg
+																		: recipe.image
+																}
+																alt={recipe.title}
+																width="230"
+																height="172"
+																quality={100}
+																priority
+															/>
+														</Suspense>
 													</div>
 												</motion.li>
 											);

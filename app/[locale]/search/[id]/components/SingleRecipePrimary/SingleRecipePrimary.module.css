@@ -454,7 +454,7 @@
 .ingredient-checkbox:checked::after {
 	position: relative;
 	top: -40%;
-	/* left: -23%; */
+	left: -10%;
 	content: "\2713";
 	color: rgba(23, 160, 23, 0.95);
 	fill: rgba(23, 160, 23, 0.95);
