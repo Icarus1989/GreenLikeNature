@@ -11,7 +11,6 @@ import {
 	useTransition
 } from "react";
 
-// import useFormStatus
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useTranslation } from "react-i18next";
 import { setError } from "@/lib/features/recipes/recipesSlice";
@@ -151,15 +150,15 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		});
 	};
 
-	// useEffect(() => {
-	// 	if (view === true) {
-	// 		window.addEventListener("blur", handleCloseTab);
-	// 		// setSearchData({ type: "default", results: [] });
-	// 		return () => {
-	// 			window.removeEventListener("blur", handleCloseTab);
-	// 		};
-	// 	}
-	// }, [view, handleCloseTab]);
+	useEffect(() => {
+		if (view === true) {
+			window.addEventListener("blur", handleCloseTab);
+			// setSearchData({ type: "default", results: [] });
+			return () => {
+				window.removeEventListener("blur", handleCloseTab);
+			};
+		}
+	}, [view, handleCloseTab]);
 
 	function handleChange(event) {
 		resultsRef.current.scrollTo({ top: 0, left: 0 });
@@ -207,9 +206,11 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 				reduxDispatch(setError({ name: "submit", message: error.message }));
 			}
 		} else if (!navigator.onLine) {
-			// reduxDispatch(
-			// 	setError({ name: "network", message: "Check network connection." })
-			// );
+			// controllare reale utilità --->
+			reduxDispatch(
+				setError({ name: "network", message: "Check network connection." })
+			);
+			// <--- controllare reale utilità
 			setShowError(true);
 		} else {
 			return;
@@ -225,29 +226,10 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		setView(true);
 	}
 
-	// function handleCloseTab() {
-	// 	setSearchTerm("");
-
-	// 	setLeavesDisplay(() => {
-	// 		return { first: false, second: false, third: false };
-	// 	});
-	// 	scrollYProgress.set(0);
-	// 	if (searchData.results.length > 0 && view === true) {
-	// 		setSearchData({ type: "default", results: [] });
-	// 	}
-	// 	setView(() => {
-	// 		return false;
-	// 	});
-	// }
-
 	const [suggScope, suggAnimate] = useAnimate();
 	const [ulScope, ulAnimate] = useAnimate();
 
 	useEffect(() => {
-		console.log("effect");
-		// resultsRef.current.style.zIndex = "23";
-		// resultsRef.current.style.overflowX = "visible";
-		// resultsRef.current.style.overflowY = "auto";
 		if (view && searchData.type === "positive") {
 			ulAnimate(
 				"li",
@@ -286,9 +268,9 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 				/>
 			</form>
 			{isPending && (
-				<p className={styles["loading-ind"]}>
+				<div className={styles["loading-ind"]}>
 					<LoadingSmall />
-				</p>
+				</div>
 			)}
 			{view === true && (
 				<>
