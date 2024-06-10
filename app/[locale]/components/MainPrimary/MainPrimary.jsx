@@ -648,36 +648,36 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 												>
 													<div className={styles["plate-image-container"]}>
 														{/* Testing suspense ---> */}
-														<Suspense
+														{/* <Suspense
 															fallback={
 																<Image
 																	src={fallbackImg}
 																	style={{ transform: "translateX(0%)" }}
 																/>
 															}
-														>
-															<Image
-																style={
-																	settingsType !== "seasonal" ||
-																	(errorsReport.network &&
-																		errorsReport.network !== null)
-																		? { transform: "translateX(0%)" }
-																		: { transform: "translateX(-12%%)" }
-																}
-																className={styles["plate-image"]}
-																src={
-																	errorsReport.network &&
-																	errorsReport.network !== null
-																		? fallbackImg
-																		: recipe.image
-																}
-																alt={recipe.title}
-																width="230"
-																height="172"
-																quality={100}
-																priority
-															/>
-														</Suspense>
+														> */}
+														<Image
+															style={
+																settingsType !== "seasonal" ||
+																(errorsReport.network &&
+																	errorsReport.network !== null)
+																	? { transform: "translateX(0%)" }
+																	: { transform: "translateX(-12%%)" }
+															}
+															className={styles["plate-image"]}
+															src={
+																errorsReport.network &&
+																errorsReport.network !== null
+																	? fallbackImg
+																	: recipe.image
+															}
+															alt={recipe.title}
+															width="230"
+															height="172"
+															quality={100}
+															priority
+														/>
+														{/* </Suspense> */}
 													</div>
 												</motion.li>
 											);
