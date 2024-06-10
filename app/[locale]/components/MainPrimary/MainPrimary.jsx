@@ -268,8 +268,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			titleRef.current.parentElement.getBoundingClientRect().bottom -
 			formRef.current.getBoundingClientRect().bottom +
 			"px";
-		// titleRef.current.parentElement.style.zIndex = showModal ? "31" : "13";
-		console.log(flowerRef.current.parentElement.getBoundingClientRect());
 
 		flowerRef.current.style.top =
 			searchbarCenterY - flowerDim.height / 2 - 3 + "px";
@@ -329,8 +327,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		recVelocity.length = 0;
 	});
 
-	// console.log(recVelocity);
-
 	const [menuRef, animate] = useAnimate();
 	const [flowerRef, animateFlower] = useAnimate();
 
@@ -351,7 +347,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			if (recVelocity.length > 0) {
 				recVelocity.length = 0;
 			}
-			// xVelocity.set(0);
 		};
 	}, [recVelocity]);
 
@@ -394,15 +389,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	});
 
 	// Blur Effect
-	// useEffect(() => {
-	// 	if (view === true) {
-	// 		window.addEventListener("blur", handleCloseTab);
-	// 		// setSearchData({ type: "default", results: [] });
-	// 		return () => {
-	// 			window.removeEventListener("blur", handleCloseTab);
-	// 		};
-	// 	}
-	// }, [view, handleCloseTab]);
+	useEffect(() => {
+		if (view === true) {
+			window.addEventListener("blur", handleCloseTab);
+			// setSearchData({ type: "default", results: [] });
+			return () => {
+				window.removeEventListener("blur", handleCloseTab);
+			};
+		}
+	}, [view, handleCloseTab]);
 
 	return (
 		<>
@@ -419,11 +414,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					dragElastic={0}
 					dragSnapToOrigin={true}
 					style={{ x, zIndex: view ? "0" : "26" }}
-					// onTapStart={() => {
-					// 	if (recVelocity[0] === 0) {
-					// 		setRecVelocity([]);
-					// 	}
-					// }}
 				></motion.div>
 
 				<div
@@ -603,19 +593,33 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 								// 	}
 								// }}
 							>
-								<Image
-									src={bkgImage}
-									alt="wood-table"
-									fill
-									style={{
-										objectFit: "cover",
-										maxWidth: "100%",
-										borderRadius: "50%",
-										zIndex: 5
-									}}
-									quality={40}
-									priority
-								/>
+								<Suspense
+									fallback={
+										<div
+											style={{
+												width: "100%",
+												height: "100%",
+												backgroundColor: "#434343",
+												borderRadius: "50%",
+												zIndex: 5
+											}}
+										></div>
+									}
+								>
+									<Image
+										src={bkgImage}
+										alt="wood-table"
+										fill
+										style={{
+											objectFit: "cover",
+											maxWidth: "100%",
+											borderRadius: "50%",
+											zIndex: 5
+										}}
+										quality={40}
+										priority
+									/>
+								</Suspense>
 								<div
 									ref={internal}
 									className={styles["circular-border-internal"]}
@@ -643,29 +647,28 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 												>
 													<div className={styles["plate-image-container"]}>
 														{/* Testing suspense ---> */}
-														<Suspense fallback={<p>Loading...</p>}>
-															<Image
-																style={
-																	settingsType !== "seasonal" ||
-																	(errorsReport.network &&
-																		errorsReport.network !== null)
-																		? { transform: "translateX(0%)" }
-																		: { transform: "translateX(-20%)" }
-																}
-																className={styles["plate-image"]}
-																src={
-																	errorsReport.network &&
-																	errorsReport.network !== null
-																		? fallbackImg
-																		: recipe.image
-																}
-																alt={recipe.title}
-																width="230"
-																height="172"
-																quality={100}
-																priority={false}
-															/>
-														</Suspense>
+
+														<Image
+															style={
+																settingsType !== "seasonal" ||
+																(errorsReport.network &&
+																	errorsReport.network !== null)
+																	? { transform: "translateX(0%)" }
+																	: { transform: "translateX(-20%)" }
+															}
+															className={styles["plate-image"]}
+															src={
+																errorsReport.network &&
+																errorsReport.network !== null
+																	? fallbackImg
+																	: recipe.image
+															}
+															alt={recipe.title}
+															width="230"
+															height="172"
+															quality={100}
+															priority
+														/>
 													</div>
 												</motion.li>
 											);

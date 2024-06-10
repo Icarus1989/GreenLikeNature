@@ -347,6 +347,7 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 								alt={`${recipeData.title} sample image`}
 								width="556"
 								height="370"
+								priority
 							/>
 						</div>
 					</div>

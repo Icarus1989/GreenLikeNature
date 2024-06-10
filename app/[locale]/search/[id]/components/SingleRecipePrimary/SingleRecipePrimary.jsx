@@ -283,6 +283,7 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 								alt={`${recipeData.title} sample image`}
 								width="556"
 								height="370"
+								priority
 							/>
 						</div>
 					</div>
