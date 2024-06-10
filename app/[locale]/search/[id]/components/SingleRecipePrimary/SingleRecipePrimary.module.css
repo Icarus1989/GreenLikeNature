@@ -432,6 +432,7 @@
 	cursor: "\2713";
 	content: "\2713";
 	color: #fff;
+	fill: rgba(23, 160, 23, 0.95);
 	font-size: 1.8rem;
 	font-weight: 200;
 	text-align: center;
@@ -442,9 +443,10 @@
 .ingredient-checkbox:checked::after {
 	position: relative;
 	top: -35%;
-	left: 0%;
+	left: -23%;
 	content: "\2714";
 	color: rgba(23, 160, 23, 0.95);
+	fill: rgba(23, 160, 23, 0.95);
 }
 
 .ingredient > label {
@@ -682,4 +684,5 @@
 .reset-btn > svg {
 	width: 1.5rem;
 	height: 1.5rem;
+	fill: white;
 }
