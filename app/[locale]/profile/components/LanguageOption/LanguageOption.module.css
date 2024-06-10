@@ -19,6 +19,7 @@
 }
 
 .languages-legend {
+	position: relative;
 	display: grid;
 	place-items: center;
 	width: 25vw;
@@ -101,8 +102,8 @@
 
 .language-label > input:checked::after {
 	position: relative;
-	top: -35%;
-	left: 0%;
-	content: "\2714";
+	top: -40%;
+	left: -10%;
+	content: "\2713";
 	color: rgba(23, 160, 23, 0.95);
 }

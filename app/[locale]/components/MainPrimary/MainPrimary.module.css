@@ -204,7 +204,7 @@
 	height: 100%;
 	zoom: 75%;
 	filter: brightness(70%);
-	transform: translateX(-20%);
+	/* transform: translateX(-20%); */
 	z-index: 2;
 }
 

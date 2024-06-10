@@ -3,6 +3,7 @@
 	height: 15vh;
 	display: grid;
 	place-items: center;
+	position: relative;
 	border: 1px solid transparent;
 	margin-top: 0%;
 	margin-bottom: 4%;

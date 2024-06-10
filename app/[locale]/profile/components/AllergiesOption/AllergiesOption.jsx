@@ -223,16 +223,6 @@ export default function AllergiesOptions({
 					name: result.text.toLowerCase()
 				});
 
-				// setNewAllergen("");
-				// }
-				// }
-				// engTranslation(newAllergen, params.locale);
-				// setNewAllergen(() => {
-				// 	return inputText.toLowerCase();
-				// });
-
-				// test
-
 				setInputText("");
 			} else {
 				generalDispatch({
@@ -327,7 +317,6 @@ export default function AllergiesOptions({
 	}, [translatedArr]);
 
 	useEffect(() => {
-		console.log(allergensList);
 		reduxDispatch(
 			filterByAllergens({
 				intolerances: settingsIntol,
@@ -335,133 +324,6 @@ export default function AllergiesOptions({
 			})
 		);
 	}, [settingsIntol, allergiesList]);
-	// <--- testing o Navigation
-
-	// useEffect(() => {
-	// 	let ignore = false;
-
-	// 	if (newAllergen.length > 0 && !ignore) {
-	// 		async function engTranslation(text, locale) {
-	// 			const result = await translateToEng(text, locale);
-	// 			console.log(result);
-
-	// 			// if (!ignore) {
-	// 			//
-	// 			generalDispatch({
-	// 				type: "add_allergen",
-	// 				name: result.text.toLowerCase()
-	// 			});
-
-	// 			setNewAllergen("");
-	// 			// }
-	// 		}
-	// 		engTranslation(newAllergen, params.locale);
-	// 	}
-
-	// 	return () => {
-	// 		ignore = true;
-	// 	};
-	// }, [newAllergen]);
-
-	// const transMemo = useMemo(() => {
-	// 	const result = translateList(allergiesList, params.locale);
-	// 	return result;
-	// }, [allergiesList, params.locale]);
-
-	// test
-
-	// const translateArr = useMemo(async () => {
-	// 	try {
-	// 		const result = await translateList(allergiesList, params.locale);
-	// 		if (result[0]?.error) {
-	// 			throw new Error(result[0].error);
-	// 		} else {
-	// 			reduxDispatch(setError({ name: "list", message: null }));
-	// 			setVisualError(false);
-	// 			const namesList = await result.map((elem) => elem.text);
-	// 			setTermList(() => {
-	// 				return [...namesList];
-	// 			});
-	// 		}
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 		reduxDispatch(setError({ name: "list", message: error.message }));
-	// 		setVisualError(true);
-	// 	}
-	// }, [allergiesList, params.locale]);
-
-	// test
-
-	// async function translateToLocale() {
-	// 	try {
-	// 		const result = translateArr();
-	// 		if (result[0]?.error) {
-	// 			throw new Error(result[0].error);
-	// 		} else {
-	// 			reduxDispatch(setError({ name: "list", message: null }));
-	// 			setVisualError(false);
-	// 			const namesList = await result.map((elem) => elem.text);
-	// 			setTermList(() => {
-	// 				return [...namesList];
-	// 			});
-	// 		}
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 		reduxDispatch(setError({ name: "list", message: error.message }));
-	// 		setVisualError(true);
-	// 	}
-	// }
-
-	// const fetchTranslation = useMemo(() => {
-	// 	translateToLocale();
-	// }, []);
-
-	// useEffect(() => {
-	// 	let ignore = false;
-
-	// 	const translateToLocale = async () => {
-	// 		if (allergiesList.length > 0) {
-	// 			const result = await translateList(allergiesList, params.locale);
-	// 			// console.log(transMemo);
-
-	// 			// const result = await transMemo;
-
-	// 			if (result[0]?.error) {
-	// 				reduxDispatch(setError({ name: "list", message: result[0]?.error }));
-	// 				setVisualError(true);
-	// 			} else if (!result[0]?.error) {
-	// 				reduxDispatch(setError({ name: "list", message: null }));
-	// 				setVisualError(false);
-	// 			}
-
-	// 			// restituire questo --->
-	// 			const namesList = await result.map((elem) => elem.text);
-	// 			// portare fuori funzione da Effect
-	// 			// if (!ignore) {
-	// 			setTermList(() => {
-	// 				return namesList;
-	// 			});
-	// 		} else {
-	// 			return;
-	// 		}
-	// 		// }
-	// 	};
-
-	// 	if (allergiesList.length > 0 && !ignore) {
-	// 		// const res = translateToLocale();
-	// 		// console.log(res);
-
-	// 		// // restituire questo --->
-	// 		// const namesList = res.map((elem) => elem.text);
-	// 		// portare fuori funzione da Effect
-	// 		// if (!ignore) {
-	// 		translateToLocale();
-	// 	}
-
-	// 	return () => {
-	// 		ignore = true;
-	// 	};
-	// }, [allergiesList, params.locale]);
 
 	return (
 		<>

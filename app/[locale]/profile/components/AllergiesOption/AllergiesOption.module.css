@@ -17,6 +17,7 @@
 }
 
 .allergies-legend {
+	position: relative;
 	display: grid;
 	place-items: center;
 	width: 25vw;
