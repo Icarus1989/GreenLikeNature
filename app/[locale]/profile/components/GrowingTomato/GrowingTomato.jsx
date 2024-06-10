@@ -39,10 +39,7 @@ export default function GrowingTomato({
 				}
 			],
 			delay: 500,
-			filter: [
-				{ value: "hue-rotate(80deg)", delay: 0 },
-				{ value: "hue-rotate(0deg)", delay: 500 }
-			],
+			filter: ["hue-rotate(80deg)", "hue-rotate(0deg)"],
 			autoplay: false,
 			easing: "easeOutCubic",
 			duration: 2500,

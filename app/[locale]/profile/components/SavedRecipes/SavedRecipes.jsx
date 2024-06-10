@@ -76,7 +76,8 @@ export default function SavedRecipes({ handleClick }) {
 									return handleClear();
 								}}
 							>
-								<GoX /> {t("btn_cancelall")}
+								{t("btn_cancelall")}
+								<GoX />
 							</button>
 						</div>
 					</>
