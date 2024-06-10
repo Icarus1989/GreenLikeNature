@@ -135,7 +135,7 @@
 
 .saved-recipes-list > li > span {
 	/* width: 60%; */
-	margin: 0% 5% 0% 0%;
+	/* margin: 0% 5% 0% 0%; */
 	text-align: center;
 	text-transform: uppercase;
 	font-weight: 600;
@@ -145,7 +145,7 @@
 
 .saved-recipes-list > li > button {
 	position: relative;
-	right: 5%;
+	/* right: 5%; */
 	display: grid;
 	place-items: center;
 	width: 11vw;
@@ -156,6 +156,7 @@
 	border-bottom: 2px solid #a20505f8;
 	border-left: 1px solid #a20505f8;
 	border-radius: 43%;
+	margin-right: 3%;
 }
 
 .saved-recipes-list > li > button:active {
@@ -204,7 +205,7 @@
 	height: 80%;
 	color: rgba(230, 230, 230, 0.9);
 	font-size: 16px;
-	font-weight: 600;
+	font-weight: 700;
 	text-transform: uppercase;
 	background-color: #ba21218c;
 	padding: 2% 4% 2% 4%;

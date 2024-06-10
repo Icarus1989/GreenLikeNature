@@ -38,8 +38,11 @@ export default function GrowingTomato({
 					value: tomatoEndPath
 				}
 			],
-			delay: 500,
-			filter: ["hue-rotate(80deg)", "hue-rotate(0deg)"],
+			delay: 50,
+			filter: [
+				{ value: "hue-rotate(80deg)", delay: 0 },
+				{ value: "hue-rotate(0deg)", delay: 500 }
+			],
 			autoplay: false,
 			easing: "easeOutCubic",
 			duration: 2500,
@@ -192,8 +195,8 @@ export default function GrowingTomato({
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
-						strokeWidth: "1px"
-						// filter: "hue-rotate(80deg)"
+						strokeWidth: "1px",
+						filter: "hue-rotate(80deg)"
 					}}
 					d={tomatoBeginPath}
 				/>
