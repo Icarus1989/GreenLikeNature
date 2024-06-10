@@ -38,7 +38,7 @@ export default function GrowingTomato({
 					value: tomatoEndPath
 				}
 			],
-			delay: 50,
+			delay: 500,
 			filter: [
 				{ value: "hue-rotate(80deg)", delay: 0 },
 				{ value: "hue-rotate(0deg)", delay: 500 }
