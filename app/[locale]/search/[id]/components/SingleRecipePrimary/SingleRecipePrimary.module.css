@@ -431,7 +431,7 @@
 .ingredient-checkbox:checked {
 	cursor: "\2713";
 	content: "\2713";
-	color: #fff;
+	color: rgba(23, 160, 23, 0.95);
 	fill: rgba(23, 160, 23, 0.95);
 	font-size: 1.8rem;
 	font-weight: 200;
@@ -673,6 +673,10 @@
 		rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
+.reset-btn:active > svg {
+	fill: white;
+}
+
 .reset-btn:disabled {
 	background: #494848de;
 	border: 3px solid #232323dd;
@@ -684,5 +688,4 @@
 .reset-btn > svg {
 	width: 1.5rem;
 	height: 1.5rem;
-	fill: white;
 }
