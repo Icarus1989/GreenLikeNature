@@ -311,7 +311,7 @@
 .results {
 	display: grid;
 	place-items: start center;
-	width: 101dvw;
+	width: 100dvw;
 	height: 56dvh;
 	/* height: auto; */
 	position: relative;
@@ -349,8 +349,6 @@
 	text-decoration-thickness: 3px;
 	font-weight: 400;
 	padding: 2% 3% 2% 3%;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .term-label {
