@@ -17,6 +17,7 @@
 
 .recipe-image-container {
 	position: absolute;
+	left: 0%;
 	width: 23dvh;
 	height: 23dvh;
 	overflow: hidden;
@@ -60,9 +61,12 @@
 	height: 100%;
 	padding: 2%;
 	z-index: 100;
+	overflow: hidden;
 }
 
 .recipe-title {
+	position: relative;
+	z-index: 24;
 	color: #f0f0f0f0;
 	font-size: 16px;
 	font-weight: 600;
