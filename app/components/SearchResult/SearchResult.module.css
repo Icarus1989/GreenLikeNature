@@ -35,10 +35,13 @@
 
 .recipe-image {
 	position: absolute;
-	left: -22%;
-	width: 23.5dvh;
-	height: 23.5dvh;
-	border: 20px solid #0124082d;
+	left: -15%;
+	/* left: -22%; */
+	width: 18.5dvh;
+	height: 18dvh;
+	/* width: 23.5dvh;
+	height: 23dvh; */
+	/* border: 20px solid #0124082d; */
 	border-radius: 50%;
 	z-index: 4;
 
