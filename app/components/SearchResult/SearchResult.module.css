@@ -10,7 +10,7 @@
 	border: 1px solid transparent;
 	border-left: 8px ridge rgba(3, 176, 3, 0.75);
 	margin: 4%;
-	z-index: 2;
+	z-index: 1;
 	overflow: hidden;
 	/* opacity: 0; */
 }
@@ -21,13 +21,13 @@
 	width: 23dvh;
 	height: 23dvh;
 	overflow: hidden;
-	z-index: 0;
+	z-index: 2;
 	/* border-radius: 50%; */
 }
 
 .recipe-image-container > circle {
 	position: relative;
-	z-index: 1;
+	z-index: 3;
 	/* border-radius: 50%; */
 
 	/* filter: drop-shadow(23px 0px 20px black); */
@@ -37,12 +37,12 @@
 	position: absolute;
 	left: -22%;
 	width: 23.5dvh;
-	height: 23dvh;
+	height: 23.5dvh;
 	border: 20px solid #0124082d;
 	border-radius: 50%;
-	z-index: 0;
+	z-index: 4;
 
-	filter: brightness(0.95);
+	/* filter: brightness(0.95); */
 	/* box-shadow: inset rgba(19, 180, 54, 0.254) 4px 3px 10px,
 		rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
 		rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.15) 0px 16px 8px,
@@ -64,6 +64,8 @@
 }
 
 .recipe-title {
+	position: relative;
+	z-index: 6;
 	color: #f0f0f0f0;
 	font-size: 16px;
 	font-weight: 600;
