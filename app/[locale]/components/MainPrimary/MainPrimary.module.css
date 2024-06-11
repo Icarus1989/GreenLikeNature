@@ -310,7 +310,7 @@
 
 .results {
 	display: grid;
-	place-items: center;
+	place-items: start center;
 	width: 101dvw;
 	height: 56dvh;
 	/* height: auto; */

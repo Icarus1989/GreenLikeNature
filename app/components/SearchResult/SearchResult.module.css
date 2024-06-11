@@ -12,7 +12,7 @@
 	margin: 4%;
 	z-index: 2;
 	overflow: hidden;
-	opacity: 0;
+	opacity: 1;
 }
 
 .recipe-image-container {
@@ -39,7 +39,7 @@
 	height: 23dvh;
 	border: 20px solid #0124082d;
 	border-radius: 50%;
-	z-index: 0;
+	z-index: 23;
 
 	filter: brightness(0.95);
 	/* box-shadow: inset rgba(19, 180, 54, 0.254) 4px 3px 10px,

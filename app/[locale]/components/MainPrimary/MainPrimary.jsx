@@ -390,15 +390,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	});
 
 	// Blur Effect
-	useEffect(() => {
-		if (view === true) {
-			window.addEventListener("blur", handleCloseTab);
-			// setSearchData({ type: "default", results: [] });
-			return () => {
-				window.removeEventListener("blur", handleCloseTab);
-			};
-		}
-	}, [view, handleCloseTab]);
+	// useEffect(() => {
+	// 	if (view === true) {
+	// 		window.addEventListener("blur", handleCloseTab);
+	// 		// setSearchData({ type: "default", results: [] });
+	// 		return () => {
+	// 			window.removeEventListener("blur", handleCloseTab);
+	// 		};
+	// 	}
+	// }, [view, handleCloseTab]);
 
 	return (
 		<>
