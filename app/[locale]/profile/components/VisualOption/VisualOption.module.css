@@ -123,6 +123,7 @@
 	position: absolute;
 	width: 1.8em;
 	height: 1.8em;
+	background: transparent;
 	z-index: 2;
 	margin-left: 0.2rem;
 	margin-right: 1rem;
@@ -132,6 +133,7 @@
 	position: absolute;
 	width: 1.8em;
 	height: 1.8em;
+	background: transparent;
 	z-index: 1;
 	margin-left: 0.2rem;
 	margin-right: 1rem;
@@ -141,6 +143,7 @@
 	position: absolute;
 	width: 1.7em;
 	height: 1.7em;
+	background: transparent;
 	z-index: 2;
 	margin-left: 0.2rem;
 	margin-right: 1rem;
@@ -150,6 +153,7 @@
 	position: absolute;
 	width: 1.7em;
 	height: 1.7em;
+	background: transparent;
 	z-index: 1;
 	margin-left: 0.2rem;
 	margin-right: 1rem;
@@ -174,14 +178,15 @@
 
 .inputs-container > label > input {
 	appearance: none;
-	margin-left: 0rem;
-	margin-right: 1rem;
 	font: inherit;
 	color: currentColor;
 	width: 2.3em;
 	height: 2.3em;
+	background: transparent;
 	border: 0.15em solid transparent;
 	border-radius: 0;
+	margin-left: 0rem;
+	margin-right: 1rem;
 	transform: translateY(-0.075em);
 	z-index: 3;
 }

@@ -199,12 +199,12 @@
 }
 
 .plate-image {
-	border-radius: 50%;
+	/* border-radius: 50%; */
 	width: auto;
 	height: 100%;
 	zoom: 75%;
 	filter: brightness(70%);
-	/* transform: translateX(-20%); */
+	/* transform: translateX(-8%); */
 	z-index: 2;
 }
 

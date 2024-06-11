@@ -7,7 +7,6 @@ export const GeneralDispatchContext = createContext(null);
 
 export default function GeneralProvider({ children }) {
 	const [initialSettings, setInitialSettings] = useState({
-		"title-animation": false,
 		"saved-recipes": [],
 		"recent-recipes": [],
 		"complete-recipes": [],

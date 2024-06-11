@@ -662,7 +662,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 																(errorsReport.network &&
 																	errorsReport.network !== null)
 																	? { transform: "translateX(0%)" }
-																	: { transform: "translateX(-12%%)" }
+																	: { transform: "translateX(-8%)" }
 															}
 															className={styles["plate-image"]}
 															src={
