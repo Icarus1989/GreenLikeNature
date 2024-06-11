@@ -26,7 +26,7 @@ export default function SearchResult({ id, title, image, saved }) {
 					<defs>
 						<linearGradient id="myCircleGradient">
 							<stop offset="0%" stopColor="#0f8b0f" />
-							<stop offset="95%" stopColor="#232323" />
+							<stop offset="80%" stopColor="#232323" />
 						</linearGradient>
 					</defs>
 				</svg>

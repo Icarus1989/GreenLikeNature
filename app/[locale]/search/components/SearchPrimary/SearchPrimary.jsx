@@ -86,7 +86,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 
 	const formRef = useRef(null);
 	const resultsRef = useRef(null);
-	const searchResults = useRef(null);
+	// const searchResults = useRef(null);
 	const leafBranch = useRef(null);
 
 	const data = recipesList.filter((recipe) =>
@@ -150,15 +150,15 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		});
 	};
 
-	useEffect(() => {
-		if (view === true) {
-			window.addEventListener("blur", handleCloseTab);
-			// setSearchData({ type: "default", results: [] });
-			return () => {
-				window.removeEventListener("blur", handleCloseTab);
-			};
-		}
-	}, [view, handleCloseTab]);
+	// useEffect(() => {
+	// 	if (view === true) {
+	// 		window.addEventListener("blur", handleCloseTab);
+	// 		// setSearchData({ type: "default", results: [] });
+	// 		return () => {
+	// 			window.removeEventListener("blur", handleCloseTab);
+	// 		};
+	// 	}
+	// }, [view, handleCloseTab]);
 
 	function handleChange(event) {
 		resultsRef.current.scrollTo({ top: 0, left: 0 });
@@ -421,7 +421,7 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 				) : (
 					<motion.div
 						className={styles["results-container"]}
-						ref={searchResults}
+						// ref={searchResults}
 					>
 						{searchData.type === "positive" || searchData.type === "empty" ? (
 							<ul ref={ulScope} className={styles["list"]}>
