@@ -212,6 +212,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		} else {
 			return;
 		}
+		formRef.current.children[0].children[1].blur();
+		// console.log(formRef.current.children[0].children[1]);
 	}
 
 	const handleCloseTab = useCallback(() => {

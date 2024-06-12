@@ -215,6 +215,9 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		} else {
 			return;
 		}
+		// formRef.current.;
+		formRef.current.children[0].children[1].blur();
+		// console.log(formRef.current.children[0].children[1]);
 	}
 
 	function searchBySeasonal(name) {
