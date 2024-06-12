@@ -389,6 +389,29 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		}
 	});
 
+	// const [suggScope, suggAnimate] = useAnimate();
+	// const [ulScope, ulAnimate] = useAnimate();
+
+	// useEffect(() => {
+	// 	if (view && searchData.type === "positive") {
+	// 		ulAnimate(
+	// 			"li",
+	// 			{ opacity: 1 },
+	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
+	// 		);
+	// 	}
+	// }, [view, searchData.type]);
+
+	// useEffect(() => {
+	// 	if (view && data.length > 0) {
+	// 		suggAnimate(
+	// 			"li",
+	// 			{ opacity: 1 },
+	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
+	// 		);
+	// 	}
+	// }, [view, data.length]);
+
 	// Blur Effect
 	// useEffect(() => {
 	// 	if (view === true) {
