@@ -38,3 +38,18 @@
 .firstTomatoPath {
 	filter: hue-rotate(80deg);
 }
+
+.firstTomatoPathAnim {
+	animation: ripe 4s linear;
+}
+
+@keyframes ripe {
+	0% {
+		-webkit-filter: hue-rotate(80deg);
+		filter: hue-rotate(80deg);
+	}
+	100% {
+		-webkit-filter: hue-rotate(0deg);
+		filter: hue-rotate(0deg);
+	}
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import anime from "animejs/lib/anime.es.js";
 import styles from "./GrowingTomato.module.css";
 
@@ -27,6 +27,8 @@ export default function GrowingTomato({
 	yPerc,
 	autoplay
 }) {
+	const tomatoPathRef = useRef(null);
+
 	useEffect(() => {
 		const tomatoPathAnim = anime({
 			targets: `#firstTomatoPath${id}`,
@@ -49,15 +51,15 @@ export default function GrowingTomato({
 			loop: false
 		});
 
-		const tomatoPathHueRot = anime({
-			targets: `#firstTomatoPath${id}`,
-			filter: "hue-rotate(0deg)",
-			delay: 1500,
-			autoplay: false,
-			easing: "linear",
-			duration: 2500,
-			loop: false
-		});
+		// const tomatoPathHueRot = anime({
+		// 	targets: `#firstTomatoPath${id}`,
+		// 	filter: "hue-rotate(0deg)",
+		// 	delay: 1500,
+		// 	autoplay: false,
+		// 	easing: "linear",
+		// 	duration: 2500,
+		// 	loop: false
+		// });
 
 		const leavesUpAnim = anime({
 			targets: `#leavesUp${id}`,
@@ -155,7 +157,8 @@ export default function GrowingTomato({
 		if (autoplay !== false) {
 			tomatoSvgAnim.play();
 			tomatoPathAnim.play();
-			tomatoPathHueRot.play();
+			// tomatoPathHueRot.play();
+			tomatoPathRef.current.style.animation = "ripe 3s linear";
 			leavesUpAnim.play();
 			leavesDownAnim.play();
 			plantLightAnim.play();
@@ -202,13 +205,20 @@ export default function GrowingTomato({
 			>
 				<path
 					id={`firstTomatoPath${id}`}
-					className={styles["firstTomatoPath"]}
+					ref={tomatoPathRef}
+					className={
+						autoplay === false
+							? styles["firstTomatoPath"]
+							: styles["firstTomatoPathAnim"]
+					}
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
 						strokeWidth: "1px"
+						// animation:
 						// filter: "hue-rotate(80deg)"
 					}}
+					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}
 				/>
 				<path
