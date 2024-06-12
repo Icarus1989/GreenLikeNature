@@ -41,10 +41,11 @@ export default function GrowingTomato({
 				}
 			],
 			delay: 50,
-			// filter: [
-			// 	{ value: "hue-rotate(80deg)", delay: 0 },
-			// 	{ value: "hue-rotate(0deg)", delay: 500 }
-			// ],
+
+			filter: [
+				{ value: "hue-rotate(80deg)", delay: 0 },
+				{ value: "hue-rotate(0deg)", delay: 500 }
+			],
 			autoplay: false,
 			easing: "linear",
 			duration: 2500,
@@ -53,7 +54,11 @@ export default function GrowingTomato({
 
 		// const tomatoPathHueRot = anime({
 		// 	targets: `#firstTomatoPath${id}`,
-		// 	filter: "hue-rotate(0deg)",
+		// 	// filter: "hue-rotate(0deg)",
+		// 	fill: [
+		// 		{ value: `url(#tomatoRedGradient${id})` },
+		// 		{ value: `url(#leavesGradient)` }
+		// 	],
 		// 	delay: 1500,
 		// 	autoplay: false,
 		// 	easing: "linear",
@@ -158,7 +163,6 @@ export default function GrowingTomato({
 			tomatoSvgAnim.play();
 			tomatoPathAnim.play();
 			// tomatoPathHueRot.play();
-			tomatoPathRef.current.style.animation = "ripe 3s linear";
 			leavesUpAnim.play();
 			leavesDownAnim.play();
 			plantLightAnim.play();
@@ -166,6 +170,13 @@ export default function GrowingTomato({
 			endLeavesAnim.play();
 		}
 	}, [autoplay, id]);
+
+	useEffect(() => {
+		if (autoplay !== false) {
+			tomatoPathRef.current.style.animation = "ripe 3s linear";
+		}
+	}, [autoplay]);
+
 	return (
 		<div className={styles["animation-container"]}>
 			<svg
@@ -207,16 +218,18 @@ export default function GrowingTomato({
 					id={`firstTomatoPath${id}`}
 					ref={tomatoPathRef}
 					className={
-						autoplay === false
-							? styles["firstTomatoPath"]
-							: styles["firstTomatoPathAnim"]
+						styles["firstTomatoPath"]
+						// autoplay === false
+						// 	? styles["firstTomatoPath"]
+						// 	: styles["firstTomatoPathAnim"]
+						// : styles["firstTomatoPath firstTomatoPathAnim"] da provare pom
 					}
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
-						strokeWidth: "1px"
+						strokeWidth: "1px",
 						// animation:
-						// filter: "hue-rotate(80deg)"
+						filter: "hue-rotate(80deg)"
 					}}
 					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}

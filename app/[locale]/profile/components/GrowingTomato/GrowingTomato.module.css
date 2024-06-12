@@ -36,11 +36,12 @@
 }
 
 .firstTomatoPath {
-	filter: hue-rotate(80deg);
+	/* filter: hue-rotate(80deg);
+	-webkit-filter: hue-rotate(80deg); */
 }
 
 .firstTomatoPathAnim {
-	animation: ripe 4s linear;
+	/* animation: ripe 4s linear; */
 }
 
 @keyframes ripe {
