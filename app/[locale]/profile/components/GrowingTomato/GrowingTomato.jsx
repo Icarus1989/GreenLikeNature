@@ -51,11 +51,8 @@ export default function GrowingTomato({
 
 		const tomatoPathHueRot = anime({
 			targets: `#firstTomatoPath${id}`,
-			filter: [
-				{ value: "hue-rotate(80deg)", delay: 0 },
-				{ value: "hue-rotate(0deg)", delay: 500 }
-			],
-			delay: 50,
+			filter: "hue-rotate(0deg)",
+			delay: 1500,
 			autoplay: false,
 			easing: "easeOutCubic",
 			duration: 2500,
