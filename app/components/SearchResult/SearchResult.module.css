@@ -32,10 +32,15 @@
 		rgba(0, 0, 0, 0.147) 23px 0px 16px;
 }
 
-.recipe-image-container > circle {
+.recipe-image-circle {
 	position: relative;
+	width: 18.5dvh;
+	height: 18.5dvh;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
 	z-index: 3;
-	/* border-radius: 50%; */
+	border-radius: 50%;
 
 	/* filter: drop-shadow(23px 0px 20px black); */
 }
@@ -49,6 +54,7 @@
 	/* width: 23.5dvh;
 	height: 23dvh; */
 	/* border: 20px solid #0124082d; */
+	overflow: hidden;
 	border-radius: 50%;
 	z-index: 4;
 

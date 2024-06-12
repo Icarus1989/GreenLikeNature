@@ -31,14 +31,22 @@ export default function SearchResult({ id, title, image, saved }) {
 					</defs>
 				</svg> */}
 				<div className={styles["recipe-image-container"]}>
-					<Image
-						className={styles["recipe-image"]}
-						src={image}
-						alt={`${title} image`}
-						// style={{ overflow: "hidden" }}
-						width={312}
-						height={231}
-					/>
+					<div className={styles["recipe-image-circle"]}>
+						<Image
+							className={styles["recipe-image"]}
+							src={image}
+							alt={`${title} image`}
+							// style={{ overflow: "hidden" }}
+							// width={312}
+							// height={231}
+							quality={100}
+							fill
+							sizes="100%"
+							style={{
+								objectFit: "cover"
+							}}
+						/>
+					</div>
 				</div>
 			</Link>
 		</li>
