@@ -316,7 +316,7 @@
 	/* height: auto; */
 	position: relative;
 	z-index: 35;
-	margin: 8dvh 2% 0% 2%;
+	margin: 8dvh 0% 0% 0%;
 	overflow-y: scroll;
 }
 
