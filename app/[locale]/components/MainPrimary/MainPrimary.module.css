@@ -331,7 +331,7 @@
 	font-weight: 600;
 	text-align: center;
 	background-color: #2d2d2d;
-	/* padding: 4% 0% 4% 0%; */
+	padding: 0% 0% 10% 0%;
 	border-radius: 15px;
 	list-style: none;
 	overflow-x: hidden;
@@ -357,6 +357,7 @@
 	text-decoration-thickness: 3px;
 	font-weight: 400;
 	padding: 2% 3% 2% 3%;
+	margin-top: 2%;
 }
 
 .term-label {
