@@ -30,7 +30,8 @@ import {
 	useMotionValueEvent,
 	useMotionTemplate,
 	useAnimate,
-	transform
+	transform,
+	stagger
 } from "framer-motion";
 
 import AnimatedText from "@/app/[locale]/components/AnimatedText/AnimatedText";
@@ -389,28 +390,28 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		}
 	});
 
-	// const [suggScope, suggAnimate] = useAnimate();
-	// const [ulScope, ulAnimate] = useAnimate();
+	const [suggScope, suggAnimate] = useAnimate();
+	const [ulScope, ulAnimate] = useAnimate();
 
-	// useEffect(() => {
-	// 	if (view && searchData.type === "positive") {
-	// 		ulAnimate(
-	// 			"li",
-	// 			{ opacity: 1 },
-	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
-	// 		);
-	// 	}
-	// }, [view, searchData.type]);
+	useEffect(() => {
+		if (view && searchData.type === "positive") {
+			ulAnimate(
+				"li",
+				{ opacity: 1 },
+				{ delay: stagger(0.2, { startDelay: 0.15 }) }
+			);
+		}
+	}, [view, searchData.type]);
 
-	// useEffect(() => {
-	// 	if (view && data.length > 0) {
-	// 		suggAnimate(
-	// 			"li",
-	// 			{ opacity: 1 },
-	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
-	// 		);
-	// 	}
-	// }, [view, data.length]);
+	useEffect(() => {
+		if (view && filteredList.length > 0) {
+			suggAnimate(
+				"li",
+				{ opacity: 1 },
+				{ delay: stagger(0.2, { startDelay: 0.15 }) }
+			);
+		}
+	}, [view, filteredList.length]);
 
 	// Blur Effect
 	// useEffect(() => {
@@ -520,7 +521,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 								<div className={styles["results"]}>
 									{searchData.type === "positive" ||
 									searchData.type === "empty" ? (
-										<ul className={styles["list"]}>
+										<ul className={styles["list"]} ref={ulScope}>
 											{" "}
 											{/* controllare traduzione i18 qui ---> */}
 											<p className={styles["list-label"]}>
@@ -560,7 +561,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 												})}
 										</ul>
 									) : filteredList.length > 0 ? (
-										<ul className={styles["list"]}>
+										<ul className={styles["list"]} ref={suggScope}>
 											{" "}
 											<span className={styles["list-label"]}>
 												Suggerimenti:
