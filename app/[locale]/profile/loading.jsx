@@ -7,6 +7,7 @@ export default function SettingsLoading() {
 			<section
 				style={{
 					position: "fixed",
+					top: "0%",
 					display: "grid",
 					placeItems: "center",
 					width: "100vw",

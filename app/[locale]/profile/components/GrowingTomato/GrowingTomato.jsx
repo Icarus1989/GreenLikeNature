@@ -44,7 +44,7 @@ export default function GrowingTomato({
 			// 	{ value: "hue-rotate(0deg)", delay: 500 }
 			// ],
 			autoplay: false,
-			easing: "easeOutCubic",
+			easing: "linear",
 			duration: 2500,
 			loop: false
 		});
@@ -54,7 +54,7 @@ export default function GrowingTomato({
 			filter: "hue-rotate(0deg)",
 			delay: 1500,
 			autoplay: false,
-			easing: "easeOutCubic",
+			easing: "linear",
 			duration: 2500,
 			loop: false
 		});
@@ -107,7 +107,7 @@ export default function GrowingTomato({
 			],
 			fill: "none",
 			autoplay: false,
-			easing: "linear",
+			// easing: "linear",
 			duration: 2800,
 			loop: false,
 			easing: "spring(1.2, 80, 7, 0)"

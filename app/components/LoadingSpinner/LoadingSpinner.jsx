@@ -15,7 +15,7 @@ export default function LoadingSpinner({ children }) {
 				<path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
 			</svg>
 			{children}
-			<svg
+			{/* <svg
 				width="500"
 				height="500"
 				xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ export default function LoadingSpinner({ children }) {
 						<stop offset="90%" stopColor="rgba(2, 180, 2, 1.0)" />
 					</linearGradient>
 				</defs>
-			</svg>
+			</svg> */}
 		</div>
 	);
 }

@@ -17,6 +17,10 @@ import ErrorModal from "../../../../components/ErrorModal/ErrorModal";
 
 import styles from "./SettingsPrimary.module.css";
 
+// for testing
+import SettingsLoading from "../../loading";
+// for testing
+
 // test
 
 import {
@@ -237,5 +241,6 @@ export default function SettingsPrimary({
 				/>
 			)}
 		</section>
+		// <SettingsLoading />
 	);
 }

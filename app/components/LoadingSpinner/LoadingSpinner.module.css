@@ -70,7 +70,9 @@
 }
 
 .leaves-svg {
-	position: absolute;
+	display: none;
+	position: fixed;
+	top: 25%;
 	z-index: 1;
 	transform: scale(4);
 	transform-origin: center;
