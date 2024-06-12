@@ -39,10 +39,23 @@ export default function GrowingTomato({
 				}
 			],
 			delay: 50,
+			// filter: [
+			// 	{ value: "hue-rotate(80deg)", delay: 0 },
+			// 	{ value: "hue-rotate(0deg)", delay: 500 }
+			// ],
+			autoplay: false,
+			easing: "easeOutCubic",
+			duration: 2500,
+			loop: false
+		});
+
+		const tomatoPathHueRot = anime({
+			targets: `#firstTomatoPath${id}`,
 			filter: [
 				{ value: "hue-rotate(80deg)", delay: 0 },
 				{ value: "hue-rotate(0deg)", delay: 500 }
 			],
+			delay: 50,
 			autoplay: false,
 			easing: "easeOutCubic",
 			duration: 2500,
@@ -145,6 +158,7 @@ export default function GrowingTomato({
 		if (autoplay !== false) {
 			tomatoSvgAnim.play();
 			tomatoPathAnim.play();
+			tomatoPathHueRot.play();
 			leavesUpAnim.play();
 			leavesDownAnim.play();
 			plantLightAnim.play();
