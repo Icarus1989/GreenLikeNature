@@ -15,7 +15,7 @@ export default function SearchResult({ id, title, image, saved }) {
 				<span className={styles["recipe-title"]}>
 					{title.length > 50 ? `${title.slice(0, 51)}...` : title}
 				</span>
-				<svg viewBox="0 0 20 10" className={styles["recipe-image-container"]}>
+				{/* <svg viewBox="0 0 20 10" className={styles["recipe-image-container"]}>
 					<circle
 						cx="18%"
 						cy="50%"
@@ -29,15 +29,17 @@ export default function SearchResult({ id, title, image, saved }) {
 							<stop offset="80%" stopColor="#232323" />
 						</linearGradient>
 					</defs>
-				</svg>
-				<Image
-					className={styles["recipe-image"]}
-					src={image}
-					alt={`${title} image`}
-					style={{ overflow: "hidden" }}
-					width={312}
-					height={231}
-				/>
+				</svg> */}
+				<div className={styles["recipe-image-container"]}>
+					<Image
+						className={styles["recipe-image"]}
+						src={image}
+						alt={`${title} image`}
+						// style={{ overflow: "hidden" }}
+						width={312}
+						height={231}
+					/>
+				</div>
 			</Link>
 		</li>
 	);
