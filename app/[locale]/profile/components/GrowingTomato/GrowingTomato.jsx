@@ -42,10 +42,10 @@ export default function GrowingTomato({
 			],
 			delay: 50,
 
-			filter: [
-				{ value: "hue-rotate(80deg)", delay: 0 },
-				{ value: "hue-rotate(0deg)", delay: 500 }
-			],
+			// filter: [
+			// 	{ value: "hue-rotate(80deg)", delay: 0 },
+			// 	{ value: "hue-rotate(0deg)", delay: 500 }
+			// ],
 			autoplay: false,
 			easing: "linear",
 			duration: 2500,
@@ -173,8 +173,24 @@ export default function GrowingTomato({
 
 	useEffect(() => {
 		if (autoplay !== false) {
-			tomatoPathRef.current.style.animation = "ripe 3s linear";
+			// tomatoPathRef.current.style.animationName = "ripe";
+			// tomatoPathRef.current.style.animationDuration = "3s";
+			// tomatoPathRef.current.style.animationComposition = "replace";
+			// tomatoPathRef.current.style.animationTimingFunction = "linear";
+
+			tomatoPathRef.current.animate(
+				[
+					{ filter: "hue-rotate(80deg)" },
+					{ filter: "hue-rotate(40deg)", offset: 0.8 },
+					{ filter: "hue-rotate(0deg)" }
+				],
+				2000
+			);
+			tomatoPathRef.current.style.filter = "hue-rotate(0deg)";
+		} else {
+			tomatoPathRef.current.style.filter = "hue-rotate(80deg)";
 		}
+		console.log(autoplay);
 	}, [autoplay]);
 
 	return (
@@ -227,9 +243,9 @@ export default function GrowingTomato({
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
-						strokeWidth: "1px",
+						strokeWidth: "1px"
 						// animation:
-						filter: "hue-rotate(80deg)"
+						// filter: "hue-rotate(80deg)"
 					}}
 					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}
