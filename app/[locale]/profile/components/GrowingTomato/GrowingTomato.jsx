@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import anime from "animejs/lib/anime.es.js";
 import styles from "./GrowingTomato.module.css";
 
@@ -27,6 +27,7 @@ export default function GrowingTomato({
 	yPerc,
 	autoplay
 }) {
+	// const [play, setPlay] = useState(autoplay);
 	const tomatoPathRef = useRef(null);
 
 	useEffect(() => {
@@ -169,6 +170,16 @@ export default function GrowingTomato({
 			plantDarkAnim.play();
 			endLeavesAnim.play();
 		}
+		// return () => {
+		// 	tomatoSvgAnim.pause();
+		// 	tomatoPathAnim.pause();
+		// 	// tomatoPathHueRot.play();
+		// 	leavesUpAnim.pause();
+		// 	leavesDownAnim.pause();
+		// 	plantLightAnim.pause();
+		// 	plantDarkAnim.pause();
+		// 	endLeavesAnim.pause();
+		// };
 	}, [autoplay, id]);
 
 	useEffect(() => {
@@ -179,28 +190,29 @@ export default function GrowingTomato({
 			// tomatoPathRef.current.style.animationComposition = "replace";
 			// tomatoPathRef.current.style.animationTimingFunction = "linear";
 
-			tomatoPathRef.current.parentElement.animate(
+			tomatoPathRef.current.animate(
 				[
 					{ filter: "hue-rotate(80deg)" },
-					{ filter: "hue-rotate(40deg)", offset: 0.8 },
+					{ filter: "hue-rotate(23deg)", offset: 0.8 },
 					{ filter: "hue-rotate(0deg)" }
 				],
 				2000
 			);
 			// timeout = setTimeout(() => {
-			tomatoPathRef.current.parentElement.style.filter = "hue-rotate(0deg)";
-			tomatoPathRef.current.parentElement.children[1].style.filter =
-				"hue-rotate(0deg)";
-			tomatoPathRef.current.parentElement.children[2].style.filter =
-				"hue-rotate(0deg)";
+			tomatoPathRef.current.style.filter = "hue-rotate(0deg)";
+			// tomatoPathRef.current.parentElement.children[1].style.filter =
+			// 	"hue-rotate(0deg)";
+			// tomatoPathRef.current.parentElement.children[2].style.filter =
+			// 	"hue-rotate(0deg)";
 			// }, 4000);
 			// timeout();
-		} else if (autoplay === false) {
-			tomatoPathRef.current.parentElement.children[1].style.filter =
-				"hue-rotate(280deg)";
-			tomatoPathRef.current.parentElement.children[2].style.filter =
-				"hue-rotate(280deg)";
 		}
+		// else if (autoplay === false) {
+		// 	tomatoPathRef.current.parentElement.children[1].style.filter =
+		// 		"hue-rotate(280deg)";
+		// 	tomatoPathRef.current.parentElement.children[2].style.filter =
+		// 		"hue-rotate(280deg)";
+		// }
 
 		// filter: "hue-rotate(280deg)";
 		// console.log(tomatoPathRef.current.parentElement.children);
@@ -250,8 +262,8 @@ export default function GrowingTomato({
 				className={styles["tomato-svg"]}
 				id={`tomatoSvg${id}`}
 				style={{
-					transform: `scale(${growingPerc}, ${growingPerc}) translate(${xPerc}, ${yPerc})`,
-					filter: "hue-rotate(80deg)"
+					transform: `scale(${growingPerc}, ${growingPerc}) translate(${xPerc}, ${yPerc})`
+					// filter: "hue-rotate(80deg)"
 				}}
 			>
 				<path
@@ -267,9 +279,9 @@ export default function GrowingTomato({
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
-						strokeWidth: "1px"
+						strokeWidth: "1px",
 						// animation:
-						// filter: "hue-rotate(80deg)"
+						filter: "hue-rotate(80deg)"
 					}}
 					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}

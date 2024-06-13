@@ -77,14 +77,19 @@ export function NavigationEvents({ getSpoonData }) {
 			30,
 			80
 		);
+		console.log(requestList);
 		if (requestList?.error) {
 			reduxDispatch(
-				setError({ name: "recipes", message: requestList["error"] })
+				setError({
+					name: "recipes",
+					message: `API Data not available -  ${requestList["error"]}`
+				})
 			);
+			return;
 		} else {
 			reduxDispatch(reInitializeRecipes(requestList["results"]));
 		}
-	}, [allergiesSettings, intolerancesSettings, getNewList]);
+	}, [allergiesSettings, intolerancesSettings]);
 
 	useEffect(() => {
 		let ignore = false;
