@@ -189,8 +189,10 @@ export default function GrowingTomato({
 			);
 			// timeout = setTimeout(() => {
 			tomatoPathRef.current.parentElement.style.filter = "hue-rotate(0deg)";
-			tomatoPathRef.current.parentElement.children[1].style.filter = "none";
-			tomatoPathRef.current.parentElement.children[2].style.filter = "none";
+			tomatoPathRef.current.parentElement.children[1].style.filter =
+				"hue-rotate(0deg)";
+			tomatoPathRef.current.parentElement.children[2].style.filter =
+				"hue-rotate(0deg)";
 			// }, 4000);
 			// timeout();
 		}
