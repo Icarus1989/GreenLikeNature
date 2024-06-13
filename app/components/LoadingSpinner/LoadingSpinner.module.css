@@ -1,6 +1,6 @@
 .loading-container {
-	width: 90vw;
-	height: 90vw;
+	width: 100dvw;
+	height: 100dvw;
 	display: grid;
 	place-items: center;
 	overflow: hidden;
@@ -21,16 +21,16 @@
 
 .plant-icon {
 	position: absolute;
-	width: 10em;
-	height: 10em;
+	width: 5em;
+	height: 5em;
 	background: radial-gradient(
 		circle at 50% 50%,
 		rgba(23, 23, 23, 0.6) 10%,
 		rgba(23, 23, 23, 0.5) 23%,
 		rgba(23, 23, 23, 0) 80%
 	);
-	transform: scale(0.5);
-	transform-origin: center;
+	/* transform: scale(0.5); */
+	/* transform-origin: center; */
 	stroke-linejoin: round;
 	fill: rgba(23, 23, 23, 0.5);
 	z-index: 2;
@@ -38,16 +38,16 @@
 
 .recipe-icon {
 	position: absolute;
-	width: 10em;
-	height: 10em;
+	width: 4em;
+	height: 4em;
 	background: radial-gradient(
 		circle at 50% 50%,
 		rgba(23, 23, 23, 0.6) 10%,
 		rgba(23, 23, 23, 0.5) 23%,
 		rgba(23, 23, 23, 0) 80%
 	);
-	transform: scale(0.4);
-	transform-origin: center;
+	/* transform: scale(0.4); */
+	/* transform-origin: center; */
 	z-index: 2;
 	stroke-width: 3px;
 	fill: rgba(230, 230, 230, 0.9);
@@ -55,21 +55,21 @@
 
 .pref-icon {
 	position: absolute;
-	width: 10em;
-	height: 10em;
+	width: 4em;
+	height: 4em;
 	background: radial-gradient(
 		circle at 50% 50%,
 		rgba(23, 23, 23, 0.6) 10%,
 		rgba(23, 23, 23, 0.5) 23%,
 		rgba(23, 23, 23, 0) 80%
 	);
-	transform: scale(0.4);
+	/* transform: scale(0.4); */
 	z-index: 2;
 	stroke-width: 3px;
 	fill: rgba(230, 230, 230, 0.9);
 }
 
-.leaves-svg {
+/* .leaves-svg {
 	display: none;
 	position: fixed;
 	top: 25%;
@@ -77,14 +77,14 @@
 	transform: scale(4);
 	transform-origin: center;
 	overflow: hidden;
-}
+} */
 
-.leaves-path {
+/* .leaves-path {
 	stroke-width: 1px;
 	stroke: rgba(23, 95, 55, 0.9);
 	stroke-opacity: 0.9;
 	overflow: hidden;
-}
+} */
 
 @keyframes rotate {
 	0% {

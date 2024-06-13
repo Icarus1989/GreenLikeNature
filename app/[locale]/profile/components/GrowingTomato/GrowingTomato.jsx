@@ -195,13 +195,12 @@ export default function GrowingTomato({
 				"hue-rotate(0deg)";
 			// }, 4000);
 			// timeout();
+		} else if (autoplay === false) {
+			tomatoPathRef.current.parentElement.children[1].style.filter =
+				"hue-rotate(280deg)";
+			tomatoPathRef.current.parentElement.children[2].style.filter =
+				"hue-rotate(280deg)";
 		}
-		// else if (autoplay === false) {
-		// 	tomatoPathRef.current.parentElement.children[1].style.filter =
-		// 		"hue-rotate(280deg)";
-		// 	tomatoPathRef.current.parentElement.children[2].style.filter =
-		// 		"hue-rotate(280deg)";
-		// }
 
 		// filter: "hue-rotate(280deg)";
 		// console.log(tomatoPathRef.current.parentElement.children);
@@ -283,7 +282,7 @@ export default function GrowingTomato({
 						strokeWidth: "1px"
 						// filter: "hue-rotate(280deg)"
 					}}
-					className={styles["tomato-leaves"]}
+					// className={styles["tomato-leaves"]}
 					d={leavesUpBeginPath}
 				/>
 				<path
@@ -294,7 +293,7 @@ export default function GrowingTomato({
 						strokeWidth: "1px"
 						// filter: "hue-rotate(280deg)"
 					}}
-					className={styles["tomato-leaves"]}
+					// className={styles["tomato-leaves"]}
 					d={leavesDownBeginPath}
 				/>
 
