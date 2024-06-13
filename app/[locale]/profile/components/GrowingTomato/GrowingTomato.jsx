@@ -172,6 +172,7 @@ export default function GrowingTomato({
 	}, [autoplay, id]);
 
 	useEffect(() => {
+		// let timeout = null;
 		if (autoplay !== false) {
 			// tomatoPathRef.current.style.animationName = "ripe";
 			// tomatoPathRef.current.style.animationDuration = "3s";
@@ -186,11 +187,21 @@ export default function GrowingTomato({
 				],
 				2000
 			);
+			// timeout = setTimeout(() => {
 			tomatoPathRef.current.style.filter = "hue-rotate(0deg)";
-		} else {
-			tomatoPathRef.current.style.filter = "hue-rotate(80deg)";
+			// }, 4000);
+			// timeout();
 		}
-		console.log(autoplay);
+		// else if (autoplay === false) {
+		// 	// tomatoPathRef.current.animate([{ filter: "hue-rotate(80deg)" }], 2000);
+		// 	tomatoPathRef.current.style.filter = ;
+		// }
+		// console.log(autoplay);
+		// return () => {
+		// 	if (timeout) {
+		// 		clearTimeout(timeout);
+		// 	}
+		// };
 	}, [autoplay]);
 
 	return (
@@ -243,9 +254,9 @@ export default function GrowingTomato({
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
-						strokeWidth: "1px"
+						strokeWidth: "1px",
 						// animation:
-						// filter: "hue-rotate(80deg)"
+						filter: "hue-rotate(80deg)"
 					}}
 					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}
