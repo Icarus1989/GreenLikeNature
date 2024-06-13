@@ -275,13 +275,21 @@ export default function GrowingTomato({
 				<path
 					id={`leavesUp${id}`}
 					fill="#217D05"
-					style={{ stroke: "#154F03", strokeWidth: "1px" }}
+					style={{
+						stroke: "#154F03",
+						strokeWidth: "1px",
+						filter: "hue-rotate(280deg)"
+					}}
 					d={leavesUpBeginPath}
 				/>
 				<path
 					id={`leavesDown${id}`}
 					fill="#217D05"
-					style={{ stroke: "#154F03", strokeWidth: "1px" }}
+					style={{
+						stroke: "#154F03",
+						strokeWidth: "1px",
+						filter: "hue-rotate(280deg)"
+					}}
 					d={leavesDownBeginPath}
 				/>
 
