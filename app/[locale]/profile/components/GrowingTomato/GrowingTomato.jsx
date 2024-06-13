@@ -53,11 +53,11 @@ export default function GrowingTomato({
 		});
 
 		// const tomatoPathHueRot = anime({
-		// 	targets: `#firstTomatoPath${id}`,
+		// 	targets: `tomatoSvg${id}`,
 		// 	// filter: "hue-rotate(0deg)",
-		// 	fill: [
-		// 		{ value: `url(#tomatoRedGradient${id})` },
-		// 		{ value: `url(#leavesGradient)` }
+		// 	filter: [
+		// 		{ value: "hue-rotate(80deg)", delay: 0 },
+		// 		{ value: "hue-rotate(0deg)", delay: 500 }
 		// 	],
 		// 	delay: 1500,
 		// 	autoplay: false,
@@ -189,9 +189,19 @@ export default function GrowingTomato({
 			);
 			// timeout = setTimeout(() => {
 			tomatoPathRef.current.parentElement.style.filter = "hue-rotate(0deg)";
+			tomatoPathRef.current.parentElement.children[1].style.filter = "none";
+			tomatoPathRef.current.parentElement.children[2].style.filter = "none";
 			// }, 4000);
 			// timeout();
+		} else if (autoplay === false) {
+			tomatoPathRef.current.parentElement.children[1].style.filter =
+				"hue-rotate(280deg)";
+			tomatoPathRef.current.parentElement.children[2].style.filter =
+				"hue-rotate(280deg)";
 		}
+
+		// filter: "hue-rotate(280deg)";
+		// console.log(tomatoPathRef.current.parentElement.children);
 		// else if (autoplay === false) {
 		// 	// tomatoPathRef.current.animate([{ filter: "hue-rotate(80deg)" }], 2000);
 		// 	tomatoPathRef.current.style.filter = ;
