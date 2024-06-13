@@ -191,12 +191,22 @@ export default function GrowingTomato({
 			// tomatoPathRef.current.style.animationTimingFunction = "linear";
 
 			tomatoPathRef.current.animate(
-				[
-					{ filter: "hue-rotate(80deg)" },
-					{ filter: "hue-rotate(23deg)", offset: 0.8 },
-					{ filter: "hue-rotate(0deg)" }
-				],
-				2000
+				// [
+				// 	{ filter: "hue-rotate(80deg)" },
+				// 	{ filter: "hue-rotate(23deg)", offset: 0.8 },
+				// 	{ filter: "hue-rotate(0deg)" }
+				// ],
+				// 2000
+				{
+					filter: [
+						"hue-rotate(80deg)",
+						"hue-rotate(23deg)",
+						"hue-rotate(0deg)"
+					],
+					composite: "replace",
+					easing: "ease-in-out"
+				},
+				2300
 			);
 			// timeout = setTimeout(() => {
 			tomatoPathRef.current.style.filter = "hue-rotate(0deg)";
