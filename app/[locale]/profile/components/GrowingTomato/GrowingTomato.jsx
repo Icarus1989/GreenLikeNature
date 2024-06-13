@@ -190,7 +190,7 @@ export default function GrowingTomato({
 			// tomatoPathRef.current.style.animationComposition = "replace";
 			// tomatoPathRef.current.style.animationTimingFunction = "linear";
 
-			tomatoPathRef.current.animate(
+			tomatoPathRef.current.parentElement.animate(
 				// [
 				// 	{ filter: "hue-rotate(80deg)" },
 				// 	{ filter: "hue-rotate(23deg)", offset: 0.8 },
@@ -199,7 +199,7 @@ export default function GrowingTomato({
 				// 2000
 				{
 					filter: [
-						"hue-rotate(80deg)",
+						"hue-rotate(45deg)",
 						"hue-rotate(23deg)",
 						"hue-rotate(0deg)"
 					],
@@ -209,7 +209,7 @@ export default function GrowingTomato({
 				2300
 			);
 			// timeout = setTimeout(() => {
-			tomatoPathRef.current.style.filter = "hue-rotate(0deg)";
+			tomatoPathRef.current.parentElement.style.filter = "hue-rotate(0deg)";
 			// tomatoPathRef.current.parentElement.children[1].style.filter =
 			// 	"hue-rotate(0deg)";
 			// tomatoPathRef.current.parentElement.children[2].style.filter =
@@ -272,8 +272,8 @@ export default function GrowingTomato({
 				className={styles["tomato-svg"]}
 				id={`tomatoSvg${id}`}
 				style={{
-					transform: `scale(${growingPerc}, ${growingPerc}) translate(${xPerc}, ${yPerc})`
-					// filter: "hue-rotate(80deg)"
+					transform: `scale(${growingPerc}, ${growingPerc}) translate(${xPerc}, ${yPerc})`,
+					filter: "hue-rotate(45deg)"
 				}}
 			>
 				<path
@@ -289,9 +289,9 @@ export default function GrowingTomato({
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
-						strokeWidth: "1px",
+						strokeWidth: "1px"
 						// animation:
-						filter: "hue-rotate(80deg)"
+						// filter: "hue-rotate(80deg)"
 					}}
 					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}
