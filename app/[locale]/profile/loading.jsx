@@ -8,6 +8,7 @@ export default function SettingsLoading() {
 				style={{
 					position: "fixed",
 					top: "0%",
+					//
 					display: "grid",
 					placeItems: "center",
 					width: "100vw",

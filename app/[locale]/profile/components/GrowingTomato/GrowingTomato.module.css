@@ -47,6 +47,10 @@
 	/* animation: ripe 4s linear; */
 }
 
+.tomato-leaves {
+	filter: hue-rotate(280deg);
+}
+
 @keyframes ripe {
 	0% {
 		/* -webkit-filter: hue-rotate(80deg); */

@@ -7,10 +7,11 @@ export default function SearchLoading() {
 			<section
 				style={{
 					position: "fixed",
+					top: "0%",
 					display: "grid",
 					placeItems: "center",
-					width: "100vw",
-					height: "94dvh",
+					width: "100dvw",
+					height: "100dvh",
 					background: "#2d2d2d",
 					overflow: "hidden"
 				}}

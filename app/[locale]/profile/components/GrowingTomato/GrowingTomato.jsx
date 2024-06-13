@@ -280,9 +280,10 @@ export default function GrowingTomato({
 					fill="#217D05"
 					style={{
 						stroke: "#154F03",
-						strokeWidth: "1px",
-						filter: "hue-rotate(280deg)"
+						strokeWidth: "1px"
+						// filter: "hue-rotate(280deg)"
 					}}
+					className={styles["tomato-leaves"]}
 					d={leavesUpBeginPath}
 				/>
 				<path
@@ -290,9 +291,10 @@ export default function GrowingTomato({
 					fill="#217D05"
 					style={{
 						stroke: "#154F03",
-						strokeWidth: "1px",
-						filter: "hue-rotate(280deg)"
+						strokeWidth: "1px"
+						// filter: "hue-rotate(280deg)"
 					}}
+					className={styles["tomato-leaves"]}
 					d={leavesDownBeginPath}
 				/>
 

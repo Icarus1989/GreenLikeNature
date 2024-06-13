@@ -7,10 +7,11 @@ export default function GeneralLoading() {
 			<section
 				style={{
 					position: "fixed",
+					top: "0%",
 					display: "grid",
 					placeItems: "center",
 					width: "100dvw",
-					height: "94dvh",
+					height: "100dvh",
 					background: "#2d2d2d",
 					overflow: "hidden"
 				}}
