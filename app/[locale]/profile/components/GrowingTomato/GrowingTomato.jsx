@@ -199,7 +199,7 @@ export default function GrowingTomato({
 				// 2000
 				{
 					filter: [
-						"hue-rotate(45deg)",
+						"hue-rotate(80deg)",
 						"hue-rotate(23deg)",
 						"hue-rotate(0deg)"
 					],
@@ -210,12 +210,23 @@ export default function GrowingTomato({
 			);
 			// timeout = setTimeout(() => {
 			tomatoPathRef.current.parentElement.style.filter = "hue-rotate(0deg)";
-			// tomatoPathRef.current.parentElement.children[1].style.filter =
-			// 	"hue-rotate(0deg)";
-			// tomatoPathRef.current.parentElement.children[2].style.filter =
-			// 	"hue-rotate(0deg)";
-			// }, 4000);
-			// timeout();
+			// Qui
+			tomatoPathRef.current.parentElement.children[1].style.strokeWidth = "1px";
+			tomatoPathRef.current.parentElement.children[2].style.strokeWidth = "1px";
+			tomatoPathRef.current.parentElement.children[1].style.stroke = "";
+			tomatoPathRef.current.parentElement.children[2].style.stroke = "";
+
+			// from->
+			// fill
+			// rgb(112, 68, 13)
+			// stroke
+			// rgb(89, 61, 6)
+
+			// to ->
+			// fill
+			// rgb(33, 123, 5)
+			// stroke
+			// #154F03
 		}
 		// else if (autoplay === false) {
 		// 	tomatoPathRef.current.parentElement.children[1].style.filter =
@@ -273,7 +284,7 @@ export default function GrowingTomato({
 				id={`tomatoSvg${id}`}
 				style={{
 					transform: `scale(${growingPerc}, ${growingPerc}) translate(${xPerc}, ${yPerc})`,
-					filter: "hue-rotate(45deg)"
+					filter: "hue-rotate(80deg)"
 				}}
 			>
 				<path
@@ -296,11 +307,15 @@ export default function GrowingTomato({
 					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}
 				/>
+				{/* LEAVES */}
 				<path
 					id={`leavesUp${id}`}
-					fill="#217D05"
+					// fill="#217D05"
 					style={{
-						stroke: "#154F03",
+						// fill: "rgb(33, 123, 5)",
+						fill: "rgb(112, 68, 13)",
+						// stroke: "#154F03",
+						stroke: "rgb(89, 61, 6)",
 						strokeWidth: "1px"
 						// filter: "hue-rotate(280deg)"
 					}}
@@ -309,9 +324,12 @@ export default function GrowingTomato({
 				/>
 				<path
 					id={`leavesDown${id}`}
-					fill="#217D05"
+					// fill="#217D05"
 					style={{
-						stroke: "#154F03",
+						// fill: "rgb(33, 123, 5)",
+						fill: "rgb(112, 68, 13)",
+						// stroke: "#154F03",
+						stroke: "rgb(89, 61, 6)",
 						strokeWidth: "1px"
 						// filter: "hue-rotate(280deg)"
 					}}
