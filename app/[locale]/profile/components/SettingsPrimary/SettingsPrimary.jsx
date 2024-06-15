@@ -149,98 +149,99 @@ export default function SettingsPrimary({
 	}
 
 	return (
-		// <section
-		// 	onContextMenu={(event) => event.preventDefault()}
-		// 	className={styles["main-container"]}
-		// >
-		// 	<div className={styles["title-section"]}>
-		// 		<h2 className={styles["title"]}>Tomato Settings</h2>
-		// 		<p className={styles["description"]}>{t("introduction")}</p>
-		// 	</div>
-		// 	<Fragment>
-		// 		<Fragment key="firstPlant">
-		// 			<GrowingTomato
-		// 				id="firstPlant"
-		// 				lightPerc="23%"
-		// 				growingPerc="0.26"
-		// 				xPerc="23%"
-		// 				yPerc="52%"
-		// 				autoplay={true}
-		// 			/>
-		// 		</Fragment>
-		// 		<UserOption>
-		// 			<VisualOption />
-		// 		</UserOption>
-		// 	</Fragment>
+		<section
+			onContextMenu={(event) => event.preventDefault()}
+			className={styles["main-container"]}
+		>
+			<div className={styles["title-section"]}>
+				<h2 className={styles["title"]}>Tomato Settings</h2>
+				<p className={styles["description"]}>{t("introduction")}</p>
+			</div>
+			<Fragment>
+				<Fragment key="firstPlant">
+					<GrowingTomato
+						id="firstPlant"
+						lightPerc="23%"
+						growingPerc="0.26"
+						xPerc="23%"
+						yPerc="52%"
+						autoplay={true}
+					/>
+				</Fragment>
+				<UserOption>
+					<VisualOption />
+				</UserOption>
+			</Fragment>
 
-		// 	<Fragment>
-		// 		<Fragment key="secondPlant">
-		// 			<GrowingTomato
-		// 				id="secondPlant"
-		// 				lightPerc="26%"
-		// 				growingPerc="0.23"
-		// 				xPerc="25%"
-		// 				yPerc="56%"
-		// 				autoplay={animationState.secondPlant}
-		// 			/>
-		// 		</Fragment>
-		// 		<UserOption>
-		// 			<Suspense fallback={<p>Loading saved recipes...</p>}>
-		// 				<SavedRecipes handleClick={handleClickSecond} />
-		// 			</Suspense>
-		// 		</UserOption>
-		// 	</Fragment>
+			<Fragment>
+				<Fragment key="secondPlant">
+					<GrowingTomato
+						id="secondPlant"
+						lightPerc="26%"
+						growingPerc="0.23"
+						xPerc="25%"
+						yPerc="56%"
+						autoplay={animationState.secondPlant}
+					/>
+				</Fragment>
+				<UserOption>
+					<Suspense fallback={<p>Loading saved recipes...</p>}>
+						<SavedRecipes handleClick={handleClickSecond} />
+					</Suspense>
+				</UserOption>
+			</Fragment>
 
-		// 	<Fragment>
-		// 		<Fragment key="thirdPlant">
-		// 			<GrowingTomato
-		// 				id="thirdPlant"
-		// 				lightPerc="30%"
-		// 				growingPerc="0.20"
-		// 				xPerc="28%"
-		// 				yPerc="63%"
-		// 				autoplay={animationState.thirdPlant}
-		// 			/>
-		// 		</Fragment>
-		// 		<UserOption>
-		// 			<Suspense fallback={<p>Loading saved allergens...</p>}>
-		// 				<AllergiesOption
-		// 					seasonalData={seasonalData}
-		// 					getSpoonData={getSpoonData}
-		// 					translateToEng={translateToEng}
-		// 					translateList={translateList}
-		// 					translatedArr={resultsList}
-		// 					setVisualError={(value) => setShowError(value)}
-		// 					onStartAnim={() => handleClickThird()}
-		// 				/>
-		// 			</Suspense>
-		// 		</UserOption>
-		// 	</Fragment>
+			<Fragment>
+				<Fragment key="thirdPlant">
+					<GrowingTomato
+						id="thirdPlant"
+						lightPerc="30%"
+						growingPerc="0.20"
+						xPerc="28%"
+						yPerc="63%"
+						autoplay={animationState.thirdPlant}
+					/>
+				</Fragment>
+				<UserOption>
+					<Suspense fallback={<p>Loading saved allergens...</p>}>
+						<AllergiesOption
+							seasonalData={seasonalData}
+							getSpoonData={getSpoonData}
+							translateToEng={translateToEng}
+							translateList={translateList}
+							translatedArr={resultsList}
+							setVisualError={(value) => setShowError(value)}
+							onStartAnim={() => handleClickThird()}
+						/>
+					</Suspense>
+				</UserOption>
+			</Fragment>
 
-		// 	<Fragment>
-		// 		<Fragment key="thirdPlant">
-		// 			<GrowingTomato
-		// 				id="fourthPlant"
-		// 				lightPerc="34%"
-		// 				growingPerc="0.20"
-		// 				xPerc="28%"
-		// 				yPerc="63%"
-		// 				autoplay={animationState.fourthPlant}
-		// 			/>
-		// 		</Fragment>
-		// 		<UserOption>
-		// 			<Suspense fallback={<p>Loading languages...</p>}>
-		// 				<LanguageOption onStartAnim={() => handleClickFourth()} />
-		// 			</Suspense>
-		// 		</UserOption>
-		// 	</Fragment>
-		// 	{showError && (
-		// 		<ErrorModal
-		// 			errorsList={errorsMsgs}
-		// 			onClick={() => setShowError(false)}
-		// 		/>
-		// 	)}
-		// </section>
-		<SettingsLoading />
+			<Fragment>
+				<Fragment key="thirdPlant">
+					<GrowingTomato
+						id="fourthPlant"
+						lightPerc="34%"
+						growingPerc="0.20"
+						xPerc="28%"
+						yPerc="63%"
+						autoplay={animationState.fourthPlant}
+					/>
+				</Fragment>
+				<UserOption>
+					<Suspense fallback={<p>Loading languages...</p>}>
+						<LanguageOption onStartAnim={() => handleClickFourth()} />
+					</Suspense>
+				</UserOption>
+			</Fragment>
+			{showError && (
+				<ErrorModal
+					errorsList={errorsMsgs}
+					onClick={() => setShowError(false)}
+				/>
+			)}
+		</section>
+		// for testing --->
+		// <SettingsLoading />
 	);
 }
