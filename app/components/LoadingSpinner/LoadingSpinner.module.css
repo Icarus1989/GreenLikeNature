@@ -21,6 +21,11 @@
 
 .plant-icon {
 	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform-box: content-box;
+	transform-origin: center;
+	transform: translate(-45%, -50%);
 	width: 5em;
 	height: 5em;
 	background: radial-gradient(
@@ -38,6 +43,11 @@
 
 .recipe-icon {
 	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform-box: content-box;
+	transform-origin: center;
+	transform: translate(-45%, -50%);
 	width: 4em;
 	height: 4em;
 	background: radial-gradient(
@@ -55,6 +65,11 @@
 
 .pref-icon {
 	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform-box: content-box;
+	transform-origin: center;
+	transform: translate(-45%, -50%);
 	width: 4em;
 	height: 4em;
 	background: radial-gradient(
