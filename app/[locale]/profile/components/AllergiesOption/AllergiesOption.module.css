@@ -290,3 +290,82 @@
 	stroke-width: 1px;
 	/* transform: scale(1.4); */
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+}
+
+@media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+}
+
+@media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
+	.allergies-fieldset {
+		border-left: 15px solid rgba(3, 64, 2, 0.95);
+		border-radius: 18px 30px 30px 0px;
+	}
+
+	.legend-svg {
+		width: 5dvw;
+		height: 5dvw;
+	}
+
+	.description {
+		font-size: 1.2rem;
+	}
+
+	.add-intolerances {
+		width: 65dvw;
+	}
+
+	.add-allergens {
+		width: 65dvw;
+		align-items: center;
+	}
+
+	.intolerances-select {
+		width: 45dvw;
+		height: 7dvh;
+		font-size: 1.2rem;
+		padding: 3% 3%;
+		border-radius: 15px;
+	}
+
+	.add-allergens-label > input {
+		width: 45dvw;
+		height: 7dvh;
+		font-size: 1.2rem;
+		border-radius: 15px;
+	}
+
+	.allergens-list {
+		width: 60%;
+		font-size: 1.2rem;
+	}
+
+	.allergens-list > li {
+		font-size: 1.4rem;
+		margin: 10% 5% 10% 8%;
+	}
+
+	.allergens-list > li > svg {
+		width: 2.3rem;
+		height: 2.3rem;
+	}
+
+	.add-btn {
+		width: 4.5em;
+		height: 4.5em;
+		border: 3px solid rgba(101, 100, 100, 0.23);
+		align-items: center;
+		justify-content: center;
+		align-content: center;
+	}
+
+	.add-btn > svg {
+		border: 0px solid transparent;
+	}
+
+	.allergen-delete-btn {
+		width: 2.3rem;
+		height: 2.3rem;
+	}
+}

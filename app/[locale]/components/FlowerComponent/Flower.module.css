@@ -29,6 +29,7 @@
 	/* top: -50%; */
 	/* left: -50%; */
 	/* transform: scale(0.45); */
+	transform: scale(0.4);
 }
 
 .flowers-path {
@@ -43,4 +44,22 @@
 	stroke-opacity: 0.9;
 }
 
-/* clean */
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+}
+
+@media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+}
+
+@media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
+	.flowers-vase {
+	}
+	.flowers-container {
+	}
+	.flowers-container > svg {
+		transform: scale(0.8);
+	}
+	.flowers-path {
+	}
+	.leaves-path {
+	}
+}

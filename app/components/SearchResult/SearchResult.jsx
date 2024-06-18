@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 import styles from "./SearchResult.module.css";
+import fallbackImg from "@/public/tableNapkin.svg";
 
 export default function SearchResult({ id, title, image, saved }) {
+	const [urlError, setUrlError] = useState(false);
 	return (
 		<li className={styles["recipe"]} key={id}>
 			<Link
@@ -34,11 +37,15 @@ export default function SearchResult({ id, title, image, saved }) {
 					<div className={styles["recipe-image-circle"]}>
 						<Image
 							className={styles["recipe-image"]}
-							src={image}
+							src={urlError ? fallbackImg : image}
 							alt={`${title} image`}
 							// style={{ overflow: "hidden" }}
 							// width={312}
 							// height={231}
+							onError={() => {
+								// console.error(event.target);
+								return setUrlError(true);
+							}}
 							quality={100}
 							fill
 							sizes="100%"

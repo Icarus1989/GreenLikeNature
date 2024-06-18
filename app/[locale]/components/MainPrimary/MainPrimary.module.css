@@ -323,19 +323,26 @@
 .list {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	width: 90%;
 	height: auto;
+	min-height: 23dvh;
 	/* position: relative; */
 	color: #bbbbbbf0;
 	font-size: 18px;
 	font-weight: 600;
 	text-align: center;
 	background-color: #2d2d2d;
-	padding: 0% 0% 10% 0%;
+	padding: 0% 0% 0% 0%;
 	border-radius: 15px;
 	list-style: none;
 	overflow-x: hidden;
 	/* z-index: 50; */
+}
+
+.list li:last-child {
+	/* border-bottom: 1px solid white; */
+	margin-bottom: 23%;
 }
 
 /* display: flex;
@@ -725,4 +732,255 @@
 	padding: 0%;
 	margin: 0;
 	font-weight: 700;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+}
+
+@media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+}
+
+@media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
+	.container {
+	}
+
+	.container::-webkit-scrollbar {
+	}
+
+	.invisible-div {
+		height: 20dvh;
+	}
+
+	.arrow-right {
+	}
+
+	.carousel-container {
+	}
+
+	.carousel {
+	}
+
+	.flowers-vase {
+	}
+
+	.flowers-container {
+	}
+
+	.flowers-container > svg {
+	}
+
+	.flowers-container > svg > path {
+	}
+
+	.flower-1 {
+	}
+
+	.flower-2 {
+	}
+
+	.flower-3 {
+	}
+
+	.circular-container {
+		width: 160dvw;
+		height: 160dvw;
+	}
+
+	.circular-menu {
+		width: 150dvw;
+		height: 150dvw;
+	}
+
+	.plate-container {
+		width: 38dvw;
+		height: 38dvw;
+	}
+
+	.plate-image-container {
+		width: 28dvw;
+		height: 28dvw;
+	}
+
+	.plate-image {
+	}
+
+	.plate-fallback {
+	}
+
+	.circular-border-internal {
+		width: 58dvw;
+		height: 58dvw;
+	}
+
+	.circular-border-internal > div {
+	}
+
+	.flower-container {
+	}
+
+	.circular-border-internal > ul {
+	}
+
+	.carousel::-webkit-scrollbar {
+	}
+
+	.title-search-part {
+	}
+
+	.search-part {
+	}
+
+	.results-part {
+		margin-top: 23px;
+		background: radial-gradient(
+			circle at 50% -17%,
+			transparent 27%,
+			#232323 28%,
+			#232323 84%
+		);
+	}
+
+	.results {
+		height: 45dvh;
+		margin: 14dvh 0% 0% 0%;
+	}
+
+	.list {
+		width: 85%;
+	}
+
+	.list-label {
+		font-size: 1.4rem;
+		margin-top: 5%;
+	}
+
+	.term-label {
+	}
+
+	.no-suggest-label {
+		font-size: 1.2rem;
+		margin-top: 10%;
+	}
+
+	.cancel-btn {
+		width: 5dvh;
+		height: 5dvh;
+	}
+
+	.x-icon {
+		width: 3em;
+		height: 3em;
+	}
+
+	.growing-leaf {
+	}
+
+	.growing-leaf > g > path {
+	}
+
+	.title-container {
+		height: 16dvh;
+	}
+
+	.logo-container {
+	}
+
+	.logo {
+	}
+
+	.title-general {
+		font-size: 70px;
+	}
+
+	.title-general > span {
+	}
+
+	.text-container {
+		height: 23dvh;
+	}
+
+	.text-info {
+		font-size: 1.2rem;
+	}
+
+	.modal-btn {
+		width: 36dvw;
+		margin-bottom: 8%;
+		font-size: 20px;
+	}
+
+	.svgs-container {
+	}
+
+	.text-container > svg {
+	}
+
+	.paths {
+	}
+
+	.recipe-title-container {
+		font-size: 1.6rem;
+	}
+
+	.recipe-title-open {
+	}
+
+	.recipe-title-label {
+		font-size: 1.6rem;
+	}
+
+	.recipe-title-modal {
+		font-size: 1.6rem;
+	}
+
+	.recipeSection {
+	}
+
+	.recipeTitle {
+	}
+
+	.textSection {
+	}
+
+	.recipeDetails {
+	}
+
+	.dotsContainer {
+	}
+
+	.dotBtn {
+	}
+
+	.dotBtn:focus {
+	}
+
+	.dot {
+	}
+
+	.dotActive {
+	}
+
+	.favoriteCarousel {
+	}
+
+	.favoriteCarousel::-webkit-scrollbar {
+	}
+
+	.carouselTitle {
+	}
+
+	.dinnerMiniature {
+	}
+
+	.navbar {
+	}
+
+	.navbar button {
+	}
+
+	.navbar button:focus {
+	}
+
+	.navIcon {
+	}
 }

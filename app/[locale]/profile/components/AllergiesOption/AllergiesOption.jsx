@@ -116,7 +116,7 @@ export default function AllergiesOptions({
 		const name = target.name.split("_")[0];
 
 		if (name === "allergies") {
-			console.log(inputText);
+			// console.log(inputText);
 			if (inputText.length > 0) {
 				const checkText = [];
 
@@ -128,7 +128,7 @@ export default function AllergiesOptions({
 					}
 				}
 
-				console.log(checkText);
+				// console.log(checkText);
 
 				if (checkText.length === 0) {
 					// test
@@ -188,12 +188,14 @@ export default function AllergiesOptions({
 				setTimeout(() => {
 					selectRef.current.style.borderColor = "rgb(133, 133, 133)";
 				}, 2300);
+				return;
 			}
 		}
 		// console.log(allergensList);
 	}
 
 	async function handleSubmit(event) {
+		console.log(event.target);
 		event.preventDefault();
 		if (inputText.length > 0) {
 			const checkText = [];

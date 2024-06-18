@@ -17,6 +17,7 @@ import { setError } from "@/lib/features/recipes/recipesSlice";
 
 import {
 	motion,
+	AnimatePresence,
 	useScroll,
 	useMotionValueEvent,
 	useAnimate,
@@ -229,28 +230,72 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		setView(true);
 	}
 
-	const [suggScope, suggAnimate] = useAnimate();
+	// const [suggScope, suggAnimate] = useAnimate();
 	const [ulScope, ulAnimate] = useAnimate();
 
+	// useEffect(() => {
+	// 	if (view && searchData.type === "positive") {
+	// 		ulAnimate(
+	// 			"li",
+	// 			{ opacity: 1 },
+	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
+	// 		);
+	// 	}
+	// }, [view, searchData.type]);
+
+	// useEffect(() => {
+	// 	if (view && data.length > 0) {
+	// 		suggAnimate(
+	// 			"li",
+	// 			{ opacity: 1 },
+	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
+	// 		);
+	// 	}
+	// }, [view, data.length]);
+
+	const rawList = [
+		...(data.length > 0 ? data : []),
+		...(searchData.type === "positive" ? searchData["results"] : [])
+	];
+
+	const cleanSet = new Set(rawList.map((elem) => elem.id));
+	const cleanList = Array.from(cleanSet).map((elem) => {
+		const recipeObj = rawList.find(
+			(recipe) => Number(recipe.id) === Number(elem)
+		);
+		return recipeObj;
+	});
+	// console.log(cleanList);
+
+	// const appearList = [
+	// 	...(searchData.type === "positive" ? searchData["results"] : filteredList)
+	// ];
+
 	useEffect(() => {
-		if (view && searchData.type === "positive") {
+		if (view && cleanList.length > 0) {
+			// const enterAnimationSearch = async () => {
 			ulAnimate(
 				"li",
 				{ opacity: 1 },
 				{ delay: stagger(0.2, { startDelay: 0.15 }) }
 			);
+			// };
+			// if (view) {
+			// 	enterAnimationSearch();
+			// }
+		} else {
+			// const exitAnimationSearch = async () => {
+			// 	ulAnimate(
+			// 		"li",
+			// 		{ opacity: 0 },
+			// 		{ delay: stagger(0.2, { startDelay: 0.15 }) }
+			// 	);
+			// 	safeToRemove();
+			// };
+			// exitAnimationSearch();
+			return;
 		}
-	}, [view, searchData.type]);
-
-	useEffect(() => {
-		if (view && data.length > 0) {
-			suggAnimate(
-				"li",
-				{ opacity: 1 },
-				{ delay: stagger(0.2, { startDelay: 0.15 }) }
-			);
-		}
-	}, [view, data.length]);
+	}, [view, cleanList.length]);
 
 	return (
 		<section
@@ -426,23 +471,14 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 						className={styles["results-container"]}
 						// ref={searchResults}
 					>
-						{searchData.type === "positive" || searchData.type === "empty" ? (
+						{/* {searchData.type === "positive" || searchData.type === "empty" ? (
 							<ul ref={ulScope} className={styles["list"]}>
-								{/* ATTENZIONE traduzione i18 qui ---> */}
 								<span className={styles["list-label"]}>
-									{/* {searchData.type === "positive" &&
-										`Risultati per: ${searchTerm}`}
-									{searchData.type === "empty" &&
-										`Nessun risultato per: ${searchTerm}`} */}
 									{searchData.type === "positive" &&
 										t("results_label", { searchTerm })}
 									{searchData.type === "empty" &&
 										t("no_results_label", { searchTerm })}
 								</span>
-								{/* Here removed */}
-								{/* <Suspense
-									fallback={}
-								> */}
 								{searchData.type === "positive" &&
 									searchData.results.map((elem) => {
 										const recipePresence =
@@ -460,7 +496,6 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 											</Fragment>
 										);
 									})}
-								{/* </Suspense> */}
 							</ul>
 						) : data.length > 0 ? (
 							<ul ref={suggScope} className={styles["list"]}>
@@ -487,7 +522,49 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 							<p className={styles["no-suggest-label"]}>
 								{t("no_suggestion_label")}
 							</p>
-						)}
+						)} */}
+						<AnimatePresence>
+							<ul ref={ulScope} className={styles["list"]}>
+								{searchData.type === "positive" && (
+									<p className={styles["list-label"]}>
+										{t("results_label", { searchTerm })}
+										{/* <span className={styles["term-label"]}>{searchTerm}</span> */}
+									</p>
+								)}
+								{searchData.type === "empty" && data.length === 0 && (
+									<p className={styles["list-label"]}>
+										{t("no_results_label", { searchTerm })}
+										{/* <span className={styles["term-label"]}>{searchTerm}</span> */}
+									</p>
+								)}
+								{searchData.type === "default" && data.length > 0 && (
+									<span className={styles["list-label"]}>
+										{/* aggiungere campo i18n sia Main che Search*/}
+										Suggerimenti:
+									</span>
+								)}
+								{searchData.type === "default" && data.length === 0 && (
+									<p className={styles["no-suggest-label"]}>
+										{t("no_suggestion_label")}
+									</p>
+								)}
+								{cleanList.map((elem) => {
+									const recipePresence =
+										recipesList.filter((recipe) => recipe.id === elem.id)
+											.length > 0;
+									return (
+										<Fragment key={elem.id}>
+											<SearchResult
+												id={elem.id}
+												title={elem.title}
+												image={elem.image}
+												saved={recipePresence}
+											/>
+										</Fragment>
+									);
+								})}
+							</ul>
+						</AnimatePresence>
 					</motion.div>
 				)}
 			</div>

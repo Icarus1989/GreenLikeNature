@@ -63,7 +63,7 @@ export default function SettingsPrimary({
 		const translateToLocale = async () => {
 			if (allergiesList.length > 0) {
 				const result = await translateList(allergiesList, params.locale);
-				console.log(result);
+				// console.log(result);
 
 				// const result = await transMemo;
 

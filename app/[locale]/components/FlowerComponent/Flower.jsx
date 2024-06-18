@@ -100,10 +100,10 @@ export default function Flower() {
 					// style={{
 					// 	position: "absolute"
 					// }}
-					style={{
-						transform: "scale(0.4)"
-						// transformOrigin: "48% 50%"
-					}}
+					// style={{
+					// 	transform: "scale(0.4)"
+					// 	// transformOrigin: "48% 50%"
+					// }}
 					className={styles["flower-svg"]}
 				>
 					<path

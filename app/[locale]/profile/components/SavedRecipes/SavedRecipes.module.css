@@ -222,3 +222,66 @@
 	stroke-width: 1.5px;
 	margin: auto 3% auto 3%;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+}
+
+@media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+}
+
+@media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
+	.legend-svg {
+		width: 5dvw;
+		height: 5dvw;
+	}
+
+	.saved-recipes-fieldset {
+		border-left: 15px solid rgba(3, 64, 2, 0.95);
+		border-radius: 18px 30px 30px 0px;
+	}
+
+	.description {
+		font-size: 1.2rem;
+	}
+
+	.saved-recipes-list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 0.8rem 0.4rem 0.8rem 0.4rem;
+	}
+
+	.saved-recipes-list > li {
+		width: 90%;
+		height: 90px;
+		border-radius: 45px;
+	}
+
+	.saved-recipes-list > li > span {
+		font-size: 1.2rem;
+	}
+
+	.saved-recipes-list > li > button {
+		width: 11vw;
+		height: 9vw;
+		border-radius: 48%;
+	}
+
+	.saved-recipes-list > li > button > svg {
+		width: 30px;
+		height: 30px;
+	}
+
+	.clear-recipes-list {
+		width: 45%;
+	}
+
+	.recipe-img-container {
+		width: 80px;
+		height: 80px;
+	}
+
+	.clear-list-container {
+		margin: 6% 0% 6% 0%;
+	}
+}
