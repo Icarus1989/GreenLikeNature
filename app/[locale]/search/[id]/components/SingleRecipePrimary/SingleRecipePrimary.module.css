@@ -262,6 +262,7 @@
 	justify-content: space-around;
 	align-content: center;
 	grid-template-areas: "time servings likes" "diet diet diet";
+	color: rgb(230, 230, 230);
 	padding: 3% 0% 3% 0%;
 	margin: 0% auto 0% auto;
 }
@@ -473,13 +474,15 @@
 }
 
 .recipe-summary {
+	color: rgb(250, 250, 250);
 	padding: 2%;
 	margin: 5% 10% 5% 10%;
 }
 
 .instructions-container {
-	padding: 2%;
 	width: 90dvw;
+	color: rgb(250, 250, 250);
+	padding: 2%;
 	border-radius: 10px;
 	background: #2d2d2d;
 	padding: 2%;
@@ -496,6 +499,7 @@
 }
 
 .section-title {
+	color: rgb(250, 250, 250);
 	text-decoration-line: underline;
 	text-decoration-color: rgba(23, 140, 23, 0.9);
 	text-underline-offset: 0.5rem;
@@ -590,7 +594,7 @@
 }
 
 .tool-name {
-	color: rgba(203, 203, 203, 0.95);
+	color: rgba(203, 203, 203, 0.85);
 }
 
 .ingredients-title {
@@ -599,7 +603,7 @@
 }
 
 .ingredient-name {
-	color: rgba(203, 203, 203, 0.95);
+	color: rgba(203, 203, 203, 0.85);
 	padding: 2% 0%;
 }
 

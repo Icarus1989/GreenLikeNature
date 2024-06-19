@@ -21,6 +21,7 @@
 }
 
 .title {
+	color: rgba(230, 230, 230, 1);
 	font-size: 26px;
 	padding: 3%;
 	margin-top: 3%;
