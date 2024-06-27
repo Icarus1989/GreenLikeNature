@@ -59,3 +59,43 @@
 		padding: 2% 6% 2% 6%;
 	}
 }
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.main-container {
+		display: grid;
+		grid-template-areas: "title title" "first second" "third fourth";
+		justify-content: space-around;
+		align-items: start;
+		padding-bottom: 10dvh;
+	}
+
+	.title-section {
+		grid-area: title;
+		margin-bottom: 3%;
+	}
+
+	.title {
+		font-size: 3dvh;
+	}
+
+	.description {
+		font-size: 2dvh;
+	}
+
+	.first-section {
+		grid-area: first;
+		width: 100%;
+	}
+	.second-section {
+		grid-area: second;
+		width: 100%;
+	}
+	.third-section {
+		grid-area: third;
+		width: 100%;
+	}
+	.fourth-section {
+		grid-area: fourth;
+		width: 100%;
+	}
+}

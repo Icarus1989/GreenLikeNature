@@ -93,7 +93,6 @@
 	width: 100%;
 	height: fit-content;
 	display: grid;
-	/* place-items: center; */
 	padding-left: 10%;
 	margin-bottom: 5%;
 	justify-content: start;
@@ -256,3 +255,73 @@
 		height: 2.5em;
 	}
 }
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.options-form {
+		width: 35dvw;
+	}
+
+	.visual-options-legend {
+		width: 23dvw;
+	}
+
+	.visual-options-fieldset {
+		border-radius: 25px 35px 35px 0px;
+		border-left: 1dvw solid rgba(3, 64, 2, 0.95);
+	}
+
+	.legend-svg {
+		left: 23%;
+		top: 50%;
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.description {
+		font-size: 2dvh;
+		padding-left: 3%;
+		margin-top: 10%;
+	}
+
+	.inputs-container > label {
+		font-size: 2.3dvh;
+		margin: 2dvh 1dvh 2dvh 2dvh;
+	}
+
+	.inputs-plate {
+		width: 4dvw;
+		margin-left: 11%;
+		left: 0%;
+		border-radius: 1.5dvw;
+	}
+
+	.plant-icon {
+		width: 2.3dvw;
+		height: 2.3dvw;
+		margin-left: 0dvw;
+		margin-right: 0dvw;
+	}
+
+	.plant-icon-white {
+		width: 2.3dvw;
+		height: 2.3dvw;
+		margin-left: 0dvw;
+		margin-right: 0dvw;
+	}
+
+	.bookmark-icon {
+		width: 2.3dvw;
+		height: 2.3dvw;
+		margin-left: 0dvw;
+		margin-right: 0dvw;
+	}
+
+	.bookmark-icon-white {
+		width: 2.3dvw;
+		height: 2.3dvw;
+		margin-left: 0dvw;
+		margin-right: 0dvw;
+	}
+}
+
+/* clean */

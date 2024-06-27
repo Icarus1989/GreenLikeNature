@@ -63,3 +63,26 @@
 	.leaves-path {
 	}
 }
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.flowers-vase {
+		width: 15vw;
+		height: 15vw;
+	}
+
+	.flowers-container > svg {
+		transform: scale(0.6);
+	}
+}
+
+@media only screen and (min-width: 1920px) {
+	.flowers-container > svg {
+		transform: scale(0.8);
+	}
+}
+
+@media only screen and (min-width: 2560px) {
+	.flowers-container > svg {
+		transform: scale(1.2);
+	}
+}

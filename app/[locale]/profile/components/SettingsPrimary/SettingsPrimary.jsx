@@ -157,7 +157,7 @@ export default function SettingsPrimary({
 				<h2 className={styles["title"]}>Tomato Settings</h2>
 				<p className={styles["description"]}>{t("introduction")}</p>
 			</div>
-			<Fragment>
+			<div className={styles["first-section"]}>
 				<Fragment key="firstPlant">
 					<GrowingTomato
 						id="firstPlant"
@@ -171,9 +171,9 @@ export default function SettingsPrimary({
 				<UserOption>
 					<VisualOption />
 				</UserOption>
-			</Fragment>
+			</div>
 
-			<Fragment>
+			<div className={styles["second-section"]}>
 				<Fragment key="secondPlant">
 					<GrowingTomato
 						id="secondPlant"
@@ -189,9 +189,9 @@ export default function SettingsPrimary({
 						<SavedRecipes handleClick={handleClickSecond} />
 					</Suspense>
 				</UserOption>
-			</Fragment>
+			</div>
 
-			<Fragment>
+			<div className={styles["third-section"]}>
 				<Fragment key="thirdPlant">
 					<GrowingTomato
 						id="thirdPlant"
@@ -215,9 +215,9 @@ export default function SettingsPrimary({
 						/>
 					</Suspense>
 				</UserOption>
-			</Fragment>
+			</div>
 
-			<Fragment>
+			<div className={styles["fourth-section"]}>
 				<Fragment key="thirdPlant">
 					<GrowingTomato
 						id="fourthPlant"
@@ -233,7 +233,7 @@ export default function SettingsPrimary({
 						<LanguageOption onStartAnim={() => handleClickFourth()} />
 					</Suspense>
 				</UserOption>
-			</Fragment>
+			</div>
 			{showError && (
 				<ErrorModal
 					errorsList={errorsMsgs}

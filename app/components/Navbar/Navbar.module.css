@@ -28,12 +28,10 @@
 }
 
 .nav-icon {
-	/* position: absolute; */
 	color: white;
 	font-weight: 700;
 	font-size: 24px;
 	padding: 0%;
-	/* margin: 0; */
 	margin: 10% 0% 0% 0%;
 	font-weight: 700;
 	z-index: 11;
@@ -70,5 +68,23 @@
 		width: 1.4em;
 		height: 1.4em;
 		margin: 8% 0% 0% 0%;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.navbar {
+		box-shadow: 0px 7px 23px #ffffffbf;
+	}
+
+	.nav-icon {
+		width: 3dvh;
+		height: 3dvh;
+		margin: 4% 0% 0% 0%;
+	}
+	.cursor-container {
+		height: 0.8dvh;
+	}
+	.cursor {
+		height: 0.6dvh;
 	}
 }

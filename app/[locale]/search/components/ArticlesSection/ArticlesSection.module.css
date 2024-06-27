@@ -76,7 +76,6 @@
 	justify-content: center;
 	position: relative;
 	z-index: 3;
-	/* color: red; */
 	color: #bbbbbbf0;
 	font-size: 1.1em;
 	font-weight: 500;
@@ -88,17 +87,6 @@
 .rel-search-btn > span {
 	margin: 0% 2% 0% 2%;
 }
-
-/* .rel-search-btn > svg {
-	width: 8dvh;
-	height: 8dvh;
-	position: absolute;
-	fill: rgba(123, 123, 123, 0.2); */
-/* stroke: black; */
-/* stroke-width: 1px; */
-/* margin-top: 1%; */
-/* margin-bottom: 2%; */
-/* } */
 
 .search-icon {
 	width: 10dvh;
@@ -123,29 +111,6 @@
 	stroke-width: 4px;
 }
 
-/* .rel-search-btn > svg > g > path {
-	stroke: black;
-	stroke-width: 4px;
-} */
-
-/* .rel-search-btn > span {
-	margin: 0% 2% 0% 2%;
-}
-
-.rel-search-btn > svg {
-	width: 2.3em;
-	height: 2.3em;
-	fill: rgba(230, 230, 230, 0.8);
-	stroke: black;
-	stroke-width: 4px;
-	margin-top: 1%;
-}
-
-.rel-search-btn > svg > g > path {
-	stroke: black;
-	stroke-width: 4px;
-} */
-
 @media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
 }
 
@@ -163,5 +128,21 @@
 
 	.rel-search-btn {
 		font-size: 1.2rem;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.articles-section {
+		margin: 3% 0% 3% 0%;
+	}
+
+	.section-title {
+		font-size: 2.5dvh;
+		margin-bottom: 2%;
+	}
+
+	.rel-search-btn {
+		height: 12dvh;
+		font-size: 2.3dvh;
 	}
 }

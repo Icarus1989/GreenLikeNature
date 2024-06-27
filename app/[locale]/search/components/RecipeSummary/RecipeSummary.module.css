@@ -4,28 +4,14 @@
 	height: 26dvh;
 	display: grid;
 	place-items: center;
-	/* background: rgba(32, 32, 32, 0.74); */
-	/* border: 1px solid blue; */
-	/* border-top: 3px solid rgba(123, 123, 123, 0.85);
-	border-left: 3px solid rgba(123, 123, 123, 0.8);
-	border-right: 3px solid rgba(110, 110, 110, 0.75);
-	border-bottom: 3px solid rgba(98, 97, 93, 0.7); */
-	/* border-top: 4px solid #06661b;
-	border-left: 5px solid #06661b;
-	border-right: 5px solid rgb(4 121 4 / 91%);
-	border-bottom: 4px solid #06661b;
-	border-radius: 15px; */
-	/* background-color: #ffffff12; */
 	border: 1px solid transparent;
 	border-left: 8px ridge rgba(3, 176, 3, 0.75);
-	/* border-bottom-right-radius: 20%; */
 	transition: all 1s ease-in-out;
 	scroll-snap-align: start;
 	flex: none;
 	margin: 0% 4% 0% 4%;
 	z-index: -1;
 	overflow: hidden;
-	/* filter: blur(3px); */
 }
 
 .save-indicator-section {
@@ -51,41 +37,25 @@
 	height: 24px;
 	fill: white;
 	background: transparent;
-	/* fill: none; */
 }
 
 .summary-data-section {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	/* flex-direction: row;
-	justify-content: flex-end; */
 	display: grid;
 	place-items: center end;
-	/* background-color: #ffffffd1; */
 	background-color: transparent;
-	/* background-blend-mode: darken; */
-	/* background: linear-gradient(#ffffffd1 0%, #f6f3f3 70%); */
-	/* background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png"); */
-	/* background-image: url("https://www.transparenttextures.com/patterns/retina-wood.png"); */
-
 	border-radius: 12px 12px 0px 0px;
 }
 
 .circular-image-section {
-	/* position: absolute;
-	top: 0%;
-	left: 0%; */
 	position: absolute;
 	left: 0%;
-	/* left: -10%; */
 	display: grid;
 	place-items: center;
 	width: 23dvh;
 	height: 23dvh;
-	/* background-color: #2d2d2d;
-	border: 20px solid #012408;
-	border-radius: 50%; */
 	overflow: hidden;
 	z-index: 0;
 }
@@ -93,15 +63,10 @@
 .summary-image-container {
 	position: absolute;
 	left: -32%;
-
-	/* left: -10%; */
 	display: grid;
 	place-items: center;
 	width: 23dvh;
 	height: 23dvh;
-	/* background-color: #2d2d2d;
-	border: 20px solid #012408;
-	border-radius: 50%; */
 	border-radius: 50%;
 	overflow: hidden;
 	z-index: 2;
@@ -109,32 +74,20 @@
 
 .recipe-image-circle {
 	position: absolute;
-	/* left: -10%; */
-	/* display: grid;
-	place-items: center; */
 	width: 23dvh;
 	height: 23dvh;
-	/* background-color: #2d2d2d;
-	border: 20px solid #012408;
-	border-radius: 50%; */
 	overflow: hidden;
 	z-index: 0;
 }
 
 .recipe-image-container > circle {
-	/* box-shadow: 0px 0px 14px #212121; */
 	position: relative;
 	z-index: 1;
 	filter: brightness(1.5);
-
-	/* border: 3px solid black; */
 }
 
 .summary-image {
 	position: absolute;
-	/* left: -32%; */
-	/* width: 23dvh;
-	height: 23dvh; */
 	width: 100%;
 	height: 100%;
 	border: 20px solid transparent;
@@ -149,15 +102,12 @@
 }
 
 .secondary-text-section {
-	/* display: grid;
-	place-items: center start; */
 	width: 50%;
 	font-size: 14px;
 	padding: 0% 2% 0% 2%;
 	margin-left: 5%;
 	margin-right: 2%;
 	align-content: center;
-	/* margin-bottom: 10%; */
 }
 
 .summary-rating {
@@ -165,9 +115,6 @@
 	justify-content: space-evenly;
 	align-content: center;
 	align-items: center;
-	/* display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr; */
 	place-items: center;
 	min-width: 60px;
 	height: 40px;
@@ -177,8 +124,6 @@
 	font-size: 18px;
 	font-weight: 300;
 	vertical-align: middle;
-	/* background: transparent; */
-	/* padding: 3%; */
 	margin: 1%;
 }
 
@@ -189,9 +134,6 @@
 	background: transparent;
 }
 
-/* .summary-difficult {
-} */
-
 .summary-ingredients-list {
 	list-style: none;
 	font-size: 14px;
@@ -199,39 +141,19 @@
 	text-align: left;
 	padding: 2% 2% 2% 10%;
 	margin: 1%;
-
-	/* list-style: inside; */
 }
 
 .list-ingredient {
-	/* text-indent: 5%; */
 	padding-left: 0%;
 	margin: 4% 0% 4% 0%;
 }
 
 .list-ingredient::marker {
-	/* text-indent: -5%; */
 	margin-left: 10px;
 	margin-right: 0;
 }
 
-/* .primary-text-section {
-	
-	width: fit-content;
-	display: grid;
-	place-items: center start;
-	height: auto;
-	padding: 1%;
-	background: #0003019b;
-	border: 1px solid white;
-	text-transform: uppercase;
-	
-} */
-
 .summary-title {
-	/* min-width: 50dvw;
-	max-width: 70dvw; */
-	/* width: 80%; */
 	position: relative;
 	z-index: 2;
 	text-align: center;
@@ -266,5 +188,19 @@
 		left: -30%;
 		width: 22dvh;
 		height: 22dvh;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.summary-container {
+		place-items: center start;
+		width: 40dvw;
+		height: 30dvh;
+	}
+
+	.summary-title {
+		font-size: 2.3dvh;
+		margin-top: 0%;
+		margin-left: 3%;
 	}
 }

@@ -20,7 +20,6 @@
 .btns-container {
 	position: relative;
 	top: 0%;
-	/* top: 20%; */
 	z-index: 10;
 	display: flex;
 	flex-direction: row;
@@ -138,8 +137,6 @@
 	height: 1.8rem;
 	z-index: 13;
 }
-
-/* for not active */
 
 .save-btn-icon-not-active-to-change {
 	position: relative;
@@ -463,14 +460,6 @@
 
 .ingredient > label {
 	width: 85%;
-}
-
-.ingredient-checkbox[type="checkbox"] {
-	/* background: transparent; */
-	/* content: "\2713"; */
-	/* color: white; */
-	/* font-size: 20px; */
-	/* text-align: center; */
 }
 
 .recipe-summary {
@@ -841,5 +830,270 @@
 	.reset-btn:active > svg {
 		width: 2.3em;
 		height: 2.3em;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.single-recipe {
+		font-size: 2.3dvh;
+	}
+	.main-title {
+		width: 45%;
+		font-size: 3.2dvh;
+	}
+
+	.info-container {
+		height: 23dvh;
+	}
+
+	.recipe-plate {
+		width: 60dvw;
+		height: 60dvw;
+	}
+
+	.image-container {
+		width: 35dvw;
+		height: 35dvw;
+	}
+
+	.images-part {
+		top: -100dvh;
+	}
+
+	.btns-container {
+		height: 23dvh;
+	}
+
+	.btns-container-down {
+		height: 23dvh;
+	}
+
+	.fork-svg {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-6dvw) translateY(-14dvw);
+	}
+
+	.fork-svg-down {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-6dvw) translateY(-14dvw);
+	}
+
+	.knife-svg {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-5.5dvw) translateY(-34dvw) scaleY(0.7)
+			scaleX(0.8);
+	}
+
+	.knife-svg-down {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-5.5dvw) translateY(-34dvw) scaleY(0.7)
+			scaleX(0.8);
+	}
+
+	.undo-btn {
+		width: 10dvw;
+	}
+
+	.save-btn {
+		width: 10dvw;
+	}
+
+	.undo-btn-icon {
+		stroke-width: 40px;
+		filter: drop-shadow(-3px 12px 10px black);
+		width: 4dvh;
+		height: 4dvh;
+	}
+
+	.save-btn-icon {
+		stroke-width: 30px;
+		filter: drop-shadow(0px 0px 10px black);
+		width: 4dvh;
+		height: 4dvh;
+	}
+
+	.green-sauce {
+		transform: scale(0.9) translateX(0dvw) translateY(3dvh);
+	}
+
+	.section-title {
+		font-size: 2.5dvh;
+		padding: 4dvh;
+	}
+
+	.general-info {
+		width: 85dvw;
+		padding: 7% 2% 2% 2%;
+		border-radius: 10px;
+		margin: 0% 0% 0% 0%;
+	}
+
+	.text-container {
+		width: 50dvw;
+		height: 23dvh;
+	}
+
+	.time {
+		width: 15dvw;
+	}
+
+	.servings {
+		width: 15dvw;
+	}
+
+	.likes {
+		width: 15dvw;
+	}
+
+	.time > span {
+		font-size: 2.3dvh;
+	}
+
+	.servings > span {
+		font-size: 2.3dvh;
+	}
+
+	.likes > span {
+		font-size: 2.3dvh;
+	}
+
+	.time > svg {
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.servings > svg {
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.likes > svg {
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.diet {
+		margin-top: 5%;
+		margin-bottom: 5%;
+	}
+
+	.diet > span {
+		height: auto;
+		font-size: 3dvh;
+	}
+
+	.diet > svg {
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.recipe-presentation {
+		width: 85dvw;
+	}
+
+	.ingredients {
+		width: 85dvw;
+	}
+
+	.ingredient-checkbox {
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.ingredient-checkbox:checked {
+		font-size: 5dvh;
+	}
+
+	.ingredient-checkbox:checked::after {
+		left: 0%;
+	}
+
+	.ingredient {
+		width: 50dvw;
+		justify-content: center;
+	}
+
+	.ingredient > label {
+		width: 60%;
+	}
+
+	.total-ingredients {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.instructions-container {
+		width: 85dvw;
+	}
+
+	.instructions-list {
+		font-size: 2.3dvh;
+	}
+
+	.step-title {
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.step-checkbox {
+		width: 3dvh;
+		height: 3dvh;
+		margin: 0% 5% 0% 0%;
+	}
+
+	.equipment {
+		padding: 5%;
+	}
+
+	.step-ingredients {
+		padding: 5%;
+	}
+
+	.ingredients-title {
+		font-size: 2.3dvh;
+	}
+
+	.equipment-title {
+		font-size: 2.3dvh;
+	}
+
+	.controls-container {
+		width: 85dvw;
+		justify-content: center;
+	}
+
+	.complete-btn {
+		display: flex;
+		flex-direction: row;
+		width: 23dvw;
+		height: 10dvh;
+		border-radius: 3dvh;
+		font-size: 2.3dvh;
+		text-align: center;
+		margin: 3% 2% 3% 2%;
+	}
+
+	.complete-btn:disabled {
+		font-size: 3dvh;
+		padding-left: 3dvw;
+	}
+
+	.complete-btn > svg {
+		width: 4dvh;
+		height: 4dvh;
+	}
+
+	.reset-btn {
+		width: 10dvh;
+		height: 10dvh;
+		border-radius: 3dvh;
+		margin: 3% 2% 3% 2%;
+	}
+
+	.reset-btn > svg {
+		width: 3.5dvh;
+		height: 3.5dvh;
 	}
 }

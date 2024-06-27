@@ -35,29 +35,15 @@
 	overflow: hidden;
 }
 
-.firstTomatoPath {
-	/* filter: hue-rotate() */
-	/* filter: hue-rotate(80deg); */
-	/* -webkit-filter: hue-rotate(80deg); */
-	/* animation: ripe 4s linear; */
-	/* capire come indicare name animatio corretto, vedi console - elements */
-}
-
-.firstTomatoPathAnim {
-	/* animation: ripe 4s linear; */
-}
-
 .tomato-leaves {
 	filter: hue-rotate(280deg);
 }
 
 @keyframes ripe {
 	0% {
-		/* -webkit-filter: hue-rotate(80deg); */
 		filter: hue-rotate(80deg);
 	}
 	100% {
-		/* -webkit-filter: hue-rotate(0deg); */
 		filter: hue-rotate(0deg);
 	}
 }
@@ -77,3 +63,5 @@
 		transform: scale(90%, 90%) translate(-1.2%, 34%);
 	}
 }
+
+/* clean */

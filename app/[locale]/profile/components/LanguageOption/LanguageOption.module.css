@@ -35,7 +35,6 @@
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	/* stroke-width: 0.5px; */
 	stroke: rgba(230, 230, 230, 0.9);
 	z-index: 5;
 }
@@ -52,7 +51,6 @@
 	width: 100%;
 	height: auto;
 	display: grid;
-	/* place-items: center; */
 	grid-template-rows: 0.33fr 0.33fr 0.33fr;
 	grid-template-columns: 0.5fr 0.5fr;
 	margin-bottom: 10%;
@@ -67,7 +65,6 @@
 	font-weight: 500;
 	text-transform: uppercase;
 	padding-left: 10%;
-	/* padding-right: 10%; */
 	margin-top: 5%;
 	margin-bottom: 5%;
 }
@@ -85,16 +82,11 @@
 	border: 1px solid grey;
 	border-radius: 4px;
 	margin-right: 5%;
-
 	width: 18px;
 	height: 18px;
 	margin-left: 5%;
 	margin-right: 7%;
-
 	color: rgba(23, 23, 23, 0.64);
-	/* fill: rgba(2, 180, 2, 0.8); */
-	/* border: 1px solid rgba(101, 100, 100, 0.352); */
-	/* border-radius: 50%; */
 }
 
 .language-label > input:checked {
@@ -139,3 +131,43 @@
 		font-size: 2.3rem;
 	}
 }
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.languages-form {
+		width: 35dvw;
+		padding: 2%;
+	}
+
+	.languages-fieldset {
+		padding: 10% 2%;
+		border-left: 1dvw solid rgba(3, 64, 2, 0.95);
+		border-radius: 25px 35px 35px 0px;
+		margin: 0% 2% 0% 2%;
+	}
+
+	.legend-svg {
+		left: 23%;
+		top: 50%;
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.languages-intro {
+		font-size: 2dvh;
+	}
+
+	.radios-container {
+		font-size: 2.3dvh;
+	}
+
+	.language-label > input {
+		width: 2.3dvh;
+		height: 2.3dvh;
+	}
+
+	.language-label > input:checked {
+		font-size: 5dvh;
+	}
+}
+
+/* clean */

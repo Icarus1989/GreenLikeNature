@@ -25,7 +25,7 @@ export const Modal = forwardRef(function Modal(
 		exit: {
 			opacity: 0.0,
 			transition: {
-				duration: 0.5
+				duration: 0.8
 			}
 		}
 	};
@@ -80,7 +80,14 @@ export const Modal = forwardRef(function Modal(
 		recipesList.filter((recipe) => String(recipe.id) === String(id)).length > 0;
 
 	return (
-		<motion.div key={id} className={styles["modal-general-container"]}>
+		<motion.div
+			variants={textVariant}
+			initial="hidden"
+			animate="visible"
+			exit="exit"
+			key={id}
+			className={styles["modal-general-container"]}
+		>
 			<div className={styles["modal-text-container"]}>
 				<motion.label
 					className={styles["modal-link-label"]}

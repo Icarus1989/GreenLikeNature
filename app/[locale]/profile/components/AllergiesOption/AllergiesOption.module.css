@@ -51,12 +51,6 @@
 		rgba(1, 140, 1, 0.9) 80%,
 		rgba(2, 180, 2, 1) 90%
 	);
-
-	/* last --> */
-	/* padding-top: 8%;
-	padding-left: 16%;
-	padding-bottom: 8%;
-	padding-right: 14%; */
 	border-top: 4px solid rgba(3, 64, 2, 0.95);
 	border-right: 2px solid rgba(3, 64, 2, 0.9);
 	border-bottom: 2px solid rgba(3, 64, 2, 0.9);
@@ -86,7 +80,6 @@
 	width: 75dvw;
 	display: flex;
 	flex-direction: row;
-	/* align-items: center; */
 	justify-content: space-around;
 	margin: 4% 0% 4% 0%;
 }
@@ -95,10 +88,9 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
-	/* width: 80%; */
 	height: auto;
 	background-color: rgb(0, 0, 0);
-	/* margin: 3% 2% 3% 4%; */
+	border-radius: 10px;
 }
 
 .add-btn {
@@ -115,8 +107,6 @@
 		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
 		rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
 		rgba(0, 0, 0, 0.09) 0px 16px 8px;
-	/* padding: 1%; */
-	/* margin: 0; */
 }
 
 .add-btn > svg {
@@ -132,7 +122,6 @@
 .add-btn > svg > path {
 	stroke: rgba(2, 180, 2, 1);
 	stroke-width: 1px;
-	/* transform: scale(1.4); */
 }
 
 .add-allergens-label > input {
@@ -141,16 +130,11 @@
 	font-weight: 600;
 	background-color: rgb(0, 0, 0);
 	padding: 5% 5%;
-	/* border: 1px solid rgb(133, 133, 133); */
 	border-width: 1px;
 	border-style: solid;
 	border-color: rgb(133, 133, 133);
 	border-radius: 10px;
 }
-
-/* .add-allergens-label > input:active {
-	border: 1px solid rgb(133, 133, 133);
-} */
 
 .allergens-list {
 	width: 80%;
@@ -184,7 +168,6 @@
 	fill: red;
 	stroke-width: 5px;
 	stroke: rgba(255, 23, 23, 0.9);
-	/* stroke-width: 2px; */
 }
 
 .allergen-delete-btn {
@@ -207,10 +190,6 @@
 	margin: 8%;
 }
 
-/* .allergens-list > li > svg > path :last-of-type {
-	fill: red;
-} */
-
 .add-intolerances {
 	width: 75dvw;
 	display: flex;
@@ -228,36 +207,18 @@
 .intolerances-select {
 	content: "\2304";
 	color: rgb(119, 118, 118);
-	/* font-size: 16px; */
 	width: 50dvw;
 	height: auto;
-	/* text-align: start; */
 	font-weight: 600;
 	text-transform: capitalize;
 	background-color: rgb(0, 0, 0);
 	padding: 5% 3%;
-	/* align-items: start; */
-	/* padding-right: 10%; */
 	border: 1px solid rgb(133, 133, 133);
 	border-radius: 10px;
-	/* margin: 3% 2% 3% 6%; */
 }
-
-/* .intolerances-select > svg {
-	margin-left: 5%;
-} */
-
-/* .intolerances-select::after {
-	content: "\2304";
-	font-size: 30px;
-	line-height: 23px;
-	padding-right: 2px;
-} */
 
 .intolerance {
 	text-transform: capitalize;
-
-	/* text-align: start; */
 }
 
 .add-btn {
@@ -274,8 +235,6 @@
 		rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
 		rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
 		rgba(0, 0, 0, 0.09) 0px 16px 8px;
-	/* padding: 1%; */
-	/* margin: 0; */
 }
 
 .add-btn > svg {
@@ -291,7 +250,6 @@
 .add-btn > svg > path {
 	stroke: rgba(2, 180, 2, 1);
 	stroke-width: 1px;
-	/* transform: scale(1.4); */
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
@@ -329,6 +287,10 @@
 		height: 7dvh;
 		font-size: 1.2rem;
 		padding: 3% 3%;
+		border-radius: 15px;
+	}
+
+	.add-allergens-label {
 		border-radius: 15px;
 	}
 
@@ -376,3 +338,89 @@
 		font-size: 1.2rem;
 	}
 }
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.allergies-form {
+		width: 35dvw;
+		padding: 2%;
+	}
+
+	.allergies-fieldset {
+		padding: 10% 2%;
+		border-left: 1dvw solid rgba(3, 64, 2, 0.95);
+		border-radius: 25px 35px 35px 0px;
+		margin: 0% 2% 0% 2%;
+	}
+
+	.legend-svg {
+		left: 23%;
+		top: 50%;
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.description {
+		font-size: 2dvh;
+	}
+
+	.add-btn {
+		width: 7dvh;
+		height: 7dvh;
+	}
+
+	.add-btn > svg {
+		width: 7dvh;
+		height: 7dvh;
+	}
+
+	.add-intolerances {
+		width: 100%;
+	}
+
+	.add-allergens {
+		width: 100%;
+	}
+
+	.add-allergens-label {
+		width: 75%;
+		border-radius: 2.3dvh;
+	}
+
+	.add-allergens-label > input {
+		width: 100%;
+		height: 8dvh;
+		font-size: 1.8dvh;
+		border-radius: 2.3dvh;
+	}
+
+	.intolerances-select {
+		width: 75%;
+		height: 8dvh;
+		font-size: 1.8dvh;
+		border-radius: 2.3dvh;
+	}
+
+	.allergens-empty {
+		font-size: 1.8dvh;
+	}
+
+	.allergens-list {
+		font-size: 2dvh;
+	}
+
+	.allergens-list > li {
+		font-size: 2.3dvh;
+	}
+
+	.allergens-list > li > svg {
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.allergen-delete-btn {
+		width: 3dvh;
+		height: 3dvh;
+	}
+}
+
+/* clean */

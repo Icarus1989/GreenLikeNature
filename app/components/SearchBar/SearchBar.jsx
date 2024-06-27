@@ -12,7 +12,7 @@ export default function SearchBar({ value, position, handleChange }) {
 
 	return (
 		<div style={{ position: position }} className={styles["search-bar"]}>
-			<GoSearch className={styles.inputIcon} />
+			<GoSearch className={styles["input-icon"]} />
 			<input
 				id="input-bar"
 				type="text"

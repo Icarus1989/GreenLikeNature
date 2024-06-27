@@ -1,6 +1,6 @@
 .loading-container {
 	width: 100dvw;
-	height: 100dvw;
+	height: 100dvh;
 	display: grid;
 	place-items: center;
 	overflow: hidden;
@@ -34,8 +34,6 @@
 		rgba(23, 23, 23, 0.5) 23%,
 		rgba(23, 23, 23, 0) 80%
 	);
-	/* transform: scale(0.5); */
-	/* transform-origin: center; */
 	stroke-linejoin: round;
 	fill: rgba(23, 23, 23, 0.5);
 	z-index: 2;
@@ -56,8 +54,6 @@
 		rgba(23, 23, 23, 0.5) 23%,
 		rgba(23, 23, 23, 0) 80%
 	);
-	/* transform: scale(0.4); */
-	/* transform-origin: center; */
 	z-index: 2;
 	stroke-width: 3px;
 	fill: rgba(230, 230, 230, 0.9);
@@ -78,28 +74,10 @@
 		rgba(23, 23, 23, 0.5) 23%,
 		rgba(23, 23, 23, 0) 80%
 	);
-	/* transform: scale(0.4); */
 	z-index: 2;
 	stroke-width: 3px;
 	fill: rgba(230, 230, 230, 0.9);
 }
-
-/* .leaves-svg {
-	display: none;
-	position: fixed;
-	top: 25%;
-	z-index: 1;
-	transform: scale(4);
-	transform-origin: center;
-	overflow: hidden;
-} */
-
-/* .leaves-path {
-	stroke-width: 1px;
-	stroke: rgba(23, 95, 55, 0.9);
-	stroke-opacity: 0.9;
-	overflow: hidden;
-} */
 
 @keyframes rotate {
 	0% {
@@ -138,5 +116,27 @@
 	.pref-icon {
 		width: 6em;
 		height: 6em;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.spinner-svg {
+		width: 23dvw;
+		height: 23dvw;
+	}
+
+	.plant-icon {
+		width: 8dvh;
+		height: 8dvh;
+	}
+
+	.recipe-icon {
+		width: 7dvh;
+		height: 7dvh;
+	}
+
+	.pref-icon {
+		width: 7dvh;
+		height: 7dvh;
 	}
 }
