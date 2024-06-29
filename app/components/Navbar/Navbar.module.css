@@ -61,6 +61,15 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.navbar {
+		height: 10dvh;
+	}
+
+	.nav-icon {
+		width: 5dvh;
+		height: 5dvh;
+		margin: 5% 0% 0% 0%;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
@@ -68,6 +77,24 @@
 		width: 1.4em;
 		height: 1.4em;
 		margin: 8% 0% 0% 0%;
+	}
+}
+
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.navbar {
+		box-shadow: 0px 7px 23px #ffffffbf;
+	}
+
+	.nav-icon {
+		width: 3dvh;
+		height: 3dvh;
+		margin: 4% 0% 0% 0%;
+	}
+	.cursor-container {
+		height: 0.8dvh;
+	}
+	.cursor {
+		height: 0.6dvh;
 	}
 }
 

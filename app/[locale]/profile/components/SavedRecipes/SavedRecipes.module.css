@@ -283,6 +283,71 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.saved-recipes-container {
+		width: 40dvw;
+		padding: 4% 2%;
+	}
+
+	.saved-recipes-fieldset {
+		padding: 10% 2%;
+		border-radius: 25px 35px 35px 0px;
+		border-left: 1dvw solid rgba(3, 64, 2, 0.95);
+		margin: 0% 2% 0% 2%;
+	}
+
+	.description {
+		font-size: 2dvh;
+	}
+
+	.legend-svg {
+		left: 23%;
+		top: 50%;
+		width: 3dvh;
+		height: 3dvh;
+		margin-top: 0%;
+	}
+
+	.saved-recipes-list {
+		margin: 1dvw 0.5dvw;
+	}
+
+	.saved-recipes-list > li {
+		height: 10dvh;
+		border: 3px solid rgba(101, 100, 100, 0.352);
+		border-radius: 5dvh;
+	}
+
+	.saved-recipes-list > li > button {
+		width: 4.5dvw;
+		height: 4dvw;
+	}
+
+	.saved-recipes-list > li > button > svg {
+		width: 3dvh;
+		height: 3dvh;
+		stroke-width: 2px;
+	}
+
+	.saved-recipes-list > li > span {
+		font-size: 2dvh;
+	}
+
+	.recipe-img-container {
+		width: 9dvh;
+		height: 9dvh;
+	}
+
+	.clear-recipes-list {
+		justify-content: space-around;
+		font-size: 2dvh;
+		background-color: #ba21217a;
+		padding: 3% 4% 3% 4%;
+		border: 2px solid #de0c0c8c;
+		border-radius: 2.5dvh;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.saved-recipes-container {
 		width: 35dvw;

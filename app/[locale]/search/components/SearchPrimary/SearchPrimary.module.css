@@ -197,10 +197,8 @@
 		font-size: 1.2rem;
 	}
 }
-@media only screen and (min-width: 1200px) and (min-height: 481px) {
-	.results-part {
-	}
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
 	.results-part-title {
 		font-size: 2.8dvh;
 	}
@@ -235,12 +233,60 @@
 	}
 
 	.straw-plant {
-		transform: scaleY(2.3);
+		transform: scaleY(3.3);
 	}
 
 	.x-icon {
-		width: 2.3em;
-		height: 2.3em;
+		width: 2.3dvh;
+		height: 2.3dvh;
+	}
+
+	.loading-ind {
+		width: 60%;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.results-part-title {
+		font-size: 2.8dvh;
+	}
+
+	.results-container {
+		display: grid;
+		place-items: center;
+	}
+
+	.list {
+		display: grid;
+		grid-template-columns: 0.5fr 0.5fr;
+		width: 90%;
+		font-size: 2.3dvh;
+	}
+
+	.list-label {
+		display: grid;
+		place-items: center;
+	}
+
+	.no-suggest-label {
+		font-size: 2.3dvh;
+	}
+
+	.cancel-btn {
+		margin: 1% 3% 0% 0%;
+	}
+
+	.straw-plant-container {
+		margin: 1% 3% 0% 0%;
+	}
+
+	.straw-plant {
+		transform: scaleY(3.3);
+	}
+
+	.x-icon {
+		width: 2.3dvh;
+		height: 2.3dvh;
 	}
 
 	.loading-ind {

@@ -225,6 +225,82 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.modal-general-container {
+		width: 100%;
+		height: 60dvh;
+		margin-left: 0%;
+		margin-right: 0%;
+		right: 0%;
+		background: radial-gradient(
+				circle at 50% 28%,
+				transparent 11%,
+				#e7e7e730 12%,
+				rgb(4 89 4 / 10%) 18%,
+				transparent 23%
+			),
+			radial-gradient(
+				circle at 50% -23%,
+				transparent 59%,
+				#232323 59%,
+				#232323 89%,
+				transparent 60%
+			);
+	}
+
+	.modal-recipe-infos {
+		width: 36dvw;
+		height: 100%;
+
+		margin-left: 3%;
+		margin-bottom: 5%;
+	}
+
+	.modal-link {
+		font-size: 40px;
+	}
+
+	.modal-link > svg {
+		width: 6dvh;
+		height: 6dvh;
+		margin-right: 1%;
+	}
+
+	.modal-first-leaf {
+		width: 23dvw;
+		height: 23dvh;
+		left: 23%;
+	}
+
+	.modal-second-leaf {
+		width: 23dvw;
+		height: 23dvh;
+		left: 23%;
+	}
+
+	.modal-text-container {
+		width: 50%;
+		height: 23dvh;
+		right: 0%;
+	}
+
+	.modal-text {
+		font-size: 2.3dvh;
+	}
+
+	.modal-btn {
+		top: 18%;
+		right: 0%;
+		width: 8dvh;
+		height: 8dvh;
+	}
+
+	.modal-btn > svg {
+		width: 8dvh;
+		height: 8dvh;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.modal-general-container {
 		width: 100%;

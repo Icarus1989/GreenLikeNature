@@ -119,6 +119,28 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.spinner-svg {
+		width: 23dvw;
+		height: 23dvw;
+	}
+
+	.plant-icon {
+		width: 8dvh;
+		height: 8dvh;
+	}
+
+	.recipe-icon {
+		width: 7dvh;
+		height: 7dvh;
+	}
+
+	.pref-icon {
+		width: 7dvh;
+		height: 7dvh;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.spinner-svg {
 		width: 23dvw;

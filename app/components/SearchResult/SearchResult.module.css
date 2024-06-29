@@ -103,6 +103,24 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.recipe {
+		width: 100%;
+	}
+
+	.recipe-title {
+		font-size: 2.3dvh;
+	}
+
+	.recipe-image-container {
+		left: -4%;
+	}
+
+	.recipe-link {
+		place-items: center start;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.recipe {
 		width: 100%;

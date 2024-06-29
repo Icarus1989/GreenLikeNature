@@ -81,6 +81,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	align-items: center;
 	margin: 4% 0% 4% 0%;
 }
 
@@ -336,6 +337,92 @@
 
 	.allergens-empty {
 		font-size: 1.2rem;
+	}
+}
+
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.allergies-form {
+		width: 40dvw;
+		padding: 2%;
+	}
+
+	.allergies-fieldset {
+		padding: 10% 2%;
+		border-left: 1dvw solid rgba(3, 64, 2, 0.95);
+		border-radius: 25px 35px 35px 0px;
+		margin: 0% 2% 0% 2%;
+	}
+
+	.legend-svg {
+		left: 23%;
+		top: 50%;
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.description {
+		font-size: 2dvh;
+	}
+
+	.add-btn {
+		width: 6dvh;
+		height: 6dvh;
+	}
+
+	.add-btn > svg {
+		width: 6dvh;
+		height: 6dvh;
+	}
+
+	.add-intolerances {
+		width: 100%;
+		justify-content: space-evenly;
+	}
+
+	.add-allergens {
+		width: 100%;
+		justify-content: space-evenly;
+	}
+
+	.add-allergens-label {
+		width: 70%;
+		border-radius: 2.3dvh;
+	}
+
+	.add-allergens-label > input {
+		width: 100%;
+		height: 7dvh;
+		font-size: 1.8dvh;
+		border-radius: 2.3dvh;
+	}
+
+	.intolerances-select {
+		width: 70%;
+		height: 7dvh;
+		font-size: 1.8dvh;
+		border-radius: 2.3dvh;
+	}
+
+	.allergens-empty {
+		font-size: 1.8dvh;
+	}
+
+	.allergens-list {
+		font-size: 2dvh;
+	}
+
+	.allergens-list > li {
+		font-size: 2.3dvh;
+	}
+
+	.allergens-list > li > svg {
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.allergen-delete-btn {
+		width: 3dvh;
+		height: 3dvh;
 	}
 }
 

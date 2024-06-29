@@ -132,6 +132,44 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.languages-form {
+		width: 40dvw;
+		padding: 2%;
+	}
+
+	.languages-fieldset {
+		padding: 10% 2%;
+		border-left: 1dvw solid rgba(3, 64, 2, 0.95);
+		border-radius: 25px 35px 35px 0px;
+		margin: 0% 2% 0% 2%;
+	}
+
+	.legend-svg {
+		left: 23%;
+		top: 50%;
+		width: 3dvh;
+		height: 3dvh;
+	}
+
+	.languages-intro {
+		font-size: 2dvh;
+	}
+
+	.radios-container {
+		font-size: 2dvh;
+	}
+
+	.language-label > input {
+		width: 2.3dvh;
+		height: 2.3dvh;
+	}
+
+	.language-label > input:checked {
+		font-size: 5dvh;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.languages-form {
 		width: 35dvw;

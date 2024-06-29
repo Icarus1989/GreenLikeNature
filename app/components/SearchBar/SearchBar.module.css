@@ -76,6 +76,32 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.search-bar {
+		width: 36vw;
+		height: 6vh;
+		position: absolute;
+		left: 32%;
+		bottom: 23%;
+		background: radial-gradient(
+			circle at 50% 23%,
+			#232323f7 52%,
+			#1b1b1bbd 55%,
+			transparent 84%
+		);
+	}
+
+	.input-bar {
+		width: 20dvw;
+		font-size: 2.3dvh;
+	}
+
+	.input-icon {
+		width: 3.5dvh;
+		height: 3.5dvh;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.search-bar {
 		width: 36vw;

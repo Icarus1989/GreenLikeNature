@@ -191,6 +191,20 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.summary-container {
+		place-items: center start;
+		width: 40dvw;
+		height: 30dvh;
+	}
+
+	.summary-title {
+		font-size: 2.3dvh;
+		margin-top: 0%;
+		margin-left: 3%;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.summary-container {
 		place-items: center start;

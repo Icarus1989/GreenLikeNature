@@ -131,6 +131,22 @@
 	}
 }
 
+@media only screen and (min-width: 899px) and (max-width: 1199px) and (orientation: landscape) {
+	.articles-section {
+		margin: 3% 0% 3% 0%;
+	}
+
+	.section-title {
+		font-size: 2.5dvh;
+		margin-bottom: 2%;
+	}
+
+	.rel-search-btn {
+		height: 12dvh;
+		font-size: 2.3dvh;
+	}
+}
+
 @media only screen and (min-width: 1200px) and (min-height: 481px) {
 	.articles-section {
 		margin: 3% 0% 3% 0%;
