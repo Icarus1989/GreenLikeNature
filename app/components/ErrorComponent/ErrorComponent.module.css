@@ -103,3 +103,90 @@
 	border: 0px solid transparent;
 	outline: none;
 }
+
+@media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.modal-message {
+		width: 100%;
+	}
+
+	.modal-title {
+		font-size: 4dvh;
+		padding: 4% 0% 4% 0%;
+	}
+
+	.details-container {
+	}
+
+	.error-details {
+		font-size: 3.5dvh;
+		margin: 1% 0% 1% 0%;
+	}
+
+	.error-summary {
+		line-height: 2.3em;
+	}
+
+	.error-summary::marker {
+		margin: 0% 2% 0% 2%;
+	}
+
+	.error-summary:first-child {
+		font-size: 4dvh;
+	}
+}
+@media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
+}
+@media only screen and (min-width: 900px) and (max-width: 1199px) and (orientation: landscape) {
+	.modal-message {
+		width: 100%;
+	}
+
+	.modal-title {
+		font-size: 4dvh;
+		padding: 5% 0% 5% 0%;
+	}
+
+	.error-details {
+		font-size: 3dvh;
+		margin: 1% 0% 1% 0%;
+	}
+
+	.error-summary {
+		line-height: 2.3em;
+	}
+
+	.error-summary::marker {
+		margin: 0% 5% 0% 2%;
+	}
+
+	.error-summary:first-child {
+		font-size: 3dvh;
+	}
+}
+@media only screen and (min-width: 1200px) and (min-height: 481px) {
+	.modal-message {
+		width: 100%;
+	}
+
+	.modal-title {
+		font-size: 4dvh;
+		padding: 5% 0% 5% 0%;
+	}
+
+	.error-details {
+		font-size: 3dvh;
+		margin: 1% 0% 1% 0%;
+	}
+
+	.error-summary {
+		line-height: 2.3em;
+	}
+
+	.error-summary::marker {
+		margin: 0% 5% 0% 2%;
+	}
+
+	.error-summary:first-child {
+		font-size: 3dvh;
+	}
+}

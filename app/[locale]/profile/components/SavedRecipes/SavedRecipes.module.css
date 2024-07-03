@@ -224,6 +224,83 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.saved-recipes-container {
+		width: 100%;
+		padding: 4% 2%;
+	}
+
+	.saved-recipes-fieldset {
+		padding: 10% 2%;
+		border-radius: 25px 35px 35px 0px;
+		border-left: 1.5dvw solid rgba(3, 64, 2, 0.95);
+		border-left: 1.5dvw solid rgba(3, 64, 2, 0.95);
+		border-top: 2px solid rgba(123, 123, 123, 0.8);
+		border-right: 2px solid rgba(110, 110, 110, 0.75);
+		border-bottom: 2px solid rgba(98, 97, 93, 0.7);
+		margin: 0% 2% 0% 2%;
+	}
+
+	.description {
+		font-size: 3dvh;
+		padding-left: 4%;
+	}
+
+	.legend-svg {
+		left: 45%;
+		top: 10%;
+		width: 5dvh;
+		height: 5dvh;
+		margin-top: 0%;
+	}
+
+	.saved-recipes-list {
+		margin: 1dvw 0.5dvw;
+	}
+
+	.saved-recipes-list > li {
+		height: 14dvh;
+		border: 2px solid rgba(101, 100, 100, 0.352);
+		border-radius: 7dvh;
+	}
+
+	.saved-recipes-list > li > button {
+		width: 6dvw;
+		height: 5dvw;
+		border-top: 5px solid rgba(2, 180, 2, 0.9);
+		border-right: 0px solid #a20505f8;
+		border-bottom: 2px solid #a20505f8;
+		border-left: 0px solid #a20505f8;
+	}
+
+	.saved-recipes-list > li > button > svg {
+		width: 5dvh;
+		height: 5dvh;
+		stroke-width: 1px;
+	}
+
+	.saved-recipes-list > li > span {
+		font-size: 3dvh;
+	}
+
+	.recipe-img-container {
+		width: 13dvh;
+		height: 13dvh;
+	}
+
+	.clear-recipes-list {
+		justify-content: space-around;
+		font-size: 3dvh;
+		background-color: #ba21217a;
+		padding: 3% 4% 3% 4%;
+		border: 1px solid #de0c0c8c;
+		border-radius: 3.5dvh;
+	}
+
+	.clear-recipes-list > svg {
+		width: 4dvh;
+		height: 4dvh;
+		stroke-width: 2.3px;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {

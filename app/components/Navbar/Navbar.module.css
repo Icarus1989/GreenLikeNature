@@ -62,13 +62,13 @@
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
 	.navbar {
-		height: 10dvh;
+		height: 11dvh;
 	}
 
 	.nav-icon {
 		width: 5dvh;
 		height: 5dvh;
-		margin: 5% 0% 0% 0%;
+		margin: 3% 0% 0% 0%;
 	}
 }
 

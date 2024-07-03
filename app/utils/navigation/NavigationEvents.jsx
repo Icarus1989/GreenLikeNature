@@ -77,7 +77,7 @@ export function NavigationEvents({ getSpoonData }) {
 			30,
 			80
 		);
-		console.log(requestList);
+		// console.log(requestList);
 		if (requestList?.error) {
 			reduxDispatch(
 				setError({

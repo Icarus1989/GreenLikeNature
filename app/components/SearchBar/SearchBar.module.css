@@ -62,6 +62,16 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.search-bar {
+		height: 8dvh;
+		justify-content: flex-end;
+	}
+
+	.input-bar {
+		font-size: 0.8rem;
+		width: 50dvw;
+		padding-left: 2%;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {

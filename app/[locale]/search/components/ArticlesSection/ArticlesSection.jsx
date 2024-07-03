@@ -9,6 +9,7 @@ import RecipeSummary from "../RecipeSummary/RecipeSummary";
 import styles from "./ArticlesSection.module.css";
 import { IoIosArrowForward } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
+import { calcSingular } from "@/app/utils/strings/stringUtilities";
 
 export default function ArticlesSection({
 	recipes,
@@ -19,8 +20,13 @@ export default function ArticlesSection({
 	setView,
 	setSearchTerm
 }) {
-	const nameStrg =
-		name[name.length - 1] === "s" ? name.slice(0, name.length - 1) : name;
+	// const nameStrg =
+	// 	name[name.length - 1] === "s" ? name.slice(0, name.length - 1) : name;
+	// <--- Correggere qui, tomatoes al singolare diviene tometoe
+
+	const nameStrg = name[name.length - 1] === "s" ? calcSingular(name) : name;
+	// console.log(nameStrg);
+
 	// console.log(name.length);
 	// console.log(recipes);
 	const [idsList, setIdsList] = useState(calcRecipesIds(recipes));

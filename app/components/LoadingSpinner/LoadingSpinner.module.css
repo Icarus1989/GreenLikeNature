@@ -95,6 +95,25 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.spinner-svg {
+		width: 23dvw;
+		height: 23dvw;
+	}
+
+	.plant-icon {
+		width: 12dvh;
+		height: 12dvh;
+	}
+
+	.recipe-icon {
+		width: 10dvh;
+		height: 10dvh;
+	}
+
+	.pref-icon {
+		width: 10dvh;
+		height: 10dvh;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {

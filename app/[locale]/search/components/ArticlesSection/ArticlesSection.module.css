@@ -115,6 +115,28 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.articles-section {
+		margin: 8% 0% 8% 0%;
+	}
+
+	.articles-container {
+		margin-top: 0%;
+		margin-bottom: 0%;
+	}
+
+	.section-title {
+		font-size: 0.9rem;
+	}
+
+	.rel-search-btn {
+		height: 23dvh;
+		font-size: 1rem;
+	}
+
+	.search-icon {
+		width: 23dvh;
+		height: 23dvh;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {

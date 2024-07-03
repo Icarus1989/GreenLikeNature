@@ -105,6 +105,47 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.languages-form {
+		width: 100%;
+		padding: 2%;
+	}
+
+	.languages-fieldset {
+		padding: 10% 2%;
+		border-left: 1.5dvw solid rgba(3, 64, 2, 0.95);
+		border-top: 2px solid rgba(123, 123, 123, 0.8);
+		border-right: 2px solid rgba(110, 110, 110, 0.75);
+		border-bottom: 2px solid rgba(98, 97, 93, 0.7);
+		border-radius: 25px 35px 35px 0px;
+		margin: 0% 2% 0% 2%;
+	}
+
+	.legend-svg {
+		left: 45%;
+		top: 10%;
+		width: 5dvh;
+		height: 5dvh;
+	}
+
+	.languages-intro {
+		width: 100%;
+		font-size: 3dvh;
+		padding-left: 4%;
+	}
+
+	.radios-container {
+		font-size: 3dvh;
+	}
+
+	.language-label > input {
+		width: 4dvh;
+		height: 4dvh;
+		border-radius: 2px;
+	}
+
+	.language-label > input:checked {
+		font-size: 7dvh;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {

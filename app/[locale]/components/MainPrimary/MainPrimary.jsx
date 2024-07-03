@@ -854,7 +854,9 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					) : (
 						<motion.div
 							key={`${recipeData.id}text`}
-							className={styles["text-container"]}
+							className={
+								!view ? styles["text-container"] : styles["text-container-down"]
+							}
 						>
 							<p className={styles["text-info"]}>
 								{settingsType === "seasonal" &&

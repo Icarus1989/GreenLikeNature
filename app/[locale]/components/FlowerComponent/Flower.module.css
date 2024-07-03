@@ -48,6 +48,22 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.flowers-container {
+		width: auto;
+		height: auto;
+
+		z-index: 10;
+	}
+
+	.flowers-vase {
+		width: 12vw;
+		height: 12vw;
+		border: 5px solid #85430a;
+	}
+
+	.flowers-container > svg {
+		transform: scale(0.23);
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {

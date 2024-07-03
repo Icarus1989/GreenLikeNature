@@ -16,7 +16,7 @@ export default function ErrorModal({ errorsList, onClick }) {
 									<div className={styles["details-container"]}>
 										<details className={styles["error-details"]}>
 											<summary
-												className={"error-summary"}
+												className={styles["error-summary"]}
 											>{`Error in ${err.from}`}</summary>
 											{err.message}
 										</details>

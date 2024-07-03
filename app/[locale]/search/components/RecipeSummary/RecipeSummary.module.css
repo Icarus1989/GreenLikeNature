@@ -171,6 +171,35 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.summary-container {
+		width: 35dvw;
+		height: 40dvh;
+		place-items: center start;
+		border-left: 6px ridge rgba(3, 176, 3, 0.75);
+	}
+
+	.summary-title {
+		font-size: 0.8rem;
+		font-weight: 500;
+		margin-top: 0%;
+		margin-left: 3%;
+	}
+
+	.circular-image-section {
+		width: 40dvh;
+		height: 40dvh;
+	}
+
+	.summary-image-container {
+		width: 40dvh;
+		height: 40dvh;
+	}
+
+	.recipe-image-circle {
+		width: 38dvh;
+		height: 38dvh;
+		left: 0%;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {

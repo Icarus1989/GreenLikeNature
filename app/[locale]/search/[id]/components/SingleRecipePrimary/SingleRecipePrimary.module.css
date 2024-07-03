@@ -403,6 +403,7 @@
 	display: flex;
 	flex-direction: row;
 	align-content: center;
+	align-items: center;
 	text-transform: uppercase;
 	font-weight: 600;
 	color: #efefef;
@@ -706,6 +707,275 @@
 }
 
 @media only screen and (min-height: 280px) and (max-height: 480px) and (orientation: landscape) {
+	.single-recipe {
+		font-size: 3.6dvh;
+	}
+	.main-title {
+		width: 45%;
+		font-size: 4dvh;
+	}
+
+	.info-container {
+		height: 10dvh;
+	}
+
+	.recipe-plate {
+		width: 60dvw;
+		height: 60dvw;
+	}
+
+	.image-container {
+		width: 35dvw;
+		height: 35dvw;
+	}
+
+	.images-part {
+		top: -85dvh;
+	}
+
+	.btns-container {
+		height: 23dvh;
+	}
+
+	.btns-container-down {
+		height: 23dvh;
+	}
+
+	.fork-svg {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-6.5dvw) translateY(-13dvw);
+	}
+
+	.fork-svg-down {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-6.5dvw) translateY(-13dvw);
+	}
+
+	.knife-svg {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-6dvw) translateY(-34dvw) scaleY(0.7)
+			scaleX(0.8);
+	}
+
+	.knife-svg-down {
+		width: 10dvw;
+		transform: rotateZ(0deg) translateX(-5.5dvw) translateY(-34dvw) scaleY(0.7)
+			scaleX(0.8);
+	}
+
+	.undo-btn {
+		width: 10dvw;
+		margin: 4dvw;
+	}
+
+	.save-btn {
+		width: 10dvw;
+		margin: 4dvw;
+	}
+
+	.undo-btn-icon {
+		stroke-width: 42px;
+		filter: drop-shadow(-4px 12px 10px black);
+		width: 6dvh;
+		height: 6dvh;
+	}
+
+	.save-btn-icon {
+		stroke-width: 23px;
+		filter: drop-shadow(0px 0px 10px black);
+		width: 6dvh;
+		height: 6dvh;
+	}
+
+	.green-sauce {
+		transform: scale(0.9) translateX(0dvw) translateY(10.5dvh);
+	}
+
+	.section-title {
+		font-size: 4dvh;
+		padding: 3dvh;
+	}
+
+	.general-info {
+		width: 85dvw;
+		padding: 7% 2% 2% 2%;
+		border-radius: 10px;
+		margin: 0% 0% 0% 0%;
+	}
+
+	.text-container {
+		width: 50dvw;
+		height: 23dvh;
+	}
+
+	.time {
+		width: 15dvw;
+	}
+
+	.servings {
+		width: 15dvw;
+	}
+
+	.likes {
+		width: 15dvw;
+	}
+
+	.time > span {
+		font-size: 3.6dvh;
+	}
+
+	.servings > span {
+		font-size: 3.6dvh;
+	}
+
+	.likes > span {
+		font-size: 3.6dvh;
+	}
+
+	.time > svg {
+		width: 5dvh;
+		height: 5dvh;
+	}
+
+	.servings > svg {
+		width: 5dvh;
+		height: 5dvh;
+	}
+
+	.likes > svg {
+		width: 5dvh;
+		height: 5dvh;
+	}
+
+	.diet {
+		margin-top: 5%;
+		margin-bottom: 5%;
+	}
+
+	.diet > span {
+		height: auto;
+		font-size: 3.8dvh;
+	}
+
+	.diet > svg {
+		width: 5dvh;
+		height: 5dvh;
+	}
+
+	.recipe-presentation {
+		width: 85dvw;
+	}
+
+	.ingredients {
+		width: 85dvw;
+	}
+
+	.ingredient-checkbox {
+		width: 4.5dvh;
+		height: 4.5dvh;
+	}
+
+	.ingredient-checkbox:checked {
+		font-size: 7dvh;
+	}
+
+	.ingredient-checkbox:checked::after {
+		left: 0%;
+	}
+
+	.ingredient {
+		width: 50dvw;
+		justify-content: center;
+	}
+
+	.ingredient > label {
+		width: 60%;
+	}
+
+	.total-ingredients {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.instructions-container {
+		width: 85dvw;
+	}
+
+	.instructions-list {
+		font-size: 3.6dvh;
+	}
+
+	.step-title {
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.step-checkbox {
+		width: 3dvh;
+		height: 3dvh;
+		margin: 0% 5% 0% 0%;
+	}
+
+	.equipment {
+		font-size: 3.4dvh;
+		padding: 5%;
+	}
+
+	.step-ingredients {
+		padding: 5%;
+	}
+
+	.ingredients-title {
+		font-size: 3.6dvh;
+		font-weight: 500;
+	}
+
+	.equipment-title {
+		font-size: 3.6dvh;
+		font-weight: 500;
+	}
+
+	.controls-container {
+		width: 85dvw;
+		justify-content: center;
+	}
+
+	.complete-btn {
+		display: flex;
+		flex-direction: row;
+		width: 34dvw;
+		height: 12dvh;
+		border-radius: 4dvh;
+		font-size: 3.6dvh;
+		text-align: center;
+		margin: 3% 2% 3% 2%;
+	}
+
+	.complete-btn:disabled {
+		font-size: 3.6dvh;
+		padding-left: 3dvw;
+	}
+
+	.complete-btn > svg {
+		width: 5dvh;
+		height: 5dvh;
+		stroke: rgba(0, 0, 0, 0.5);
+		stroke-width: 2px;
+	}
+
+	.reset-btn {
+		width: 12dvh;
+		height: 12dvh;
+		border-radius: 4dvh;
+		margin: 3% 2% 3% 2%;
+	}
+
+	.reset-btn > svg {
+		width: 4.5dvh;
+		height: 4.5dvh;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
