@@ -122,7 +122,7 @@ export default function Navbar() {
 							className={styles["navbar-button"]}
 							ref={elem.ref}
 							onClick={() => {
-								router.push(elem.path);
+								router.push(elem.path, { scroll: false });
 							}}
 						>
 							<Link href={elem.path}>

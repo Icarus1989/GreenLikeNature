@@ -10,6 +10,8 @@ import {
 	Suspense
 } from "react";
 
+// import { useOrientation } from "react-use";
+
 import Image from "next/image";
 
 import { useTranslation } from "react-i18next";
@@ -45,7 +47,7 @@ import ErrorModal from "@/app/components/ErrorModal/ErrorModal";
 import { great_vibes } from "@/app/utils/fonts/fonts";
 import styles from "./MainPrimary.module.css";
 
-import bkgImage from "@/public/retina-wood.svg";
+import bkgImage from "@/public/treeSection.svg";
 import altImage from "@/public/plusCircleTrans.svg";
 import fallbackImg from "@/public/tableNapkin.svg";
 import { GoX } from "react-icons/go";
@@ -259,13 +261,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	// Positioning Effect
 	useEffect(() => {
+		const sectionDim = sectionRef.current.getBoundingClientRect();
 		const searchbarDim = formRef.current.children[0].getBoundingClientRect();
-		const searchbarCenterX = searchbarDim.left + searchbarDim.width / 2;
+		const searchbarCenterX =
+			sectionDim.x + searchbarDim.left + searchbarDim.width / 2;
 		const searchbarCenterY = searchbarDim.top + searchbarDim.height / 2;
 		const carouselDim = carouselRef.current.getBoundingClientRect();
 		const flowerDim = flowerRef.current.getBoundingClientRect();
-
-		// const sectionDim = sectionRef.current.getBoundingClientRect();
 
 		moveRef.current.style.top =
 			formRef.current.getBoundingClientRect().bottom + "px";
@@ -422,6 +424,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// 	}
 	// }, [view, filteredList.length, isPresent]);
 
+	// Da riattivare --->
+
 	// Blur Effect
 	// useEffect(() => {
 	// 	if (view === true) {
@@ -433,7 +437,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// 	}
 	// }, [view, handleCloseTab]);
 
-	// problema con doppio id
 	const rawList = [
 		...(filteredList.length > 0 ? filteredList : []),
 		...(searchData.type === "positive" ? searchData["results"] : [])
@@ -477,6 +480,21 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			return;
 		}
 	}, [view, cleanList.length]);
+
+	// const orient = useOrientation();
+
+	// const availHeight = useMotionValue(0);
+	useEffect(() => {
+		// window.addEventListener("resize", () => {
+		// 	setSearchTerm(() => {
+		// 		return "";
+		// 	});
+		// });
+
+		const screen = window.screen;
+		const availHeight = window.screen.availHeight;
+		// console.log(orient);
+	}, []);
 
 	return (
 		<>
