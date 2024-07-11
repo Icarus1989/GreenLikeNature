@@ -761,7 +761,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						}}
 						animate={{
 							opacity: 1.0,
-							transition: { duration: 1.0, delay: 0.1 }
+							transition: { duration: 2.0, delay: 0 }
 						}}
 					>
 						<Flower />

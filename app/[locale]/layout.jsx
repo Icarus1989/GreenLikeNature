@@ -55,6 +55,7 @@ export default async function RootLayout({ children, params: { locale } }) {
 	async function calcCleanList() {
 		try {
 			// Riattivare qui --->
+
 			// const spoonList = await getSpoonData("", "", "", 100, 0);
 			// <--- Riattivare qui
 
