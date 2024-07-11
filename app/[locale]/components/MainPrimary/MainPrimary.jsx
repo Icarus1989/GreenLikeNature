@@ -344,12 +344,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			animatePlates(node, {
 				top:
 					hypY * Math.sin(theta[index] + Math.PI / 2) -
-					Number(getComputedStyle(node).height.slice(0, -2)) / 2 +
+					// Number(getComputedStyle(node).height.slice(0, -2)) / 2 +
+					node.getBoundingClientRect().height / 2 +
 					measuresInternal.height / 2 +
 					"px",
 				left:
 					hypX * Math.cos(theta[index] + Math.PI / 2) -
-					Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
+					// Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
+					node.getBoundingClientRect().width / 2 +
 					measuresInternal.width / 2 +
 					"px"
 			});
@@ -481,7 +483,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// 	// setResize(true);
 	// }
 
-	const router = useRouter();
+	// const router = useRouter();
 
 	useEffect(() => {
 		// window.addEventListener("resize", resizeView);
