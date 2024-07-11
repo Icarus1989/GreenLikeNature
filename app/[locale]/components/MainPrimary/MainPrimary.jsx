@@ -509,9 +509,9 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// router.replace(router.asPath);
 
 			// console.log("change");
-			// setRecipes((prevRecipes) => {
-			// 	return [...prevRecipes];
-			// });
+			setRecipes((prevRecipes) => {
+				return [...prevRecipes];
+			});
 			// setResize(() => {
 			// 	return true;
 			// });
@@ -980,20 +980,20 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 										></div>
 									}
 								> */}
-								{/* <Image
-										src={bkgImage}
-										alt="wood-table"
-										fill
-										style={{
-											objectFit: "cover",
-											maxWidth: "100%",
-											borderRadius: "50%",
-											zIndex: 5
-										}}
-										className={styles["wood-image"]}
-										quality={40}
-										priority
-									/> */}
+								<Image
+									src={bkgImage}
+									alt="wood-table"
+									fill
+									style={{
+										objectFit: "cover",
+										maxWidth: "100%",
+										borderRadius: "50%",
+										zIndex: 5
+									}}
+									className={styles["wood-image"]}
+									quality={40}
+									priority
+								/>
 								{/* <svg
 										viewBox="0 0 500 500"
 										className={styles["wood-image"]}
@@ -1034,7 +1034,8 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 										</defs>
 									</svg> */}
 
-								<svg
+								{/* For next project ---> */}
+								{/* <svg
 									viewBox="0 0 500 500"
 									xmlns="http://www.w3.org/2000/svg"
 									className={styles["wood-image"]}
@@ -1199,7 +1200,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 											<stop offset="100%" stopColor="#612307" />
 										</radialGradient>
 									</defs>
-								</svg>
+								</svg> */}
 								{/* </Suspense> */}
 								<div
 									ref={internal}
