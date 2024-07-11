@@ -347,14 +347,14 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 				// Number(getComputedStyle(node).height.slice(0, -2)) / 2 +
 				node.clientHeight / 2 +
 				measuresInternal.height / 2 +
-				5 +
+				// 5 +
 				"px"),
 				(node.style.left =
 					hypX * Math.cos(theta[index] + Math.PI / 2) -
 					// Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
 					node.clientWidth / 2 +
 					measuresInternal.width / 2 +
-					5 +
+					// 5 +
 					"px");
 			// });
 			console.log("placePlate");
