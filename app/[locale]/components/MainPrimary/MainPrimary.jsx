@@ -485,7 +485,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 	// 	// setResize(true);
 	// }
 
-	// const router = useRouter();
+	const router = useRouter();
 
 	useEffect(() => {
 		// window.addEventListener("resize", resizeView);
@@ -505,13 +505,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// setResize(() => {
 			// 	return true;
 			// });
-			// router.refresh();
+			router.refresh();
 			// router.replace(router.asPath);
 
 			// console.log("change");
-			setRecipes((prevRecipes) => {
-				return [...prevRecipes];
-			});
+			// setRecipes((prevRecipes) => {
+			// 	return [...prevRecipes];
+			// });
 			// setResize(() => {
 			// 	return true;
 			// });
