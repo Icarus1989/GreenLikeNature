@@ -138,9 +138,9 @@
 	width: 190vw;
 	height: 190vw;
 	border-radius: 50%;
-	/* background-color: #000000; */
+	background-color: #000000;
 	/* background-color: rgba(69, 69, 69, 1); */
-	background-color: #3b2b15;
+	/* background-color: #3b2b15; */
 	/* background-color: #382307; */
 	/* background-color: #a1290c; */
 	filter: brightness(1.23);

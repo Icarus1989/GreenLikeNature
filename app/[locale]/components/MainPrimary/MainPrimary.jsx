@@ -756,13 +756,13 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 						style={{ position: "fixed" }}
 						className={styles["flower-container"]}
 						// test per evitare leggero sfarfallio iniziale, riattivare se non cambia nulla --->
-						// initial={{
-						// 	opacity: 0
-						// }}
-						// animate={{
-						// 	opacity: 1.0,
-						// 	transition: { duration: 1.0, delay: 0.1 }
-						// }}
+						initial={{
+							opacity: 0
+						}}
+						animate={{
+							opacity: 1.0,
+							transition: { duration: 1.0, delay: 0.1 }
+						}}
 					>
 						<Flower />
 					</motion.div>
