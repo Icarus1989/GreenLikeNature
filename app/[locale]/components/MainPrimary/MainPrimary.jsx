@@ -333,26 +333,28 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			(measuresContainer.height / 2 + measuresInternal.height / 2) / 2;
 		const hypX = (measuresContainer.width / 2 + measuresInternal.width / 2) / 2;
 
-		console.log("plates: " + hypY + " " + hypX);
-		console.log(measuresContainer);
+		// console.log("plates: " + hypY + " " + hypX);
+		// console.log(measuresContainer);
 
 		function placePlate(itemId, index) {
 			const map = getMap();
 			const node = map.get(itemId);
 
-			console.log(getComputedStyle(node).width);
+			// console.log(node);
 			animatePlates(node, {
 				top:
 					hypY * Math.sin(theta[index] + Math.PI / 2) -
 					// Number(getComputedStyle(node).height.slice(0, -2)) / 2 +
-					node.getBoundingClientRect().height / 2 +
+					node.clientHeight / 2 +
 					measuresInternal.height / 2 +
+					5 +
 					"px",
 				left:
 					hypX * Math.cos(theta[index] + Math.PI / 2) -
 					// Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
-					node.getBoundingClientRect().width / 2 +
+					node.clientWidth / 2 +
 					measuresInternal.width / 2 +
+					5 +
 					"px"
 			});
 			console.log("placePlate");
@@ -506,7 +508,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// router.refresh();
 			// router.replace(router.asPath);
 
-			console.log("change");
+			// console.log("change");
 			setRecipes((prevRecipes) => {
 				return [...prevRecipes];
 			});
