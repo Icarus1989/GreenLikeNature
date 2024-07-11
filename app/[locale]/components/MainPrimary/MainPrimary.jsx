@@ -342,20 +342,20 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 			// console.log(node);
 			// animatePlates(node, {
-			(node.style.top =
+			node.style.top =
 				hypY * Math.sin(theta[index] + Math.PI / 2) -
 				// Number(getComputedStyle(node).height.slice(0, -2)) / 2 +
 				node.clientHeight / 2 +
 				measuresInternal.height / 2 +
 				// 5 +
-				"px"),
-				(node.style.left =
-					hypX * Math.cos(theta[index] + Math.PI / 2) -
-					// Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
-					node.clientWidth / 2 +
-					measuresInternal.width / 2 +
-					// 5 +
-					"px");
+				"px";
+			node.style.left =
+				hypX * Math.cos(theta[index] + Math.PI / 2) -
+				// Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
+				node.clientWidth / 2 +
+				measuresInternal.width / 2 +
+				// 5 +
+				"px";
 			// });
 			console.log("placePlate");
 		}
@@ -957,15 +957,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 								ref={menuRef}
 								className={styles["circular-menu"]}
 								// style={{ width: w }}
-								initial={{
-									opacity: 0.0
-								}}
-								animate={{
-									opacity: 1.0,
-									transition: {
-										duration: 1.0
-									}
-								}}
+								// initial={{
+								// 	opacity: 0.0
+								// }}
+								// animate={{
+								// 	opacity: 1.0,
+								// 	transition: {
+								// 		duration: 1.0
+								// 	}
+								// }}
 							>
 								{/* <Suspense
 									fallback={

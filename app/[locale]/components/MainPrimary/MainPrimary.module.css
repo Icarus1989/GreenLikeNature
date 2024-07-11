@@ -280,7 +280,9 @@
 	/* width: 190dvw;
 	height: 190dvw;
 	display: grid;
-	place-items: center; */
+	place-items: center;
+	transform: translateX(-50%);
+	transform-origin: center; */
 }
 
 .carousel::-webkit-scrollbar {
