@@ -347,68 +347,68 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			const node = map.get(itemId);
 
 			// console.log(node);
-			animatePlates(
-				node,
-				{
-					// node.style.top =
-					// 	hypY * Math.sin(theta[index] + Math.PI / 2) +
-					// 	hypY / 2 -
-					// 	// Number(getComputedStyle(node).height.slice(0, -2)) / 2 +
-					// 	node.clientHeight / 2 +
-					// 	// measuresInternal.height / 2 +
-					// 	// 5 +
-					// 	"px";
-					// node.style.left =
-					// 	hypY * Math.cos(theta[index] + Math.PI / 2) +
-					// 	hypX / 2 -
-					// 	// Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
-					// 	node.clientWidth / 2 +
-					// 	// measuresInternal.width / 2 +
-					// 	// 5 +
-					// 	"px";
+			// animatePlates(
+			// 	node,
+			// 	{
+			// node.style.top =
+			// 	hypY * Math.sin(theta[index] + Math.PI / 2) +
+			// 	hypY / 2 -
+			// 	// Number(getComputedStyle(node).height.slice(0, -2)) / 2 +
+			// 	node.clientHeight / 2 +
+			// 	// measuresInternal.height / 2 +
+			// 	// 5 +
+			// 	"px";
+			// node.style.left =
+			// 	hypY * Math.cos(theta[index] + Math.PI / 2) +
+			// 	hypX / 2 -
+			// 	// Number(getComputedStyle(node).width.slice(0, -2)) / 2 +
+			// 	node.clientWidth / 2 +
+			// 	// measuresInternal.width / 2 +
+			// 	// 5 +
+			// 	"px";
 
-					top:
-						// measuresInternal.top +
-						// measuresInternal.height / 2 +
-						// hypY +
-						hypY * Math.sin(theta[index] + Math.PI / 2) -
-						node.getBoundingClientRect().height / 2 +
-						// node.clientHeight / 4 +
-						measuresInternal.height / 2 +
-						// -5 +
-						// "px",
-						// searchbarCenterY -
-						// flowerDim.height / 2 +
-						"px",
-					left:
-						// measuresInternal.left +
-						// measuresInternal.width / 2 -
-						// hypX +
-						hypX * Math.cos(theta[index] + Math.PI / 2) -
-						node.getBoundingClientRect().width / 2 +
-						// node.clientWidth / 4 +
-						measuresInternal.width / 2 +
-						// -5 +
-						// "px"
-						// searchbarCenterX -
-						// flowerDim.width / 2 +
-						"px"
-					// transform: `translateX(-50%) translateY(${
-					// 	searchbarCenterY - flowerDim.height / 2
-					// }px)`
-					// }
-				},
-				{ delay: stagger(0.2, { startDelay: 0.15 }) }
-			);
+			node.style.top =
+				// measuresInternal.top +
+				// measuresInternal.height / 2 +
+				// hypY +
+				hypY * Math.sin(theta[index] + Math.PI / 2) -
+				// node.getBoundingClientRect().height / 2 +
+				node.clientHeight / 2 +
+				measuresInternal.height / 2 +
+				// -5 +
+				// "px",
+				// searchbarCenterY -
+				// flowerDim.height / 2 +
+				"px";
+			node.style.left =
+				// measuresInternal.left +
+				// measuresInternal.width / 2 -
+				// hypX +
+				hypX * Math.cos(theta[index] + Math.PI / 2) -
+				// node.getBoundingClientRect().width / 2 +
+				node.clientWidth / 2 +
+				measuresInternal.width / 2 +
+				// -5 +
+				// "px"
+				// searchbarCenterX -
+				// flowerDim.width / 2 +
+				"px";
+			// transform: `translateX(-50%) translateY(${
+			// 	searchbarCenterY - flowerDim.height / 2
+			// }px)`
+			// }
+			// },
+			// 	{ delay: stagger(0.2, { startDelay: 0.15 }) }
+			// );
 			console.log("placePlate");
 		}
 
-		if (resize === true) {
-			recipes.map((recipe, index) => {
-				return placePlate(recipe.title, index);
-				// }
-			});
-		}
+		// if (resize === true) {
+		recipes.map((recipe, index) => {
+			return placePlate(recipe.title, index);
+			// }
+		});
+		// }
 		// return () => {
 		// 	if (resize === false) {
 		// 		for (let anim of platesScope.animations) {
@@ -417,7 +417,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		// 		}
 		// 	}
 		// };
-	}, [recipes, resize]);
+	}, [recipes]);
 
 	// const w = useMotionValue(null);
 
@@ -560,15 +560,15 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// router.replace(router.asPath);
 
 			// console.log("change");
-			setResize(() => {
-				return false;
-			});
+			// setResize(() => {
+			// 	return false;
+			// });
 			setRecipes((prevRecipes) => {
 				return [...prevRecipes];
 			});
-			setResize(() => {
-				return true;
-			});
+			// setResize(() => {
+			// 	return true;
+			// });
 			// platesScope.animations.play();
 			// for (let anim of platesScope.animations) {
 			// 	anim.cancel();
@@ -595,11 +595,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		return () => {
 			console.log("clean");
 			window.removeEventListener("resize", resizeView);
-			for (let anim of platesScope.animations) {
-				for (let group of anim.animations) {
-					group.cancel();
-				}
-			}
+			// for (let anim of platesScope.animations) {
+			// 	for (let group of anim.animations) {
+			// 		group.cancel();
+			// 	}
+			// }
 
 			// platesScope.animations.length = 0;
 			// controls.start();
@@ -1280,36 +1280,35 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									ref={internal}
 									className={styles["circular-border-internal"]}
 								>
+									{/* {resize === true ? ( */}
 									<motion.ul ref={platesScope}>
-										{resize === true
-											? recipes.map((recipe, index) => {
-													return (
-														<motion.li
-															key={recipe.id}
-															className={styles["plate-container"]}
-															id={recipe.id}
-															ref={(node) => {
-																const map = getMap();
-																if (node) {
-																	map.set(recipe.title, node);
-																} else {
-																	map.delete(recipe.title);
-																}
-																// map.set(recipe.title, node);
-																// return () => {
-																// 	map.delete(recipe.title);
-																// };
-															}}
-															initial={{ opacity: 0 }}
-															animate={{
-																rotateZ:
-																	(Math.PI / 4) * (180 / Math.PI) * index,
-																opacity: 1.0
-															}}
-														>
-															<div className={styles["plate-image-container"]}>
-																{/* Testing suspense ---> */}
-																{/* <Suspense
+										{recipes.map((recipe, index) => {
+											return (
+												<motion.li
+													key={recipe.id}
+													className={styles["plate-container"]}
+													id={recipe.id}
+													ref={(node) => {
+														const map = getMap();
+														if (node) {
+															map.set(recipe.title, node);
+														} else {
+															map.delete(recipe.title);
+														}
+														// map.set(recipe.title, node);
+														// return () => {
+														// 	map.delete(recipe.title);
+														// };
+													}}
+													initial={{ opacity: 0 }}
+													animate={{
+														rotateZ: (Math.PI / 4) * (180 / Math.PI) * index,
+														opacity: 1.0
+													}}
+												>
+													<div className={styles["plate-image-container"]}>
+														{/* Testing suspense ---> */}
+														{/* <Suspense
 															fallback={
 																<Image
 																	src={fallbackImg}
@@ -1317,35 +1316,35 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 																/>
 															}
 														> */}
-																<Image
-																	style={
-																		settingsType !== "seasonal" ||
-																		(errorsReport.network &&
-																			errorsReport.network !== null)
-																			? { transform: "translateX(0%)" }
-																			: { transform: "translateX(-2%)" }
-																	}
-																	className={styles["plate-image"]}
-																	src={
-																		errorsReport.network &&
-																		errorsReport.network !== null
-																			? fallbackImg
-																			: recipe.image
-																	}
-																	alt={recipe.title}
-																	width="230"
-																	height="172"
-																	quality={100}
-																	priority
-																	// unoptimized
-																/>
-																{/* </Suspense> */}
-															</div>
-														</motion.li>
-													);
-											  })
-											: null}
+														<Image
+															style={
+																settingsType !== "seasonal" ||
+																(errorsReport.network &&
+																	errorsReport.network !== null)
+																	? { transform: "translateX(0%)" }
+																	: { transform: "translateX(-2%)" }
+															}
+															className={styles["plate-image"]}
+															src={
+																errorsReport.network &&
+																errorsReport.network !== null
+																	? fallbackImg
+																	: recipe.image
+															}
+															alt={recipe.title}
+															width="230"
+															height="172"
+															quality={100}
+															priority
+															// unoptimized
+														/>
+														{/* </Suspense> */}
+													</div>
+												</motion.li>
+											);
+										})}
 									</motion.ul>
+									{/* ) : null} */}
 								</div>
 							</motion.div>
 						</div>
