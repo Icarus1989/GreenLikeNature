@@ -566,6 +566,9 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			setRecipes((prevRecipes) => {
 				return [...prevRecipes];
 			});
+			setResize(() => {
+				return true;
+			});
 			// platesScope.animations.play();
 			// for (let anim of platesScope.animations) {
 			// 	anim.cancel();
@@ -597,9 +600,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 					group.cancel();
 				}
 			}
-			setResize(() => {
-				return true;
-			});
 
 			// platesScope.animations.length = 0;
 			// controls.start();
@@ -1280,35 +1280,36 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 									ref={internal}
 									className={styles["circular-border-internal"]}
 								>
-									{resize === true ? (
-										<motion.ul ref={platesScope}>
-											{recipes.map((recipe, index) => {
-												return (
-													<motion.li
-														key={recipe.id}
-														className={styles["plate-container"]}
-														id={recipe.id}
-														ref={(node) => {
-															const map = getMap();
-															if (node) {
-																map.set(recipe.title, node);
-															} else {
-																map.delete(recipe.title);
-															}
-															// map.set(recipe.title, node);
-															// return () => {
-															// 	map.delete(recipe.title);
-															// };
-														}}
-														initial={{ opacity: 0 }}
-														animate={{
-															rotateZ: (Math.PI / 4) * (180 / Math.PI) * index,
-															opacity: 1.0
-														}}
-													>
-														<div className={styles["plate-image-container"]}>
-															{/* Testing suspense ---> */}
-															{/* <Suspense
+									<motion.ul ref={platesScope}>
+										{resize === true
+											? recipes.map((recipe, index) => {
+													return (
+														<motion.li
+															key={recipe.id}
+															className={styles["plate-container"]}
+															id={recipe.id}
+															ref={(node) => {
+																const map = getMap();
+																if (node) {
+																	map.set(recipe.title, node);
+																} else {
+																	map.delete(recipe.title);
+																}
+																// map.set(recipe.title, node);
+																// return () => {
+																// 	map.delete(recipe.title);
+																// };
+															}}
+															initial={{ opacity: 0 }}
+															animate={{
+																rotateZ:
+																	(Math.PI / 4) * (180 / Math.PI) * index,
+																opacity: 1.0
+															}}
+														>
+															<div className={styles["plate-image-container"]}>
+																{/* Testing suspense ---> */}
+																{/* <Suspense
 															fallback={
 																<Image
 																	src={fallbackImg}
@@ -1316,35 +1317,35 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 																/>
 															}
 														> */}
-															<Image
-																style={
-																	settingsType !== "seasonal" ||
-																	(errorsReport.network &&
-																		errorsReport.network !== null)
-																		? { transform: "translateX(0%)" }
-																		: { transform: "translateX(-2%)" }
-																}
-																className={styles["plate-image"]}
-																src={
-																	errorsReport.network &&
-																	errorsReport.network !== null
-																		? fallbackImg
-																		: recipe.image
-																}
-																alt={recipe.title}
-																width="230"
-																height="172"
-																quality={100}
-																priority
-																// unoptimized
-															/>
-															{/* </Suspense> */}
-														</div>
-													</motion.li>
-												);
-											})}
-										</motion.ul>
-									) : null}
+																<Image
+																	style={
+																		settingsType !== "seasonal" ||
+																		(errorsReport.network &&
+																			errorsReport.network !== null)
+																			? { transform: "translateX(0%)" }
+																			: { transform: "translateX(-2%)" }
+																	}
+																	className={styles["plate-image"]}
+																	src={
+																		errorsReport.network &&
+																		errorsReport.network !== null
+																			? fallbackImg
+																			: recipe.image
+																	}
+																	alt={recipe.title}
+																	width="230"
+																	height="172"
+																	quality={100}
+																	priority
+																	// unoptimized
+																/>
+																{/* </Suspense> */}
+															</div>
+														</motion.li>
+													);
+											  })
+											: null}
+									</motion.ul>
 								</div>
 							</motion.div>
 						</div>
