@@ -592,9 +592,11 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		return () => {
 			console.log("clean");
 			window.removeEventListener("resize", resizeView);
-			// for (let anim of platesScope.animations) {
-			// 	anim.play();
-			// }
+			for (let anim of platesScope.animations) {
+				for (let group of anim.animations) {
+					group.cancel();
+				}
+			}
 			setResize(() => {
 				return true;
 			});
@@ -610,7 +612,7 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 			// 		: savedRecipes;
 			// });
 		};
-	}, [resize]);
+	}, []);
 
 	// Motion Transmission Effect
 
