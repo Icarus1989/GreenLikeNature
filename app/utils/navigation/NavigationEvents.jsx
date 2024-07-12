@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useContext, useCallback } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
@@ -151,6 +151,96 @@ export function NavigationEvents({ getSpoonData }) {
 			);
 		}
 	}, [pathname, searchParams, errorsReport?.network?.message]);
+
+	const [resize, setResize] = useState(false);
+
+	const router = useRouter();
+
+	useEffect(() => {
+		// window.addEventListener("resize", resizeView);
+		// const screen = window.screen;
+		// const availHeight = window.screen.availHeight;
+		// // console.log(orient);
+		// const controls = animatePlates();
+		// return () => {
+		// 	window.removeEventListener("resize", resizeView);
+		// 	controls.start();
+		// 	// setResize(() => {
+		// 	// 	return true;
+		// 	// });
+		// };
+
+		function resizeView() {
+			// setResize(() => {
+			// 	return true;
+			// });
+			console.log("test refresh");
+			// router.push("/");
+			// router.replace(router.asPath);
+
+			// console.log("change");
+			setResize(() => {
+				return true;
+			});
+			// setRecipes((prevRecipes) => {
+			// 	return [...prevRecipes];
+			// });
+			// setResize(() => {
+			// 	return true;
+			// });
+			// platesScope.animations.play();
+			// for (let anim of platesScope.animations) {
+			// 	anim.cancel();
+			// }
+
+			// recipes.map((recipe, index) => {
+			// 	// if (resize) {
+			// 	return placePlate(recipe.title, index);
+			// 	// }
+			// });
+			// setResize(() => {
+			// 	return false;
+			// });
+
+			// setResize(true);
+		}
+		window.addEventListener("resize", resizeView);
+
+		// const screen = window.screen;
+		// const availHeight = window.screen.availHeight;
+		// console.log(orient);
+		// const controls = animatePlates();
+
+		return () => {
+			console.log("clean");
+			window.removeEventListener("resize", resizeView);
+			// for (let anim of platesScope.animations) {
+			// 	for (let group of anim.animations) {
+			// 		group.cancel();
+			// 	}
+			// }
+
+			// platesScope.animations.length = 0;
+			// controls.start();
+			// setResize(false);
+			// setRecipes(() => {
+			// 	return settingsType === "seasonal"
+			// 		? seasonalRecipes.length > 0
+			// 			? [...seasonalRecipes]
+			// 			: [...defaultRecipes]
+			// 		: savedRecipes;
+			// });
+		};
+	}, []);
+
+	useEffect(() => {
+		if (resize === true) {
+			router.refresh();
+		}
+		return () => {
+			setResize(false);
+		};
+	}, [resize]);
 
 	// console.log(recipesList);
 
