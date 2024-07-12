@@ -33,7 +33,10 @@ import { GoX } from "react-icons/go";
 import styles from "./SearchPrimary.module.css";
 import LoadingSmall from "../LoadingSmall/LoadingSmall";
 
-export default function SearchPrimaryComponent({ searchByQuery }) {
+export default function SearchPrimaryComponent({
+	deeplTranslate,
+	searchByQuery
+}) {
 	const [view, setView] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [leavesDisplay, setLeavesDisplay] = useState({
@@ -76,7 +79,8 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 			  )
 			: [];
 
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const currentLocale = i18n.language;
 
 	const intolerances =
 		settings["tomato-settings"]["intolerances-list"].length > 0
@@ -297,6 +301,47 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 		}
 	}, [view, cleanList.length]);
 
+	// const [namesTransl, setNamesTransl] = useState([]);
+	// const [typesTransl, setTypesTransl] = useState([]);
+
+	const [namesTypesTrsl, setNamesTypesTrsl] = useState({
+		names: [],
+		types: []
+	});
+
+	useEffect(() => {
+		let ignore = false;
+		async function translateNameAndType() {
+			const names = Object.entries(ingrList).map((elem) => {
+				return elem[0].toLowerCase();
+			});
+			const types = Object.entries(ingrList).map((elem) => {
+				return elem[1][0];
+			});
+
+			const namesTransl = await deeplTranslate(names, currentLocale);
+			// const typesTransl = await deeplTranslate(types, currentLocale);
+			if (!ignore) {
+				console.log("names");
+				console.log(names);
+				console.log(namesTransl);
+				// console.log("types");
+				// console.log(types);
+				// console.log(typesTransl);
+				setNamesTypesTrsl(() => {
+					return {
+						names: [...namesTransl.map((name) => name.text)],
+						types: [...types]
+					};
+				});
+			}
+		}
+		translateNameAndType();
+		return () => {
+			ignore = true;
+		};
+	}, []);
+
 	return (
 		<section
 			className={styles["container"]}
@@ -447,19 +492,22 @@ export default function SearchPrimaryComponent({ searchByQuery }) {
 						<h2 className={styles["results-part-title"]}>
 							{t("label_suggest")}
 						</h2>
-						{Object.entries(ingrList).map((elem) => {
+						{Object.entries(ingrList).map((elem, index) => {
 							const nameStrg = elem[0].toLowerCase();
 							const varietiesArr = elem[1];
+
 							return (
 								<Fragment key={elem}>
 									<ArticlesSection
 										recipes={recipesList}
 										name={nameStrg}
+										nameTransl={namesTypesTrsl?.names[index]}
 										varieties={varietiesArr}
 										searchBySeasonal={searchBySeasonal}
 										handleSubmit={handleSubmit}
 										setView={setView}
 										setSearchTerm={setSearchTerm}
+										// translateText={translateText}
 									/>
 								</Fragment>
 							);

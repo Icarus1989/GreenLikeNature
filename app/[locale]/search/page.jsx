@@ -3,7 +3,10 @@ import SearchLoading from "./loading";
 import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
 import initTranslations from "@/app/i18n";
 import SearchPrimaryComponent from "@/app/[locale]/search/components/SearchPrimary/SearchPrimary";
-import { searchByQuery } from "@/app/serverActions/ServerActions";
+import {
+	deeplTranslate,
+	searchByQuery
+} from "@/app/serverActions/ServerActions";
 import styles from "./page.module.css";
 
 const apiKey = process.env.APIKEYSPOONTWO;
@@ -21,7 +24,10 @@ export default async function SearchPage({ params: { locale } }) {
 		>
 			<main className={styles["main"]}>
 				<Suspense fallback={<SearchLoading />}>
-					<SearchPrimaryComponent searchByQuery={searchByQuery} />
+					<SearchPrimaryComponent
+						deeplTranslate={deeplTranslate}
+						searchByQuery={searchByQuery}
+					/>
 				</Suspense>
 			</main>
 		</TranslationsProvider>

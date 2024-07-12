@@ -152,7 +152,7 @@ export function NavigationEvents({ getSpoonData }) {
 		}
 	}, [pathname, searchParams, errorsReport?.network?.message]);
 
-	const [resize, setResize] = useState(false);
+	// const [resize, setResize] = useState(false);
 
 	const router = useRouter();
 
@@ -179,9 +179,10 @@ export function NavigationEvents({ getSpoonData }) {
 			// router.replace(router.asPath);
 
 			// console.log("change");
-			setResize(() => {
-				return true;
-			});
+			window.location.reload();
+			// setResize(() => {
+			// 	return true;
+			// });
 			// setRecipes((prevRecipes) => {
 			// 	return [...prevRecipes];
 			// });
@@ -233,14 +234,14 @@ export function NavigationEvents({ getSpoonData }) {
 		};
 	}, []);
 
-	useEffect(() => {
-		if (resize === true) {
-			router.refresh();
-		}
-		return () => {
-			setResize(false);
-		};
-	}, [resize]);
+	// useEffect(() => {
+	// 	if (resize === true) {
+	// 		router.refresh();
+	// 	}
+	// 	return () => {
+	// 		setResize(false);
+	// 	};
+	// }, [resize]);
 
 	// console.log(recipesList);
 

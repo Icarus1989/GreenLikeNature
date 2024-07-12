@@ -1,5 +1,7 @@
 "use client";
 
+// ATTENZIONE MANCA UNA TRADUZIONE
+
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Fragment, useState, useRef, useEffect } from "react";
@@ -14,6 +16,7 @@ import { calcSingular } from "@/app/utils/strings/stringUtilities";
 export default function ArticlesSection({
 	recipes,
 	name = "",
+	nameTransl = "",
 	varieties,
 	searchBySeasonal,
 	handleSubmit,
@@ -98,13 +101,20 @@ export default function ArticlesSection({
 		};
 	}, [submitSeasonal]);
 
+	// const [nameAndType, setNameAndType] = useState({
+	// 	nameTransl: "",
+	// 	typeTransl: ""
+	// });
+
 	return (
 		<div className={styles["articles-section"]}>
 			{name ? (
 				<>
 					<h3 className={styles["section-title"]}>
 						{t("variety_label_1")}{" "}
-						<span className={styles["seasonal-name"]}>{name}</span>{" "}
+						<span className={styles["seasonal-name"]}>
+							{nameTransl.length > 0 ? nameTransl : name}
+						</span>{" "}
 						{t("variety_label_2")}{" "}
 						<span className={styles["seasonal-name"]}>{varieties[0]}</span>
 					</h3>
@@ -156,7 +166,9 @@ export default function ArticlesSection({
 								>
 									{/* Tradurre i18 ---> */}
 									Cerca ricette con:{" "}
-									<span className={styles["seasonal-name"]}>{name}</span>{" "}
+									<span className={styles["seasonal-name"]}>
+										{nameTransl.length > 0 ? nameTransl : name}
+									</span>{" "}
 									<GoSearch className={styles["search-icon"]} />
 									<IoIosArrowForward className={styles["arrow-icon"]} />
 								</button>
