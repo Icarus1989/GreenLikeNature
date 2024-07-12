@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useContext, useCallback } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+// import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
@@ -15,6 +16,9 @@ import { GeneralContext } from "@/app/generalContext/GeneralContext";
 export function NavigationEvents({ getSpoonData }) {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
+
+	// const { i18n } = useTranslation();
+	// const currentLocale = i18n.language;
 
 	const settings = useContext(GeneralContext);
 
@@ -154,7 +158,9 @@ export function NavigationEvents({ getSpoonData }) {
 
 	// const [resize, setResize] = useState(false);
 
-	const router = useRouter();
+	// const router = useRouter();
+	console.log(pathname);
+	console.log(pathname.slice(0, -2));
 
 	useEffect(() => {
 		// window.addEventListener("resize", resizeView);
@@ -179,7 +185,12 @@ export function NavigationEvents({ getSpoonData }) {
 			// router.replace(router.asPath);
 
 			// console.log("change");
-			window.location.reload();
+			if (pathname.length > 3) {
+				return;
+			} else if (pathname.length === 3) {
+				console.log("reload");
+				window.location.reload();
+			}
 			// setResize(() => {
 			// 	return true;
 			// });
@@ -232,7 +243,7 @@ export function NavigationEvents({ getSpoonData }) {
 			// 		: savedRecipes;
 			// });
 		};
-	}, []);
+	}, [pathname]);
 
 	// useEffect(() => {
 	// 	if (resize === true) {

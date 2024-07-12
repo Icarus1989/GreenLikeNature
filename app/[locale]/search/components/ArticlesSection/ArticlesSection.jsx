@@ -30,8 +30,6 @@ export default function ArticlesSection({
 	const nameStrg = name[name.length - 1] === "s" ? calcSingular(name) : name;
 	// console.log(nameStrg);
 
-	// console.log(name.length);
-	// console.log(recipes);
 	const [idsList, setIdsList] = useState(calcRecipesIds(recipes));
 	const btnRef = useRef(null);
 
