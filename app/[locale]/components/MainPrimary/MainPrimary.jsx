@@ -538,81 +538,81 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	const router = useRouter();
 
-	useEffect(() => {
-		// window.addEventListener("resize", resizeView);
-		// const screen = window.screen;
-		// const availHeight = window.screen.availHeight;
-		// // console.log(orient);
-		// const controls = animatePlates();
-		// return () => {
-		// 	window.removeEventListener("resize", resizeView);
-		// 	controls.start();
-		// 	// setResize(() => {
-		// 	// 	return true;
-		// 	// });
-		// };
+	// useEffect(() => {
+	// 	// window.addEventListener("resize", resizeView);
+	// 	// const screen = window.screen;
+	// 	// const availHeight = window.screen.availHeight;
+	// 	// // console.log(orient);
+	// 	// const controls = animatePlates();
+	// 	// return () => {
+	// 	// 	window.removeEventListener("resize", resizeView);
+	// 	// 	controls.start();
+	// 	// 	// setResize(() => {
+	// 	// 	// 	return true;
+	// 	// 	// });
+	// 	// };
 
-		function resizeView() {
-			// setResize(() => {
-			// 	return true;
-			// });
-			// router.refresh();
-			// router.replace(router.asPath);
+	// 	function resizeView() {
+	// 		// setResize(() => {
+	// 		// 	return true;
+	// 		// });
+	// 		// router.refresh();
+	// 		// router.replace(router.asPath);
 
-			// console.log("change");
-			// setResize(() => {
-			// 	return false;
-			// });
-			setRecipes((prevRecipes) => {
-				return [...prevRecipes];
-			});
-			// setResize(() => {
-			// 	return true;
-			// });
-			// platesScope.animations.play();
-			// for (let anim of platesScope.animations) {
-			// 	anim.cancel();
-			// }
+	// 		// console.log("change");
+	// 		// setResize(() => {
+	// 		// 	return false;
+	// 		// });
+	// 		setRecipes((prevRecipes) => {
+	// 			return [...prevRecipes];
+	// 		});
+	// 		// setResize(() => {
+	// 		// 	return true;
+	// 		// });
+	// 		// platesScope.animations.play();
+	// 		// for (let anim of platesScope.animations) {
+	// 		// 	anim.cancel();
+	// 		// }
 
-			// recipes.map((recipe, index) => {
-			// 	// if (resize) {
-			// 	return placePlate(recipe.title, index);
-			// 	// }
-			// });
-			// setResize(() => {
-			// 	return false;
-			// });
+	// 		// recipes.map((recipe, index) => {
+	// 		// 	// if (resize) {
+	// 		// 	return placePlate(recipe.title, index);
+	// 		// 	// }
+	// 		// });
+	// 		// setResize(() => {
+	// 		// 	return false;
+	// 		// });
 
-			// setResize(true);
-		}
-		window.addEventListener("resize", resizeView);
+	// 		// setResize(true);
+	// 	}
+	// 	window.addEventListener("resize", resizeView);
 
-		// const screen = window.screen;
-		// const availHeight = window.screen.availHeight;
-		// console.log(orient);
-		// const controls = animatePlates();
+	// 	// const screen = window.screen;
+	// 	// const availHeight = window.screen.availHeight;
+	// 	// console.log(orient);
+	// 	// const controls = animatePlates();
 
-		return () => {
-			console.log("clean");
-			window.removeEventListener("resize", resizeView);
-			// for (let anim of platesScope.animations) {
-			// 	for (let group of anim.animations) {
-			// 		group.cancel();
-			// 	}
-			// }
+	// 	return () => {
+	// 		console.log("clean");
+	// 		window.removeEventListener("resize", resizeView);
+	// 		// for (let anim of platesScope.animations) {
+	// 		// 	for (let group of anim.animations) {
+	// 		// 		group.cancel();
+	// 		// 	}
+	// 		// }
 
-			// platesScope.animations.length = 0;
-			// controls.start();
-			// setResize(false);
-			// setRecipes(() => {
-			// 	return settingsType === "seasonal"
-			// 		? seasonalRecipes.length > 0
-			// 			? [...seasonalRecipes]
-			// 			: [...defaultRecipes]
-			// 		: savedRecipes;
-			// });
-		};
-	}, []);
+	// 		// platesScope.animations.length = 0;
+	// 		// controls.start();
+	// 		// setResize(false);
+	// 		// setRecipes(() => {
+	// 		// 	return settingsType === "seasonal"
+	// 		// 		? seasonalRecipes.length > 0
+	// 		// 			? [...seasonalRecipes]
+	// 		// 			: [...defaultRecipes]
+	// 		// 		: savedRecipes;
+	// 		// });
+	// 	};
+	// }, []);
 
 	// Motion Transmission Effect
 
