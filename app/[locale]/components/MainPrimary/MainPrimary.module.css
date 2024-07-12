@@ -196,6 +196,7 @@
 	z-index: 1;
 	overflow: hidden;
 	transform-origin: center;
+	/* transform: translateX(25%) translateY(25%); */
 }
 
 .plate-image-container {
@@ -277,6 +278,8 @@
 .circular-border-internal > ul {
 	/* position: absolute; */
 	touch-action: none;
+	/* width: 100%;
+	height: 100%; */
 	/* width: 190dvw;
 	height: 190dvw;
 	display: grid;
@@ -1183,7 +1186,7 @@
 	.plate-image {
 		width: 12dvw;
 		height: 12dvw;
-		zoom: 0.5;
+		/* zoom: 0.5; */
 	}
 
 	.circular-border-internal {
@@ -1422,7 +1425,7 @@
 	}
 
 	.plate-image {
-		zoom: 0.5;
+		/* zoom: 0.5; */
 	}
 
 	.circular-border-internal {
