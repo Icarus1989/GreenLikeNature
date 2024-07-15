@@ -189,11 +189,11 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## Additional Features:
 
-- [x] Struttura Rounting Next.js basata su App Route come da più recente implementazione
-- [x] Feature - Stagionalità in base a costo prodotti ortofrutticoli
-- [x] Struttura backend (Server Actions) per utilizzo dati per individuazione stagionalità economica prodotti
-- [x] Struttura backend (Server Actions) per traduzione ricette
-- [x] Struttura backend (Server Actions) per request iniziale a Spoonacular API per lista suggerimenti per limitare requests successive
+- Struttura Rounting Next.js basata su App Route come da più recente implementazione
+- Feature - Stagionalità in base a costo prodotti ortofrutticoli
+- Struttura backend (Server Actions) per utilizzo dati per individuazione stagionalità economica prodotti
+- Struttura backend (Server Actions) per traduzione ricette
+- Struttura backend (Server Actions) per request iniziale a Spoonacular API per lista suggerimenti per limitare requests successive
 
 ## To-Do:
 
@@ -208,6 +208,17 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 <hr>
 
 ## Resources
+
+- [React Documentation](https://react.dev/)
+- [Next.js Documentation](https://nextjs.org/)
+- [Spoonacular API Documentation](https://spoonacular.com/food-api)
+- [EU Agri-Food Markets API Documentation](https://agridata.ec.europa.eu/)
+- [DeepL API Documentation](https://www.deepl.com/it/)
+- [i18Next Documentation](https://www.i18next.com/)
+- [Framer Motion Documentation](https://www.framer.com/motion/)
+- [Anime.js Documentation](https://animejs.com/documentation/)
+- [Axios.js Documentation](https://axios-http.com/)
+- [MDN](https://developer.mozilla.org/en-US/docs/Web)
 
 <hr>
 <hr>
