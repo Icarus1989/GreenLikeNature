@@ -114,7 +114,7 @@ Icone ed immagini:
 
 ### Intro - Green Like Nature
 
-Quest'App é stata creata sfruttando al massimo le conoscenze apprese attraverso il Corso di React.js di Start2Impact e, partendo da queste, imparando anche ad utilizzare il framework Next.js, che amplia le possibilità fornite da React.js soprattutto dopo la recente aggiunta dei Server Components, che l'ecosistema Next.js integra permettendo di effettuare delle richieste da Server in modo molto elegante e relativamente semplice. Capita questa struttura ho potuto dare vita a ciò che avevo immaginato: una Web App di ricette vegane come richiesto che permettesse di ottenere delle indicazioni utili alla quotidianità delle persone.
+Quest'App é stata creata sfruttando al massimo le conoscenze apprese attraverso il Corso di **React.js** di Start2Impact e, partendo da queste, imparando anche ad utilizzare il framework **Next.js**, che amplia le possibilità fornite da React.js soprattutto dopo la recente aggiunta dei Server Components, che l'ecosistema Next.js integra permettendo di effettuare delle richieste da Server in modo molto elegante e relativamente semplice. Capita questa struttura ho potuto dare vita a ciò che avevo immaginato: una Web App di ricette vegane come richiesto che permettesse di ottenere delle indicazioni **utili nella quotidianità** delle persone.
 
 L'idea originale era ottenere dei risultati basati sulla stagionalità annuale dei vari prodotti ma, viste le differenti aree climatiche del pianeta e a causa di molti altri fattori, non sono ancora state realizzate delle API o resi disponibili dei dati, affidabili o meno, da nessun Paese o società.
 
@@ -131,8 +131,8 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 
 ### Routing
 
-**Nota**:
-Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App creata con Next.js, anche se richiesto nella traccia originale. Sarebbe un integrazione difficile e sostanzialmente inutile, visto che il Routing per Next.js viene creato basandosi anche sulle directories del progetto all'interno della directory principale "app" ([App Routing Next.js v.14](https://nextjs.org/docs/getting-started/project-structure)) e il Routing integrato permette una serie di ottimizzazioni e personalizzazioni non trascurabili, come l'utilizzo dei Server Components come base per ogni Route e per il Layout generale dell'App. Nonostante ciò vi sono somiglianze tra le due tipologie di Routing, come l'utilizzo di elementi Link integrati dedicati.
+> [!NOTE]
+> Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App creata con Next.js, anche se richiesto nella traccia originale. Sarebbe un integrazione difficile e sostanzialmente inutile, visto che il Routing per Next.js viene creato basandosi anche sulle directories del progetto all'interno della directory principale "app" ([App Routing Next.js v.14](https://nextjs.org/docs/getting-started/project-structure)) e il Routing integrato permette una serie di ottimizzazioni e personalizzazioni non trascurabili, come l'utilizzo dei Server Components come base per ogni Route e per il Layout generale dell'App. Nonostante ciò vi sono somiglianze tra le due tipologie di Routing, come l'utilizzo di elementi Link integrati dedicati.
 
 **Struttura**:
 
@@ -146,7 +146,7 @@ In aggiunta ho voluto rendere accessibile l'App ad un pubblico più amplio, cos�
 
 ### API Limits
 
-Per sfruttare al meglio i dati forniti gratuitamente dal Sponacular, l'App effettua una richiesta per 80 ricette con una prima API Key, che fungeranno da suggeriementi utilizzabili senza effettuare ulteriori richieste con relativo consumo di dati disponibili quotidianamente evitato. Per le ricerche di altre ricette, le richieste utilizzeranno una seconda API Key.
+Per sfruttare al meglio i dati forniti gratuitamente dal Spoonacular, l'App effettua una richiesta per 80 ricette con una prima API Key, che fungeranno da suggeriementi utilizzabili senza effettuare ulteriori richieste con relativo consumo di dati disponibili quotidianamente evitato. Per le ricerche di altre ricette, le richieste utilizzeranno una seconda API Key.
 Combinando le due in questo modo credo di aver prolungato la possibilità di utilizzo quotidiano da parte del maggior numeno possibile di utenti. Per gestire un quantitativo di dati importante come quello di 80 ricette con dettagli, ho utilizzato Redux. Questo si é dimostrato molto più veloce e fluido nella gestione di una mole notevole di dati rispetto all'utilizzo di una struttura di Context e Provider creata da zero, anche se, come indicato nella documentazione, l'integrazione e l'ottimizzazione di Redux con Next.js non é ancora completa.
 
 La tecnica della doppia API Key utilizzata sopra permette all'App di avere traduzioni per un maggior numero ricette tramite l'API di DeepL, utilizzando una chiave per ottenere le traduzioni delle ricette già presenti nei suggeriementi e un'altra per quelle non presenti.
@@ -256,7 +256,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ### Main Page
 
-<span style="font-size:2.3rem;">&#8962;</span>
+<span style="font-size:2.3rem; height:30px;">&#8962;</span>
 
 &#8962;
 
