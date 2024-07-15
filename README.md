@@ -50,7 +50,7 @@ Questa é una Web App creata come progetto per il completamento del Corso **Reac
     </li>
     <li><a href="#trace-summary">Trace Summary</a>
     <li><a href="#additional-features">Additional Features</a>
-    <li><a href="#to-do">To Do</a>
+    <li><a href="#to-do">To-Do</a>
     <li><a href="#resources">Resources</a>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#demo">Demo</a></li>
@@ -72,8 +72,8 @@ Logica, struttura, routing e styling:
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML?retiredLocale=it)
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS?retiredLocale=it)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript?retiredLocale=it)
-- [React.js](https://react.dev/)
-- [Next.js](https://nextjs.org/)
+- [React.js v.18](https://react.dev/)
+- [Next.js v.14.2.3](https://nextjs.org/)
 
 Dati da API:
 
@@ -167,42 +167,42 @@ Spero che quest'esempio possa essere utile anche ad altri che preferiscono qualc
 Vegetarian recipe website  
 Il sito web che creerai è ideato per i vegetariani. Infatti dentro il sito l’utente avrà la possibilità di cercare esclusivamente ricette vegetariane attraverso l’API di spoonacular.
 
-(API: https://spoonacular.com/food-api/docs )[Link]
+[Spoonacular Docs](https://spoonacular.com/food-api/docs)
 
 Ecco cosa dovrà includere il sito:
 
-[x] Barra di ricerca che permetta di cercare tutte le ricette vegetariane.
-[x] Ogni ricetta cercata dovrà mostrare almeno titolo e immagine di copertina.
-[x] Cliccare su una ricetta porterà ad una pagina dedicata, dove verranno mostrate ulteriori informazioni.
-[x] UI e UX semplice e facile da usare.
-[x] Struttura dell’app organizzata e comprensibile.
-[x] Design responsive.
+- [x] Barra di ricerca che permetta di cercare tutte le ricette vegetariane.
+- [x] Ogni ricetta cercata dovrà mostrare almeno titolo e immagine di copertina.
+- [x] Cliccare su una ricetta porterà ad una pagina dedicata, dove verranno mostrate ulteriori informazioni.
+- [x] UI e UX semplice e facile da usare.
+- [x] Struttura dell’app organizzata e comprensibile.
+- [x] Design responsive.
 
 Bonus: Utilizza queste tecnologie
-Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alcune delle tecnologie che hai studiato.
+Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alcune delle tecnologie che hai studiato- .
 
-[x] React Router --> Sostituito necessariamente con Rounting di Next.js (type App Routing)
-[x] Axios
-[x] React Hooks
-[x] Redux
-[x] Context
+- [x] React Router --> Sostituito necessariamente con Rounting di Next.js (type App Routing)
+- [x] Axios
+- [x] React Hooks
+- [x] Redux
+- [x] Context
 
 ## Additional Features:
 
-[x] Struttura Rounting Next.js basata su App Route come da più recente implementazione
-[x] Feature - Stagionalità in base a costo prodotti ortofrutticoli
-[x] Struttura backend (Server Actions) per utilizzo dati per individuazione stagionalità economica prodotti
-[x] Struttura backend (Server Actions) per traduzione ricette
-[x] Struttura backend (Server Actions) per request iniziale a Spoonacular API per lista suggerimenti per limitare requests successive
+- [x] Struttura Rounting Next.js basata su App Route come da più recente implementazione
+- [x] Feature - Stagionalità in base a costo prodotti ortofrutticoli
+- [x] Struttura backend (Server Actions) per utilizzo dati per individuazione stagionalità economica prodotti
+- [x] Struttura backend (Server Actions) per traduzione ricette
+- [x] Struttura backend (Server Actions) per request iniziale a Spoonacular API per lista suggerimenti per limitare requests successive
 
-## To Do:
+## To-Do:
 
-[ ] Pulizia codice da commmenti
-[x] Refactor e miglioramento posizionamento menù iniziale
-[x] Test iPhone 14
-[x] Test iPhone 13
-[x] Test iPhone 7
-[x] Test iPad Air
+- [ ] Pulizia codice da commmenti
+- [x] Refactor e miglioramento posizionamento menù iniziale
+- [x] Test iPhone 14
+- [x] Test iPhone 13
+- [x] Test iPhone 7
+- [x] Test iPad Air
 
 <hr>
 <hr>
