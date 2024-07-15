@@ -15,11 +15,11 @@ Questa é una Web App creata come progetto per il completamento del Corso **Reac
 <hr>
 
 <p align="center">
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Icarus1989/how-is-there--lifestyle-web-app?style=flat-square">
-<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Icarus1989/how-is-there--lifestyle-web-app">
-<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Icarus1989/how-is-there--lifestyle-web-app">
-<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Icarus1989/how-is-there--lifestyle-web-app">
-<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Icarus1989/how-is-there--lifestyle-web-app">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Icarus1989/GreenLikeNature?style=flat-square">
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Icarus1989/GreenLikeNature"> 
+<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Icarus1989/GreenLikeNature">
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Icarus1989/GreenLikeNature">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Icarus1989/GreenLikeNature">
 </p>
 
 <hr>
@@ -48,6 +48,9 @@ Questa é una Web App creata come progetto per il completamento del Corso **Reac
         </li>
       </ul>
     </li>
+    <li><a href="#trace-summary">Trace Summary</a>
+    <li><a href="#additional-features">Additional Features</a>
+    <li><a href="#to-do">To Do</a>
     <li><a href="#resources">Resources</a>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#demo">Demo</a></li>
@@ -159,7 +162,7 @@ Spero che quest'esempio possa essere utile anche ad altri che preferiscono qualc
 <hr>
 <hr>
 
-## Riassunto Traccia fornita:
+## Trace Summary:
 
 Vegetarian recipe website  
 Il sito web che creerai è ideato per i vegetariani. Infatti dentro il sito l’utente avrà la possibilità di cercare esclusivamente ricette vegetariane attraverso l’API di spoonacular.
@@ -184,7 +187,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 [x] Redux
 [x] Context
 
-## Aggiunto inoltre:
+## Additional Features:
 
 [x] Struttura Rounting Next.js basata su App Route come da più recente implementazione
 [x] Feature - Stagionalità in base a costo prodotti ortofrutticoli
@@ -192,9 +195,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 [x] Struttura backend (Server Actions) per traduzione ricette
 [x] Struttura backend (Server Actions) per request iniziale a Spoonacular API per lista suggerimenti per limitare requests successive
 
-## Da aggiungere:
-
-### to Do:
+## To Do:
 
 [ ] Pulizia codice da commmenti
 [x] Refactor e miglioramento posizionamento menù iniziale
