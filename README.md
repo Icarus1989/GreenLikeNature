@@ -1,12 +1,108 @@
-# Green Like Nature - Vegetarian Recipe App
+<hr>
+<hr>
 
-Questa é una Web App creata per il completamento del Corso React.js di Start2Impact.
+<div align="center">
+<h1><i>Green Like Nature - Vegetarian Recipe App</i></h1>
+</div>
+
+Questa é una Web App creata come progetto per il completamento del Corso **React.js** di **Start2Impact**.
 
 ## Progetto:
 
-React.js / Food
+**React.js / Food**
 
-## Descrizione
+<hr>
+<hr>
+
+<p align="center">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Icarus1989/how-is-there--lifestyle-web-app?style=flat-square">
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Icarus1989/how-is-there--lifestyle-web-app">
+<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Icarus1989/how-is-there--lifestyle-web-app">
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Icarus1989/how-is-there--lifestyle-web-app">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Icarus1989/how-is-there--lifestyle-web-app">
+</p>
+
+<hr>
+<hr>
+
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#description">Description</a>
+          <ul>
+          <li><a href="#intro">Intro</a></li>
+          <li><a href="#combined-data">Combined Data</a></li>
+          <li><a href="#routing">Routing</a></li>
+          <li><a href="#internationalization">Internationalization</a></li>
+          <li><a href="#api-limits">API Limits</a></li>
+          <li><a href="#allergies-and-intolerances">Allergies and intolerances</a></li>
+          <li><a href="#data-percistence">Data percistence</a></li>
+          <li><a href="#error-handling">Error Handling</a></li>
+          <li><a href="#wonderful-draws-and-animations">Wonderful Draws and Animations</a></li>
+          <li><a href="#menu-animation">Menu Animation</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#resources">Resources</a>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contacts">Contacts</a></li>
+
+  </ol>
+</details>
+
+<hr>
+<hr>
+
+## About the project
+
+### Build with:
+
+Logica, struttura, routing e styling:
+
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML?retiredLocale=it)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS?retiredLocale=it)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript?retiredLocale=it)
+- [React.js](https://react.dev/)
+- [Next.js](https://nextjs.org/)
+
+Dati da API:
+
+- [Spoonacular Food API](https://spoonacular.com/food-api)
+- [EU Agrifood API](https://agridata.ec.europa.eu/)
+
+Richieste HTTP:
+
+- [Axios](https://axios-http.com/)
+
+Traduzioni:
+
+- [i18Next](https://www.i18next.com/) - Menu e indicazioni
+- [DeepL Free API](https://www.deepl.com/it/) - Traduzione ricette
+
+Salvataggio:
+
+- [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API) - solo accesso per salvataggio ricette, nessun dato personale utilizzato
+
+Animazioni:
+
+- [Framer-Motion](https://www.framer.com/motion/) - Elements
+- [Anime.js](https://animejs.com/documentation/) - SVG Paths Morphing
+
+Icone ed immagini:
+
+- [React-Icons package](https://react-icons.github.io/react-icons/) - Icone
+- [Boxy-svg](https://boxy-svg.com/) - Immagini personalizzate
+
+<!-- INSERIRE IMMAGINE STRUTTURA -->
+
+## Description
 
 ### Intro - Green Like Nature
 
@@ -16,23 +112,30 @@ L'idea originale era ottenere dei risultati basati sulla stagionalità annuale d
 
 Quindi ho deciso di fornire indicazioni basandomi sull'effettivo prezzo dei prodotti, una sorta di segnalazione di convenienza di un prodotto ortofrutticolo basato su una raccolta dati fornita dai produttori europei negli anni precedenti: una sorta di "stagionalità economica".
 
-### Dati combinati Spoonacular + EU Agrifood
+### Combined Data Spoonacular + EU Agrifood
 
 Osservando, analizzando e utilizzando i dati forniti dall'Unione Europea (link Agrifood), accessibili solo attraverso delle richieste autenticate da Server, ho potuto ricavare i prezzi di ogni settimana per ogni prodotto ortofrutticolo coltivato nell'Unione negli scorsi due anni e fornire così indicazioni su quali prodotti acquistare con relativa varietà. Nello specifico: se un prodotto ha avuto il suo prezzo più basso nella settimana corrispondente di uno degli scorsi due anni, verrà indicato come suggerimento nella pagina di Ricerca con relativa varietà e, grazie ai dati di Spoonacular, verrano suggerite delle ricette contenenti tale prodotto. Per quanto con qualche piccolo errore, dovuto anche alla parzialità dei dati di qualche prodotto, confrontando tali suggerimenti con i reali prezzi in due negozi di ortofrutta negli scorsi mesi, ho potuto effettivamente osservare la correttezza delle indicazioni ottenute.
 Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando molto lacunosi, parziali o totalmente assenti in alcuni casi, rendendo però possibile un miglioramento futuro dell'App con il progredire dell'acquisizione dati e la loro disponibilità. Utilizzando questi dati si ricalcano comunque gli andamenti stagionali dei prodotti, visto che, in linea generale, quando un prodotto é di stagione il suo prezzo diminuisce.
+
+### Routing
+
+**Nota**:
+Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App creata con Next.js, anche se richiesto nella traccia originale. Sarebbe un integrazione difficile e sostanzialmente inutile, visto che il Routing per Next.js viene creato basandosi anche sulle directories del progetto all'interno della directory principale "app" ([App Routing Next.js v.14](https://nextjs.org/docs/getting-started/project-structure)) e il Routing integrato permette una serie di ottimizzazioni e personalizzazioni non trascurabili, come l'utilizzo dei Server Components come base per ogni Route e per il Layout generale dell'App. Nonostante ciò vi sono somiglianze tra le due tipologie di Routing, come l'utilizzo di elementi Link integrati dedicati.
+
+**Struttura**:
 
 ### Internationalization
 
 In aggiunta ho voluto rendere accessibile l'App ad un pubblico più amplio, così ho integrato la traduzione in 6 lingue diverse: menu e indicazioni tramite internationalization del Routing con i18n mentre i testi ricavati dai dati di Spoonacular tradotti invece tramite l'API di DeepL.
 
-### Gestione dei limiti delle API gratuite
+### API Limits
 
 Per sfruttare al meglio i dati forniti gratuitamente dal Sponacular, l'App effettua una richiesta per 80 ricette con una prima API Key, che fungeranno da suggeriementi utilizzabili senza effettuare ulteriori richieste con relativo consumo di dati disponibili quotidianamente evitato. Per le ricerche di altre ricette, le richieste utilizzeranno una seconda API Key.
 Combinando le due in questo modo credo di aver prolungato la possibilità di utilizzo quotidiano da parte del maggior numeno possibile di utenti. Per gestire un quantitativo di dati importante come quello di 80 ricette con dettagli, ho utilizzato Redux. Questo si é dimostrato molto più veloce e fluido nella gestione di una mole notevole di dati rispetto all'utilizzo di una struttura di Context e Provider creata da zero, anche se, come indicato nella documentazione, l'integrazione e l'ottimizzazione di Redux con Next.js non é ancora completa.
 
 La tecnica della doppia API Key utilizzata sopra permette all'App di avere traduzioni per un maggior numero ricette tramite l'API di DeepL, utilizzando una chiave per ottenere le traduzioni delle ricette già presenti nei suggeriementi e un'altra per quelle non presenti.
 
-### Attenzione alle allergie degli utenti
+### Allergies and intolerances
 
 Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare anche questa funzionalità permettendo alle persone di indicare cosa escludere, passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e nell'url delle ricerche per Spoonacular in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi, sia che provengano da un'intolleranza o da un'allergia.
 
@@ -53,41 +156,10 @@ Un campo ulterione nel quale mi sono particolarmente applicato per questo proget
 Un dettaglio al quale ho dedicato particolare energie é stata la creazione di un menu rotante che desse la possibilità di avere un animazione circolare e senza un limite in ambedue i sensi, creando così un esempio di circular infinite scroll, per quanto leggermente limitato al passaggio da una ricetta per volta non permettendo una rotazione libera ad alta velocità. Chiaramente come ogni esempio del genere che coninvolge un "infinite", si tratta di un'illusione permessa da una costruzione accurata. Tramite lo studio della documentazione e l'utilizzo della libreria Framer-Motion e di molti dei Custom Hooks presenti ho potuto creare un'animazione che permettesse una rotazione attorno all'asse di un element circolare comandato un altro element invisibile, esteso alla zona di pressione più probabile dell'utente, che trasmette la propria velocità al primo determinando anche la direzione verso quale ruotare.
 Spero che quest'esempio possa essere utile anche ad altri che preferiscono qualcosa di più leggero di una libreria basata su elementi canvas, che nella maggior parte dei casi necessitano di uno studio più approfondito e dedicato per apprendere le nozioni sufficienti per realizzare effetti visivi del genere.
 
-## Build with:
+<hr>
+<hr>
 
-Logica, struttura, routing e styling:
-
-• HTML
-• CSS
-• JavaScript
-• React.js
-• Next.js
-
-Dati da API:
-
-• Spoonacular Food API
-• EU Agrifood API
-
-Traduzioni:
-
-• i18Next - Menu e indicazioni
-• DeepL Free API - Traduzione ricette
-
-Salvataggio:
-
-• LocalStorage - solo accesso per salvataggio ricette, nessun dato personale utilizzato
-
-Animazioni:
-
-• Framer-Motion (Elements)
-• Anime.js (SVG paths)
-
-Icone ed immagini:
-
-• React-Icons package
-• Boxy-svg - immagini personalizzate
-
-### Traccia fornita:
+## Riassunto Traccia fornita:
 
 Vegetarian recipe website  
 Il sito web che creerai è ideato per i vegetariani. Infatti dentro il sito l’utente avrà la possibilità di cercare esclusivamente ricette vegetariane attraverso l’API di spoonacular.
@@ -106,13 +178,13 @@ Ecco cosa dovrà includere il sito:
 Bonus: Utilizza queste tecnologie
 Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alcune delle tecnologie che hai studiato.
 
-[x] React Router --> Sostituito necessariamente con Rounting di Next.js (type App routing)
+[x] React Router --> Sostituito necessariamente con Rounting di Next.js (type App Routing)
 [x] Axios
 [x] React Hooks
 [x] Redux
 [x] Context
 
-### Aggiunto inoltre:
+## Aggiunto inoltre:
 
 [x] Struttura Rounting Next.js basata su App Route come da più recente implementazione
 [x] Feature - Stagionalità in base a costo prodotti ortofrutticoli
@@ -120,7 +192,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 [x] Struttura backend (Server Actions) per traduzione ricette
 [x] Struttura backend (Server Actions) per request iniziale a Spoonacular API per lista suggerimenti per limitare requests successive
 
-### Da aggiungere:
+## Da aggiungere:
 
 ### to Do:
 
@@ -130,3 +202,46 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 [x] Test iPhone 13
 [x] Test iPhone 7
 [x] Test iPad Air
+
+<hr>
+<hr>
+
+## Resources
+
+<hr>
+<hr>
+
+## Usage
+
+<hr>
+<hr>
+
+## Demo
+
+Link
+
+<br>
+<p><a href="#begin">&#9650; Back to summary</a></p>
+
+<hr>
+<hr>
+
+## License
+
+Distributed under MIT License.
+
+<br>
+<p><a href="#begin">&#9650; Back to summary</a></p>
+
+<hr>
+<hr>
+
+## Contacts
+
+Alex<br>
+[GitHub](http://https://github.com/Icarus1989)<br>
+[Linkedin](https://www.linkedin.com/in/alex-valente-018586156/)<br>
+[Instagram](http://https://www.instagram.com/alex._.1989/)<br>
+
+<br>
+<p><a href="#begin">&#9650; Back to summary</a></p>
