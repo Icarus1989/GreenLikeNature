@@ -254,15 +254,21 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## Usage
 
-### Main Page &#61461;
+### Main Page &#8962;
 
-&#61461;
+&#8962;
 
-### Search Page
+### Search Page &#128269;
 
-### Single Recipe Page
+&#128269;
+
+### Single Recipe Page &#127869;
+
+&#127869;
 
 ### Tomato Settings
+
+&#128100;
 
 <hr>
 <hr>
