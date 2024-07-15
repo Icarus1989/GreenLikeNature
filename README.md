@@ -258,6 +258,12 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 &#61461;
 
+### Search Page
+
+### Single Recipe Page
+
+### Tomato Settings
+
 <hr>
 <hr>
 
