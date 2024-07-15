@@ -25,6 +25,8 @@ Questa é una Web App creata come progetto per il completamento del Corso **Reac
 <hr>
 <hr>
 
+<div id="begin"></div>
+
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
@@ -105,6 +107,9 @@ Icone ed immagini:
 
 <!-- INSERIRE IMMAGINE STRUTTURA -->
 
+<hr>
+<hr>
+
 ## Description
 
 ### Intro - Green Like Nature
@@ -115,10 +120,14 @@ L'idea originale era ottenere dei risultati basati sulla stagionalità annuale d
 
 Quindi ho deciso di fornire indicazioni basandomi sull'effettivo prezzo dei prodotti, una sorta di segnalazione di convenienza di un prodotto ortofrutticolo basato su una raccolta dati fornita dai produttori europei negli anni precedenti: una sorta di "stagionalità economica".
 
+<hr>
+
 ### Combined Data Spoonacular + EU Agrifood
 
 Osservando, analizzando e utilizzando i dati forniti dall'Unione Europea (link Agrifood), accessibili solo attraverso delle richieste autenticate da Server, ho potuto ricavare i prezzi di ogni settimana per ogni prodotto ortofrutticolo coltivato nell'Unione negli scorsi due anni e fornire così indicazioni su quali prodotti acquistare con relativa varietà. Nello specifico: se un prodotto ha avuto il suo prezzo più basso nella settimana corrispondente di uno degli scorsi due anni, verrà indicato come suggerimento nella pagina di Ricerca con relativa varietà e, grazie ai dati di Spoonacular, verrano suggerite delle ricette contenenti tale prodotto. Per quanto con qualche piccolo errore, dovuto anche alla parzialità dei dati di qualche prodotto, confrontando tali suggerimenti con i reali prezzi in due negozi di ortofrutta negli scorsi mesi, ho potuto effettivamente osservare la correttezza delle indicazioni ottenute.
 Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando molto lacunosi, parziali o totalmente assenti in alcuni casi, rendendo però possibile un miglioramento futuro dell'App con il progredire dell'acquisizione dati e la loro disponibilità. Utilizzando questi dati si ricalcano comunque gli andamenti stagionali dei prodotti, visto che, in linea generale, quando un prodotto é di stagione il suo prezzo diminuisce.
+
+<hr>
 
 ### Routing
 
@@ -127,9 +136,13 @@ Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App cre
 
 **Struttura**:
 
+<hr>
+
 ### Internationalization
 
 In aggiunta ho voluto rendere accessibile l'App ad un pubblico più amplio, così ho integrato la traduzione in 6 lingue diverse: menu e indicazioni tramite internationalization del Routing con i18n mentre i testi ricavati dai dati di Spoonacular tradotti invece tramite l'API di DeepL.
+
+<hr>
 
 ### API Limits
 
@@ -138,21 +151,31 @@ Combinando le due in questo modo credo di aver prolungato la possibilità di uti
 
 La tecnica della doppia API Key utilizzata sopra permette all'App di avere traduzioni per un maggior numero ricette tramite l'API di DeepL, utilizzando una chiave per ottenere le traduzioni delle ricette già presenti nei suggeriementi e un'altra per quelle non presenti.
 
+<hr>
+
 ### Allergies and intolerances
 
 Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare anche questa funzionalità permettendo alle persone di indicare cosa escludere, passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e nell'url delle ricerche per Spoonacular in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi, sia che provengano da un'intolleranza o da un'allergia.
+
+<hr>
 
 ### Data percistence
 
 Concentrandomi sulla possibilità di utilizzare l'App anche senza la disponibilità di richieste verso l'API di Spoonacular, ho voluto inserire la possibilità di salvare un massimo di 8 ricette e le impostazioni correnti, come per esempio le intolleranze segnalate, nel LocalStorage interno, tramite l'apposita API. Tutte le impostazioni cambiate nelle varie parti dell'App verranno gestite da Context e Provider interno e poi salvate nel dispositivo che si sta utilizzando.
 
+<hr>
+
 ### Error Handling
 
 Visti gli innumerevoli Components che compongono l'App, sia Client che Server, ho deciso di far gestire gli eventuali errori a Redux, altro campo nel quale si é dimostrato inaspettatamente brillante nonostante l'integrazione con NExt.js non ancora completata. Se avviene un errore in un qualsiasi Component, sia una richiesta dati fallita a causa dell'assenza di richieste gratuite, oppure una disconnessione dalla rete, o una richiesta di dati fallita ai server dell'Unione Europea, tutti verranno indirizzati a Redux che attiverà la segnalazione dell'errore con relativo Modal con descrizione.
 
+<hr>
+
 ### Wonderful Draws and Animations
 
 Un campo ulterione nel quale mi sono particolarmente applicato per questo progetto é stato la creazione di SVG personalizzate con relative animazioni e utilizzo di gradienti di colore inseriti come elements HTML gestiti da React.js. Capire più a fondo tutti i vari elements che compongono o possono interfacciarsi con gli elements svg trattati come Components invece che come semplici immagini ha cambiato molte prospettive e mi ha dato la possibilità di raggiungere un livello di dettagli davvero gradevole alla vista, come per esempio il fiore nella pagina principale creato da degli elements svg semplici, colorato con dei gradients provenienti da delle definizioni defs e animato tramite Anime.js.
+
+<hr>
 
 ### Menu Animation
 
@@ -187,6 +210,9 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 - [x] Redux
 - [x] Context
 
+<hr>
+<hr>
+
 ## Additional Features:
 
 - Struttura Rounting Next.js basata su App Route come da più recente implementazione
@@ -194,6 +220,9 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 - Struttura backend (Server Actions) per utilizzo dati per individuazione stagionalità economica prodotti
 - Struttura backend (Server Actions) per traduzione ricette
 - Struttura backend (Server Actions) per request iniziale a Spoonacular API per lista suggerimenti per limitare requests successive
+
+<hr>
+<hr>
 
 ## To-Do:
 
@@ -224,6 +253,10 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 <hr>
 
 ## Usage
+
+### Main Page &#61461;
+
+&#61461;
 
 <hr>
 <hr>
@@ -257,3 +290,6 @@ Alex<br>
 
 <br>
 <p><a href="#begin">&#9650; Back to summary</a></p>
+
+<hr>
+<hr>
