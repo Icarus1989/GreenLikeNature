@@ -5,7 +5,7 @@
 <h1><i>Green Like Nature - Vegetarian Recipe App</i></h1>
 </div>
 
-Questa é una Web App creata come progetto per il completamento del Corso **React.js** di **Start2Impact**.
+**Questa é una Web App creata come progetto per il completamento del Corso _React.js_ di _Start2Impact_**.
 
 ## Progetto:
 
@@ -254,7 +254,9 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## Usage
 
-### Main Page &#8962;
+### Main Page
+
+<span style="font-size:2.3rem;">&#8962;</span>
 
 &#8962;
 
