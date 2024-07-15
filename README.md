@@ -254,9 +254,9 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## Usage
 
-### Main Page
+### Main Page <span height="30px">&#8962;</span>
 
-<span style="font-size:2.3rem; height:30px;">&#8962;</span>
+<span height="30px">&#8962;</span>
 
 &#8962;
 
