@@ -46,6 +46,7 @@
           <li><a href="#api-limits">API Limits</a></li>
           <li><a href="#allergies-and-intolerances">Allergies and intolerances</a></li>
           <li><a href="#data-percistence">Data percistence</a></li>
+          <li><a href="#loading-state">Loading State</a></li>
           <li><a href="#error-handling">Error Handling</a></li>
           <li><a href="#wonderful-draws-and-animations">Wonderful Draws and Animations</a></li>
           <li><a href="#menu-animation">Menu Animation</a></li>
@@ -173,6 +174,15 @@ Concentrandomi sulla possibilità di utilizzare l'App anche senza la disponibili
 
 <hr>
 
+### Loading State
+
+Ogni Route ha una schermata di caricamento dedicata e nella durante la ricerca vi é uno spinner che compare per indicare l'effettivo caricamento.
+
+> [!NOTE]
+> A volte le schermate di caricamento non compaiono proprio. Dopo vari test e controlli penso che questo avvenga perché la velocità di caricamento delle Route, prerenderizzare e ottimizzate da Next, siano abbastanza alte da evitarle.
+
+<hr>
+
 ### Error Handling
 
 Visti gli innumerevoli Components che compongono l'App, sia Client che Server, ho deciso di far gestire gli eventuali errori a Redux, altro campo nel quale si é dimostrato inaspettatamente brillante nonostante l'integrazione con NExt.js non ancora completata. Se avviene un errore in un qualsiasi Component, sia una richiesta dati fallita a causa dell'assenza di richieste gratuite, oppure una disconnessione dalla rete, o una richiesta di dati fallita ai server dell'Unione Europea, tutti verranno indirizzati a Redux che attiverà la segnalazione dell'errore con relativo Modal con descrizione.
@@ -282,7 +292,14 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## Usage
 
+### - :house: - :mag: - :bust_in_silhouette: - Navbar
+
+La Navbar, situata nella parte inferiore dello schermo, permette la navigazione verso le tre Route principali: Main, Search e Profile.
+
 ### - :house: - Main Page
+
+La pagina principale si presenta con una barra di ricerca come da richiesta. Inserendo il testo si otterranno dapprima dei suggerimenti filtrati dalla lista iniziale e poi, avviando la ricerca, i risultati ottenuti dall'API di Spoonacular.
+Oltre a questa vi é un carousel circolare ruotabile spingendo verso destra o sinistra nella parte clickabile. Qui vi sono un massimo di 8 ricette seelzionabili, scelte tra quelle con ingredienti segnalati come "di stagione". Questa parte é personalizzabile dal Settings. Una volta scelta la ricetta basta clickare su dettagli per aprire un Modal con le prime informazioni: numero di portate, numero di ingredienti e likes ottenuti dalla ricetta. Clickano sul Modal si verrà reindirizzati alla pagina della Single Recipe.
 
 ### - :mag: - Search Page
 
