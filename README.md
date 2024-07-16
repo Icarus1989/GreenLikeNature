@@ -286,7 +286,9 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ### Search Page &#x1f50d;
 
-&#9906;
+<div transform="rotate(45deg)">&#9906;</div>
+
+&#x1F50E;
 
 ### Single Recipe Page &#127869;
 
