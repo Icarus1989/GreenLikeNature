@@ -282,19 +282,23 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## Usage
 
-### - &#8962; - Main Page
+### - :house: - Main Page
 
-### Search Page &#x1f50d;
+### - :mag: - Search Page
+
+### - :fork_and_knife: - Single Recipe Page
+
+### - :bust_in_silhouette: - Tomato Settings
+
+&#x1f50d;
+
+&#127869;
 
 <div transform="rotate(45deg)">&#9906;</div>
 
 &#x1F50E;
 
-### Single Recipe Page &#127869;
-
 &#x1f374;
-
-### Tomato Settings
 
 &#128100;
 
