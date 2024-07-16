@@ -50,18 +50,19 @@
           <li><a href="#error-handling">Error Handling</a></li>
           <li><a href="#wonderful-draws-and-animations">Wonderful Draws and Animations</a></li>
           <li><a href="#menu-animation">Menu Animation</a></li>
-          <li><a href="#responsive-design">Responsive Design</a></li>
+          <li><a href="#responsive-design">Responsive Design</a></li>NavigationEvents
+          <li><a href="#navigationevents">NavigationEvents</a></li>
           <li><a href="#host">Host</a></li>
           <li><a href="#conclusions">Conclusions</a></li>
           </ul>
         </li>
       </ul>
     </li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#trace-summary">Trace Summary</a>
     <li><a href="#additional-features">Additional Features</a>
     <li><a href="#to-do">To-Do</a>
     <li><a href="#resources">Resources</a>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#demo">Demo</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contacts">Contacts</a></li>
@@ -121,11 +122,11 @@ Icone ed immagini:
 
 ### Intro - Green Like Nature
 
-Questa é un'App di ricette vegetariane creata sfruttando al massimo le conoscenze apprese attraverso il Corso di **React.js** di Start2Impact. Partendo da queste, combinandole con quelle acquisite nel Corso di **JavaScript** e **Node.js**, imparando ad utilizzare il framework **Next.js**, che amplia le possibilità fornite da React.js soprattutto dopo la recente aggiunta dei Server Components, ho potuto dare vita a ciò che avevo immaginato: una Web App di ricette vegetariane come richiesto che permettesse di ottenere ulteriori indicazioni **utili nella quotidianità** delle persone.
+Questa é un'App di ricette vegetariane creata sfruttando al massimo le conoscenze apprese attraverso il Corso di **React.js** di Start2Impact. Partendo da queste, combinandole con quelle acquisite nel Corso di **JavaScript** e **Node.js**, e dopo aver imparato ad utilizzare il framework **Next.js**, che amplia le possibilità fornite da React.js soprattutto dopo la recente aggiunta dei Server Components, ho potuto dare vita a ciò che avevo immaginato: una Web App di ricette vegetariane come richiesto che permettesse di ottenere ulteriori indicazioni **utili nella quotidianità** delle persone.
 
 L'idea originale era ottenere dei risultati basati sulla stagionalità annuale dei vari prodotti ma, viste le differenti aree climatiche del pianeta e a causa di molti altri fattori, non sono ancora state realizzate delle API o resi disponibili publicamente dei dati, affidabili o meno, da nessun Paese o società inerenti a questo.
 
-Molti però erano i dati disponibili riguardo al costo dei prodotti ortofrutticoli. Quindi ho deciso di fornire indicazioni basandomi sull'effettivo prezzo dei prodotti, una sorta di segnalazione di convenienza di un prodotto ortofrutticolo basato su una raccolta dati fornita dai produttori europei negli anni precedenti: una sorta di "stagionalità economica".
+Molti però erano i dati disponibili riguardo al costo dei prodotti ortofrutticoli. Quindi ho deciso di fornire indicazioni basandomi sull'effettivo prezzo dei prodotti, una segnalazione di convenienza di un prodotto ortofrutticolo basato su una raccolta dati fornita dai produttori europei negli anni precedenti: una sorta di "stagionalità economica".
 
 <hr>
 
@@ -185,7 +186,7 @@ Ogni Route ha una schermata di caricamento dedicata e nella durante la ricerca v
 
 ### Error Handling
 
-Visti gli innumerevoli Components che compongono l'App, sia Client che Server, ho deciso di far gestire gli eventuali errori a Redux, altro campo nel quale si é dimostrato inaspettatamente brillante nonostante l'integrazione con NExt.js non ancora completata. Se avviene un errore in un qualsiasi Component, sia una richiesta dati fallita a causa dell'assenza di richieste gratuite, oppure una disconnessione dalla rete, o una richiesta di dati fallita ai server dell'Unione Europea, tutti verranno indirizzati a Redux che attiverà la segnalazione dell'errore con relativo Modal con descrizione.
+Visti gli innumerevoli Components che compongono l'App, sia Client che Server, ho deciso di far gestire gli eventuali errori a Redux, altro campo nel quale si é dimostrato inaspettatamente brillante nonostante l'integrazione con Next.js non ancora completata. Se avviene un errore in un qualsiasi Component, sia una richiesta dati fallita a causa dell'assenza di richieste gratuite, oppure una disconnessione dalla rete, o una richiesta di dati fallita ai server dell'Unione Europea, tutti verranno indirizzati a Redux che attiverà la segnalazione dell'errore con relativo Modal con descrizione.
 
 <hr>
 
@@ -200,6 +201,8 @@ Un campo ulterione nel quale mi sono particolarmente applicato per questo proget
 Un dettaglio al quale ho dedicato particolare energie é stata la creazione di un menu rotante che desse la possibilità di avere un animazione circolare e senza un limite in ambedue i sensi, creando così un esempio di circular infinite scroll, per quanto leggermente limitato al passaggio da una ricetta per volta non permettendo una rotazione libera ad alta velocità. Chiaramente come ogni esempio del genere che coninvolge un "infinite", si tratta di un'illusione permessa da una costruzione accurata. Tramite lo studio della documentazione e l'utilizzo della libreria Framer-Motion e di molti dei Custom Hooks presenti ho potuto creare un'animazione che permettesse una rotazione attorno all'asse di un element circolare comandato un altro element invisibile, esteso alla zona di pressione più probabile dell'utente, che trasmette la propria velocità al primo determinando anche la direzione verso quale ruotare.
 Spero che quest'esempio possa essere utile anche ad altri che preferiscono qualcosa di più leggero di una libreria basata su elementi canvas, che nella maggior parte dei casi necessitano di uno studio più approfondito e dedicato per apprendere le nozioni sufficienti per realizzare effetti visivi del genere.
 
+<hr>
+
 ### Responsive Design
 
 Adattare l'App alla varietà più vasta possibile di dispositivi non é stata un'impresa semplice con questo progetto, visto il design e le animazioni che ho scelto di inserire, ma credo di aver trovato soluzioni ottimali per avere un design responsive per la maggior parte dei dispositivi reali più comuni, considerando anche entrambi gli orientamenti del display disponibili.
@@ -208,11 +211,21 @@ Ho cercato di mantere l'intera App con un tema e delle animazioni che richiamass
 Non ho voluto inserire in questo momento una versione utilizzabile per gli Smart Watch, ma sto testando alcune soluzioni per eventuali aggiornamenti futuri.
 
 > [!IMPORTANT]
-> A causa della complessità della struttura della Main, ho dovuto inserire quello che considero una leggera forzatura: quando in un dispositivo (in genere mobile), avviene un passaggio di orientamento da portrait a landscape e viceversa, avviene un ricaricamento dell'Object window al resize, limitato alla sola route principale e non esteso a Search, Single Recipe o Settings. Questo serve a ridimensionare e riposizionare correttamente di elementi circolari. Purtroppo, nonostante ne abbia provate molte, non ho trovato una soluzione più leggera o meno forzata applicabile. Questo non va comunque a intaccare i dati o eseguire un nuove richieste, in quanto inseriti nella cache.
+> A causa della complessità della struttura della Main Page, ho dovuto inserire quello che considero una leggera forzatura: quando in un dispositivo (in genere mobile), avviene un passaggio di orientamento da portrait a landscape e viceversa, avviene un ricaricamento dell'Object window al resize, limitato alla sola route principale e non esteso a Search, Single Recipe o Settings. Questo serve a ridimensionare e riposizionare correttamente di elementi circolari. Purtroppo, nonostante ne abbia provate molte, non ho trovato una soluzione più leggera o meno forzata applicabile. Questo non va comunque a intaccare i dati o eseguire un nuove richieste, in quanto inseriti nella cache.
+
+<hr>
+
+### NavigationEvents
+
+Questo particolare Component si occupa di alcune determinate situazioni. Creato per controllare che il numero dei suggerimenti disponibili fosse ottimale dopo l'inserimento di eventuali allergeni, e conseguente filter nella Settings Page, e allo stesso tempo condensare tutte le modifiche in un'eventuale unica request all'API di Spoonacular invece che una per ogni modifica provenienti dall'apposito Component nella Settings Page. In seguito é stato ottimale il suo utilizzo per limitare il reload della pagina, al cambio di orientamento del display, solo per la Main Page ed il controllo delle presenza della connessione di rete al passaggio tra una page ed un'altra con comunicazione a Redux dell'eventuale assenza con segnalazione come Error.
+
+<hr>
 
 ### Host
 
 Ho deciso di utilizzare i servizi di Vercel per publicare l'App, visto l'utilizzo di Next.js. Semplici e veloci da usare, oltre a fornire un url per il progetto molto leggibile, a differenza di altri servizi gratuiti.
+
+<hr>
 
 ### Conclusions
 
@@ -223,6 +236,8 @@ Come negli altri, anche anche in questo progetto ho voluto ampliare la traccia f
 <!-- Spostare qui USAGE? -->
 
 ## Usage
+
+<!-- Inserire qui immagine con disposotivi responsive -->
 
 ### - :house: - :mag: - :bust_in_silhouette: - Navbar
 
@@ -273,7 +288,8 @@ Ogni sezione della pagina viene presenzata con un animazione di un pomodoro che 
 
 ## Trace Summary:
 
-Vegetarian recipe website  
+Vegetarian recipe website
+
 Il sito web che creerai è ideato per i vegetariani. Infatti dentro il sito l’utente avrà la possibilità di cercare esclusivamente ricette vegetariane attraverso l’API di spoonacular.
 
 [Spoonacular Docs](https://spoonacular.com/food-api/docs)
