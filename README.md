@@ -9,10 +9,9 @@
 
 ## Progetto:
 
-**React.js / Food**
-
 <div align="center">
-	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" title="React"/></code>
+  <h2>React.js / Food</h2>
+	<code><img width="100" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" title="React"/></code>
 </div>
 
 <hr>
