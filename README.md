@@ -49,6 +49,9 @@
           <li><a href="#error-handling">Error Handling</a></li>
           <li><a href="#wonderful-draws-and-animations">Wonderful Draws and Animations</a></li>
           <li><a href="#menu-animation">Menu Animation</a></li>
+          <li><a href="#responsive-design">Responsive Design</a></li>
+          <li><a href="#host">Host</a></li>
+          <li><a href="#conclusions">Conclusions</a></li>
           </ul>
         </li>
       </ul>
@@ -117,33 +120,35 @@ Icone ed immagini:
 
 ### Intro - Green Like Nature
 
-Quest'App é stata creata sfruttando al massimo le conoscenze apprese attraverso il Corso di **React.js** di Start2Impact e, partendo da queste, imparando anche ad utilizzare il framework **Next.js**, che amplia le possibilità fornite da React.js soprattutto dopo la recente aggiunta dei Server Components, che l'ecosistema Next.js integra permettendo di effettuare delle richieste da Server in modo molto elegante e relativamente semplice. Capita questa struttura ho potuto dare vita a ciò che avevo immaginato: una Web App di ricette vegane come richiesto che permettesse di ottenere delle indicazioni **utili nella quotidianità** delle persone.
+Questa é un'App di ricette vegetariane creata sfruttando al massimo le conoscenze apprese attraverso il Corso di **React.js** di Start2Impact. Partendo da queste, combinandole con quelle acquisite nel Corso di **JavaScript** e **Node.js**, imparando ad utilizzare il framework **Next.js**, che amplia le possibilità fornite da React.js soprattutto dopo la recente aggiunta dei Server Components, ho potuto dare vita a ciò che avevo immaginato: una Web App di ricette vegetariane come richiesto che permettesse di ottenere ulteriori indicazioni **utili nella quotidianità** delle persone.
 
-L'idea originale era ottenere dei risultati basati sulla stagionalità annuale dei vari prodotti ma, viste le differenti aree climatiche del pianeta e a causa di molti altri fattori, non sono ancora state realizzate delle API o resi disponibili dei dati, affidabili o meno, da nessun Paese o società.
+L'idea originale era ottenere dei risultati basati sulla stagionalità annuale dei vari prodotti ma, viste le differenti aree climatiche del pianeta e a causa di molti altri fattori, non sono ancora state realizzate delle API o resi disponibili publicamente dei dati, affidabili o meno, da nessun Paese o società inerenti a questo.
 
-Quindi ho deciso di fornire indicazioni basandomi sull'effettivo prezzo dei prodotti, una sorta di segnalazione di convenienza di un prodotto ortofrutticolo basato su una raccolta dati fornita dai produttori europei negli anni precedenti: una sorta di "stagionalità economica".
+Molti però erano i dati disponibili riguardo al costo dei prodotti ortofrutticoli. Quindi ho deciso di fornire indicazioni basandomi sull'effettivo prezzo dei prodotti, una sorta di segnalazione di convenienza di un prodotto ortofrutticolo basato su una raccolta dati fornita dai produttori europei negli anni precedenti: una sorta di "stagionalità economica".
 
 <hr>
 
 ### Combined Data Spoonacular + EU Agrifood
 
-Osservando, analizzando e utilizzando i dati forniti dall'Unione Europea (link Agrifood), accessibili solo attraverso delle richieste autenticate da Server, ho potuto ricavare i prezzi di ogni settimana per ogni prodotto ortofrutticolo coltivato nell'Unione negli scorsi due anni e fornire così indicazioni su quali prodotti acquistare con relativa varietà. Nello specifico: se un prodotto ha avuto il suo prezzo più basso nella settimana corrispondente di uno degli scorsi due anni, verrà indicato come suggerimento nella pagina di Ricerca con relativa varietà e, grazie ai dati di Spoonacular, verrano suggerite delle ricette contenenti tale prodotto. Per quanto con qualche piccolo errore, dovuto anche alla parzialità dei dati di qualche prodotto, confrontando tali suggerimenti con i reali prezzi in due negozi di ortofrutta negli scorsi mesi, ho potuto effettivamente osservare la correttezza delle indicazioni ottenute.
+Osservando, analizzando e utilizzando i dati forniti dall'Unione Europea (link Agrifood), accessibili solo attraverso delle richieste autenticate da Server, ho potuto ricavarne i prezzi di ogni settimana per ogni prodotto ortofrutticolo coltivato nell'Unione negli scorsi due anni e fornire così indicazioni su quali prodotti acquistare con relativa varietà. Nello specifico: se un prodotto ha avuto il suo prezzo più basso nella settimana corrispondente di uno degli scorsi due anni, verrà indicato come suggerimento nella pagina di Ricerca con relativa varietà e, grazie ai dati di Spoonacular, verrano suggerite delle ricette contenenti tale prodotto. Per quanto con qualche piccolo errore, dovuto anche alla parzialità dei dati di qualche prodotto, confrontando tali suggerimenti con i reali prezzi in due negozi di ortofrutta negli scorsi mesi, ho potuto effettivamente osservare la correttezza delle indicazioni ottenute.
 Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando molto lacunosi, parziali o totalmente assenti in alcuni casi, rendendo però possibile un miglioramento futuro dell'App con il progredire dell'acquisizione dati e la loro disponibilità. Utilizzando questi dati si ricalcano comunque gli andamenti stagionali dei prodotti, visto che, in linea generale, quando un prodotto é di stagione il suo prezzo diminuisce.
 
 <hr>
 
 ### Routing
 
-> [!NOTE]
-> Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App creata con Next.js, anche se richiesto nella traccia originale. Sarebbe un integrazione difficile e sostanzialmente inutile, visto che il Routing per Next.js viene creato basandosi anche sulle directories del progetto all'interno della directory principale "app" ([App Routing Next.js v.14](https://nextjs.org/docs/getting-started/project-structure)) e il Routing integrato permette una serie di ottimizzazioni e personalizzazioni non trascurabili, come l'utilizzo dei Server Components come base per ogni Route e per il Layout generale dell'App. Nonostante ciò vi sono somiglianze tra le due tipologie di Routing, come l'utilizzo di elementi Link integrati dedicati.
-
 **Struttura**:
+
+<!-- INSERIRE GRAFICO STRUTTURA CON ROUTES E [LOCALE] - SINGLE RECIPE SAVED E NO -  -->
+
+> [!NOTE]
+> Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App creata con Next.js, anche se richiesto nella traccia originale. Sarebbe un integrazione difficile e sostanzialmente inutile, visto che il Routing per Next.js viene creato basandosi anche sulle directories del progetto all'interno della directory principale "app" ([App Routing Next.js v.14](https://nextjs.org/docs/getting-started/project-structure)) e il Routing integrato permette una serie di ottimizzazioni e personalizzazioni non trascurabili, come l'utilizzo dei Server Components come base per ogni Route e per il Layout generale dell'App. Forzare un altro tipo di routing sarebbe stato controproducente. Nonostante ciò vi sono somiglianze tra le due tipologie di Routing, come l'utilizzo di elementi Link integrati dedicati.
 
 <hr>
 
 ### Internationalization
 
-In aggiunta ho voluto rendere accessibile l'App ad un pubblico più amplio, così ho integrato la traduzione in 6 lingue diverse: menu e indicazioni tramite internationalization del Routing con i18n mentre i testi ricavati dai dati di Spoonacular tradotti invece tramite l'API di DeepL.
+In aggiunta ho voluto rendere accessibile l'App ad un pubblico più ampio, così ho integrato la traduzione in 6 lingue diverse: menu e indicazioni tramite internationalization del Routing con i18n mentre i testi ricavati dai dati di Spoonacular tradotti invece tramite l'API di DeepL.
 
 <hr>
 
@@ -185,8 +190,27 @@ Un campo ulterione nel quale mi sono particolarmente applicato per questo proget
 Un dettaglio al quale ho dedicato particolare energie é stata la creazione di un menu rotante che desse la possibilità di avere un animazione circolare e senza un limite in ambedue i sensi, creando così un esempio di circular infinite scroll, per quanto leggermente limitato al passaggio da una ricetta per volta non permettendo una rotazione libera ad alta velocità. Chiaramente come ogni esempio del genere che coninvolge un "infinite", si tratta di un'illusione permessa da una costruzione accurata. Tramite lo studio della documentazione e l'utilizzo della libreria Framer-Motion e di molti dei Custom Hooks presenti ho potuto creare un'animazione che permettesse una rotazione attorno all'asse di un element circolare comandato un altro element invisibile, esteso alla zona di pressione più probabile dell'utente, che trasmette la propria velocità al primo determinando anche la direzione verso quale ruotare.
 Spero che quest'esempio possa essere utile anche ad altri che preferiscono qualcosa di più leggero di una libreria basata su elementi canvas, che nella maggior parte dei casi necessitano di uno studio più approfondito e dedicato per apprendere le nozioni sufficienti per realizzare effetti visivi del genere.
 
+### Responsive Design
+
+Adattare l'App alla varietà più vasta possibile di dispositivi non é stata un'impresa semplice con questo progetto, visto il design e le animazioni che ho scelto di inserire, ma credo di aver trovato soluzioni ottimali per avere un design responsive per la maggior parte dei dispositivi reali più comuni, considerando anche entrambi gli orientamenti del display disponibili.
+Queste si basano prevalentemente su CSS, ma per il risultato ottenuto chiaramente é stato necessario anche l'utilizzo della parte di logica dei Components.
+Non ho voluto inserire in questo momento una versione utilizzabile per gli Smart Watch, ma sto testando alcune soluzioni per eventuali aggiornamenti futuri.
+
+> [!IMPORTANT]
+> A causa della complessità della struttura della Main, ho dovuto inserire quello che considero una leggera forzatura: quando in un dispositivo (in genere mobile), avviene un passaggio di orientamento da portrait a landscape e viceversa, avviene un ricaricamento dell'Object window al resize, limitato alla sola route principale e non esteso a Search, Single Recipe o Settings. Questo serve a ridimensionare e riposizionare correttamente di elementi circolari. Purtroppo, nonostante ne abbia provate molte, non ho trovato una soluzione più leggera o meno forzata applicabile. Questo non va comunque a intaccare i dati o eseguire un nuove richieste, in quanto inseriti nella cache.
+
+### Host
+
+Ho deciso di utilizzare i servizi di Vercel per publicare l'App, visto l'utilizzo di Next.js. Semplici e veloci da usare, oltre a fornire un url per il progetto molto leggibile, a differenza di altri servizi gratuiti.
+
+### Conclusions
+
+Come negli altri, anche anche in questo progetto ho voluto ampliare la traccia fornita. Mettendomi in difficoltà, sforzandomi di risolvere i problemi che mi si presentavano, estendendo lo studio di React ben oltre quanto richiesto, fino a trovare soluzioni o a capire perché altre non funzionavano. E come in ogni altro progetto, questo mi é servito per migliorare costantemente. Nonostante il tempo impiegato per lo svolgimento del progetto sia stato nettamente maggiore rispetto alla media, alla fine di questo e del Corso, sono riuscito ad ottenere delle conoscenze dettagliate e vaste, oltre che un risultato molto simile a ciò che avevo immaginato inizialmente.
+
 <hr>
 <hr>
+
+<!-- Spostare qui USAGE -->
 
 ## Trace Summary:
 
@@ -230,6 +254,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 ## To-Do:
 
 - [ ] Pulizia codice da commmenti
+- [ ] Eliminare file non necessari
 - [x] Refactor e miglioramento posizionamento menù iniziale
 - [x] Test iPhone 14
 - [x] Test iPhone 13
