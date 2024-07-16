@@ -11,6 +11,10 @@
 
 **React.js / Food**
 
+<div align="center">
+	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" title="React"/></code>
+</div>
+
 <hr>
 <hr>
 
@@ -270,7 +274,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ### Single Recipe Page &#127869;
 
-&#127869;
+&#x1f374;
 
 ### Tomato Settings
 
