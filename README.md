@@ -257,12 +257,16 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 ### - &#8962; - Main Page
 
 <span height="30px">&#8962;</span>
+<span height="2.3rem">&#8962;</span>
+
+<p height="2.3rem">&#8962;</p>
+<div height="2.3rem">&#8962;</div>
 
 &#8962;
 
-### Search Page &#128269;
+### Search Page &#x1f50d;
 
-&#128269;
+&#x1f50d;
 
 ### Single Recipe Page &#127869;
 
