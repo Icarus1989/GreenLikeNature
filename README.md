@@ -204,6 +204,7 @@ Spero che quest'esempio possa essere utile anche ad altri che preferiscono qualc
 
 Adattare l'App alla varietà più vasta possibile di dispositivi non é stata un'impresa semplice con questo progetto, visto il design e le animazioni che ho scelto di inserire, ma credo di aver trovato soluzioni ottimali per avere un design responsive per la maggior parte dei dispositivi reali più comuni, considerando anche entrambi gli orientamenti del display disponibili.
 Queste si basano prevalentemente su CSS, ma per il risultato ottenuto chiaramente é stato necessario anche l'utilizzo della parte di logica dei Components.
+Ho cercato di mantere l'intera App con un tema e delle animazioni che richiamassero la natura, non andando ad interferire o ostacolare il funzionamento e l'utilizzo.
 Non ho voluto inserire in questo momento una versione utilizzabile per gli Smart Watch, ma sto testando alcune soluzioni per eventuali aggiornamenti futuri.
 
 > [!IMPORTANT]
@@ -219,8 +220,56 @@ Come negli altri, anche anche in questo progetto ho voluto ampliare la traccia f
 
 <hr>
 <hr>
+<!-- Spostare qui USAGE? -->
 
-<!-- Spostare qui USAGE -->
+## Usage
+
+### - :house: - :mag: - :bust_in_silhouette: - Navbar
+
+La Navbar, situata nella parte inferiore dello schermo, permette la navigazione verso le tre Route principali: Main, Search e Profile.
+
+### - :house: - Main Page
+
+La pagina principale si presenta con una barra di ricerca come da richiesta. Inserendo il testo si otterranno dapprima dei suggerimenti filtrati dalla lista iniziale e poi, avviando la ricerca, i risultati ottenuti dall'API di Spoonacular.
+Oltre a questa vi é un carousel circolare ruotabile spingendo verso destra o sinistra nella parte clickabile. Qui vi sono un massimo di 8 ricette selzionabili, scelte tra quelle con ingredienti segnalati come "di stagione". Questa parte é personalizzabile dal Settings, dove si potrà decidere di visualizzare le ricette salvate. Nel caso ve ne fossero meno di 8, al loro posto verranno visualizzati dei suggerimenti in varie lingue. Una volta scelta la ricetta basta clickare su dettagli per aprire un Modal con le prime informazioni: numero di portate, numero di ingredienti e likes ottenuti dalla ricetta. Clickano sul Modal si verrà reindirizzati alla pagina della Single Recipe.
+
+### - :mag: - Search Page
+
+La prima parte della pagina contiene una barra di ricerca molto simile alla Main Page, con la differenza che i risultati vengono mostrati un po' più allargati e vi é una scroll bar personalizzata con l'animazione di alcune foglie che crescono ad intervalli regolari di scroll della pagina in modo da indicare più chiaramente la parte nella quale ci si trova.
+La seconda parte della pagina di ricerca sfrutta a pieno i dati resi disponibili dall'Unione Europea: ottenuti tali dati lato server, verranno gestiti in modo da ottenere i prodotti ortofrutticoli più convenienti, verranno selezionate delle ricette contenenti tali ingredienti e proposte come sezioni scorrevoli orizzontalmente. Nel caso non fossero presenti ricette con uno alcuni degli ingredienti suggeriti, queste sezioni verranno sostituiti da tasti per la ricerca rapida che reindirizzeranno immediatamente ad una ricerca con l'ingrediente selezionato.
+Nella parte inferiore della pagina vi sarà una sezione con le ricette recenti consultate.
+Nel caso in cui l'immagine di una ricetta non fosse disponibile, a causa per esempio della request fallita dei dati o in caso di perdita delle rete del dispositivo, verrà visualizzata un immagine di default, sia per i suggerimenti che per i risultati delle ricerche.
+
+### - :fork_and_knife: - Single Recipe Page
+
+Ho cercato di creare la pagina della Ricetta Singola come una scheda utile a creare la ricetta. Nella prima parte vi é un'immagine di copertina con titolo, con subito sotto dei tasti per tornare rapidamente alla Search Page o Salvare la ricetta tra le preferite. A seguire delle informazioni basilari ma esposte chiaramente con un'indicazione se il piatto proposto é vegetariano o vegano. Subito sotto una presentazione descrittiva della ricetta.
+La parte sottostante ho voluto crearla come una lista spuntabile personalizzata per gli ingredienti, in modo che si possa fare un recap del necessario prima di cominciare.
+Immediatamente sotto vi sono tutti i steps spuntabili per eseguire la ricetta: al loro interno vi sono degli elenchi per gli strumenti necessari per eseguire il passaggio, gli ingredienti e una descrizione testuale.
+Selezionando tutti gli ingredienti e gli steps come completati, oppure premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi salvata come completa nel LocalStorage del dispositivo.
+Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredienti per ricominciarli, basterà premere il tasto di reset situato a fianco del precedente.
+
+> [!NOTE]
+> Alcune ricette presentano dei dati disposti non nello schema della maggior parte delle altre, per esempio avendo string uniche di testo o markup HTML invece che array andando ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad agire sul funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
+
+### - :bust_in_silhouette: - Tomato Settings
+
+La Settings page é composta da varie parti utili alla personalizzazione dell'esperienza sull'App.
+Vi é la possibilità di:
+
+- cambiare le ricette visualizzare nella Main da quelle stagionali a quelle salvate.
+
+- gestire delle ricette salvate per poter eliminare quelle non più desiderate singolarmente o totalmente.
+
+- indicare allergie e delle intolleranze nell'apposita sezione, dove, tramite un input testuale e menu di options contente le intolleranze si potrà segnalare cosa escludere. Nel caso in cui venisse inserita un'intolleranza già presente nella lista, questa verrà salvata correttamente come intolleranza. Queste verrano poi presentate in una lista modificabile.
+
+- cambiare la lingua dell'App, sia come menù e campi testuali del layout, sia come testi scritti provenienti dai dati Spoonacular.
+  > [!NOTE]
+  > Il cambiamento della lingua causa un piccolo ricaricamento.
+
+Ogni sezione della pagina viene presenzata con un animazione di un pomodoro che cresce che verrà attivata in automatico nel caso della prima sezione e nel caso di interazione nelle altre.
+
+<hr>
+<hr>
 
 ## Trace Summary:
 
@@ -290,58 +339,11 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 <hr>
 <hr>
 
-## Usage
-
-### - :house: - :mag: - :bust_in_silhouette: - Navbar
-
-La Navbar, situata nella parte inferiore dello schermo, permette la navigazione verso le tre Route principali: Main, Search e Profile.
-
-### - :house: - Main Page
-
-La pagina principale si presenta con una barra di ricerca come da richiesta. Inserendo il testo si otterranno dapprima dei suggerimenti filtrati dalla lista iniziale e poi, avviando la ricerca, i risultati ottenuti dall'API di Spoonacular.
-Oltre a questa vi é un carousel circolare ruotabile spingendo verso destra o sinistra nella parte clickabile. Qui vi sono un massimo di 8 ricette selzionabili, scelte tra quelle con ingredienti segnalati come "di stagione". Questa parte é personalizzabile dal Settings, dove si potrà decidere di visualizzare le ricette salvate. Nel caso ve ne fossero meno di 8, al loro posto verranno visualizzati dei suggerimenti in varie lingue. Una volta scelta la ricetta basta clickare su dettagli per aprire un Modal con le prime informazioni: numero di portate, numero di ingredienti e likes ottenuti dalla ricetta. Clickano sul Modal si verrà reindirizzati alla pagina della Single Recipe.
-
-### - :mag: - Search Page
-
-La prima parte della pagina contiene una barra di ricerca molto simile alla Main Page, con la differenza che i risultati vengono mostrati un po' più allargati e vi é una scroll bar personalizzata con l'animazione di alcune foglie che crescono ad intervalli regolari di scroll della pagina in modo da indicare più chiaramente la parte nella quale ci si trova.
-La seconda parte della pagina di ricerca sfrutta a pieno i dati resi disponibili dall'Unione Europea: ottenuti tali dati lato server, verranno gestiti in modo da ottenere i prodotti ortofrutticoli più convenienti, verranno selezionate delle ricette contenenti tali ingredienti e proposte come sezioni scorrevoli orizzontalmente. Nel caso non fossero presenti ricette con uno alcuni degli ingredienti suggeriti, queste sezioni verranno sostituiti da tasti per la ricerca rapida che reindirizzeranno immediatamente ad una ricerca con l'ingrediente selezionato.
-Nella parte inferiore della pagina vi sarà una sezione con le ricette recenti consultate.
-Nel caso in cui l'immagine di una ricetta non fosse disponibile, a causa per esempio della request fallita dei dati o in caso di perdita delle rete del dispositivo, verrà visualizzata un immagine di default, sia per i suggerimenti che per i risultati delle ricerche.
-
-### - :fork_and_knife: - Single Recipe Page
-
-Ho cercato di creare la pagina della Ricetta Singola come una scheda utile a creare la ricetta. Nella prima parte vi é un'immagine di copertina con titolo, con subito sotto dei tasti per tornare rapidamente alla Search Page o Salvare la ricetta tra le preferite. A seguire delle informazioni basilari ma esposte chiaramente con un'indicazione se il piatto proposto é vegetariano o vegano. Subito sotto una presentazione descrittiva della ricetta.
-La parte sottostante ho voluto crearla come una lista spuntabile personalizzata per gli ingredienti, in modo che si possa fare un recap del necessario prima di cominciare.
-Immediatamente sotto vi sono tutti i steps spuntabili per eseguire la ricetta: al loro interno vi sono degli elenchi per gli strumenti necessari per eseguire il passaggio, gli ingredienti e una descrizione testuale.
-Selezionando tutti gli ingredienti e gli steps come completati, oppure premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi salvata come completa nel LocalStorage del dispositivo.
-Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredienti per ricominciarli, basterà premere il tasto di reset situato a fianco del precedente.
-
-> [!NOTE]
-> Alcune ricette presentano dei dati disposti non nello schema della maggior parte delle altre, per esempio avendo string uniche di testo o markup HTML invece che array andando ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad agire sul funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
-
-### - :bust_in_silhouette: - Tomato Settings
-
-La Settings page é composta da varie parti utili alla personalizzazione dell'esperienza sull'App.
-Vi é la possibilità di:
-
-- cambiare le ricette visualizzare nella Main da quelle stagionali a quelle salvate.
-
-- gestire delle ricette salvate per poter eliminare quelle non più desiderate singolarmente o totalmente.
-
-- indicare allergie e delle intolleranze nell'apposita sezione, dove, tramite un input testuale e menu di options contente le intolleranze si potrà segnalare cosa escludere. Nel caso in cui venisse inserita un'intolleranza già presente nella lista, questa verrà salvata correttamente come intolleranza. Queste verrano poi presentate in una lista modificabile.
-
-- cambiare la lingua dell'App, sia come menù e campi testuali del layout, sia come testi scritti provenienti dai dati Spoonacular.
-  > [!NOTE]
-  > Il cambiamento della lingua causa un piccolo ricaricamento.
-
-Ogni sezione della pagina viene presenzata con un animazione di un pomodoro che cresce che verrà attivata in automatico nel caso della prima sezione e nel caso di interazione nelle altre.
-
-<hr>
-<hr>
-
 ## Demo
 
 Link
+
+<!-- Inserire Link -->
 
 <br>
 <p><a href="#begin">&#9650; Back to summary</a></p>
