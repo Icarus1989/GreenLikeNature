@@ -113,15 +113,13 @@ Icone ed immagini:
 - [React-Icons package](https://react-icons.github.io/react-icons/) - Icone
 - [Boxy-svg](https://boxy-svg.com/) - Immagini personalizzate
 
-<!-- INSERIRE IMMAGINE STRUTTURA -->
-
 <hr>
 <hr>
 
 ## Description
 
 <div align="center">
-  <img src="https://i.ibb.co/MVXWhkc/Untitled-1.png" alt="image-For-Presentation" width="100%" height="100%">
+  <img src="https://i.ibb.co/MVXWhkc/Untitled-1.png" alt="image-For-Presentation" width="90%" height="90%">
 </div>
 
 ### Intro - Green Like Nature
@@ -263,6 +261,10 @@ Come negli altri, anche in questo progetto ho voluto ampliare la traccia fornita
 La Navbar, situata nella parte inferiore dello schermo, permette la navigazione verso le tre Route principali: Main, Search e Profile.
 
 ### - :house: - Main Page
+
+<div align="center">
+  <img src="https://i.ibb.co/PZwfv96/Untitled-2.png" alt="image-iPhone" width="80%" height="80%">
+</div>
 
 La pagina principale si presenta con una barra di ricerca come da richiesta. Inserendo il testo si otterranno dapprima dei suggerimenti filtrati dalla lista iniziale e poi, avviando la ricerca, i risultati ottenuti dall'API di Spoonacular.
 Oltre a questa vi é un carousel circolare ruotabile premendo e trascinando verso destra o sinistra la parte circolare, come un drag. Qui vi sono un massimo di 8 ricette selezionabili, scelte tra quelle con ingredienti segnalati come "di stagione". Questa parte é personalizzabile dal Settings, dove si potrà decidere di visualizzare al loro posto le ricette salvate. Nel caso ve ne fossero meno di 8, verranno visualizzati dei suggerimenti in varie lingue per aggiungere le ricette. Una volta scelta la ricetta basta clickare su dettagli per aprire un Modal con le prime informazioni: numero di portate, numero di ingredienti e likes ottenuti dalla ricetta. Clickando sul Modal si verrà reindirizzati alla pagina della Single Recipe.
