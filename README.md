@@ -88,7 +88,7 @@ Logica, struttura, routing e styling:
 Dati da API:
 
 - [Spoonacular Food API](https://spoonacular.com/food-api)
-- [EU Agrifood API](https://agridata.ec.europa.eu/)
+- [EU Agrifood API](https://agridata.ec.europa.eu/extensions/DataPortal/API_Documentation.html)
 
 Richieste HTTP:
 
@@ -132,8 +132,13 @@ Molti però erano i dati disponibili riguardo al costo dei prodotti ortofruttico
 
 ### Combined Data Spoonacular + EU Agrifood
 
-Osservando, analizzando e utilizzando i dati forniti dall'Unione Europea (link Agrifood), accessibili solo attraverso delle richieste autenticate da Server, ho potuto ricavarne i prezzi di ogni settimana per ogni prodotto ortofrutticolo coltivato nell'Unione negli scorsi due anni e fornire così indicazioni su quali prodotti acquistare con relativa varietà. Nello specifico: se un prodotto ha avuto il suo prezzo più basso nella settimana corrispondente di uno degli scorsi due anni, verrà indicato come suggerimento nella pagina di Ricerca con relativa varietà e, grazie ai dati di Spoonacular, verrano suggerite delle ricette contenenti tale prodotto. Per quanto con qualche piccolo errore, dovuto anche alla parzialità dei dati di qualche prodotto, confrontando tali suggerimenti con i reali prezzi in due negozi di ortofrutta negli scorsi mesi, ho potuto effettivamente osservare la correttezza delle indicazioni ottenute.
-Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando molto lacunosi, parziali o totalmente assenti in alcuni casi, rendendo però possibile un miglioramento futuro dell'App con il progredire dell'acquisizione dati e la loro disponibilità. Utilizzando questi dati si ricalcano comunque gli andamenti stagionali dei prodotti, visto che, in linea generale, quando un prodotto é di stagione il suo prezzo diminuisce.
+Osservando, analizzando e utilizzando i dati forniti dall'[Unione Europea](https://agridata.ec.europa.eu/), accessibili solo attraverso delle richieste autenticate da Server, ho potuto ricavare i prezzi di ogni settimana per ogni varietà di ogni prodotto ortofrutticolo coltivato nell'Unione negli scorsi due anni e fornire così indicazioni su quali prodotti acquistare con relativa varietà. Nello specifico: se un prodotto di una certa varietà ha avuto un calo del prezzo significativo in una stessa settimana di entrambi gli anni precedenti a quello attuale, verrà rilevato.
+
+> [!NOTE]
+> Per maggior praticità, a causa di alcuni dati mancanti su determinate sezioni, ho impostato che venissero indicati i prodotti che anche in solo anno avessero avuto un calo significativo, ma sarà facilmente impostabile una maggior precisione al momento della disponibilità di dati più completi con il passaggio al nuovo anno visto che, sempre analizzando i dati, si può osservare che con il passare del tempo vi é una maggiore precisione nell'inserimento dei prezzi e un inserimento e aggiornamento dati settimanale sempre più costante.
+
+Con questi dati ottenuti il prodotto ortofrutticolo verrà indicato come suggerimento durante la stessa settimana dell'anno corrente nella pagina di Ricerca con relativa varietà e, grazie ai dati di Spoonacular, verrano suggerite delle ricette contenenti tale prodotto. Per quanto con qualche piccolo errore, penso sempre dovuto alla parzialità dei dati di qualche prodotto, confrontando tali suggerimenti con i reali prezzi in due negozi di ortofrutta negli scorsi mesi, ho potuto effettivamente osservare la correttezza delle indicazioni ottenute. Non ho confrontato il prezzo effettivo visto che non si può determinare il rincaro del negoziante e i dati ottenuti indicano i prezzi all'ingrosso ma, osservando i prezzi settimanalmente nei negozi, vi é effettivamente una corrispondenza nella segnalazione del calo del prezzo almeno nell'osservazione da gennaio ad ora.
+Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando molto lacunosi, parziali o totalmente assenti in alcuni casi per certi prodotti, rendendo però possibile un miglioramento futuro dell'App con il progredire dell'acquisizione dati e la loro disponibilità.
 
 <hr>
 
@@ -337,6 +342,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 - [ ] Pulizia codice da commmenti
 - [ ] Eliminare file non necessari
+- [ ] Aggiungere url Vercel al README.md prima della consegna
 - [x] Refactor e miglioramento posizionamento menù iniziale
 - [x] Test iPhone 14
 - [x] Test iPhone 13
