@@ -50,7 +50,7 @@
           <li><a href="#error-handling">Error Handling</a></li>
           <li><a href="#wonderful-draws-and-animations">Wonderful Draws and Animations</a></li>
           <li><a href="#menu-animation">Menu Animation</a></li>
-          <li><a href="#responsive-design">Responsive Design</a></li>NavigationEvents
+          <li><a href="#responsive-design">Responsive Design</a></li>
           <li><a href="#navigationevents">NavigationEvents</a></li>
           <li><a href="#host">Host</a></li>
           <li><a href="#conclusions">Conclusions</a></li>
@@ -199,7 +199,8 @@ Un campo ulterione nel quale mi sono particolarmente applicato per questo proget
 ### Menu Animation
 
 Un dettaglio al quale ho dedicato particolare energie é stata la creazione di un menu rotante che desse la possibilità di avere un animazione circolare e senza un limite in ambedue i sensi, creando così un esempio di circular infinite scroll, per quanto leggermente limitato al passaggio da una ricetta per volta non permettendo una rotazione libera ad alta velocità. Chiaramente come ogni esempio del genere che coninvolge un "infinite", si tratta di un'illusione permessa da una costruzione accurata. Tramite lo studio della documentazione e l'utilizzo della libreria Framer-Motion e di molti dei Custom Hooks presenti ho potuto creare un'animazione che permettesse una rotazione attorno all'asse di un element circolare comandato un altro element invisibile, esteso alla zona di pressione più probabile dell'utente, che trasmette la propria velocità al primo determinando anche la direzione verso quale ruotare.
-Spero che quest'esempio possa essere utile anche ad altri che preferiscono qualcosa di più leggero di una libreria basata su elementi canvas, che nella maggior parte dei casi necessitano di uno studio più approfondito e dedicato per apprendere le nozioni sufficienti per realizzare effetti visivi del genere.
+
+Spero che quest'esempio possa essere utile anche ad altri che preferiscono una libreria per le animazioni più leggera rispetto ad una basata su elementi canvas, che nella maggior parte dei casi necessitano di uno studio più approfondito e dedicato per apprendere le nozioni sufficienti per realizzare effetti visivi del genere.
 
 <hr>
 
@@ -217,7 +218,12 @@ Non ho voluto inserire in questo momento una versione utilizzabile per gli Smart
 
 ### NavigationEvents
 
-Questo particolare Component si occupa di alcune determinate situazioni. Creato per controllare che il numero dei suggerimenti disponibili fosse ottimale dopo l'inserimento di eventuali allergeni, e conseguente filter nella Settings Page, e allo stesso tempo condensare tutte le modifiche in un'eventuale unica request all'API di Spoonacular invece che una per ogni modifica provenienti dall'apposito Component nella Settings Page. In seguito é stato ottimale il suo utilizzo per limitare il reload della pagina, al cambio di orientamento del display, solo per la Main Page ed il controllo delle presenza della connessione di rete al passaggio tra una page ed un'altra con comunicazione a Redux dell'eventuale assenza con segnalazione come Error.
+Questo particolare Component agisce tra i cambi di Route / Page.
+Come descritto precedentemente, al momento dell'inserimento di un allergene nella Settings Page i suggerimenti vengono filtrati in modo da escludere le ricette contenenti l'allergia o intolleranza inserita; nel momento in cui i suggerimenti calassero in modo eccessivo sarebbe avvenuta una nuova request. Il problema che sopraggiunse fu quello del numero di request eccessive che sarebbero sopraggiunte all'inserimento di due o tre allergeni, andando ad usurare la disponibilità delle request all'API di Spoonacular rapidamente. Effettuando il controllo sul numero di suggerimenti solo all'uscita dalla pagina, attraverso il Component NavigationEvents, ho potuto condensare tutto in unica request, con tutti i conseguenti vantaggi.
+
+Si é rivelato in seguito molto utile anche per limitare il reload della pagina, al cambio di orientamento del display, solo per la Main Page. Questa feature si basa su un EventListener "resize" sull'Object window, quindi limitarne l'utilizzo ad una sola page é stato un allegerimento non indifferente per le prestazioni generali dell'App.
+
+Un altro caso d'uso é stato il controllo delle presenza della connessione di rete al passaggio tra una page ed un'altra con comunicazione a Redux dell'eventuale mancanza di essa e conseguente attivazione del Component di errore ErrorModal.
 
 <hr>
 
@@ -229,7 +235,7 @@ Ho deciso di utilizzare i servizi di Vercel per publicare l'App, visto l'utilizz
 
 ### Conclusions
 
-Come negli altri, anche anche in questo progetto ho voluto ampliare la traccia fornita. Mettendomi in difficoltà, sforzandomi di risolvere i problemi che mi si presentavano, estendendo lo studio di React ben oltre quanto richiesto, fino a trovare soluzioni o a capire perché altre non funzionavano. E come in ogni altro progetto, questo mi é servito per migliorare costantemente. Nonostante il tempo impiegato per lo svolgimento del progetto sia stato nettamente maggiore rispetto alla media, alla fine di questo e del Corso, sono riuscito ad ottenere delle conoscenze dettagliate e vaste, oltre che un risultato molto simile a ciò che avevo immaginato inizialmente.
+Come negli altri, anche in questo progetto ho voluto ampliare la traccia fornita. Mettendomi in difficoltà, sforzandomi di risolvere i problemi che mi si presentavano, estendendo lo studio di React ben oltre quanto richiesto, fino a trovare soluzioni o a capire perché altre non funzionavano. E come in ogni altro progetto, questo mi é servito per migliorare costantemente. Nonostante il tempo impiegato per lo svolgimento del progetto sia stato nettamente maggiore rispetto alla media, alla fine di questo e del Corso, sono riuscito ad ottenere delle conoscenze dettagliate e vaste, oltre che un risultato molto simile a ciò che avevo immaginato inizialmente.
 
 <hr>
 <hr>
@@ -263,8 +269,8 @@ Immediatamente sotto vi sono tutti i steps spuntabili per eseguire la ricetta: a
 Selezionando tutti gli ingredienti e gli steps come completati, oppure premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi salvata come completa nel LocalStorage del dispositivo.
 Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredienti per ricominciarli, basterà premere il tasto di reset situato a fianco del precedente.
 
-> [!NOTE]
-> Alcune ricette presentano dei dati disposti non nello schema della maggior parte delle altre, per esempio avendo string uniche di testo o markup HTML invece che array andando ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad agire sul funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
+> [!IMPORTANT]
+> Alcune ricette presentano dei dati non disposti nello schema della maggior parte delle altre, per esempio avendo saltuariamente string uniche di testo o markup HTML invece che array andando ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad agire sul funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
 
 ### - :bust_in_silhouette: - Tomato Settings
 
@@ -278,10 +284,11 @@ Vi é la possibilità di:
 - indicare allergie e delle intolleranze nell'apposita sezione, dove, tramite un input testuale e menu di options contente le intolleranze si potrà segnalare cosa escludere. Nel caso in cui venisse inserita un'intolleranza già presente nella lista, questa verrà salvata correttamente come intolleranza. Queste verrano poi presentate in una lista modificabile.
 
 - cambiare la lingua dell'App, sia come menù e campi testuali del layout, sia come testi scritti provenienti dai dati Spoonacular.
-  > [!NOTE]
-  > Il cambiamento della lingua causa un piccolo ricaricamento.
 
-Ogni sezione della pagina viene presenzata con un animazione di un pomodoro che cresce che verrà attivata in automatico nel caso della prima sezione e nel caso di interazione nelle altre.
+> [!NOTE]
+> Il cambiamento della lingua causa un ricaricamento, vista la modifica della Route.
+
+Ogni sezione della pagina viene presentata con l'animazione di un pomodoro che cresce, che si attiverà in automatico nel caso della prima sezione visibile e nel caso di interazione nelle altre.
 
 <hr>
 <hr>
