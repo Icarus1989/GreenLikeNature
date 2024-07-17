@@ -175,49 +175,47 @@ In aggiunta ho voluto rendere accessibile l'App ad un pubblico più ampio, così
 
 ### Allergies and intolerances
 
-Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare, almeno in modo basilare con quanto disponibile, anche questa funzionalità, permettendo alle persone di indicare cosa escludere passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e dalle ricerche successive per Spoonacular, salvando gli allergeni nel context e inserendoli nell'url, sia come ingrediente da escludere con parametro excludeIngredients per le allergie, sia che come intolerances nell'apposito parametro, in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi.
+Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare, almeno in modo basilare con quanto disponibile, anche questa funzionalità, permettendo alle persone di indicare cosa escludere passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e dalle ricerche successive per Spoonacular, salvando gli allergeni nel context e inserendoli nell'url, sia come ingrediente da escludere con parametro excludeIngredients per le allergie, sia che come intolerances in quello apposito, in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi.
 
 <hr>
 
 ### Data percistence
 
-Concentrandomi sulla possibilità di utilizzare l'App anche senza la disponibilità di richieste verso l'API di Spoonacular, ho voluto inserire la possibilità di salvare un massimo di 8 ricette e le impostazioni correnti, come per esempio le intolleranze segnalate, nel LocalStorage interno, tramite l'apposita API. Tutte le impostazioni cambiate nelle varie parti dell'App verranno gestite da Context e Provider interno e poi salvate nel dispositivo che si sta utilizzando.
+Concentrandomi sulla possibilità di utilizzare l'App anche senza la disponibilità di richieste verso l'API di Spoonacular, ho voluto inserire la possibilità di salvare nel LocalStorage interno un massimo di 8 ricette e le impostazioni correnti, come per esempio le intolleranze segnalate, tramite l'apposita API. Tutte le impostazioni cambiate nelle varie parti dell'App verranno gestite da Context e Provider interno e poi salvate nel dispositivo che si sta utilizzando.
 
 <hr>
 
 ### Loading State
 
-Ogni Route ha una schermata di caricamento dedicata e nella durante la ricerca vi é uno spinner che compare per indicare l'effettivo caricamento.
+Ogni Route ha una schermata di caricamento dedicata e durante la ricerca dalla Searchbar vi é uno spinner che compare per indicare l'effettivo caricamento.
 
 > [!NOTE]
-> A volte le schermate di caricamento non compaiono proprio. Dopo vari test e controlli penso che questo avvenga perché la velocità di caricamento delle Route, prerenderizzare e ottimizzate da Next, siano abbastanza alte da evitarle.
+> A volte le schermate di caricamento non compaiono. Dopo vari test e controlli penso che questo avvenga perché la velocità di caricamento delle Route, prerenderizzare e ottimizzate da Next, sia abbastanza alta da essere al tempo invece necessario per il concludersi del rendering della pagina di caricamento.
 
 <hr>
 
 ### Error Handling
 
-Visti gli innumerevoli Components che compongono l'App, sia Client che Server, ho deciso di far gestire gli eventuali errori a Redux, altro campo nel quale si é dimostrato inaspettatamente brillante nonostante l'integrazione con Next.js non ancora completata. Se avviene un errore in un qualsiasi Component, sia una richiesta dati fallita a causa dell'assenza di richieste gratuite, oppure una disconnessione dalla rete, o una richiesta di dati fallita ai server dell'Unione Europea, tutti verranno indirizzati a Redux che attiverà la segnalazione dell'errore con relativo Modal con descrizione.
+Visti gli innumerevoli Components che compongono l'App, sia Client che Server, ho deciso di far gestire gli eventuali errori a Redux, altro campo nel quale si é dimostrato inaspettatamente brillante. Se avviene un errore in un qualsiasi Component, sia una richiesta dati fallita a causa dell'assenza di richieste gratuite, oppure una disconnessione dalla rete, o una richiesta di dati fallita ai server dell'Unione Europea, tutti verranno indirizzati a Redux che attiverà la segnalazione dell'errore con relativo Modal con descrizione.
 
 <hr>
 
 ### Wonderful Draws and Animations
 
-Un campo ulterione nel quale mi sono particolarmente applicato per questo progetto é stato la creazione di SVG personalizzate con relative animazioni e utilizzo di gradienti di colore inseriti come elements HTML gestiti da React.js. Capire più a fondo tutti i vari elements che compongono o possono interfacciarsi con gli elements svg trattati come Components invece che come semplici immagini ha cambiato molte prospettive e mi ha dato la possibilità di raggiungere un livello di dettagli davvero gradevole alla vista, come per esempio il fiore nella pagina principale creato da degli elements svg semplici, colorato con dei gradients provenienti da delle definizioni defs e animato tramite Anime.js.
+Un campo ulterione nel quale mi sono particolarmente applicato per questo progetto é stato la creazione di SVG personalizzate con relative animazioni e utilizzo di gradienti di colore inseriti come Components gestiti da React.js. Capire più a fondo tutti i vari elements che compongono o possono interfacciarsi con gli svg trattati come Components invece che come semplici immagini ha cambiato molte prospettive e mi ha dato la possibilità di raggiungere un livello di dettagli davvero gradevole alla vista, come per esempio il fiore che sboccia nella pagina principale creato da degli elements svg semplici, colorato con dei gradients provenienti da delle definizioni defs e animato tramite Anime.js per il morphing del path.
 
 <hr>
 
 ### Menu Animation
 
-Un dettaglio al quale ho dedicato particolare energie é stata la creazione di un menu rotante che desse la possibilità di avere un animazione circolare e senza un limite in ambedue i sensi, creando così un esempio di circular infinite scroll, per quanto leggermente limitato al passaggio da una ricetta per volta non permettendo una rotazione libera ad alta velocità. Chiaramente come ogni esempio del genere che coninvolge un "infinite", si tratta di un'illusione permessa da una costruzione accurata. Tramite lo studio della documentazione e l'utilizzo della libreria Framer-Motion e di molti dei Custom Hooks presenti ho potuto creare un'animazione che permettesse una rotazione attorno all'asse di un element circolare comandato un altro element invisibile, esteso alla zona di pressione più probabile dell'utente, che trasmette la propria velocità al primo determinando anche la direzione verso quale ruotare.
-
-Spero che quest'esempio possa essere utile anche ad altri che preferiscono una libreria per le animazioni più leggera rispetto ad una basata su elementi canvas, che nella maggior parte dei casi necessitano di uno studio più approfondito e dedicato per apprendere le nozioni sufficienti per realizzare effetti visivi del genere.
+Un dettaglio al quale ho dedicato particolare attenzione é stata la creazione di un menu rotante che desse la possibilità di avere un animazione circolare e senza un limite in ambedue i sensi, creando così un esempio di circular infinite scroll, per quanto leggermente limitato al passaggio da una ricetta per volta non permettendo una rotazione libera ad alta velocità. Chiaramente come ogni esempio del genere che coninvolge un "infinite", si tratta di un'illusione permessa da una costruzione accurata. Tramite lo studio della documentazione di Framer-Motion e l'utilizzo della libreria e di molti dei Custom Hooks presenti, ho potuto creare un'animazione che permettesse una rotazione attorno all'asse di un element circolare comandato un altro element invisibile, esteso alla zona di pressione più probabile dell'utente, che trasmette la propria velocità al primo determinando così anche la direzione verso quale ruotare.
 
 <hr>
 
 ### Responsive Design
 
 Adattare l'App alla varietà più vasta possibile di dispositivi non é stata un'impresa semplice con questo progetto, visto il design e le animazioni che ho scelto di inserire, ma credo di aver trovato soluzioni ottimali per avere un design responsive per la maggior parte dei dispositivi reali più comuni, considerando anche entrambi gli orientamenti del display disponibili.
-Queste si basano prevalentemente su CSS, ma per il risultato ottenuto chiaramente é stato necessario anche l'utilizzo della parte di logica dei Components.
+Questo si basa su CSS, ma per il risultato ottenuto chiaramente é stato necessario anche l'utilizzo della parte di logica dei Components.
 Ho cercato di mantere l'intera App con un tema e delle animazioni che richiamassero la natura, non andando ad interferire o ostacolare il funzionamento e l'utilizzo.
 Non ho voluto inserire in questo momento una versione utilizzabile per gli Smart Watch, ma sto testando alcune soluzioni per eventuali aggiornamenti futuri.
 
@@ -245,11 +243,10 @@ Ho deciso di utilizzare i servizi di Vercel per publicare l'App, visto l'utilizz
 
 ### Conclusions
 
-Come negli altri, anche in questo progetto ho voluto ampliare la traccia fornita. Mettendomi in difficoltà, sforzandomi di risolvere i problemi che mi si presentavano, estendendo lo studio di React ben oltre quanto richiesto, fino a trovare soluzioni o a capire perché altre non funzionavano. E come in ogni altro progetto, questo mi é servito per migliorare costantemente. Nonostante il tempo impiegato per lo svolgimento del progetto sia stato nettamente maggiore rispetto alla media, alla fine di questo e del Corso, sono riuscito ad ottenere delle conoscenze dettagliate e vaste, oltre che un risultato molto simile a ciò che avevo immaginato inizialmente.
+Come negli altri, anche in questo progetto ho voluto ampliare la traccia fornita. Mettendomi in difficoltà, sforzandomi di risolvere i problemi che mi si presentavano, estendendo lo studio di React ben oltre quanto richiesto, fino a trovare soluzioni o a capire perché altre non funzionavano. E come in ogni altro progetto, questo mi é servito per migliorare costantemente. Nonostante il tempo impiegato per lo svolgimento del progetto sia stato nettamente maggiore rispetto alla media, alla fine di questo Corso, sono riuscito ad ottenere delle conoscenze dettagliate e vaste, oltre che un risultato molto simile a ciò che avevo immaginato inizialmente.
 
 <hr>
 <hr>
-<!-- Spostare qui USAGE? -->
 
 ## Usage
 
@@ -348,6 +345,8 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## To-Do:
 
+- [ ] README ricontrollare testo da Usage in giù
+- [ ] README inserire immagini (poche)
 - [ ] Pulizia codice da commmenti
 - [ ] Eliminare file non necessari
 - [ ] Aggiungere url Vercel al README.md prima della consegna
