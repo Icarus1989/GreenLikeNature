@@ -121,7 +121,7 @@ Icone ed immagini:
 ## Description
 
 <div align="center">
-  <img src="https://i.ibb.co/MVXWhkc/Untitled-1.png" alt="image-For-Presentation" width="60%" height="60%">
+  <img src="https://i.ibb.co/MVXWhkc/Untitled-1.png" alt="image-For-Presentation" width="100%" height="100%">
 </div>
 
 ### Intro - Green Like Nature
