@@ -175,7 +175,7 @@ In aggiunta ho voluto rendere accessibile l'App ad un pubblico più ampio, così
 
 ### Allergies and intolerances
 
-Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare, almeno in modo basilare con quanto disponibile, anche questa funzionalità, permettendo alle persone di indicare cosa escludere passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e dalle ricerche successive per Spoonacular, salvandole nel context e inserendole nell'url, sia come paramentro di ingrediente da escludere con parametro excludeIngredients per le allergie, sia che come intolerances nell'apposito parametro, in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi.
+Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare, almeno in modo basilare con quanto disponibile, anche questa funzionalità, permettendo alle persone di indicare cosa escludere passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e dalle ricerche successive per Spoonacular, salvando gli allergeni nel context e inserendoli nell'url, sia come ingrediente da escludere con parametro excludeIngredients per le allergie, sia che come intolerances nell'apposito parametro, in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi.
 
 <hr>
 
