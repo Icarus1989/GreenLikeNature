@@ -120,6 +120,10 @@ Icone ed immagini:
 
 ## Description
 
+<div align="center">
+  <img src="https://i.ibb.co/MVXWhkc/Untitled-1.png" alt="image-For-Presentation" width="60%" height="60%">
+</div>
+
 ### Intro - Green Like Nature
 
 Questa é un'App di ricette vegetariane creata sfruttando al massimo le conoscenze apprese attraverso il Corso di **React.js** di Start2Impact. Partendo da queste, combinandole con quelle acquisite nel Corso di **JavaScript** e **Node.js**, e dopo aver imparato ad utilizzare il framework **Next.js**, che amplia le possibilità fornite da React.js soprattutto dopo la recente aggiunta dei Server Components, ho potuto dare vita a ciò che avevo immaginato: una Web App di ricette vegetariane come richiesto che permettesse di ottenere ulteriori indicazioni **utili nella quotidianità** delle persone.
@@ -269,20 +273,22 @@ Oltre a questa vi é un carousel circolare ruotabile premendo e trascinando vers
 ### - :mag: - Search Page
 
 La prima parte della pagina contiene una barra di ricerca molto simile alla Main Page, con la differenza che i risultati vengono mostrati un po' più allargati e vi é una scroll-bar personalizzata con l'animazione di alcune foglie di fragola che crescono ad intervalli regolari, basandosi sulla lunghezza della parte scorrevole della pagina, in modo da indicare più chiaramente la parte nella quale ci si trova. Si può chiudere la parte dei risultati clickando sul tasto a forma di fragola.
-La seconda parte della pagina di ricerca sfrutta a pieno i dati resi disponibili dall'Unione Europea: ottenuti tali dati lato server, verranno gestiti in modo da ottenere i prodotti ortofrutticoli più convenienti, verranno selezionate delle ricette contenenti tali ingredienti e proposte come sezioni scorrevoli orizzontalmente. Nel caso non fossero presenti ricette con uno alcuni degli ingredienti suggeriti, queste sezioni verranno sostituite da tasti per la ricerca rapida che reindirizzeranno immediatamente ad una ricerca con l'ingrediente selezionato.
+La seconda parte della pagina di ricerca sfrutta a pieno i dati resi disponibili dall'Unione Europea: ottenuti tali dati lato server, verranno gestiti in modo da restituire i prodotti ortofrutticoli più convenienti, verranno selezionate delle ricette contenenti tali ingredienti e proposte come sezioni scorrevoli orizzontalmente. Nel caso non fossero presenti ricette con uno o alcuni degli ingredienti suggeriti, queste sezioni verranno sostituite da tasti per la ricerca rapida che reindirizzeranno immediatamente ad una ricerca con l'ingrediente selezionato.
 Nella parte inferiore della pagina vi sarà una sezione con le ricette recenti consultate.
-Nel caso in cui l'immagine di una ricetta non fosse disponibile, a causa per esempio della request fallita dei dati o in caso di perdita delle rete del dispositivo, verrà visualizzata un'immagine di default, sia per i suggerimenti che per i risultati delle ricerche.
+Nel caso in cui l'immagine di una ricetta non fosse disponibile per qualsiasi motivo, verrà visualizzata un'immagine di default, sia per i suggerimenti che per i risultati delle ricerche.
 
 ### - :fork_and_knife: - Single Recipe Page
 
-Ho cercato di creare la pagina della Ricetta Singola come una scheda utile a creare la ricetta. Nella prima parte vi é un'immagine di copertina con titolo, con subito sotto dei tasti per tornare rapidamente alla Search Page o Salvare la ricetta tra le preferite. A seguire delle informazioni basilari ma esposte chiaramente con un'indicazione se il piatto proposto é vegetariano o vegano. Subito sotto una presentazione descrittiva della ricetta.
+Ho cercato di creare la pagina della Ricetta Singola come una scheda interattiva che fosse realmente utile da utilizzare per la preparazione della ricetta.
+Nella prima parte vi é un'immagine di copertina con titolo, subito sotto dei tasti per tornare rapidamente alla Search Page o Salvare la ricetta tra le preferite. A seguire delle informazioni basilari ma esposte chiaramente con un'indicazione se il piatto proposto é vegetariano o vegano.
+Subito sotto una presentazione descrittiva della ricetta.
 La parte sottostante ho voluto crearla come una lista spuntabile personalizzata per gli ingredienti, in modo che si possa fare un recap del necessario prima di cominciare.
-Immediatamente sotto vi sono tutti i steps spuntabili per eseguire la ricetta: al loro interno vi sono degli elenchi per gli strumenti necessari per eseguire il passaggio, gli ingredienti e una descrizione testuale.
-Selezionando tutti gli ingredienti e gli steps come completati, oppure premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi salvata come completa nel LocalStorage del dispositivo.
-Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredienti per ricominciarli, basterà premere il tasto di reset situato a fianco del precedente.
+Proseguendo si incontrano tutti gli steps per eseguire la ricetta: al loro interno vi sono degli elenchi per gli strumenti necessari per eseguire il passaggio, gli ingredienti e una descrizione testuale. Ongi step é spuntabile al completamento.
+Commpletando tutti gli ingredienti e gli steps, oppure premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi memorizzato il completamento nel LocalStorage del dispositivo.
+Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredienti, basterà premere il tasto di reset situato a fianco del precedente per il completamento.
 
 > [!IMPORTANT]
-> Alcune ricette presentano dei dati non disposti nello schema della maggior parte delle altre, per esempio avendo saltuariamente string uniche di testo o markup HTML invece che array andando ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad agire sul funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
+> Alcune ricette presentano dei dati non disposti nello schema della maggior parte delle altre, per esempio avendo saltuariamente string uniche di testo o markup HTML invece che array andando così ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad interferire col funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
 
 ### - :bust_in_silhouette: - Tomato Settings
 
@@ -291,11 +297,11 @@ Vi é la possibilità di:
 
 - cambiare le ricette visualizzare nella Main da quelle stagionali a quelle salvate.
 
-- gestire delle ricette salvate per poter eliminare quelle non più desiderate singolarmente o totalmente.
+- gestire le ricette salvate per poter eliminare quelle non più desiderate singolarmente o totalmente.
 
-- indicare allergie e delle intolleranze nell'apposita sezione, dove, tramite un input testuale e menu di options contente le intolleranze si potrà segnalare cosa escludere. Nel caso in cui venisse inserita un'intolleranza già presente nella lista, questa verrà salvata correttamente come intolleranza. Queste verrano poi presentate in una lista modificabile. Il campo testuale può essere inserito nella propria lingua, verrà salvato in inglese nel Context e poi ripresentato nella pagina nella lingua selezionata.
+- indicare allergie e delle intolleranze nell'apposita sezione, dove, tramite un input testuale e menu di options contente le intolleranze si potrà segnalare cosa escludere. Nel caso in cui venisse inserita nel campo testuale un'allergia già presente nella lista delle intolleranze, questa verrà salvata correttamente come intolleranza. Queste verrano poi presentate in una lista modificabile. Il campo testuale può essere inserito nella propria lingua, verrà salvato in inglese nel Context e poi ripresentato nella pagina nella lingua selezionata.
 
-- cambiare la lingua dell'App, sia come menù e campi testuali del layout, sia come testi scritti provenienti dai dati Spoonacular.
+- cambiare la lingua dell'App, sia come menù e campi testuali del layout, sia come testi provenienti dai dati Spoonacular.
 
 > [!NOTE]
 > Il cambiamento della lingua causa un ricaricamento, vista la modifica della Route.
@@ -347,10 +353,10 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## To-Do:
 
-- [ ] README ricontrollare testo da Usage in giù
+- [x] README ricontrollare testo da Usage in giù
 - [ ] README inserire immagini (poche)
 - [ ] Pulizia codice da commmenti
-- [ ] Eliminare file non necessari
+- [ ] Eliminare file e cose non necessarie
 - [ ] Aggiungere url Vercel al README.md prima della consegna
 - [x] Refactor e miglioramento posizionamento menù iniziale
 - [x] Test iPhone 14
