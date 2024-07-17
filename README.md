@@ -156,14 +156,14 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 ### API Limits and /saved Route
 
 Per sfruttare al meglio i dati forniti gratuitamente dal Spoonacular, l'App effettua una richiesta per 80 ricette con una prima API Key, che fungeranno da suggeriementi utilizzabili senza effettuare ulteriori richieste con relativo consumo di dati disponibili quotidianamente evitato. Potrebbe sembrare controproducente, ma una request con 80 ricette con dettagli ha un impatto minore sul numero di punti gratuiti utilizzati dall'API rispetto ad effettuare una request per ogni singola ricetta. Per le ricerche di altre ricette, le richieste utilizzeranno una seconda API Key.
-Combinando le due in questo modo credo di aver prolungato la possibilità di utilizzo quotidiano da parte del maggior numeno possibile di utenti, visto che anche in caso di mancanza di suggerimenti disponibili, l'App funziona ugualmente.
+Combinando le due in questo modo credo di aver prolungato la possibilità di utilizzo quotidiano da parte del maggior numeno possibile di utenti, visto che anche in caso di mancanza di suggerimenti disponibili, l'App funziona ugualmente mentre, usando solamente le ricette suggerite, non vi é alcun ulteriore consumo di dati dall'API.
 
-Per gestire la differenziazione tra ricette già presenti nella memoria e quelle che necessitano di una request per i dati ho creato all'interno della Route search/id una Route interna /saved. La Route /search/saved/[id] verrà usata nel caso vi fosse l'utilizzo di dati presenti e non effetturà alcuna request a Spoonacular per visualizzare la Single Recipe Page. La Route semplice con search/id invece farà una normale request e ottenuti i dati mostrerà la Single Recipe Page.
+Per gestire la differenziazione tra ricette già presenti nella memoria e quelle che necessitano di una request per i dati, ho creato all'interno della Route search/id una Route interna /saved. La Route /search/saved/[id] verrà usata nel caso vi fosse l'utilizzo di dati presenti e non effetturà alcuna request a Spoonacular per visualizzare la Single Recipe Page. La Route semplice search/[id] invece farà una normale request e ottenuti i dati mostrerà la Single Recipe Page.
 La struttura della Single Recipe Page é la medesima in entrambi i casi, compresa la traduzione.
 
 Per gestire un quantitativo di dati importante come quello di 80 ricette con dettagli, ho utilizzato Redux. Questo si é dimostrato molto più veloce e fluido nella gestione di una mole notevole di dati rispetto all'utilizzo di una struttura di Context e Provider creata da zero, anche se, come indicato nella documentazione, l'integrazione e l'ottimizzazione di Redux con Next.js non é ancora completa.
 
-La tecnica della doppia API Key utilizzata sopra permette all'App di avere traduzioni per un maggior numero ricette tramite l'API di DeepL, utilizzando una chiave per ottenere le traduzioni delle ricette già presenti nei suggeriementi e un'altra per quelle non presenti.
+La tecnica della doppia API Key utilizzata sopra permette all'App di avere traduzioni per un maggior numero ricette tramite l'API di DeepL, utilizzando una key per ottenere le traduzioni delle ricette già presenti nei suggerimenti e un'altra per quelle non presenti.
 
 <hr>
 
@@ -175,7 +175,7 @@ In aggiunta ho voluto rendere accessibile l'App ad un pubblico più ampio, così
 
 ### Allergies and intolerances
 
-Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare anche questa funzionalità permettendo alle persone di indicare cosa escludere, passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e nell'url delle ricerche per Spoonacular in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi, sia che provengano da un'intolleranza o da un'allergia.
+Creare un App di ricette senza la possibilità di escludere intolleranze e allergeni sarebbe stato rischioso visto che in tutto e per tutto l'App è disponibile per chiunque online, quindi ho ritenuto necessario integrare, almeno in modo basilare con quanto disponibile, anche questa funzionalità, permettendo alle persone di indicare cosa escludere passando poi tali indicazioni per un filtro per escludere eventualmente alcune delle ricette suggerite e dalle ricerche successive per Spoonacular, salvandole nel context e inserendole nell'url, sia come paramentro di ingrediente da escludere con parametro excludeIngredients per le allergie, sia che come intolerances nell'apposito parametro, in modo da ottenere dei nuovi dati privi di ricette contenti alimenti potenzialmente dannosi.
 
 <hr>
 
