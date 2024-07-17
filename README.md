@@ -277,7 +277,7 @@ Oltre a questa vi é un carousel circolare ruotabile premendo e trascinando vers
 ### - :mag: - Search Page
 
 <div align="center">
-  <img src="https://i.ibb.co/3mD37ZN/IMG-0266-portrait.png" alt="image-iPhone" width="60%" height="60%">
+  <img src="https://i.ibb.co/3mD37ZN/IMG-0266-portrait.png" alt="image-iPhone" width="23%" height="23%">
 </div>
 
 <br>
@@ -290,7 +290,7 @@ Nel caso in cui l'immagine di una ricetta non fosse disponibile per qualsiasi mo
 ### - :fork_and_knife: - Single Recipe Page
 
 <div align="center">
-  <img src="https://i.ibb.co/VV26V8m/IMG-0268-portrait.png" alt="image-iPhone" width="60%" height="60%">
+  <img src="https://i.ibb.co/VV26V8m/IMG-0268-portrait.png" alt="image-iPhone" width="23%" height="23%">
 </div>
 
 <br>
@@ -309,7 +309,7 @@ Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredie
 ### - :bust_in_silhouette: - Tomato Settings
 
 <div align="center">
-  <img src="https://i.ibb.co/Btzf2F8/IMG-0267-portrait.png" alt="image-iPhone" width="60%" height="60%">
+  <img src="https://i.ibb.co/Btzf2F8/IMG-0267-portrait.png" alt="image-iPhone" width="23%" height="23%">
 </div>
 
 <br>
