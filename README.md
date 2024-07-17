@@ -263,8 +263,10 @@ La Navbar, situata nella parte inferiore dello schermo, permette la navigazione 
 ### - :house: - Main Page
 
 <div align="center">
-  <img src="https://i.ibb.co/PZwfv96/Untitled-2.png" alt="image-iPhone" width="80%" height="80%">
+  <img src="https://i.ibb.co/PZwfv96/Untitled-2.png" alt="image-iPhone" width="60%" height="60%">
 </div>
+
+<br>
 
 La pagina principale si presenta con una barra di ricerca come da richiesta. Inserendo il testo si otterranno dapprima dei suggerimenti filtrati dalla lista iniziale e poi, avviando la ricerca, i risultati ottenuti dall'API di Spoonacular.
 Oltre a questa vi é un carousel circolare ruotabile premendo e trascinando verso destra o sinistra la parte circolare, come un drag. Qui vi sono un massimo di 8 ricette selezionabili, scelte tra quelle con ingredienti segnalati come "di stagione". Questa parte é personalizzabile dal Settings, dove si potrà decidere di visualizzare al loro posto le ricette salvate. Nel caso ve ne fossero meno di 8, verranno visualizzati dei suggerimenti in varie lingue per aggiungere le ricette. Una volta scelta la ricetta basta clickare su dettagli per aprire un Modal con le prime informazioni: numero di portate, numero di ingredienti e likes ottenuti dalla ricetta. Clickando sul Modal si verrà reindirizzati alla pagina della Single Recipe.
@@ -274,12 +276,24 @@ Oltre a questa vi é un carousel circolare ruotabile premendo e trascinando vers
 
 ### - :mag: - Search Page
 
+<div align="center">
+  <img src="https://i.ibb.co/3mD37ZN/IMG-0266-portrait.png" alt="image-iPhone" width="60%" height="60%">
+</div>
+
+<br>
+
 La prima parte della pagina contiene una barra di ricerca molto simile alla Main Page, con la differenza che i risultati vengono mostrati un po' più allargati e vi é una scroll-bar personalizzata con l'animazione di alcune foglie di fragola che crescono ad intervalli regolari, basandosi sulla lunghezza della parte scorrevole della pagina, in modo da indicare più chiaramente la parte nella quale ci si trova. Si può chiudere la parte dei risultati clickando sul tasto a forma di fragola.
 La seconda parte della pagina di ricerca sfrutta a pieno i dati resi disponibili dall'Unione Europea: ottenuti tali dati lato server, verranno gestiti in modo da restituire i prodotti ortofrutticoli più convenienti, verranno selezionate delle ricette contenenti tali ingredienti e proposte come sezioni scorrevoli orizzontalmente. Nel caso non fossero presenti ricette con uno o alcuni degli ingredienti suggeriti, queste sezioni verranno sostituite da tasti per la ricerca rapida che reindirizzeranno immediatamente ad una ricerca con l'ingrediente selezionato.
 Nella parte inferiore della pagina vi sarà una sezione con le ricette recenti consultate.
 Nel caso in cui l'immagine di una ricetta non fosse disponibile per qualsiasi motivo, verrà visualizzata un'immagine di default, sia per i suggerimenti che per i risultati delle ricerche.
 
 ### - :fork_and_knife: - Single Recipe Page
+
+<div align="center">
+  <img src="https://i.ibb.co/VV26V8m/IMG-0268-portrait.png" alt="image-iPhone" width="60%" height="60%">
+</div>
+
+<br>
 
 Ho cercato di creare la pagina della Ricetta Singola come una scheda interattiva che fosse realmente utile da utilizzare per la preparazione della ricetta.
 Nella prima parte vi é un'immagine di copertina con titolo, subito sotto dei tasti per tornare rapidamente alla Search Page o Salvare la ricetta tra le preferite. A seguire delle informazioni basilari ma esposte chiaramente con un'indicazione se il piatto proposto é vegetariano o vegano.
@@ -293,6 +307,12 @@ Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredie
 > Alcune ricette presentano dei dati non disposti nello schema della maggior parte delle altre, per esempio avendo saltuariamente string uniche di testo o markup HTML invece che array andando così ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad interferire col funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
 
 ### - :bust_in_silhouette: - Tomato Settings
+
+<div align="center">
+  <img src="https://i.ibb.co/Btzf2F8/IMG-0267-portrait.png" alt="image-iPhone" width="60%" height="60%">
+</div>
+
+<br>
 
 La Settings page é composta da varie parti utili alla personalizzazione dell'esperienza sull'App.
 Vi é la possibilità di:
