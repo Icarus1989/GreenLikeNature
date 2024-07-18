@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import axios from "axios";
 import TranslationsProvider from "@/app/i18nProvider/TranslationsProvider";
 import initTranslations from "@/app/i18n";
-// import SingleRecipePrimary from "@/app/[locale]/search/[id]/components/SingleRecipePrimary";
 import SingleRecipePrimary from "./components/SingleRecipePrimary/SingleRecipePrimary";
 import {
 	translateRecipe,

@@ -17,7 +17,6 @@ export default function SettingsLoading() {
 					overflow: "hidden"
 				}}
 			>
-				{/* ... */}
 				<LoadingSpinner>
 					<PrefIconComponent />
 				</LoadingSpinner>

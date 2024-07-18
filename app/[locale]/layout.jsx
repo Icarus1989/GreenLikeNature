@@ -23,12 +23,6 @@ export const viewport = {
 	themeColor: "#232323"
 };
 
-// <----
-// {
-// 	/* <meta name="theme-color" content="#123456"></meta> */
-// }
-// Qui oppure capire come inserire component Head in altre page
-
 export function generateStaticParams() {
 	return i18nConfig.locales.map((locale) => ({ locale }));
 }
@@ -54,6 +48,7 @@ export default async function RootLayout({ children, params: { locale } }) {
 
 	async function calcCleanList() {
 		try {
+			// HERE
 			// Riattivare qui --->
 
 			// const spoonList = await getSpoonData("", "", "", 100, 0);

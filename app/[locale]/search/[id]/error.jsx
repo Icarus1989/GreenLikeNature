@@ -5,7 +5,6 @@ import styles from "./page.module.css";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function ErrorPageId({ error }) {
-	console.log(error);
 	return (
 		<section>
 			<div className={styles["container"]}>

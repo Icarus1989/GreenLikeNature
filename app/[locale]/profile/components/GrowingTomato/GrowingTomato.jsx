@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import anime from "animejs/lib/anime.es.js";
 import styles from "./GrowingTomato.module.css";
 
@@ -27,7 +27,6 @@ export default function GrowingTomato({
 	yPerc,
 	autoplay
 }) {
-	// const [play, setPlay] = useState(autoplay);
 	const tomatoPathRef = useRef(null);
 
 	useEffect(() => {
@@ -42,30 +41,11 @@ export default function GrowingTomato({
 				}
 			],
 			delay: 50,
-
-			// filter: [
-			// 	{ value: "hue-rotate(80deg)", delay: 0 },
-			// 	{ value: "hue-rotate(0deg)", delay: 500 }
-			// ],
 			autoplay: false,
 			easing: "linear",
 			duration: 2500,
 			loop: false
 		});
-
-		// const tomatoPathHueRot = anime({
-		// 	targets: `tomatoSvg${id}`,
-		// 	// filter: "hue-rotate(0deg)",
-		// 	filter: [
-		// 		{ value: "hue-rotate(80deg)", delay: 0 },
-		// 		{ value: "hue-rotate(0deg)", delay: 500 }
-		// 	],
-		// 	delay: 1500,
-		// 	autoplay: false,
-		// 	easing: "linear",
-		// 	duration: 2500,
-		// 	loop: false
-		// });
 
 		const leavesUpAnim = anime({
 			targets: `#leavesUp${id}`,
@@ -115,7 +95,6 @@ export default function GrowingTomato({
 			],
 			fill: "none",
 			autoplay: false,
-			// easing: "linear",
 			duration: 2800,
 			loop: false,
 			easing: "spring(1.2, 80, 7, 0)"
@@ -163,40 +142,17 @@ export default function GrowingTomato({
 		if (autoplay !== false) {
 			tomatoSvgAnim.play();
 			tomatoPathAnim.play();
-			// tomatoPathHueRot.play();
 			leavesUpAnim.play();
 			leavesDownAnim.play();
 			plantLightAnim.play();
 			plantDarkAnim.play();
 			endLeavesAnim.play();
 		}
-		// return () => {
-		// 	tomatoSvgAnim.pause();
-		// 	tomatoPathAnim.pause();
-		// 	// tomatoPathHueRot.play();
-		// 	leavesUpAnim.pause();
-		// 	leavesDownAnim.pause();
-		// 	plantLightAnim.pause();
-		// 	plantDarkAnim.pause();
-		// 	endLeavesAnim.pause();
-		// };
 	}, [autoplay, id]);
 
 	useEffect(() => {
-		// let timeout = null;
 		if (autoplay !== false) {
-			// tomatoPathRef.current.style.animationName = "ripe";
-			// tomatoPathRef.current.style.animationDuration = "3s";
-			// tomatoPathRef.current.style.animationComposition = "replace";
-			// tomatoPathRef.current.style.animationTimingFunction = "linear";
-
 			tomatoPathRef.current.parentElement.animate(
-				// [
-				// 	{ filter: "hue-rotate(80deg)" },
-				// 	{ filter: "hue-rotate(23deg)", offset: 0.8 },
-				// 	{ filter: "hue-rotate(0deg)" }
-				// ],
-				// 2000
 				{
 					filter: [
 						"hue-rotate(80deg)",
@@ -208,45 +164,12 @@ export default function GrowingTomato({
 				},
 				2300
 			);
-			// timeout = setTimeout(() => {
 			tomatoPathRef.current.parentElement.style.filter = "hue-rotate(0deg)";
-			// Qui
 			tomatoPathRef.current.parentElement.children[1].style.strokeWidth = "1px";
 			tomatoPathRef.current.parentElement.children[2].style.strokeWidth = "1px";
 			tomatoPathRef.current.parentElement.children[1].style.stroke = "";
 			tomatoPathRef.current.parentElement.children[2].style.stroke = "";
-
-			// from->
-			// fill
-			// rgb(112, 68, 13)
-			// stroke
-			// rgb(89, 61, 6)
-
-			// to ->
-			// fill
-			// rgb(33, 123, 5)
-			// stroke
-			// #154F03
 		}
-		// else if (autoplay === false) {
-		// 	tomatoPathRef.current.parentElement.children[1].style.filter =
-		// 		"hue-rotate(280deg)";
-		// 	tomatoPathRef.current.parentElement.children[2].style.filter =
-		// 		"hue-rotate(280deg)";
-		// }
-
-		// filter: "hue-rotate(280deg)";
-		// console.log(tomatoPathRef.current.parentElement.children);
-		// else if (autoplay === false) {
-		// 	// tomatoPathRef.current.animate([{ filter: "hue-rotate(80deg)" }], 2000);
-		// 	tomatoPathRef.current.style.filter = ;
-		// }
-		// console.log(autoplay);
-		// return () => {
-		// 	if (timeout) {
-		// 		clearTimeout(timeout);
-		// 	}
-		// };
 	}, [autoplay]);
 
 	return (
@@ -290,50 +213,30 @@ export default function GrowingTomato({
 				<path
 					id={`firstTomatoPath${id}`}
 					ref={tomatoPathRef}
-					className={
-						styles["firstTomatoPath"]
-						// autoplay === false
-						// 	? styles["firstTomatoPath"]
-						// 	: styles["firstTomatoPathAnim"]
-						// : styles["firstTomatoPath firstTomatoPathAnim"] da provare pom
-					}
+					className={styles["firstTomatoPath"]}
 					fill={`url(#tomatoRedGradient${id})`}
 					style={{
 						stroke: "#BF0300",
 						strokeWidth: "1px"
-						// animation:
-						// filter: "hue-rotate(80deg)"
 					}}
-					// animation={autoplay === false ? "none" : "ripe 3s linear"}
 					d={tomatoBeginPath}
 				/>
-				{/* LEAVES */}
 				<path
 					id={`leavesUp${id}`}
-					// fill="#217D05"
 					style={{
-						// fill: "rgb(33, 123, 5)",
 						fill: "rgb(112, 68, 13)",
-						// stroke: "#154F03",
 						stroke: "rgb(89, 61, 6)",
 						strokeWidth: "1px"
-						// filter: "hue-rotate(280deg)"
 					}}
-					// className={styles["tomato-leaves"]}
 					d={leavesUpBeginPath}
 				/>
 				<path
 					id={`leavesDown${id}`}
-					// fill="#217D05"
 					style={{
-						// fill: "rgb(33, 123, 5)",
 						fill: "rgb(112, 68, 13)",
-						// stroke: "#154F03",
 						stroke: "rgb(89, 61, 6)",
 						strokeWidth: "1px"
-						// filter: "hue-rotate(280deg)"
 					}}
-					// className={styles["tomato-leaves"]}
 					d={leavesDownBeginPath}
 				/>
 

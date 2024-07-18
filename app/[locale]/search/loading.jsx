@@ -16,7 +16,6 @@ export default function SearchLoading() {
 					overflow: "hidden"
 				}}
 			>
-				{/* ... */}
 				<LoadingSpinner>
 					<RecipeIconComponent />
 				</LoadingSpinner>

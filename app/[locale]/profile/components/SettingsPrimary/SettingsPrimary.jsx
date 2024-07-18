@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect, useContext, Suspense, Fragment } from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setError } from "@/lib/features/recipes/recipesSlice";
+import { useAppSelector } from "@/lib/hooks";
 import { useTranslation } from "react-i18next";
 import { useParams } from "next/navigation";
 
@@ -17,18 +16,7 @@ import ErrorModal from "../../../../components/ErrorModal/ErrorModal";
 
 import styles from "./SettingsPrimary.module.css";
 
-// for testing
-import SettingsLoading from "../../loading";
-// for testing
-
-// test
-
-import {
-	GeneralContext,
-	GeneralDispatchContext
-} from "@/app/generalContext/GeneralContext";
-
-// test
+import { GeneralContext } from "@/app/generalContext/GeneralContext";
 
 export default function SettingsPrimary({
 	seasonalData,
@@ -42,9 +30,6 @@ export default function SettingsPrimary({
 		thirdPlant: false,
 		fourthPlant: false
 	});
-
-	// const { errorsReport } = useAppSelector((state) => state.recipes);
-	const reduxDispatch = useAppDispatch();
 
 	const settings = useContext(GeneralContext);
 
@@ -63,39 +48,15 @@ export default function SettingsPrimary({
 		const translateToLocale = async () => {
 			if (allergiesList.length > 0) {
 				const result = await translateList(allergiesList, params.locale);
-				// console.log(result);
-
-				// const result = await transMemo;
-
-				// if (result[0]?.error) {
-				// 	reduxDispatch(setError({ name: "list", message: result[0]?.error }));
-				// 	// setVisualError(true);
-				// } else if (!result[0]?.error) {
-				// 	reduxDispatch(setError({ name: "list", message: null }));
-				// 	// setVisualError(false);
-				// }
-
-				// restituire questo --->
-				// const namesList = await result.map((elem) => elem.text);
-				// portare fuori funzione da Effect
-				// if (!ignore) {
 				setResultsList(() => {
 					return result;
 				});
 			} else {
 				return;
 			}
-			// }
 		};
 
 		if (!ignore) {
-			// const res = translateToLocale();
-			// console.log(res);
-
-			// // restituire questo --->
-			// const namesList = res.map((elem) => elem.text);
-			// portare fuori funzione da Effect
-			// if (!ignore) {
 			translateToLocale();
 		}
 
@@ -241,7 +202,5 @@ export default function SettingsPrimary({
 				/>
 			)}
 		</section>
-		// for testing --->
-		// <SettingsLoading />
 	);
 }

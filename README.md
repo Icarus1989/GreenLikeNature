@@ -40,9 +40,9 @@
         <li><a href="#description">Description</a>
           <ul>
           <li><a href="#intro">Intro</a></li>
-          <li><a href="#combined-data-spoonacular-+-eu-agrifood">Combined Data</a></li>
+          <li><a href="#combined-data-spoonacular--eu-agrifood">Combined Data</a></li>
           <li><a href="#routing">Routing</a></li>
-          <li><a href="#api-limits-and-/saved-route">API Limits and /saved Route</a></li>
+          <li><a href="#api-limits-and-saved-route">API Limits and /saved Route</a></li>
           <li><a href="#internationalization">Internationalization</a></li>
           <li><a href="#allergies-and-intolerances">Allergies and intolerances</a></li>
           <li><a href="#data-percistence">Data percistence</a></li>
@@ -147,8 +147,6 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 ### Routing
 
 **Struttura**:
-
-<!-- INSERIRE GRAFICO STRUTTURA CON ROUTES E [LOCALE] - SINGLE RECIPE SAVED E NO -  -->
 
 <hr>
 
@@ -334,7 +332,7 @@ Nella prima parte vi é un'immagine di copertina con titolo, subito sotto dei ta
 Subito sotto una presentazione descrittiva della ricetta.
 La parte sottostante ho voluto crearla come una lista spuntabile personalizzata per gli ingredienti, in modo che si possa fare un recap del necessario prima di cominciare.
 Proseguendo si incontrano tutti gli steps per eseguire la ricetta: al loro interno vi sono degli elenchi per gli strumenti necessari per eseguire il passaggio, gli ingredienti e una descrizione testuale. Ongi step é spuntabile al completamento.
-Commpletando tutti gli ingredienti e gli steps, oppure premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi memorizzato il completamento nel LocalStorage del dispositivo.
+Premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi memorizzato il completamento nel LocalStorage del dispositivo e tutti gli ingredienti e steps verranno spuntati o completati.
 Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredienti, basterà premere il tasto di reset situato a fianco del precedente per il completamento.
 
 > [!IMPORTANT]
@@ -411,10 +409,16 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 - [x] README ricontrollare testo da Usage in giù
 - [x] README inserire immagini (poche)
-- [ ] README controllo link iniziali
-- [ ] Pulizia codice da commmenti
-- [ ] Eliminare file e cose non necessarie
+- [x] README controllo link iniziali
+- [x] Pulizia codice da commmenti / console.log
+- [x] Problema COMPLETED nelle SinglePage
+- [x] Campi i18n Single Recipe
+- [x] Eliminare file e cose non necessarie
+- [x] Controllare presenza label i18n ovunque servano
 - [ ] Aggiungere url Vercel al README.md prima della consegna
+- [ ] Riattivare fetch dati iniziale da Action e cancellare lista iniziale
+- [ ] Controllo divisione corretta API Keys
+- [ ] Ultimo Test dispositivo reale con fetch attivo
 - [ ] Presentazione
 - [x] Refactor e miglioramento posizionamento menù iniziale
 - [x] Test iPhone 14

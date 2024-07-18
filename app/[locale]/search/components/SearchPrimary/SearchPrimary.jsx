@@ -6,8 +6,6 @@ import {
 	useState,
 	useRef,
 	useContext,
-	useCallback,
-	Suspense,
 	useTransition
 } from "react";
 
@@ -72,6 +70,7 @@ export default function SearchPrimaryComponent({
 
 	const settings = useContext(GeneralContext);
 	const recentList = settings["recent-recipes"];
+
 	const allergens =
 		settings["tomato-settings"]["allergens-list"].length > 0
 			? settings["tomato-settings"]["allergens-list"].map((elem) =>
@@ -91,7 +90,6 @@ export default function SearchPrimaryComponent({
 
 	const formRef = useRef(null);
 	const resultsRef = useRef(null);
-	// const searchResults = useRef(null);
 	const leafBranch = useRef(null);
 
 	const data = recipesList.filter((recipe) =>
@@ -155,15 +153,14 @@ export default function SearchPrimaryComponent({
 		});
 	};
 
-	// useEffect(() => {
-	// 	if (view === true) {
-	// 		window.addEventListener("blur", handleCloseTab);
-	// 		// setSearchData({ type: "default", results: [] });
-	// 		return () => {
-	// 			window.removeEventListener("blur", handleCloseTab);
-	// 		};
-	// 	}
-	// }, [view, handleCloseTab]);
+	useEffect(() => {
+		if (view === true) {
+			window.addEventListener("blur", handleCloseTab);
+			return () => {
+				window.removeEventListener("blur", handleCloseTab);
+			};
+		}
+	}, [view, handleCloseTab]);
 
 	function handleChange(event) {
 		resultsRef.current.scrollTo({ top: 0, left: 0 });
@@ -211,18 +208,14 @@ export default function SearchPrimaryComponent({
 				reduxDispatch(setError({ name: "submit", message: error.message }));
 			}
 		} else if (!navigator.onLine) {
-			// controllare reale utilità --->
 			reduxDispatch(
 				setError({ name: "network", message: "Check network connection." })
 			);
-			// <--- controllare reale utilità
 			setShowError(true);
 		} else {
 			return;
 		}
-		// formRef.current.;
 		formRef.current.children[0].children[1].blur();
-		// console.log(formRef.current.children[0].children[1]);
 	}
 
 	function searchBySeasonal(name) {
@@ -234,28 +227,7 @@ export default function SearchPrimaryComponent({
 		setView(true);
 	}
 
-	// const [suggScope, suggAnimate] = useAnimate();
 	const [ulScope, ulAnimate] = useAnimate();
-
-	// useEffect(() => {
-	// 	if (view && searchData.type === "positive") {
-	// 		ulAnimate(
-	// 			"li",
-	// 			{ opacity: 1 },
-	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
-	// 		);
-	// 	}
-	// }, [view, searchData.type]);
-
-	// useEffect(() => {
-	// 	if (view && data.length > 0) {
-	// 		suggAnimate(
-	// 			"li",
-	// 			{ opacity: 1 },
-	// 			{ delay: stagger(0.2, { startDelay: 0.15 }) }
-	// 		);
-	// 	}
-	// }, [view, data.length]);
 
 	const rawList = [
 		...(data.length > 0 ? data : []),
@@ -269,40 +241,18 @@ export default function SearchPrimaryComponent({
 		);
 		return recipeObj;
 	});
-	// console.log(cleanList);
-
-	// const appearList = [
-	// 	...(searchData.type === "positive" ? searchData["results"] : filteredList)
-	// ];
 
 	useEffect(() => {
 		if (view && cleanList.length > 0) {
-			// const enterAnimationSearch = async () => {
 			ulAnimate(
 				"li",
 				{ opacity: 1 },
 				{ delay: stagger(0.2, { startDelay: 0.15 }) }
 			);
-			// };
-			// if (view) {
-			// 	enterAnimationSearch();
-			// }
 		} else {
-			// const exitAnimationSearch = async () => {
-			// 	ulAnimate(
-			// 		"li",
-			// 		{ opacity: 0 },
-			// 		{ delay: stagger(0.2, { startDelay: 0.15 }) }
-			// 	);
-			// 	safeToRemove();
-			// };
-			// exitAnimationSearch();
 			return;
 		}
 	}, [view, cleanList.length]);
-
-	// const [namesTransl, setNamesTransl] = useState([]);
-	// const [typesTransl, setTypesTransl] = useState([]);
 
 	const [namesTypesTrsl, setNamesTypesTrsl] = useState({
 		names: [],
@@ -320,14 +270,7 @@ export default function SearchPrimaryComponent({
 			});
 
 			const namesTransl = await deeplTranslate(names, currentLocale);
-			// const typesTransl = await deeplTranslate(types, currentLocale);
 			if (!ignore) {
-				console.log("names");
-				console.log(names);
-				console.log(namesTransl);
-				// console.log("types");
-				// console.log(types);
-				// console.log(typesTransl);
 				setNamesTypesTrsl(() => {
 					return {
 						names: [...namesTransl.map((name) => name.text)],
@@ -474,7 +417,6 @@ export default function SearchPrimaryComponent({
 								width="6dvh"
 								topMeasure="175%"
 								leftMeasure="8%"
-								// spostare tutte misure delle foglie nel CSS
 								scale="1.2"
 								rotateZ={"-123deg"}
 								rotateY={"0deg"}
@@ -507,7 +449,6 @@ export default function SearchPrimaryComponent({
 										handleSubmit={handleSubmit}
 										setView={setView}
 										setSearchTerm={setSearchTerm}
-										// translateText={translateText}
 									/>
 								</Fragment>
 							);
@@ -515,80 +456,24 @@ export default function SearchPrimaryComponent({
 						{recentList.length > 0 && <ArticlesSection recipes={recentList} />}
 					</>
 				) : (
-					<motion.div
-						className={styles["results-container"]}
-						// ref={searchResults}
-					>
-						{/* {searchData.type === "positive" || searchData.type === "empty" ? (
-							<ul ref={ulScope} className={styles["list"]}>
-								<span className={styles["list-label"]}>
-									{searchData.type === "positive" &&
-										t("results_label", { searchTerm })}
-									{searchData.type === "empty" &&
-										t("no_results_label", { searchTerm })}
-								</span>
-								{searchData.type === "positive" &&
-									searchData.results.map((elem) => {
-										const recipePresence =
-											recipesList.filter(
-												(recipe) => String(recipe.id) === String(elem.id)
-											).length > 0;
-										return (
-											<Fragment key={elem.id}>
-												<SearchResult
-													id={elem.id}
-													title={elem.title}
-													image={elem.image}
-													saved={recipePresence}
-												/>
-											</Fragment>
-										);
-									})}
-							</ul>
-						) : data.length > 0 ? (
-							<ul ref={suggScope} className={styles["list"]}>
-								<span className={styles["list-label"]}>Suggerimenti:</span>
-								{data.map((elem) => {
-									const recipePresence =
-										recipesList.filter(
-											(recipe) => String(recipe.id) === String(elem.id)
-										).length > 0;
-									return (
-										<Fragment key={elem.id}>
-											<SearchResult
-												id={elem.id}
-												title={elem.title}
-												image={elem.image}
-												saved={recipePresence}
-											/>
-										</Fragment>
-									);
-								})}
-							</ul>
-						) : (
-							// controllare traduzione i18 --->
-							<p className={styles["no-suggest-label"]}>
-								{t("no_suggestion_label")}
-							</p>
-						)} */}
+					<motion.div className={styles["results-container"]}>
 						<AnimatePresence>
 							<ul ref={ulScope} className={styles["list"]}>
 								{searchData.type === "positive" && (
 									<p className={styles["list-label"]}>
 										{t("results_label", { searchTerm })}
-										{/* <span className={styles["term-label"]}>{searchTerm}</span> */}
 									</p>
 								)}
 								{searchData.type === "empty" && data.length === 0 && (
 									<p className={styles["list-label"]}>
 										{t("no_results_label", { searchTerm })}
-										{/* <span className={styles["term-label"]}>{searchTerm}</span> */}
 									</p>
 								)}
 								{searchData.type === "default" && data.length > 0 && (
 									<span className={styles["list-label"]}>
 										{/* aggiungere campo i18n sia Main che Search*/}
-										Suggerimenti:
+										{/* HERE */}
+										{t("suggest")}
 									</span>
 								)}
 								{searchData.type === "default" && data.length === 0 && (

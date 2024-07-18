@@ -9,8 +9,6 @@ import {
 } from "@/app/serverActions/ServerActions";
 import styles from "./page.module.css";
 
-const apiKey = process.env.APIKEYSPOONTWO;
-
 const i18nNamespaces = ["search"];
 
 export default async function SearchPage({ params: { locale } }) {

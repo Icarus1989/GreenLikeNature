@@ -54,7 +54,6 @@ export default function StrawCoupleLeaves({
 					value: extPathInvEnd
 				}
 			],
-			// opacity: { value: [0.1, 1.0], duration: 230, delay: 0 },
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
@@ -71,7 +70,6 @@ export default function StrawCoupleLeaves({
 					value: firstPathInvEnd
 				}
 			],
-			// opacity: { value: [0.1, 1.0], duration: 230, delay: 0 },
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
@@ -88,7 +86,6 @@ export default function StrawCoupleLeaves({
 					value: secondPathInvEnd
 				}
 			],
-			// opacity: { value: [0.1, 1.0], duration: 230, delay: 0 },
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
@@ -105,7 +102,6 @@ export default function StrawCoupleLeaves({
 					value: thirdPathInvEnd
 				}
 			],
-			// opacity: { value: [0.1, 1.0], duration: 230, delay: 0 },
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
@@ -122,7 +118,6 @@ export default function StrawCoupleLeaves({
 					value: ExtPathEnd
 				}
 			],
-			// opacity: { value: [0.1, 1.0], duration: 230, delay: 0 },
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
@@ -140,7 +135,6 @@ export default function StrawCoupleLeaves({
 					value: firstPathEnd
 				}
 			],
-			// opacity: { value: [0.1, 1.0], duration: 230, delay: 0 },
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
@@ -158,7 +152,6 @@ export default function StrawCoupleLeaves({
 					value: secondPathEnd
 				}
 			],
-			// opacity: { value: [0.1, 1.0], duration: 230, delay: 0 },
 			delay: 0,
 			autoplay: false,
 			easing: "easeOutCubic",
@@ -213,7 +206,6 @@ export default function StrawCoupleLeaves({
 					style={{
 						width: leafWidth,
 						height: leafHeight,
-						// boxShadow: "0px 0px 5px rgb(0, 0, 0)"
 						filter: filter
 					}}
 				>

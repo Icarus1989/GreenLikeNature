@@ -8,25 +8,10 @@ const now = new Date();
 const firstYear = now.getFullYear() - 2;
 const secondYear = now.getFullYear() - 1;
 
-// Nota da copiare in README.md Nonostante si potesse ottenere una
-// maggiore precisione utilizzando più anni nel calcolo della
-// stagionalità, non é stata implementata perché, dopo un'
-// attenta analisi dei dati, ho notato che prima del 2022
-// questi sono lacunosi e palesemente errati.
-
-// const completeUrl =
-// 	"https://ec.europa.eu/agrifood/api/fruitAndVegetable/prices?memberStateCodes=IT&months=1,2,3,4,5,6,7,8,9,10,11,12&beginDate=01/01/2022&endDate=20/02/2024";
-
 const completeUrl = `https://ec.europa.eu/agrifood/api/fruitAndVegetable/prices?memberStateCodes=IT&months=1,2,3,4,5,6,7,8,9,10,11,12&beginDate=01/01/${firstYear}&endDate=31/12/${secondYear}`;
 
 export const getData = cache(async () => {
 	try {
-		// const res = await fetch(completeUrl, { next: { revalidate: 86400 } });
-		// const euData = await res.json();
-
-		// Test Axios --> Valutare in build se avviene memoization...
-		// oppure no. Se non avviene levare axios ma lasciare cache()
-
 		const response = await axios({
 			method: "get",
 			url: completeUrl,
@@ -143,16 +128,6 @@ export const getData = cache(async () => {
 				}
 			});
 
-			// <--- Ricontrollo
-
-			// console.log(sortedPrices);
-			// modificare sliceNumber?
-			// const sliceNumber = 2;
-			// const betterPrices = sortedPrices.slice(0, sliceNumber);
-
-			// levato il primo risultato più basso perché dall'osservazione risulta
-			// non in linea con il resto dei dati, capire se tenere ---->
-			// return sortedPrices.slice(1);
 			return sortedPrices;
 		}
 

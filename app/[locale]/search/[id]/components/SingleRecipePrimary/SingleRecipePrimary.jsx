@@ -14,7 +14,7 @@ import {
 	GeneralDispatchContext
 } from "@/app/generalContext/GeneralContext";
 
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch } from "@/lib/hooks";
 import { addRecipe } from "@/lib/features/recipes/recipesSlice";
 
 import { FaArrowLeft } from "react-icons/fa";
@@ -46,6 +46,15 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 	const { t } = useTranslation();
 
 	const reduxDispatch = useAppDispatch();
+	const generalDispatch = useContext(GeneralDispatchContext);
+	const settings = useContext(GeneralContext);
+
+	const completed =
+		settings["complete-recipes"].filter((id) => {
+			return Number(recipeData.id) === id;
+		}).length > 0
+			? true
+			: false;
 
 	const [goDown, setGoDown] = useState(false);
 
@@ -77,11 +86,8 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 		steps: steps.map((step) => {
 			return { [`step-${step.number}`]: false };
 		}),
-		complete: { confirm: false, timestamp: "none" }
+		complete: { confirm: completed, timestamp: "none" }
 	});
-
-	const generalDispatch = useContext(GeneralDispatchContext);
-	const settings = useContext(GeneralContext);
 
 	const savedList = settings["saved-recipes"];
 
@@ -434,7 +440,7 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 						{steps?.map((step, index) => {
 							return (
 								<li key={`number${step.number}`} className={styles["step"]}>
-									<details open={!recipe.complete.confirm}>
+									<details open={!completed}>
 										<summary className={styles["step-title"]}>
 											{t("step_label")} {step.number} / {steps.length}
 											<input
@@ -503,20 +509,20 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 
 			<div className={styles["controls-container"]}>
 				<button
-					disabled={recipe.complete.confirm}
+					disabled={completed}
 					onClick={() => handleCompleteRecipe(true, recipe)}
 					className={styles["complete-btn"]}
 				>
-					{recipe.complete.confirm ? (
+					{completed ? (
 						<>
-							Completa <PiCheckBold />
+							{t("complete_label")} <PiCheckBold />
 						</>
 					) : (
-						"Segna Come Completata"
+						<>{t("sign_complete_label")}</>
 					)}
 				</button>
 				<button
-					disabled={!recipe.complete.confirm}
+					disabled={!completed}
 					onClick={() => handleCompleteRecipe(false, recipe)}
 					className={styles["reset-btn"]}
 				>

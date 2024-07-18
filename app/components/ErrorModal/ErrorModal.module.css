@@ -5,8 +5,6 @@
 	width: 100dvw;
 	height: 100dvh;
 	background: #23232375;
-	/* border: 2px solid red; */
-
 	z-index: 100;
 }
 
@@ -21,19 +19,9 @@
 	place-items: center;
 	width: 100%;
 	height: auto;
-	/* background-color: #232323ef; */
 	background: linear-gradient(30deg, #232323fa 40%, rgb(76, 3, 3));
-	/* background: linear-gradient(
-		to left,
-		transparent 0%,
-		#23232360 1%,
-		#232323ca 10%,
-		#232323 15%
-	); */
 	border-top: 5px solid rgba(150, 1, 1, 1);
 	border-bottom: 5px solid rgba(100, 0, 0, 0.523);
-	/* border-bottom-left-radius: 50%; */
-	/* border-bottom-right-radius: 50%; */
 }
 
 .errors-list {
@@ -129,8 +117,6 @@
 		height: 10dvh;
 		margin: 2% 0% 4% 0%;
 	}
-}
-@media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
 }
 @media only screen and (min-width: 900px) and (max-width: 1199px) and (orientation: landscape) {
 	.modal-message {

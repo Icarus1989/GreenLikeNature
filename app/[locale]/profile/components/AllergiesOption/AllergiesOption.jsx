@@ -2,20 +2,10 @@
 
 import { useTranslation } from "react-i18next";
 import { useParams } from "next/navigation";
-import {
-	useEffect,
-	useState,
-	useRef,
-	useContext,
-	useMemo,
-	useCallback
-} from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import {
-	setError,
-	filterByAllergens
-} from "@/lib/features/recipes/recipesSlice";
+import { useAppDispatch } from "@/lib/hooks";
+import { filterByAllergens } from "@/lib/features/recipes/recipesSlice";
 
 import {
 	GeneralContext,
@@ -31,9 +21,7 @@ import styles from "./AllergiesOption.module.css";
 
 export default function AllergiesOptions({
 	translateToEng,
-	translateList,
 	translatedArr,
-	setVisualError,
 	onStartAnim
 }) {
 	const [playAnim, setPlayAnim] = useState({ first: false, second: false });
@@ -41,9 +29,6 @@ export default function AllergiesOptions({
 	const [inputText, setInputText] = useState("");
 	const [inputSelect, setInputSelect] = useState("");
 
-	const [newAllergen, setNewAllergen] = useState("");
-
-	const { errorsReport } = useAppSelector((state) => state.recipes);
 	const reduxDispatch = useAppDispatch();
 
 	const inputRef = useRef(null);
@@ -116,7 +101,6 @@ export default function AllergiesOptions({
 		const name = target.name.split("_")[0];
 
 		if (name === "allergies") {
-			// console.log(inputText);
 			if (inputText.length > 0) {
 				const checkText = [];
 
@@ -128,33 +112,11 @@ export default function AllergiesOptions({
 					}
 				}
 
-				// console.log(checkText);
-
 				if (checkText.length === 0) {
-					// test
-					// async function engTranslation(text, locale) {
-					// const result = await translateToEng(
-					// 	inputText.toLowerCase(),
-					// 	params.locale
-					// );
-					// console.log(result);
-
-					// if (!ignore) {
-					//
 					generalDispatch({
 						type: "add_allergen",
 						name: inputText.toLowerCase()
 					});
-
-					// setNewAllergen("");
-					// }
-					// }
-					// engTranslation(newAllergen, params.locale);
-					// setNewAllergen(() => {
-					// 	return inputText.toLowerCase();
-					// });
-
-					// test
 				} else {
 					generalDispatch({
 						type: "add_intolerance",
@@ -191,11 +153,9 @@ export default function AllergiesOptions({
 				return;
 			}
 		}
-		// console.log(allergensList);
 	}
 
 	async function handleSubmit(event) {
-		console.log(event.target);
 		event.preventDefault();
 		if (inputText.length > 0) {
 			const checkText = [];
@@ -207,19 +167,10 @@ export default function AllergiesOptions({
 			}
 
 			if (checkText.length === 0) {
-				// setNewAllergen(() => {
-				// 	return inputText.toLowerCase();
-				// });
-				// test
-				// async function engTranslation(text, locale) {
 				const result = await translateToEng(
 					inputText.toLowerCase(),
 					params.locale
 				);
-				// console.log(result);
-
-				// if (!ignore) {
-				//
 				generalDispatch({
 					type: "add_allergen",
 					name: result.text.toLowerCase()
@@ -291,19 +242,6 @@ export default function AllergiesOptions({
 	}, [playAnim.second]);
 
 	useEffect(() => {
-		// setTermList(translatedArr);
-
-		// if (translatedArr[0]?.error) {
-		// 	reduxDispatch(
-		// 		setError({ name: "list", message: translatedArr[0]?.error })
-		// 	);
-		// 	// setVisualError(true);
-		// } else if (!translatedArr[0]?.error) {
-		// 	reduxDispatch(setError({ name: "list", message: null }));
-		// 	// setVisualError(false);
-		// }
-
-		// restituire questo --->
 		const namesList = translatedArr.map((elem) => {
 			if (elem?.text) {
 				return elem.text;
@@ -311,8 +249,6 @@ export default function AllergiesOptions({
 				return elem;
 			}
 		});
-		// portare fuori funzione da Effect
-		// if (!ignore) {
 		setTermList(() => {
 			return namesList;
 		});
@@ -387,7 +323,6 @@ export default function AllergiesOptions({
 							type="submit"
 							className={styles["add-btn"]}
 							name="allergies_btn"
-							// onClick={handleClick}
 						>
 							<svg
 								version="1.2"

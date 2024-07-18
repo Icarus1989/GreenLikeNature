@@ -73,7 +73,6 @@ export default function VisualOption() {
 	};
 
 	function handleChange(event) {
-		console.log(event.target.value);
 		generalDispatch({
 			type: "select_type",
 			value: event.target.value
@@ -174,9 +173,6 @@ export default function VisualOption() {
 						</motion.svg>
 						<input
 							ref={firstInputRef}
-							onBlur={() => {
-								console.log("Blur.");
-							}}
 							onClick={(event) => handleChange(event)}
 							type="radio"
 							id="radioInputSeason"
@@ -234,9 +230,6 @@ export default function VisualOption() {
 							id="radioInputSaved"
 							value="saved"
 							ref={secondInputRef}
-							onBlur={() => {
-								console.log("Blur.");
-							}}
 							onClick={(event) => handleChange(event)}
 						/>
 						<span>SAVED</span>

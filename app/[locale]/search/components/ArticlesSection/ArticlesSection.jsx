@@ -1,7 +1,5 @@
 "use client";
 
-// ATTENZIONE MANCA UNA TRADUZIONE
-
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Fragment, useState, useRef, useEffect } from "react";
@@ -19,22 +17,12 @@ export default function ArticlesSection({
 	nameTransl = "",
 	varieties,
 	searchBySeasonal,
-	handleSubmit,
-	setView,
-	setSearchTerm
+	handleSubmit
 }) {
-	// const nameStrg =
-	// 	name[name.length - 1] === "s" ? name.slice(0, name.length - 1) : name;
-	// <--- Correggere qui, tomatoes al singolare diviene tometoe
-
 	const nameStrg = name[name.length - 1] === "s" ? calcSingular(name) : name;
-	// console.log(nameStrg);
 
 	const [idsList, setIdsList] = useState(calcRecipesIds(recipes));
 	const btnRef = useRef(null);
-
-	const recipesIds = recipes.map((recipe) => recipe.id);
-	const ingrsLists = recipes.map((recipe) => recipe.extendedIngredients);
 
 	const { t } = useTranslation();
 
@@ -72,15 +60,6 @@ export default function ArticlesSection({
 		}
 	}
 
-	// console.log(suggestedList);
-
-	// function btnSubmit(event) {
-	// 	const query = nameStrg;
-	// 	handleSubmit(event, query);
-
-	// 	searchBySeasonal();
-	// }
-
 	const [submitSeasonal, setSubmitSeasonal] = useState(false);
 
 	useEffect(() => {
@@ -99,11 +78,6 @@ export default function ArticlesSection({
 		};
 	}, [submitSeasonal]);
 
-	// const [nameAndType, setNameAndType] = useState({
-	// 	nameTransl: "",
-	// 	typeTransl: ""
-	// });
-
 	return (
 		<div className={styles["articles-section"]}>
 			{name ? (
@@ -116,7 +90,6 @@ export default function ArticlesSection({
 						{t("variety_label_2")}{" "}
 						<span className={styles["seasonal-name"]}>{varieties[0]}</span>
 					</h3>
-					{/* qui if suggestedList > 0 ? _ : _ */}
 					{suggestedList.length > 0 ? (
 						<div className={styles["articles-container"]} dir="ltr">
 							{suggestedList.map((recipe) => {
@@ -147,23 +120,17 @@ export default function ArticlesSection({
 						<Fragment key={name}>
 							<div className={styles["articles-container"]} dir="ltr">
 								<button
-									// id={name}
 									form="searchForm"
 									type="submit"
 									ref={btnRef}
 									onClick={() => {
-										// setView(true);
-										// await handleSubmit(event, nameStrg);
 										setSubmitSeasonal(true);
 									}}
-									// onClick={() => {
-									// 	// searchBySeasonal(btnRef.current, name);
-									// 	return handleSubmit();
-									// }}
 									className={styles["rel-search-btn"]}
 								>
 									{/* Tradurre i18 ---> */}
-									Cerca ricette con:{" "}
+									{/* HERE */}
+									{t("find_recipes")}{" "}
 									<span className={styles["seasonal-name"]}>
 										{nameTransl.length > 0 ? nameTransl : name}
 									</span>{" "}

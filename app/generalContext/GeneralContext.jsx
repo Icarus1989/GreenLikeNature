@@ -29,7 +29,6 @@ export default function GeneralProvider({ children }) {
 		} else {
 			window.localStorage.setItem("settings", JSON.stringify(initialSettings));
 		}
-		// }
 	}, [initialSettings]);
 
 	function settingsReducer(state, action) {
@@ -62,12 +61,12 @@ export default function GeneralProvider({ children }) {
 					"settings",
 					JSON.stringify({
 						...state,
-						"recent-recipes": [...state["recent-recipes"], action.recipe]
+						"recent-recipes": [action.recipe, ...state["recent-recipes"]]
 					})
 				);
 				return {
 					...state,
-					"recent-recipes": [...state["recent-recipes"], action.recipe]
+					"recent-recipes": [action.recipe, ...state["recent-recipes"]]
 				};
 			}
 		} else if (action.type === "save") {

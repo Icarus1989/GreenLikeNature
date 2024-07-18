@@ -72,7 +72,6 @@ export default function SavedRecipes({ handleClick }) {
 							<button
 								className={styles["clear-recipes-list"]}
 								onClick={() => {
-									// onClick();
 									return handleClear();
 								}}
 							>

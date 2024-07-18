@@ -56,6 +56,16 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 		return String(elem.id) === String(params.id);
 	})[0];
 
+	const generalDispatch = useContext(GeneralDispatchContext);
+	const settings = useContext(GeneralContext);
+
+	const completed =
+		settings["complete-recipes"].filter((id) => {
+			return Number(actualData.id) === id;
+		}).length > 0
+			? true
+			: false;
+
 	const [recipeData, setRecipeData] = useState(actualData);
 	const [goDown, setGoDown] = useState(false);
 
@@ -100,11 +110,9 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 		steps: steps.map((step) => {
 			return { [`step-${step.number}`]: false };
 		}),
-		complete: { confirm: false, timestamp: "none" }
+		complete: { confirm: completed, timestamp: "none" }
 	});
 
-	const generalDispatch = useContext(GeneralDispatchContext);
-	const settings = useContext(GeneralContext);
 	const savedList = settings["saved-recipes"];
 
 	const savedRecipe = savedList.filter((elem) => {
@@ -119,7 +127,6 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 		hidden: { opacity: 0 },
 		visible: { opacity: 1.0, transition: { duration: 0.8 } }
 	};
-	// const newSummary = recipeData.summary.replaceAll(/\./g, ".\n");
 	const newSummary = recipeData["summary"];
 	const cleanSummary = parse(newSummary, {
 		replace(domNode) {
@@ -272,7 +279,6 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 		try {
 			const results = await translateRecipe(data, lang);
 			if (results?.error) {
-				console.log(results);
 				throw new Error(results.error.message);
 			} else if (!results?.error && errorsReport["saved"]) {
 				reduxDispatch(setError({ name: "saved", message: null }));
@@ -280,7 +286,6 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 
 			setRecipeData(results);
 		} catch (error) {
-			console.log(error);
 			reduxDispatch(setError({ name: "saved", message: error.message }));
 			setShowError(true);
 		}
@@ -498,7 +503,7 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 						{steps?.map((step, index) => {
 							return (
 								<li key={`number${step.number}`} className={styles["step"]}>
-									<details open={!recipe.complete.confirm}>
+									<details open={!completed}>
 										<summary className={styles["step-title"]}>
 											{t("step_label")} {step.number} / {steps.length}
 											<input
@@ -567,11 +572,11 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 
 			<div className={styles["controls-container"]}>
 				<button
-					disabled={recipe.complete.confirm}
+					disabled={completed}
 					onClick={() => handleCompleteRecipe(true, recipe)}
 					className={styles["complete-btn"]}
 				>
-					{recipe.complete.confirm ? (
+					{completed ? (
 						<>
 							{t("complete_label")} <PiCheckBold />
 						</>
@@ -580,7 +585,7 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 					)}
 				</button>
 				<button
-					disabled={!recipe.complete.confirm}
+					disabled={!completed}
 					onClick={() => handleCompleteRecipe(false, recipe)}
 					className={styles["reset-btn"]}
 				>
