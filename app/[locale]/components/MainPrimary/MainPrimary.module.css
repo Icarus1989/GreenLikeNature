@@ -957,9 +957,6 @@
 		margin-top: 5%;
 	}
 
-	.term-label {
-	}
-
 	.no-suggest-label {
 		font-size: 1.2rem;
 		margin-top: 10%;
@@ -981,9 +978,6 @@
 
 	.title-general {
 		font-size: 70px;
-	}
-
-	.title-general > span {
 	}
 
 	.text-container {

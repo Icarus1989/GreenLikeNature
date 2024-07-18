@@ -36,9 +36,6 @@
 	height: 100%;
 }
 
-.error-elem {
-}
-
 .details-container {
 	width: 100%;
 	height: auto;
@@ -112,9 +109,6 @@
 	.modal-title {
 		font-size: 4dvh;
 		padding: 4% 0% 4% 0%;
-	}
-
-	.details-container {
 	}
 
 	.error-details {
