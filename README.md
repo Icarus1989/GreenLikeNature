@@ -158,6 +158,22 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 
 <hr>
 
+La Route principale / viene modificata al caricamento iniziale grazie a i18n per interfacciarsi con la lingua selezionata
+
+Quindi la Route principale della Home Page sarà sempre per esempio ---> **/it**, /de, /nl
+
+La seconda Route sarà quella della Search Page ---> **/search**
+
+Questa porterà tramite selezione alla Single Recipe Page. Qui vi sarà una doppia possibilità:
+
+- in caso di dati presenti nella memoria la Route utilizzata sarà saved seguita dall'id variabile della ricetta ---> **/search / saved / 12345**
+
+- in caso di dati da ottenere tramite request sarà utilizzata la Route semplice seguita dall'id variabile della ricetta ---> **/search / 12345**
+
+La terza Route sarà quella della Settings Page ---> **/profile**
+
+<br>
+
 > [!IMPORTANT]
 > Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App creata con Next.js, anche se richiesto nella traccia originale. Sarebbe un integrazione difficile e sostanzialmente inutile, visto che il Routing per Next.js viene creato basandosi sulle directories del progetto all'interno della directory principale "app" ([App Routing Next.js v.14](https://nextjs.org/docs/getting-started/project-structure)) e il Routing integrato permette una serie di ottimizzazioni e personalizzazioni non trascurabili, come l'utilizzo dei Server Components come base per ogni Route e per il Layout generale dell'App. Forzare un altro tipo di routing sarebbe stato controproducente. Nonostante ciò vi sono somiglianze tra le due tipologie di Routing, come l'utilizzo di elementi Link integrati dedicati.
 
