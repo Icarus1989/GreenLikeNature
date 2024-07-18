@@ -150,6 +150,14 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 
 <!-- INSERIRE GRAFICO STRUTTURA CON ROUTES E [LOCALE] - SINGLE RECIPE SAVED E NO -  -->
 
+<hr>
+
+<div align="center">
+  <img src="https://i.ibb.co/7ytQcNL/Untitled-3.png" alt="routes-scheme" width="90%" height="90%">
+</div>
+
+<hr>
+
 > [!IMPORTANT]
 > Purtroppo non é possibile utilizzare React-Routers per il Routing di un'App creata con Next.js, anche se richiesto nella traccia originale. Sarebbe un integrazione difficile e sostanzialmente inutile, visto che il Routing per Next.js viene creato basandosi sulle directories del progetto all'interno della directory principale "app" ([App Routing Next.js v.14](https://nextjs.org/docs/getting-started/project-structure)) e il Routing integrato permette una serie di ottimizzazioni e personalizzazioni non trascurabili, come l'utilizzo dei Server Components come base per ogni Route e per il Layout generale dell'App. Forzare un altro tipo di routing sarebbe stato controproducente. Nonostante ciò vi sono somiglianze tra le due tipologie di Routing, come l'utilizzo di elementi Link integrati dedicati.
 
@@ -263,7 +271,7 @@ La Navbar, situata nella parte inferiore dello schermo, permette la navigazione 
 ### - :house: - Main Page
 
 <div align="center">
-  <img src="https://i.ibb.co/PZwfv96/Untitled-2.png" alt="image-iPhone" width="60%" height="60%">
+  <img src="https://i.ibb.co/P4GWqpK/IMG-0262-portrait.png" alt="image-iPhone" width="23%" height="23%">
 </div>
 
 <br>
