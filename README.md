@@ -160,21 +160,26 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 
 La Route principale / viene modificata al caricamento iniziale grazie a i18n per interfacciarsi con la lingua selezionata
 
-Quindi la Route principale della Home Page sarà sempre per esempio
+Quindi la Route principale della Home Page sarà sempre per esempio:
+
 ---> **/it**, /de, /nl
 
-La seconda Route sarà quella della Search Page
+La seconda Route sarà quella della Search Page:
+
 ---> **/search**
 
 Questa porterà tramite selezione alla Single Recipe Page. Qui vi sarà una doppia possibilità:
 
 - in caso di dati presenti nella memoria la Route utilizzata sarà saved seguita dall'id variabile della ricetta
+
   ---> **/search / saved / 12345**
 
 - in caso di dati da ottenere tramite request sarà utilizzata la Route semplice seguita dall'id variabile della ricetta
+
   ---> **/search / 12345**
 
-La terza Route sarà quella della Settings Page
+La terza Route sarà quella della Settings Page:
+
 ---> **/profile**
 
 <br>
