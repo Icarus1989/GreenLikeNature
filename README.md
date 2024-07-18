@@ -153,24 +153,29 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 <hr>
 
 <div align="center">
-  <img src="https://i.ibb.co/7ytQcNL/Untitled-3.png" alt="routes-scheme" width="90%" height="90%">
+  <img src="https://i.ibb.co/g69k7z9/route-Scheme.png" alt="routes-scheme" width="90%" height="90%">
 </div>
 
 <hr>
 
 La Route principale / viene modificata al caricamento iniziale grazie a i18n per interfacciarsi con la lingua selezionata
 
-Quindi la Route principale della Home Page sarà sempre per esempio ---> **/it**, /de, /nl
+Quindi la Route principale della Home Page sarà sempre per esempio
+---> **/it**, /de, /nl
 
-La seconda Route sarà quella della Search Page ---> **/search**
+La seconda Route sarà quella della Search Page
+---> **/search**
 
 Questa porterà tramite selezione alla Single Recipe Page. Qui vi sarà una doppia possibilità:
 
-- in caso di dati presenti nella memoria la Route utilizzata sarà saved seguita dall'id variabile della ricetta ---> **/search / saved / 12345**
+- in caso di dati presenti nella memoria la Route utilizzata sarà saved seguita dall'id variabile della ricetta
+  ---> **/search / saved / 12345**
 
-- in caso di dati da ottenere tramite request sarà utilizzata la Route semplice seguita dall'id variabile della ricetta ---> **/search / 12345**
+- in caso di dati da ottenere tramite request sarà utilizzata la Route semplice seguita dall'id variabile della ricetta
+  ---> **/search / 12345**
 
-La terza Route sarà quella della Settings Page ---> **/profile**
+La terza Route sarà quella della Settings Page
+---> **/profile**
 
 <br>
 
