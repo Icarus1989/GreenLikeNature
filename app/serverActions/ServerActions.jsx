@@ -467,7 +467,7 @@ export async function seasonalData() {
 export async function deeplTranslate(textArr, lang) {
 	"use server";
 
-	const deeplAuthKey = process.env.APIKEYDEEPLTWO;
+	const deeplAuthKey = process.env.APIKEYDEEPL;
 	const translator = new deepl.Translator(deeplAuthKey);
 
 	if (lang !== "en") {

@@ -96,33 +96,13 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 	const [recipeInd, setRecipeInd] = useState({
 		ingredients: ingredients.map((ingredient, index) => {
 			return {
-				[`${ingredient.name}_${index}`]:
-					settings["complete-recipes"].filter((id) => {
-						return Number(recipeData.id) === id;
-					}).length > 0
-						? true
-						: false
+				[`${ingredient.name}_${index}`]: completed === true ? true : false
 			};
 		}),
 		steps: steps.map((step) => {
-			return {
-				[`step-${step.number}`]:
-					settings["complete-recipes"].filter((id) => {
-						return Number(recipeData.id) === id;
-					}).length > 0
-						? true
-						: false
-			};
+			return { [`step-${step.number}`]: completed === true ? true : false };
 		}),
-		complete: {
-			confirm:
-				settings["complete-recipes"].filter((id) => {
-					return Number(recipeData.id) === id;
-				}).length > 0
-					? true
-					: false,
-			timestamp: "none"
-		}
+		complete: { confirm: completed === true ? true : false, timestamp: "none" }
 	});
 
 	const savedList = settings["saved-recipes"];
