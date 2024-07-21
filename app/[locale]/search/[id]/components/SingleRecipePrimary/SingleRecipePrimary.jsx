@@ -2,19 +2,18 @@
 
 import { useTranslation } from "react-i18next";
 
-import { useState, useRef, useEffect, useReducer, useContext } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import parse from "html-react-parser";
 
 import Link from "next/link";
 import Image from "next/image";
 
-import singleRecipeReducer from "./recipeReducer";
 import {
 	GeneralContext,
 	GeneralDispatchContext
 } from "@/app/generalContext/GeneralContext";
 
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addRecipe } from "@/lib/features/recipes/recipesSlice";
 
 import { FaArrowLeft } from "react-icons/fa";
@@ -45,23 +44,38 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 
 	const { t } = useTranslation();
 
+	const { errorsReport } = useAppSelector((state) => state.recipes);
 	const reduxDispatch = useAppDispatch();
 	const generalDispatch = useContext(GeneralDispatchContext);
 	const settings = useContext(GeneralContext);
 
-	const completed =
+	const [completed, setCompleted] = useState(
 		settings["complete-recipes"].filter((id) => {
 			return Number(recipeData.id) === id;
 		}).length > 0
 			? true
-			: false;
+			: false
+	);
 
 	const [goDown, setGoDown] = useState(false);
+
+	const errorsValues = Array.from(Object.values(errorsReport));
+	const errorCheck = errorsValues.filter((elem) => elem !== null)[0] || null;
+	const errorsMsgs = [];
+	if (errorCheck) {
+		for (const [key, value] of Object.entries(errorsReport)) {
+			if (value !== null) {
+				errorsMsgs.push({ from: key, message: value });
+			}
+		}
+	}
+
+	const [showError, setShowError] = useState(Boolean(errorCheck));
 
 	const ingredients = recipeData.extendedIngredients
 		? recipeData.extendedIngredients
 		: {
-				"Nessun ingrediente": true
+				"No Ingredients": true
 		  };
 	const steps =
 		recipeData.analyzedInstructions.length > 0
@@ -73,18 +87,18 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 								number: 1,
 								equipment: [],
 								ingredients: [],
-								step: "Nessuno step"
+								step: "No steps"
 							}
 						]
 					}
 			  ];
 
-	const [recipe, dispatch] = useReducer(singleRecipeReducer, {
+	const [recipeInd, setRecipeInd] = useState({
 		ingredients: ingredients.map((ingredient, index) => {
-			return { [`${ingredient.name}_${index}`]: false };
+			return { [`${ingredient.name}_${index}`]: completed };
 		}),
 		steps: steps.map((step) => {
-			return { [`step-${step.number}`]: false };
+			return { [`step-${step.number}`]: completed };
 		}),
 		complete: { confirm: completed, timestamp: "none" }
 	});
@@ -143,40 +157,56 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 		}
 	}
 
-	function handleChangeRecipe(target, recipe) {
-		dispatch({
-			type: "change",
-			target: target,
-			recipe: recipe
+	function handleChangeRecipe(target) {
+		const value = target.checked;
+		const name = target.name;
+		const category = name.split("-")[0];
+		const detail = category === "ingredient" ? name.split("-")[1] : name;
+		const key = `${category}s`;
+		setRecipeInd((prevRecipeInd) => {
+			return {
+				...prevRecipeInd,
+				[key]: prevRecipeInd[key].map((field) => {
+					if (Object.keys(field)[0] === detail) {
+						return { [detail]: value };
+					} else {
+						return field;
+					}
+				})
+			};
 		});
 	}
 
-	const savedMoment = new Date(Date.now()).toLocaleDateString("it-IT", {
-		weekday: "long",
-		year: "numeric",
-		month: "long",
-		day: "numeric"
-	});
-
-	function handleCompleteRecipe(value, recipe) {
-		const ts = value ? savedMoment : "none";
-		dispatch({
-			type: "completed",
-			value: value,
-			text: ts,
-			recipe: recipe
-		});
+	function handleCompleteRecipe(value) {
 		if (value === true) {
+			setCompleted(() => {
+				return value;
+			});
 			generalDispatch({
 				type: "complete_recipe",
 				id: recipeData.id
 			});
 		} else if (value === false) {
+			setCompleted(() => {
+				return value;
+			});
 			generalDispatch({
 				type: "reset_recipe",
 				id: recipeData.id
 			});
 		}
+
+		setRecipeInd(() => {
+			return {
+				ingredients: ingredients.map((ingredient, index) => {
+					return { [`${ingredient.name}_${index}`]: value };
+				}),
+				steps: steps.map((step) => {
+					return { [`step-${step.number}`]: value };
+				}),
+				complete: { confirm: value, timestamp: "none" }
+			};
+		});
 	}
 
 	const { scrollYProgress } = useScroll({
@@ -200,53 +230,41 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 	});
 
 	useEffect(() => {
-		const ingrArr = recipe["ingredients"];
-		const stepArr = recipe["steps"];
+		const ingrArr = recipeInd["ingredients"];
+		const stepArr = recipeInd["steps"];
+		let totalValues = 0;
 		let checkCount = 0;
 
 		for (let obj of ingrArr) {
 			for (const [key, value] of Object.entries(obj)) {
-				if (value) {
+				totalValues = totalValues + 1;
+				if (value === true) {
 					checkCount = checkCount + 1;
 				}
 			}
 		}
 		for (let obj of stepArr) {
 			for (const [key, value] of Object.entries(obj)) {
-				if (value) {
+				totalValues = totalValues + 1;
+				if (value === true) {
 					checkCount = checkCount + 1;
 				}
 			}
 		}
-		if (
-			checkCount === ingrArr.length + stepArr.length &&
-			!recipe.complete.confirm
-		) {
-			const ts = savedMoment;
-			dispatch({
-				type: "completed",
-				value: true,
-				text: ts,
-				recipe: recipe
-			});
-		} else if (
-			checkCount < ingrArr.length + stepArr.length &&
-			recipe.complete.confirm === true
-		) {
-			const ts = "none";
-			dispatch({
-				type: "completed",
-				value: false,
-				text: ts,
-				recipe: recipe
-			});
-		} else if (
-			checkCount < ingrArr.length + stepArr.length &&
-			recipe.complete.confirm === false
-		) {
-			return;
+
+		if (totalValues === checkCount) {
+			setCompleted(true);
+		} else {
+			setCompleted(false);
 		}
-	}, [recipe, savedMoment]);
+	}, [recipeInd]);
+
+	if (!navigator.onLine) {
+		reduxDispatch(
+			setError({ name: "network", message: "Check network connection." })
+		);
+		setShowError(true);
+	}
 
 	return (
 		<section
@@ -420,9 +438,9 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 									name={`ingredient-${ingredient.name}_${index}`}
 									className={styles["ingredient-checkbox"]}
 									checked={
-										recipe.ingredients[index][`${ingredient.name}_${index}`]
+										recipeInd.ingredients[index][`${ingredient.name}_${index}`]
 									}
-									onChange={(event) => handleChangeRecipe(event.target, recipe)}
+									onChange={(event) => handleChangeRecipe(event.target)}
 								/>
 								<label htmlFor={`${ingredient.id}${index}`}>
 									{ingredient.original}
@@ -448,10 +466,8 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 												name={`step-${step.number}`}
 												type="checkbox"
 												className={styles["step-checkbox"]}
-												checked={recipe.steps[index][`step-${step.number}`]}
-												onChange={(event) =>
-													handleChangeRecipe(event.target, recipe)
-												}
+												checked={recipeInd.steps[index][`step-${step.number}`]}
+												onChange={(event) => handleChangeRecipe(event.target)}
 											/>
 										</summary>
 										{step.equipment.length > 0 && (
@@ -510,7 +526,7 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 			<div className={styles["controls-container"]}>
 				<button
 					disabled={completed}
-					onClick={() => handleCompleteRecipe(true, recipe)}
+					onClick={() => handleCompleteRecipe(true, recipeInd)}
 					className={styles["complete-btn"]}
 				>
 					{completed ? (
@@ -523,12 +539,18 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 				</button>
 				<button
 					disabled={!completed}
-					onClick={() => handleCompleteRecipe(false, recipe)}
+					onClick={() => handleCompleteRecipe(false, recipeInd)}
 					className={styles["reset-btn"]}
 				>
 					<PiArrowCounterClockwiseBold />
 				</button>
 			</div>
+			{showError && (
+				<ErrorModal
+					errorsList={errorsMsgs}
+					onClick={() => setShowError(false)}
+				/>
+			)}
 		</section>
 	);
 }
