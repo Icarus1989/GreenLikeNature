@@ -105,12 +105,34 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 
 	const [recipeInd, setRecipeInd] = useState({
 		ingredients: ingredients.map((ingredient, index) => {
-			return { [`${ingredient.name}_${index}`]: completed };
+			return {
+				[`${ingredient.name}_${index}`]:
+					settings["complete-recipes"].filter((id) => {
+						return Number(recipeData.id) === id;
+					}).length > 0
+						? true
+						: false
+			};
 		}),
 		steps: steps.map((step) => {
-			return { [`step-${step.number}`]: completed };
+			return {
+				[`step-${step.number}`]:
+					settings["complete-recipes"].filter((id) => {
+						return Number(recipeData.id) === id;
+					}).length > 0
+						? true
+						: false
+			};
 		}),
-		complete: { confirm: completed, timestamp: "none" }
+		complete: {
+			confirm:
+				settings["complete-recipes"].filter((id) => {
+					return Number(recipeData.id) === id;
+				}).length > 0
+					? true
+					: false,
+			timestamp: "none"
+		}
 	});
 
 	const savedList = settings["saved-recipes"];
