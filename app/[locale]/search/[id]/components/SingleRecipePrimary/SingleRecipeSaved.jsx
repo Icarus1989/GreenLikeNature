@@ -105,14 +105,12 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 
 	const [recipeInd, setRecipeInd] = useState({
 		ingredients: ingredients.map((ingredient, index) => {
-			return {
-				[`${ingredient.name}_${index}`]: completed === true ? true : false
-			};
+			return { [`${ingredient.name}_${index}`]: completed };
 		}),
 		steps: steps.map((step) => {
-			return { [`step-${step.number}`]: completed === true ? true : false };
+			return { [`step-${step.number}`]: completed };
 		}),
-		complete: { confirm: completed === true ? true : false, timestamp: "none" }
+		complete: { confirm: completed, timestamp: "none" }
 	});
 
 	const savedList = settings["saved-recipes"];

@@ -16,6 +16,8 @@ import {
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addRecipe } from "@/lib/features/recipes/recipesSlice";
 
+import ErrorModal from "@/app/components/ErrorModal/ErrorModal";
+
 import { FaArrowLeft } from "react-icons/fa";
 import {
 	PiClockCountdownBold,
