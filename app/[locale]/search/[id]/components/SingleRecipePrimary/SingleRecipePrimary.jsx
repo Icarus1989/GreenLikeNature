@@ -480,11 +480,11 @@ export default function SingleRecipePrimary({ data, saved, originalData }) {
 													+ {t("tools_label")}
 												</h5>
 												<ul className={styles["equipment-list"]}>
-													{step.equipment.map((tool) => {
+													{step.equipment.map((tool, index) => {
 														return (
 															<li
 																className={styles["tool-elem"]}
-																key={tool.name}
+																key={`${tool.name}_${index}`}
 															>
 																<p className={styles["tool-name"]}>
 																	{tool.name}

@@ -101,7 +101,7 @@ Traduzioni:
 
 Salvataggio:
 
-- [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API) - solo accesso per salvataggio ricette, nessun dato personale utilizzato
+- [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API) - solo accesso per salvataggio ricette ed impostazioni, nessun dato personale utilizzato
 
 Animazioni:
 
@@ -205,7 +205,7 @@ La tecnica della doppia API Key utilizzata sopra permette all'App di avere tradu
 
 ### Internationalization
 
-In aggiunta ho voluto rendere accessibile l'App ad un pubblico più ampio, così ho integrato la traduzione in 6 lingue diverse: menu e indicazioni tramite internationalization del Routing con i18n mentre i testi ricavati dai dati di Spoonacular tradotti invece tramite l'API di DeepL.
+In aggiunta ho voluto rendere accessibile l'App ad un pubblico più ampio, così ho integrato la traduzione in 6 lingue diverse: menu e indicazioni tramite internationalization del Routing con i18next mentre i testi ricavati dai dati di Spoonacular tradotti invece tramite l'API di DeepL.
 
 <hr>
 
@@ -415,16 +415,18 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 - [x] Campi i18n Single Recipe
 - [x] Eliminare file e cose non necessarie
 - [x] Controllare presenza label i18n ovunque servano
-- [ ] Aggiungere url Vercel al README.md prima della consegna
-- [ ] Riattivare fetch dati iniziale da Action e cancellare lista iniziale
-- [ ] Controllo divisione corretta API Keys
+- [x] Aggiungere url Vercel al README.md prima della consegna
+- [x] Riattivare fetch dati iniziale da Action e cancellare lista iniziale
+- [x] Controllo divisione corretta API Keys
 - [ ] Ultimo Test dispositivo reale con fetch attivo
-- [ ] Presentazione
+- [x] Presentazione
 - [x] Refactor e miglioramento posizionamento menù iniziale
 - [x] Test iPhone 14
 - [x] Test iPhone 13
 - [x] Test iPhone 7
 - [x] Test iPad Air
+- [ ] Ultimo git e cancellazione lista con solo --->
+- [ ] Aggiunta settings cambio Paese con modifica Url Agrifood e relativi dati
 
 <hr>
 <hr>
@@ -447,9 +449,7 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## Demo
 
-Link
-
-<!-- Inserire Link -->
+[Project URL](green-like-nature.vercel.app)
 
 <br>
 <p><a href="#begin">&#9650; Back to summary</a></p>

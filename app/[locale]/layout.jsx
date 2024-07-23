@@ -51,10 +51,10 @@ export default async function RootLayout({ children, params: { locale } }) {
 			// HERE
 			// Riattivare qui --->
 
-			// const spoonList = await getSpoonData("", "", "", 100, 0);
+			const spoonList = await getSpoonData("", "", "", 80, 0);
 			// <--- Riattivare qui
 
-			const spoonList = { results: testList };
+			// const spoonList = { results: testList };
 
 			if (spoonList["error"]) {
 				return { results: [], error: error.message };

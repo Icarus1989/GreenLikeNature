@@ -522,7 +522,7 @@ export default function SingleRecipeSaved({ data, saved, translateRecipe }) {
 														return (
 															<li
 																className={styles["tool-elem"]}
-																key={tool.name}
+																key={`${tool.name}_${index + 1}`}
 															>
 																<p className={styles["tool-name"]}>
 																	{tool.name}
