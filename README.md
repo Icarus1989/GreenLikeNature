@@ -199,7 +199,7 @@ La struttura della Single Recipe Page é la medesima in entrambi i casi, compres
 
 Per gestire un quantitativo di dati importante come quello di 80 ricette con dettagli, ho utilizzato Redux. Questo si é dimostrato molto più veloce e fluido nella gestione di una mole notevole di dati rispetto all'utilizzo di una struttura di Context e Provider creata da zero, anche se, come indicato nella documentazione, l'integrazione e l'ottimizzazione di Redux con Next.js non é ancora completa.
 
-La tecnica della doppia API Key utilizzata sopra permette all'App di avere traduzioni per un maggior numero ricette tramite l'API di DeepL, utilizzando una key per ottenere le traduzioni delle ricette già presenti nei suggerimenti e un'altra per quelle non presenti.
+La tecnica della doppia API Key utilizzata sopra permette all'App di avere traduzioni per un maggior numero ricette tramite l'API di DeepL, utilizzando una key per ottenere le traduzioni delle ricette e un'altra per la traduzione di intolleranze e altro.
 
 <hr>
 
