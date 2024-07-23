@@ -470,10 +470,7 @@ export default function SearchPrimaryComponent({
 									</p>
 								)}
 								{searchData.type === "default" && data.length > 0 && (
-									<span className={styles["list-label"]}>
-										{/* HERE */}
-										{t("suggest")}
-									</span>
+									<span className={styles["list-label"]}>{t("suggest")}</span>
 								)}
 								{searchData.type === "default" && data.length === 0 && (
 									<p className={styles["no-suggest-label"]}>
