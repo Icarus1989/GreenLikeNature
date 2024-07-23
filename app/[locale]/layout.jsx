@@ -48,13 +48,7 @@ export default async function RootLayout({ children, params: { locale } }) {
 
 	async function calcCleanList() {
 		try {
-			// HERE
-			// Riattivare qui --->
-
 			const spoonList = await getSpoonData("", "", "", 80, 0);
-			// <--- Riattivare qui
-
-			// const spoonList = { results: testList };
 
 			if (spoonList["error"]) {
 				return { results: [], error: error.message };

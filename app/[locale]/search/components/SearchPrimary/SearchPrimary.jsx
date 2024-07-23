@@ -471,7 +471,6 @@ export default function SearchPrimaryComponent({
 								)}
 								{searchData.type === "default" && data.length > 0 && (
 									<span className={styles["list-label"]}>
-										{/* aggiungere campo i18n sia Main che Search*/}
 										{/* HERE */}
 										{t("suggest")}
 									</span>

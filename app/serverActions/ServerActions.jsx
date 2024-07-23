@@ -465,8 +465,10 @@ export async function seasonalData() {
 }
 
 export async function deeplTranslate(textArr, lang) {
-	"use server";
+	("use server");
 
+	// const deeplAuthKey = process.env.APIKEYDEEPLTWO;
+	// Riattivata il 26-07 al reset mensile del piano gratuito
 	const deeplAuthKey = process.env.APIKEYDEEPL;
 	const translator = new deepl.Translator(deeplAuthKey);
 

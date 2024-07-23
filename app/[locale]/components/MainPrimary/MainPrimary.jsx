@@ -382,8 +382,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 
 	const [ulScope, ulAnimate] = useAnimate();
 
-	// HERE
-	// Blur Effect
 	useEffect(() => {
 		if (view === true) {
 			window.addEventListener("blur", handleCloseTab);
@@ -521,8 +519,6 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 											{searchData.type === "default" &&
 												filteredList.length > 0 && (
 													<span className={styles["list-label"]}>
-														{/* aggiungere campo i18n */}
-														{/* HERE */}
 														{t("suggest")}
 													</span>
 												)}
@@ -706,5 +702,3 @@ export default function MainPrimary({ defaultRecipes, searchByQuery }) {
 		</>
 	);
 }
-
-// HERE manca campo i18n

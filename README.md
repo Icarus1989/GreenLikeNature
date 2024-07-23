@@ -156,7 +156,7 @@ Putroppo i dati degli anni precedenti al 2022 non erano utilizzabili in quando m
 
 <hr>
 
-La Route principale "/" viene modificata al caricamento iniziale grazie a i18n per interfacciarsi con la lingua selezionata cambiando il parametro "locale"
+La Route principale "/" viene modificata al caricamento iniziale grazie a i18next per interfacciarsi con la lingua selezionata cambiando il parametro "locale".
 
 Quindi la Route principale della Home Page sarà sempre per esempio:
 
@@ -226,7 +226,7 @@ Concentrandomi sulla possibilità di utilizzare l'App anche senza la disponibili
 Ogni Route ha una schermata di caricamento dedicata e durante la ricerca dalla Searchbar vi é uno spinner che compare per indicare l'effettivo caricamento.
 
 > [!NOTE]
-> A volte le schermate di caricamento non compaiono. Dopo vari test e controlli penso che questo avvenga perché la velocità di caricamento delle Route, prerenderizzare e ottimizzate da Next, sia abbastanza alta da essere al tempo invece necessario per il concludersi del rendering della pagina di caricamento.
+> A volte le schermate di caricamento non compaiono. Dopo vari test e controlli penso che questo avvenga perché la velocità di caricamento delle Routes, prerenderizzate e ottimizzate da Next, sia abbastanza alta da essere inferiore rispetto al tempo invece necessario per il concludersi del rendering della pagina di caricamento.
 
 <hr>
 
@@ -331,12 +331,13 @@ Ho cercato di creare la pagina della Ricetta Singola come una scheda interattiva
 Nella prima parte vi é un'immagine di copertina con titolo, subito sotto dei tasti per tornare rapidamente alla Search Page o Salvare la ricetta tra le preferite. A seguire delle informazioni basilari ma esposte chiaramente con un'indicazione se il piatto proposto é vegetariano o vegano.
 Subito sotto una presentazione descrittiva della ricetta.
 La parte sottostante ho voluto crearla come una lista spuntabile personalizzata per gli ingredienti, in modo che si possa fare un recap del necessario prima di cominciare.
-Proseguendo si incontrano tutti gli steps per eseguire la ricetta: al loro interno vi sono degli elenchi per gli strumenti necessari per eseguire il passaggio, gli ingredienti e una descrizione testuale. Ongi step é spuntabile al completamento.
-Premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi memorizzato il completamento nel LocalStorage del dispositivo e tutti gli ingredienti e steps verranno spuntati o completati.
+Proseguendo si incontrano tutti gli steps per eseguire la ricetta: al loro interno vi sono degli elenchi per gli strumenti necessari per eseguire il passaggio, gli ingredienti e una descrizione testuale. Ogni step é spuntabile al completamento.
+Completando tutti gli ingredienti e gli step oppure premendo l'apposito tasto a fine pagina, la ricetta cambierà stato e visualizzazione diventanto Completata. Verrà quindi memorizzato il completamento nel LocalStorage del dispositivo.
 Nel caso si volesse rifare la ricetta e azzerare tutti i passaggi e gli ingredienti, basterà premere il tasto di reset situato a fianco del precedente per il completamento.
 
 > [!IMPORTANT]
 > Alcune ricette presentano dei dati non disposti nello schema della maggior parte delle altre, per esempio avendo saltuariamente string uniche di testo o markup HTML invece che array andando così ad agire negativamente sulla visualizzazione degli elenchi presenti nella pagina. Dalle varie prove sembrano circa un 5% delle ricette presenti nei dati Spoonacular. Ho provato a gestire questo fatto nel miglior modo possibile, gli errori proposti comunque vengono gestiti e non vanno ad interferire col funzionamento della pagina o dell'App in generale, almeno dalle prove effettuate.
+> Nell'eventualità di un errore non risolvibile con i tasti di ricaricamento presenti nei vari Modal, si prega di chiudere e riaprire l'App, evitando tali ricette.
 
 ### - :bust_in_silhouette: - Tomato Settings
 
@@ -407,26 +408,11 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## To-Do:
 
-- [x] README ricontrollare testo da Usage in giù
-- [x] README inserire immagini (poche)
-- [x] README controllo link iniziali
-- [x] Pulizia codice da commmenti / console.log
-- [x] Problema COMPLETED nelle SinglePage
-- [x] Campi i18n Single Recipe
-- [x] Eliminare file e cose non necessarie
-- [x] Controllare presenza label i18n ovunque servano
-- [x] Aggiungere url Vercel al README.md prima della consegna
-- [x] Riattivare fetch dati iniziale da Action e cancellare lista iniziale
-- [x] Controllo divisione corretta API Keys
+Per future implementazioni:
+
 - [ ] Ultimo Test dispositivo reale con fetch attivo
-- [x] Presentazione
-- [x] Refactor e miglioramento posizionamento menù iniziale
-- [x] Test iPhone 14
-- [x] Test iPhone 13
-- [x] Test iPhone 7
-- [x] Test iPad Air
 - [ ] Ultimo git e cancellazione lista con solo --->
-- [ ] Aggiunta settings cambio Paese con modifica Url Agrifood e relativi dati
+- [ ] Aggiunta Settings cambio Paese Europeo con relativa modifica Url Agrifood e dati
 
 <hr>
 <hr>
