@@ -408,6 +408,8 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 ## To-Do:
 
+- [x] Ultimo git e ultimo test
+
 Per future implementazioni:
 
 - [ ] Aggiunta Settings cambio Paese Europeo con relativa modifica Url Agrifood e dati
