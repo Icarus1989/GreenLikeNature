@@ -410,8 +410,6 @@ Anche se il sito web che creerai non è complesso, sarebbe meglio utilizzare alc
 
 Per future implementazioni:
 
-- [ ] Ultimo Test dispositivo reale con fetch attivo
-- [ ] Ultimo git e cancellazione lista con solo --->
 - [ ] Aggiunta Settings cambio Paese Europeo con relativa modifica Url Agrifood e dati
 
 <hr>

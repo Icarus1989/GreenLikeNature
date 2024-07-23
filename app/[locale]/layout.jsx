@@ -12,8 +12,6 @@ import Navbar from "../components/Navbar/Navbar";
 import "./globals.css";
 import { inter } from "@/app/utils/fonts/fonts";
 
-import testList from "@/spoonTempData/tempList.json";
-
 export const metadata = {
 	title: "Green Like Nature",
 	description: "Vegetarian Recipe App"
