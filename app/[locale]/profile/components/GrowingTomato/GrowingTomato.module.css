@@ -50,7 +50,7 @@
 
 @media only screen and (min-width: 481px) and (max-width: 899px) and (min-height: 481px) {
 	.animation-container {
-		width: 80%;
+		width: 100%;
 	}
 
 	.small-plant-svg {
