@@ -468,6 +468,7 @@ export async function deeplTranslate(textArr, lang) {
 	"use server";
 
 	const deeplAuthKey = process.env.APIKEYDEEPLTWO;
+	// Inizio modifica per ulteriore split tra le due API KEys
 	const translator = new deepl.Translator(deeplAuthKey);
 
 	if (lang !== "en") {
